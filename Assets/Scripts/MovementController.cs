@@ -33,7 +33,7 @@ public class MovementController : MonoBehaviour
 
         if (onGround && velocity.y < 0)
         {
-            velocity.y = -2f;
+            velocity.y = -5f;
         }
 
         float x = Input.GetAxis("Horizontal");
