@@ -42,34 +42,9 @@ public class PlayerMovement : MonoBehaviour
             controller.Move(move * speed * Time.deltaTime);
 
         }
-
-        if (IsStop(x, z))
-        {
-            if (Input.GetButton("LookLeft") && isInclined == false)
-            {
-                Debug.Log("IZQUIERDAAA");
-                this.transform.position = Vector3.Lerp(this.transform.position, this.transform.position * 50.0f, Time.deltaTime);
-                isInclined = true;
-            }
-            else if (Input.GetButton("LookRight") && isInclined == false)
-            {
-                Debug.Log("DERECHAAAA");
-                isInclined = true;
-            }
-            else if (Input.GetButtonUp("LookLeft"))
-            {
-                isInclined = false;
-            }
-
-            else if (Input.GetButtonUp("LookRight"))
-            {
-                isInclined = false;
-            }
-        }
-
-
     }
 
+    /*
     public bool IsStop(float xMovement, float zMovement)
     {
         if (xMovement > -0.01f && xMovement < 0.01f && zMovement > -0.01f && zMovement < 0.01f)
@@ -81,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
             return false;
         }
     }
+    */
 
     public void SetGravity()
     {
