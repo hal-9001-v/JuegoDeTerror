@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
+//Posibles Estados de Juego
 public enum GameState
 {
     menu,

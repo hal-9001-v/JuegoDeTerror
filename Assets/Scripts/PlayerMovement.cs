@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float gravity = 9.8f;
 
-    public float fallVelocity;
+    private float fallVelocity;
 
     public bool isInclined = false;
 
@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move; //Vector velocidad
 
-    // Update is called once per frame
-    void Update()
+    //Para fuerzas constantes
+    void FixedUpdate()
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
@@ -74,5 +74,10 @@ public class PlayerMovement : MonoBehaviour
             fallVelocity -= gravity * Time.deltaTime;
             move.y = fallVelocity;
         }
+    }
+
+    public void Kill()
+    {
+        GameManager.sharedInstance.GameOver();
     }
 }
