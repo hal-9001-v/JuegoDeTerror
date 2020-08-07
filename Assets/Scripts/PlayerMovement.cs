@@ -23,24 +23,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        move = (transform.right * x) + (transform.forward * z);
-
-        SetGravity();
-
-        if (Input.GetButton("Run"))
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            isRunning = true;
-            controller.Move(move * speed * runningIncrease * Time.deltaTime);
-        }
-        else
-        {
-            isRunning = false;
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
 
-            controller.Move(move * speed * Time.deltaTime);
+            move = (transform.right * x) + (transform.forward * z);
 
+            SetGravity();
+
+            if (Input.GetButton("Run"))
+            {
+                isRunning = true;
+                controller.Move(move * speed * runningIncrease * Time.deltaTime);
+            }
+            else
+            {
+                isRunning = false;
+
+                controller.Move(move * speed * Time.deltaTime);
+
+            }
         }
     }
 

@@ -21,7 +21,10 @@ public class CameraLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CameraRotation();
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
+        {
+            CameraRotation();
+        }
     }
 
     public void CameraRotation()
