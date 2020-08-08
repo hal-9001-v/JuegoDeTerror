@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float minRecoverTime = 2.0f;
 
-    public float fatigueRecoverTimeIncrease = 0.8f;
+    public float fatigueRecoverTimeIncrease = 0.8f; //Multiplicador de velocidad de tiempo de recuperación
 
     public bool hasFatigue = false;
 

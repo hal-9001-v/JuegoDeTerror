@@ -6,7 +6,7 @@ public class ReadNote : MonoBehaviour
 {
     public Transform Player;
     public float minDist;
-    private bool isReading;
+    public bool isReading;
     private float dist = 5.0f;
 
     private void Start()
