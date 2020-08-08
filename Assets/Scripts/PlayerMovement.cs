@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float minRecoverTime = 2.0f;
 
+    public float fatigueRecoverTimeIncrease = 0.8f;
+
     public bool hasFatigue = false;
 
     private float fatigueCounter;
@@ -36,16 +38,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (hasFatigue == false)
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            hasFatigue = Fatigue();
-        }
-        else
-        {
-            hasFatigue = FatigueRecover();
+            if (hasFatigue == false)
+            {
+                hasFatigue = Fatigue();
+            }
+            else
+            {
+                hasFatigue = FatigueRecover();
+            }
         }
     }
 
+    //Método que controla el contador de fatiga del jugador mientras este sea igual a false
     public bool Fatigue()
     {
         bool hasFatigue = false;
@@ -57,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (isRunning == false && fatigueCounter > 0.1f)
         {
-            fatigueCounter -= Time.deltaTime;
+            fatigueCounter -= fatigueRecoverTimeIncrease * Time.deltaTime;
         }
         Debug.Log(fatigueCounter);
 
@@ -69,13 +75,14 @@ public class PlayerMovement : MonoBehaviour
         return hasFatigue;
     }
 
+    //Método que se llama cuando el ugador tiene fatiga y devuelve hasFatigue = false cuando haya pasado el tiempo mínimo de recuperación
     public bool FatigueRecover()
     {
         bool hasFatigue = true;
 
         if (fatigueCounter >= maxRunningTime - minRecoverTime)
         {
-            fatigueCounter -= Time.deltaTime;
+            fatigueCounter -= fatigueRecoverTimeIncrease * Time.deltaTime;
         }
         else
         {

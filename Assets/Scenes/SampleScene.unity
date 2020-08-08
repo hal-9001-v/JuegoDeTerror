@@ -3294,6 +3294,7 @@ MonoBehaviour:
   move: {x: 0, y: 0, z: 0}
   maxRunningTime: 10
   minRecoverTime: 4
+  fatigueRecoverTimeIncrease: 0.7
   hasFatigue: 0
 --- !u!43 &2120918362
 Mesh:
