@@ -233,7 +233,7 @@ public class Pursuer : MonoBehaviour
 
         public void exit()
         {
-            if (myPursuer.distanceToPlayer() <= 2)
+            if (myPursuer.distanceToPlayer() <= 3)
             {
                 myPursuer.startPursuing(myPursuer.currentRoom);
             }
