@@ -11,14 +11,19 @@ public class Pursuer : MonoBehaviour
     public Room currentRoom;
 
     public InactiveState myInactiveState;
-    public IdleState myIdleState;
-    public MoveState myMoveState;
+    public PursueIdleState myPursueIdleState;
+    public PursueMoveState myPursueMoveState;
 
     public RandomIdleState myRandomIdleState;
     public RandomMoveState myRandomMoveState;
 
+    public KillPlayerState myKillPlayerState;
+    public DecideActionState myDecideActionState;
+
     //Time Waiting on every room
     public float waitTime = 2;
+    public float pursueTime = 1;
+    public float timeForKill = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -27,11 +32,15 @@ public class Pursuer : MonoBehaviour
         game = FindObjectOfType<Game>();
 
         myInactiveState = new InactiveState(this);
-        myIdleState = new IdleState(this, waitTime);
-        myMoveState = new MoveState(this);
+        myPursueIdleState = new PursueIdleState(this, pursueTime);
+        myPursueMoveState = new PursueMoveState(this);
 
         myRandomIdleState = new RandomIdleState(this, waitTime);
         myRandomMoveState = new RandomMoveState(this);
+
+        myKillPlayerState = new KillPlayerState(this, timeForKill);
+
+        myDecideActionState = new DecideActionState(this);
 
 
         myInactiveState.enter();
@@ -59,8 +68,8 @@ public class Pursuer : MonoBehaviour
         rooms = game.myRoomMap.getPath(currentRoom, player.currentRoom);
         currentRoom = startingRoom;
 
-        myIdleState.enter();
-        Debug.Log("PURSUER: Start Pursuing");
+        myPursueIdleState.enter();
+        //Debug.LogWarning("PURSUER: Start Pursuing");
     }
 
     public void startPatrol(Room startingRoom)
@@ -74,6 +83,16 @@ public class Pursuer : MonoBehaviour
         Debug.Log("PURSUER: Start Patrol");
     }
 
+    public void updatePursuing()
+    {
+        //Stack the path to player
+        rooms = game.myRoomMap.getPath(currentRoom, game.myRoomMap.getRandomRoom());
+    }
+
+    public int distanceToPlayer()
+    {
+        return game.myRoomMap.getPath(currentRoom, player.currentRoom).Count;
+    }
 
     public class InactiveState : State
     {
@@ -103,14 +122,14 @@ public class Pursuer : MonoBehaviour
 
     }
 
-    public class IdleState : State
+    public class PursueIdleState : State
     {
         public float holdingTime;
         public float timeCounter;
 
         Pursuer myPursuer;
 
-        public IdleState(Pursuer myPursuer, float holdingTime)
+        public PursueIdleState(Pursuer myPursuer, float holdingTime)
         {
             this.myPursuer = myPursuer;
             this.holdingTime = holdingTime;
@@ -140,32 +159,24 @@ public class Pursuer : MonoBehaviour
             {
                 if (myPursuer.rooms.Count != 0)
                 {
-                    myPursuer.myMoveState.enter();
+                    myPursuer.myPursueMoveState.enter();
                 }
                 else
                 {
-                    if (myPursuer.game.myRoomMap.getPath(myPursuer.currentRoom, myPursuer.player.currentRoom).Count <= 1)
-                    {
-                        myPursuer.startPursuing(myPursuer.currentRoom);
-                    }
-                    else
-                    {
-                        myPursuer.startPatrol(myPursuer.currentRoom);
-                    }
-
-
+                    myPursuer.myDecideActionState.enter();
                 }
 
             }
 
         }
     }
-    public class MoveState : State
+
+    public class PursueMoveState : State
     {
 
         Pursuer myPursuer;
 
-        public MoveState(Pursuer pursuer)
+        public PursueMoveState(Pursuer pursuer)
         {
             myPursuer = pursuer;
         }
@@ -183,18 +194,7 @@ public class Pursuer : MonoBehaviour
 
         public void exit()
         {
-
-            if (myPursuer.currentRoom == myPursuer.player.currentRoom)
-            {
-                Debug.Log("Kill Player");
-
-                myPursuer.myInactiveState.enter();
-
-            }
-            else
-            {
-                myPursuer.myIdleState.enter();
-            }
+            myPursuer.myPursueIdleState.enter();
 
         }
     }
@@ -233,7 +233,7 @@ public class Pursuer : MonoBehaviour
 
         public void exit()
         {
-            if (myPursuer.game.myRoomMap.getPath(myPursuer.currentRoom, myPursuer.player.currentRoom).Count <= 2)
+            if (myPursuer.distanceToPlayer() <= 2)
             {
                 myPursuer.startPursuing(myPursuer.currentRoom);
             }
@@ -282,8 +282,88 @@ public class Pursuer : MonoBehaviour
         }
     }
 
+    public class KillPlayerState : State
+    {
+        Pursuer myPursuer;
+        float timeToKill;
 
+        public KillPlayerState(Pursuer pursuer, float timeToKill)
+        {
+            myPursuer = pursuer;
+            this.timeToKill = timeToKill;
+        }
 
+        public void enter()
+        {
+            execute();
+        }
+
+        public void execute()
+        {
+            myPursuer.StartCoroutine(Execute());
+        }
+
+        private IEnumerator Execute()
+        {
+
+            yield return new WaitForSeconds(timeToKill);
+
+            exit();
+        }
+
+        public void exit()
+        {
+            if (myPursuer.currentRoom == myPursuer.player.currentRoom)
+            {
+                Debug.LogWarning("Kill Player");
+                myPursuer.myInactiveState.enter();
+            }
+            else {
+                myPursuer.myDecideActionState.enter();
+            }
+        }
+    }
+
+    public class DecideActionState : State
+    {
+        Pursuer myPursuer;
+
+        public DecideActionState(Pursuer myPursuer)
+        {
+            this.myPursuer = myPursuer;
+        }
+
+        public void enter()
+        {
+            execute();
+        }
+
+        public void execute()
+        {
+            exit();
+        }
+
+        public void exit()
+        {
+            if (myPursuer.currentRoom == myPursuer.player.currentRoom)
+            {
+                myPursuer.myKillPlayerState.enter();
+                return;
+            }
+
+            if (myPursuer.distanceToPlayer() < 4)
+            {
+                myPursuer.startPursuing(myPursuer.currentRoom);
+                return;
+            }
+            else
+            {
+                myPursuer.startPatrol(myPursuer.currentRoom);
+                return;
+            }
+
+        }
+    }
     public interface State
     {
         void enter();

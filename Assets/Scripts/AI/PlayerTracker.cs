@@ -29,6 +29,8 @@ public class PlayerTracker : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.tag != "Room") return;
+
         other.gameObject.GetComponent<Room>().atExit.Invoke();
     }
 
