@@ -21,7 +21,7 @@ public class Pursuer : MonoBehaviour
     public DecideActionState myDecideActionState;
 
     //Time Waiting on every room
-    public float waitTime = 2;
+    public float patrolTime = 2;
     public float pursueTime = 1;
     public float timeForKill = 2;
 
@@ -35,7 +35,7 @@ public class Pursuer : MonoBehaviour
         myPursueIdleState = new PursueIdleState(this, pursueTime);
         myPursueMoveState = new PursueMoveState(this);
 
-        myRandomIdleState = new RandomIdleState(this, waitTime);
+        myRandomIdleState = new RandomIdleState(this, patrolTime);
         myRandomMoveState = new RandomMoveState(this);
 
         myKillPlayerState = new KillPlayerState(this, timeForKill);

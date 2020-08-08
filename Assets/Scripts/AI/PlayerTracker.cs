@@ -6,7 +6,6 @@ public class PlayerTracker : MonoBehaviour
 {
     public Room currentRoom;
 
-
     private void OnTriggerEnter(Collider collider)
     {
 
