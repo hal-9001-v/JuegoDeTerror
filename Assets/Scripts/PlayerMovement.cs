@@ -20,6 +20,10 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move; //Vector velocidad
 
+    public GameObject[] notes;
+
+    public bool isReading = false;
+
     //Fatigue variables
     public float maxRunningTime;
 
@@ -34,11 +38,27 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         fatigueCounter = 0.0f;
+
+        notes = GameObject.FindGameObjectsWithTag("Note");
+                
     }
 
     private void Update()
     {
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
+        //Checking player is not reading any notes
+        for(int i = 0; i < notes.Length; i++)
+        {
+            if(notes[i].GetComponent<ReadNote>().isReading == true)
+            {
+                this.isReading = true;
+            }
+            else
+            {
+                isReading = false;
+            }
+        }
+
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
         {
             if (hasFatigue == false)
             {
@@ -95,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
     //Para fuerzas constantes
     void FixedUpdate()
     {
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
