@@ -937,7 +937,6 @@ GameObject:
   - component: {fileID: 1552695039}
   - component: {fileID: 1552695038}
   - component: {fileID: 1552695037}
-  - component: {fileID: 1552695040}
   - component: {fileID: 1552695041}
   m_Layer: 0
   m_Name: Note
@@ -1007,19 +1006,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90.00001, z: 0}
---- !u!65 &1552695040
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1552695036}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7353611, y: 18.26933, z: 3.0691087}
-  m_Center: {x: 1.2613852, y: -8.634679, z: -0.006039525}
 --- !u!114 &1552695041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,6 +1018,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedb66adc3c40ef409dc2ed7386231a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: {fileID: 2049983448}
+  minDist: 3
 --- !u!1 &1937859206
 GameObject:
   m_ObjectHideFlags: 0

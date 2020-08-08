@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        BackToMenu();
+        StartGame();
     }
 
     //Método que cambia a el estado inGame

@@ -25,6 +25,12 @@ public class ReadNote : MonoBehaviour
                 isReading = true;
                 Debug.Log("Estás leyendo una nota");
             }
+            
+            if(Input.GetButtonDown("Exit") && isReading)
+            {
+                isReading = false;
+                Debug.Log("Has dejado de leer");
+            }
         }
     }
 }
