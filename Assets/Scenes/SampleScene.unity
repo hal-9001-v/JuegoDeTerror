@@ -3292,6 +3292,9 @@ MonoBehaviour:
   isInclined: 0
   isRunning: 0
   move: {x: 0, y: 0, z: 0}
+  maxRunningTime: 10
+  minRecoverTime: 4
+  hasFatigue: 0
 --- !u!43 &2120918362
 Mesh:
   m_ObjectHideFlags: 0

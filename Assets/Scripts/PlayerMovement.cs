@@ -20,6 +20,71 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move; //Vector velocidad
 
+    //Fatigue variables
+    public float maxRunningTime;
+
+    public float minRecoverTime = 2.0f;
+
+    public bool hasFatigue = false;
+
+    private float fatigueCounter;
+
+    private void Start()
+    {
+        fatigueCounter = 0.0f;
+    }
+
+    private void Update()
+    {
+        if (hasFatigue == false)
+        {
+            hasFatigue = Fatigue();
+        }
+        else
+        {
+            hasFatigue = FatigueRecover();
+        }
+    }
+
+    public bool Fatigue()
+    {
+        bool hasFatigue = false;
+
+        if (isRunning)
+        {
+            fatigueCounter += Time.deltaTime;
+        }
+
+        if (isRunning == false && fatigueCounter > 0.1f)
+        {
+            fatigueCounter -= Time.deltaTime;
+        }
+        Debug.Log(fatigueCounter);
+
+        if(fatigueCounter >= maxRunningTime)
+        {
+            hasFatigue = true;
+        }
+
+        return hasFatigue;
+    }
+
+    public bool FatigueRecover()
+    {
+        bool hasFatigue = true;
+
+        if (fatigueCounter >= maxRunningTime - minRecoverTime)
+        {
+            fatigueCounter -= Time.deltaTime;
+        }
+        else
+        {
+            hasFatigue = false;
+        }
+
+        return hasFatigue;
+    }
+
     //Para fuerzas constantes
     void FixedUpdate()
     {
@@ -32,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
             SetGravity();
 
-            if (Input.GetButton("Run"))
+            if (Input.GetButton("Run") && hasFatigue == false)
             {
                 isRunning = true;
                 controller.Move(move * speed * runningIncrease * Time.deltaTime);
