@@ -91,6 +91,10 @@ public class RoomMap
 
     }
 
+    public Room getRandomRoom() {
+        return roomList[Random.Range(0,roomList.Count)];
+    }
+
     class RoomPriorityQueue
     {
 

@@ -11,6 +11,7 @@ public class PlayerTracker : MonoBehaviour
     {
 
         if (collider.gameObject.tag != "Room") return;
+
         Room myRoom;
 
         myRoom = collider.gameObject.GetComponent<Room>();
@@ -23,5 +24,13 @@ public class PlayerTracker : MonoBehaviour
 
         currentRoom = myRoom;
 
+        currentRoom.atEnter.Invoke();
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        other.gameObject.GetComponent<Room>().atExit.Invoke();
+    }
+
+
 }

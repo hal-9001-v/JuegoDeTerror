@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour
 {
-    RoomMap myRoomMap;
+    public RoomMap myRoomMap;
     public int x;
     public int y;
     public int offset;

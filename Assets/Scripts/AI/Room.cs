@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Room : MonoBehaviour
 {
@@ -12,5 +13,10 @@ public class Room : MonoBehaviour
 
     public bool visited;
     public Room previousRoom;
+
+    public UnityEvent atEnter;
+    public UnityEvent atExit;
+
+
 
 }
