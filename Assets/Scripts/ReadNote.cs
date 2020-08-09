@@ -8,7 +8,8 @@ public class ReadNote : MonoBehaviour
     public Transform Player;
     public float minDist;
     public bool isReading;
-    public AudioClip noteSound;
+    public AudioClip noteOpenSound;
+    public AudioClip noteCloseSound;
 
     private AudioSource audioSource;
     private float dist = 5.0f;
@@ -28,7 +29,7 @@ public class ReadNote : MonoBehaviour
             if (Input.GetButtonDown("ReadNote") && isReading == false)
             {
                 isReading = true;
-                audioSource.PlayOneShot(noteSound);
+                audioSource.PlayOneShot(noteOpenSound);
 
                 Debug.Log("Estás leyendo una nota");
             }
@@ -36,6 +37,7 @@ public class ReadNote : MonoBehaviour
             if (Input.GetButtonDown("Exit") && isReading)
             {
                 isReading = false;
+                audioSource.PlayOneShot(noteCloseSound);
                 Debug.Log("Has dejado de leer");
             }
         }
