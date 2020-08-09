@@ -47,7 +47,7 @@ public class ReadNote : MonoBehaviour
     {
         if (isReading)
         {
-            GUI.TextArea(new Rect(Screen.height / 2, Screen.width / 2, 1000, 1000), "LEYENDO NOTA");
+            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "LEYENDO NOTA DE UN POLICÍA ALIEN");
         }
     }
 }
