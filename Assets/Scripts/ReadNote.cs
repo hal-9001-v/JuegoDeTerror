@@ -10,6 +10,7 @@ public class ReadNote : MonoBehaviour
     public bool isReading;
     public AudioClip noteOpenSound;
     public AudioClip noteCloseSound;
+    public Canvas noteCanvas;
 
     private AudioSource audioSource;
     private float dist = 5.0f;
@@ -30,6 +31,7 @@ public class ReadNote : MonoBehaviour
             {
                 isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
+                noteCanvas.enabled = true;
 
                 Debug.Log("Estás leyendo una nota");
             }
@@ -38,6 +40,8 @@ public class ReadNote : MonoBehaviour
             {
                 isReading = false;
                 audioSource.PlayOneShot(noteCloseSound);
+                noteCanvas.enabled = false;
+
                 Debug.Log("Has dejado de leer");
             }
         }
@@ -47,7 +51,7 @@ public class ReadNote : MonoBehaviour
     {
         if (isReading)
         {
-            GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "LEYENDO NOTA DE UN POLICÍA ALIEN");
+            //GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "LEYENDO NOTA DE UN POLICÍA ALIEN");
         }
     }
 }

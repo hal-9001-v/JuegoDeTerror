@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
 {
     public GameState currentGameState;
 
+    public Canvas noteCanvas;
+
     public static GameManager sharedInstance;
 
     private void Awake()
@@ -52,12 +54,15 @@ public class GameManager : MonoBehaviour
         {
             case GameState.inGame:
                 //Mostranmos y ocultamos los canvas que toquen
+                noteCanvas.enabled = false;
                 break;
             case GameState.menu:
                 //Mostranmos y ocultamos los canvas que toquen
+                noteCanvas.enabled = false;
                 break;
             case GameState.gameOver:
                 //Mostranmos y ocultamos los canvas que toquen
+                noteCanvas.enabled = false;
                 break;
         }
 
