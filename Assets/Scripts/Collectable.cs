@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public enum Type
 {
@@ -10,7 +11,7 @@ public enum Type
 
 public class Collectable : MonoBehaviour
 {
-    public string firstPageText;
-    public string secondPageText;
+    [TextArea(0, 40)] public string firstPageText;
+    [TextArea(0, 40)] public string secondPageText;
     public Type currentType;
 }

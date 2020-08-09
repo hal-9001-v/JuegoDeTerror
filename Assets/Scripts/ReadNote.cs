@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ReadNote : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class ReadNote : MonoBehaviour
             {
                 isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
+                string contentFirstPage = GetComponent<Collectable>().firstPageText;
                 noteCanvas.enabled = true;
 
                 Debug.Log("Estás leyendo una nota");
