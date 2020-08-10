@@ -12,7 +12,13 @@ public class ReadNote : MonoBehaviour
     public AudioClip noteOpenSound;
     public AudioClip noteCloseSound;
     public Canvas noteCanvas;
+    public TextMeshProUGUI text;
+    public Image nextPageArrow;
+    public Image lastPageArrow;
 
+    private string contentFirstPage;
+    private string contentSecondPage;
+    private bool moreThanOnePage;
     private AudioSource audioSource;
     private float dist = 5.0f;
 
@@ -20,6 +26,7 @@ public class ReadNote : MonoBehaviour
     {
         isReading = false;
         audioSource = GetComponent<AudioSource>();
+        moreThanOnePage = GetComponent<Collectable>().moreThanOnePage;
     }
 
     private void Update()
@@ -32,10 +39,32 @@ public class ReadNote : MonoBehaviour
             {
                 isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
-                string contentFirstPage = GetComponent<Collectable>().firstPageText;
+                contentFirstPage = GetComponent<Collectable>().firstPageText;
+
+                if(moreThanOnePage)
+                {
+                    contentSecondPage = GetComponent<Collectable>().secondPageText;
+                    nextPageArrow.enabled = true;
+                }
+
+                Page(contentFirstPage);
+
                 noteCanvas.enabled = true;
 
                 Debug.Log("Estás leyendo una nota");
+            }
+
+            if(Input.GetKeyDown(KeyCode.RightArrow) && isReading && moreThanOnePage)
+            {
+                Page(contentSecondPage);
+                lastPageArrow.enabled = true;
+                nextPageArrow.enabled = false;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && moreThanOnePage)
+            {
+                Page(contentFirstPage);
+                lastPageArrow.enabled = false;
+                nextPageArrow.enabled = true;
             }
 
             if (Input.GetButtonDown("Exit") && isReading)
@@ -49,11 +78,8 @@ public class ReadNote : MonoBehaviour
         }
     }
 
-    void OnGUI()
+    public void Page(string page)
     {
-        if (isReading)
-        {
-            //GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "LEYENDO NOTA DE UN POLICÍA ALIEN");
-        }
+        text.text = page;
     }
 }
