@@ -35,6 +35,7 @@ public class ReadNote : MonoBehaviour
 
         if (dist <= minDist)
         {
+            //Entrar al modo Nota
             if (Input.GetButtonDown("ReadNote") && isReading == false)
             {
                 isReading = true;
@@ -54,12 +55,15 @@ public class ReadNote : MonoBehaviour
                 Debug.Log("Estás leyendo una nota");
             }
 
+            //Si hay segunda página...
             if(Input.GetKeyDown(KeyCode.RightArrow) && isReading && moreThanOnePage)
             {
                 Page(contentSecondPage);
                 lastPageArrow.enabled = true;
                 nextPageArrow.enabled = false;
             }
+
+            //Si hay página anterior...
             if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && moreThanOnePage)
             {
                 Page(contentFirstPage);
@@ -67,6 +71,7 @@ public class ReadNote : MonoBehaviour
                 nextPageArrow.enabled = true;
             }
 
+            //Salir del modo Nota
             if (Input.GetButtonDown("Exit") && isReading)
             {
                 isReading = false;
