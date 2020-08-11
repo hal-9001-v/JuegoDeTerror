@@ -14,8 +14,8 @@ public class MouseController : MonoBehaviour
 
     private void Update()
     {
-        float xInput = Input.GetAxis("Mouse X") * mouseSensevitiy;
-        float yInput = Input.GetAxis("Mouse Y") * mouseSensevitiy;
+        float xInput = Input.GetAxis("MouseX") * mouseSensevitiy;
+        float yInput = Input.GetAxis("MouseY") * mouseSensevitiy;
 
         xRotation -= yInput;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

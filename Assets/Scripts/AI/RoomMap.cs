@@ -20,7 +20,6 @@ public class RoomMap
 
     public Stack<Room> getPath(Room origin, Room destination)
     {
-
         if (origin == null)
         {
             Debug.Log("Origin does not exist");
@@ -142,4 +141,5 @@ public class RoomMap
 
     }
 
+    
 }

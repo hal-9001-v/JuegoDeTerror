@@ -48,7 +48,20 @@ public class Pursuer : MonoBehaviour
 
     public Room moveToNextRoom()
     {
+        currentRoom.setSafeRoom();
+
+        foreach (Room r in currentRoom.neighbourRooms) {
+            r.setSafeRoom();
+        }
+
         currentRoom = rooms.Pop();
+
+        currentRoom.setDangerColor();
+
+        foreach (Room r in currentRoom.neighbourRooms)
+        {
+            r.setNearbyRoom();
+        }
 
         //Move to Room(Just for debugging)
         Vector3 aux = currentRoom.transform.position;
@@ -64,6 +77,7 @@ public class Pursuer : MonoBehaviour
 
     public void startPursuing(Room startingRoom)
     {
+
         //Stack the path to player
         rooms = game.myRoomMap.getPath(currentRoom, player.currentRoom);
         currentRoom = startingRoom;
@@ -216,6 +230,7 @@ public class Pursuer : MonoBehaviour
         public void enter()
         {
             timeCounter = 0;
+            
             execute();
         }
 
