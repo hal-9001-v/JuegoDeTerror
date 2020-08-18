@@ -11,8 +11,5 @@ public enum Type
 
 public class Collectable : MonoBehaviour
 {
-    [TextArea(0, 40)] public string firstPageText;
-    [TextArea(0, 40)] public string secondPageText;
-    public bool moreThanOnePage;
     public Type currentType;
 }

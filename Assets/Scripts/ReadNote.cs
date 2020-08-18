@@ -3,30 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ReadNote : MonoBehaviour
 {
     public Transform Player;
-    public float minDist;
+    public float minDist;//Distancia mínima para que pueda interactuar con la nota
     public bool isReading;
     public AudioClip noteOpenSound;
     public AudioClip noteCloseSound;
-    public Canvas noteCanvas;
-    public TextMeshProUGUI text;
+    public Canvas noteCanvas;//Cnvas de la nota
+    public TextMeshProUGUI text;//Texto intercambiable de la nota
     public Image nextPageArrow;
     public Image lastPageArrow;
+    [TextArea(0, 40)] public List<string> contentPages = new List<string>(); //Lista de todos los textos. Cada posicion es una hoja
 
-    private string contentFirstPage;
-    private string contentSecondPage;
-    private bool moreThanOnePage;
+    private int currentPage = 0;//Página actual
     private AudioSource audioSource;
-    private float dist = 5.0f;
+    private float dist;//Distancia actual entre Player y Nota
 
     private void Start()
     {
         isReading = false;
         audioSource = GetComponent<AudioSource>();
-        moreThanOnePage = GetComponent<Collectable>().moreThanOnePage;
     }
 
     private void Update()
@@ -38,37 +37,48 @@ public class ReadNote : MonoBehaviour
             //Entrar al modo Nota
             if (Input.GetButtonDown("ReadNote") && isReading == false)
             {
+                currentPage = 0;
                 isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
-                contentFirstPage = GetComponent<Collectable>().firstPageText;
+                Page(contentPages[currentPage]);
+                
+            }
 
-                if(moreThanOnePage)
+            if (contentPages.Count != 0 && isReading)
+            {
+                if (contentPages.Count() > currentPage + 1)
                 {
-                    contentSecondPage = GetComponent<Collectable>().secondPageText;
+                    nextPageArrow.enabled = true;
+                }
+                else
+                {
                     nextPageArrow.enabled = true;
                 }
 
-                Page(contentFirstPage);
+                if (currentPage - 1 >= 0)
+                {
+                    lastPageArrow.enabled = true;
+                }
+                else
+                {
+                    lastPageArrow.enabled = false;
+                }
 
                 noteCanvas.enabled = true;
 
                 Debug.Log("Estás leyendo una nota");
             }
 
-            //Si hay segunda página...
-            if(Input.GetKeyDown(KeyCode.RightArrow) && isReading && moreThanOnePage)
+            //Si hay siguiente página...
+            if (Input.GetKeyDown(KeyCode.RightArrow) && isReading && nextPageArrow.enabled)
             {
-                Page(contentSecondPage);
-                lastPageArrow.enabled = true;
-                nextPageArrow.enabled = false;
+                NextPage();
             }
 
             //Si hay página anterior...
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && moreThanOnePage)
+            if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && lastPageArrow.enabled)
             {
-                Page(contentFirstPage);
-                lastPageArrow.enabled = false;
-                nextPageArrow.enabled = true;
+                PreviousPage();
             }
 
             //Salir del modo Nota
@@ -86,5 +96,17 @@ public class ReadNote : MonoBehaviour
     public void Page(string page)
     {
         text.text = page;
+    }
+
+    public void NextPage()
+    {
+        currentPage++;
+        Page(contentPages[currentPage]);
+    }
+
+    public void PreviousPage()
+    {
+        currentPage--;
+        Page(contentPages[currentPage]);
     }
 }
