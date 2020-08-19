@@ -1496,6 +1496,7 @@ MonoBehaviour:
 
 
     QUE TSLL'
+  - kjsfkgsjdjsjfkdf
 --- !u!114 &1552695042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1508,32 +1509,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4764243b02fe1b49b43b96d3b351955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPageText: "Day 1 since the new study began:\r\nA never seen before creature
-    got into the bunker while the helicopter was\r\nentering the secondary entrance/exit.
-    We were able to capture it with no losses and\r\ntrap it inside a capsule, where
-    right now various tests are being started.\r\nIt seems like these creatures are
-    what is left of life in the surface. We must be extremely\r\ncautious when approaching
-    it, since no one knows how it may react under stress, even\r\nif it is trapped
-    now.\r\nDay 2 since the new study began:\r\nThe creature has proven extremely
-    reluctant towards any human presence.\r\nHowever, to our surprise, it has not
-    tried to escape even once. If any human steps close\r\nenough to the capsule,
-    it will start growling and making some kind of guttural gargle,\r\nwhile trying
-    to hide from any surveillance.\r\nWhen not paid attention by the scientist, but
-    only the security cameras, the creature\r\nwill behave like a predator. It\u2019s
-    movements are extremely quiet, apart from the throaty\r\nnoises, and it appears
-    to attack from the prey\u2019s back, probably in just one blow.\r\nDay 3 since
-    the new study began:\r\nThe creature now seems more relaxed and has started secreting
-    a thick\r\nsubstance. We cannot get in the capsule in order to take any kind
-    of sample, since\r\nanyone would suffer a sudden death before even trying to
-    exit the room.\r\nIt seems to have developed interest in shiny objects, such
-    as the keys used to open the\r\nsecurity doors.\r\nIn case the creature somehow
-    escapes the capsule, a new security system is being\r\ninstalled over the whole
-    bunker."
-  secondPageText: 'AJAJAJJAJAJA
-
-
-    YWAHHHH'
-  moreThanOnePage: 1
   currentType: 1
 --- !u!1 &1680915120
 GameObject:

@@ -41,54 +41,31 @@ public class ReadNote : MonoBehaviour
                 isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
                 Page(contentPages[currentPage]);
-                
+                noteCanvas.enabled = true;
+
             }
 
             if (contentPages.Count != 0 && isReading)
             {
-                if (contentPages.Count() > currentPage + 1)
-                {
-                    nextPageArrow.enabled = true;
-                }
-                else
-                {
-                    nextPageArrow.enabled = true;
-                }
+                ArrowManager();
 
-                if (currentPage - 1 >= 0)
+                //Si hay siguiente página...
+                if (Input.GetKeyDown(KeyCode.RightArrow) && isReading && nextPageArrow.enabled)
                 {
-                    lastPageArrow.enabled = true;
-                }
-                else
-                {
-                    lastPageArrow.enabled = false;
+                    NextPage();
                 }
 
-                noteCanvas.enabled = true;
+                //Si hay página anterior...
+                if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && lastPageArrow.enabled)
+                {
+                    PreviousPage();
+                }
 
-                Debug.Log("Estás leyendo una nota");
-            }
-
-            //Si hay siguiente página...
-            if (Input.GetKeyDown(KeyCode.RightArrow) && isReading && nextPageArrow.enabled)
-            {
-                NextPage();
-            }
-
-            //Si hay página anterior...
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && lastPageArrow.enabled)
-            {
-                PreviousPage();
-            }
-
-            //Salir del modo Nota
-            if (Input.GetButtonDown("Exit") && isReading)
-            {
-                isReading = false;
-                audioSource.PlayOneShot(noteCloseSound);
-                noteCanvas.enabled = false;
-
-                Debug.Log("Has dejado de leer");
+                //Salir del modo Nota
+                if (Input.GetButtonDown("Exit") && isReading)
+                {
+                    ExitPage();
+                }
             }
         }
     }
@@ -98,15 +75,47 @@ public class ReadNote : MonoBehaviour
         text.text = page;
     }
 
+    //Método encargado de pasar a la página siguiente (si la hubiera)
     public void NextPage()
     {
         currentPage++;
         Page(contentPages[currentPage]);
     }
 
+    //Método encargado de pasar a la página anterior (si la hubiera)
     public void PreviousPage()
     {
         currentPage--;
         Page(contentPages[currentPage]);
+    }
+
+    //Método encargado de mostrar u ocultar las flechas de página siguiente y anterior
+    public void ArrowManager()
+    {
+        if (contentPages.Count() > currentPage + 1)
+        {
+            nextPageArrow.enabled = true;
+        }
+        else
+        {
+            nextPageArrow.enabled = false;
+        }
+
+        if (currentPage - 1 >= 0)
+        {
+            lastPageArrow.enabled = true;
+        }
+        else
+        {
+            lastPageArrow.enabled = false;
+        }
+    }
+
+    //Método para salir del estado "Leer Nota"
+    public void ExitPage()
+    {
+        isReading = false;
+        audioSource.PlayOneShot(noteCloseSound);
+        noteCanvas.enabled = false;
     }
 }
