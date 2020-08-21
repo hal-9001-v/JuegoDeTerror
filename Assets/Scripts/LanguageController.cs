@@ -4,6 +4,5 @@ using UnityEngine;
 
 public class LanguageController : MonoBehaviour
 {
-    public static int Language = 0; //0 = inglés, 1 = español
-    public static int totalLanguages = 2;
+    public static int language = 1; //0 = inglés, 1 = español
 }

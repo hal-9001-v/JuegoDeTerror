@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     public Canvas noteCanvas;
+    public Canvas inGameCanvas;
+    public Canvas mainMenuCanvas;
+    public Canvas gameOverCanvas;
 
     public static GameManager sharedInstance;
 
@@ -54,15 +57,18 @@ public class GameManager : MonoBehaviour
         {
             case GameState.inGame:
                 //Mostranmos y ocultamos los canvas que toquen
+                inGameCanvas.enabled = true;
                 noteCanvas.enabled = false;
                 break;
             case GameState.menu:
                 //Mostranmos y ocultamos los canvas que toquen
                 noteCanvas.enabled = false;
+                inGameCanvas.enabled = false;
                 break;
             case GameState.gameOver:
                 //Mostranmos y ocultamos los canvas que toquen
                 noteCanvas.enabled = false;
+                inGameCanvas.enabled = false;
                 break;
         }
 
