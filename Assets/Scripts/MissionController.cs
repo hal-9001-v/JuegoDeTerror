@@ -6,7 +6,9 @@ using TMPro;
 
 public class MissionController : MonoBehaviour
 {
-    [TextArea(0, 3)] public List<string> missionList = new List<string>();
+    private List<string>[] languageArray = new List<string>[LanguageController.totalLanguages];
+    [TextArea(0, 3)] public List<string> spanishMissionList = new List<string>();
+    [TextArea(0, 3)] public List<string> englishMissionList = new List<string>();
     private TextMeshProUGUI missionCanvasText;
 
     private int missionIndex;
@@ -15,6 +17,11 @@ public class MissionController : MonoBehaviour
     {
         missionCanvasText = GetComponent<TextMeshProUGUI>();
         missionIndex = -1;
+
+        for(int i = 0; i < LanguageController.totalLanguages; i++)
+        {
+            languageArray[i] = 
+        }
     }
 
     private void Update()
