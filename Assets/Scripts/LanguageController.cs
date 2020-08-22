@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-using System.Linq.Expressions;
-using Packages.Rider.Editor.Util;
 
 public static class LanguageController
 {
-    public static int language = 0; //0 = inglés, 1 = español
+    public static int language = 1; //0 = inglés, 1 = español
 
     private static Hashtable languageHashTable;
     private static int totalLanguages;
@@ -29,7 +27,7 @@ public static class LanguageController
         totalLanguages = int.Parse(line);
 
         string key;
-        string values = "";
+        string[] values;
 
         line = reader.ReadLine();
         while (line != null)
@@ -37,11 +35,11 @@ public static class LanguageController
             if(line == ";")
             {
                 key = reader.ReadLine();
-
-                for(int i = 0; i < totalLanguages; i++)
+                values = new string[totalLanguages];
+                for (int i = 0; i < totalLanguages; i++)
                 {
                     line = reader.ReadLine();
-                    values = line;
+                    values[i] = line;
                 }
 
                 languageHashTable.Add(key, values);
@@ -63,8 +61,8 @@ public static class LanguageController
         {
             if(languageHashTable.ContainsKey(key))
             {
-                string values = (string)languageHashTable[key];
-                return values;
+                string[] values = (string[])languageHashTable[key];
+                return values[language];
             }
             else
             {

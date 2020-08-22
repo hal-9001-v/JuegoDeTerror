@@ -23,6 +23,6 @@ public class MissionController : MonoBehaviour
 
     public void NextMission(int languageIndex)
     {
-        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission2", languageIndex);
+        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission3", languageIndex);
     }
 }
