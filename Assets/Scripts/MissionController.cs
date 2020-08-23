@@ -19,13 +19,13 @@ public class MissionController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            NextMission(LanguageController.language);
+            NextMission();
         }
     }
 
-    public void NextMission(int languageIndex)
+    public void NextMission()
     {
-        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission" + missionNumber, languageIndex);
+        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission" + missionNumber);
         if (missionNumber < totalMissions)
         {
             missionNumber++;

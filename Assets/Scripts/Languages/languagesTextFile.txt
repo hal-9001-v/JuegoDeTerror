@@ -1,5 +1,17 @@
 2
 ;
+NewGame
+New game
+Nueva Partida
+;
+LoadGame
+Load game
+Cargar partida
+;
+Options
+Options
+Opciones
+;
 Mission1
 Hello
 Investiga el lugar
