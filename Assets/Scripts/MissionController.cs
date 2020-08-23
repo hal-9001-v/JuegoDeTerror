@@ -7,6 +7,8 @@ using TMPro;
 public class MissionController : MonoBehaviour
 {
     private TextMeshProUGUI missionCanvasText;
+    private int missionNumber = 1;
+    public int totalMissions = 10;
 
     private void Start()
     {
@@ -23,6 +25,10 @@ public class MissionController : MonoBehaviour
 
     public void NextMission(int languageIndex)
     {
-        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission3", languageIndex);
+        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission" + missionNumber, languageIndex);
+        if (missionNumber < totalMissions)
+        {
+            missionNumber++;
+        }
     }
 }

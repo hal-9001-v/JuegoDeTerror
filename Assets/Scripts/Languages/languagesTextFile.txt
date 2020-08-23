@@ -1,0 +1,29 @@
+2
+;
+Mission1
+Hello
+Investiga el lugar
+;
+Mission2
+Bye
+Entérate de qué es lo que está pasando
+;
+Mission3
+How are you?
+Encuentra la forma de comunicarte con tu bunker
+;
+Mission4
+How are you?
+Busca pilas para la radio
+;
+Mission5
+How are you?
+Encuentra un lugar elevado para pedir ayuda
+;
+Mission6
+How are you?
+Vuelve a tu vehículo
+;
+Mission7
+How are you?
+Encuentra una forma de salir

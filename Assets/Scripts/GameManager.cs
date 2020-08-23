@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         sharedInstance = this;
-        LanguageController.LoadLanguagesFile("languagesTextFile");
+        LanguageController.LoadLanguagesFile("languagesTextFile.txt");
     }
 
     private void Start()

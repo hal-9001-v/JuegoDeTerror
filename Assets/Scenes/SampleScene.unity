@@ -803,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f785d6eb4e865114bb368e0878e1a992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  totalMissions: 7
 --- !u!114 &1350796066
 MonoBehaviour:
   m_ObjectHideFlags: 0
