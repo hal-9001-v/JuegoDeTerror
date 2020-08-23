@@ -16,6 +16,7 @@ public class ReadNote : MonoBehaviour
     public TextMeshProUGUI text;//Texto intercambiable de la nota
     public Image nextPageArrow;
     public Image lastPageArrow;
+
     [TextArea(0, 40)] public List<string> contentPages = new List<string>(); //Lista de todos los textos. Cada posicion es una hoja
 
     private int currentPage = 0;//Página actual

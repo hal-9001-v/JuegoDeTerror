@@ -8,9 +8,13 @@ LoadGame
 Load game
 Cargar partida
 ;
-Options
-Options
-Opciones
+Language
+Language
+Idioma
+;
+Credits
+Credits
+Créditos
 ;
 Exit
 Exit
@@ -43,3 +47,11 @@ Vuelve a tu vehículo
 Mission7
 How are you?
 Encuentra una forma de salir
+;
+Study1P1
+Day 1 since the new study began:
+D
+;
+Study1P2
+A never seen before creature got into the bunker while the helicopter was entering the secondary entrance/exit. We were able to capture it with no losses and trap it inside a capsule, where right now various tests are being started.
+D
