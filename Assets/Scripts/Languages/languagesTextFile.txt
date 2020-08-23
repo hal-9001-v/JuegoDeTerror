@@ -12,6 +12,10 @@ Options
 Options
 Opciones
 ;
+Exit
+Exit
+Salir
+;
 Mission1
 Hello
 Investiga el lugar
