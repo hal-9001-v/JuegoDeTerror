@@ -36,7 +36,7 @@ public class ReadNote : MonoBehaviour
         if (dist <= minDist)
         {
             //Entrar al modo Nota
-            if (Input.GetButtonDown("ReadNote") && isReading == false)
+            if (Input.GetButtonDown("Interact") && isReading == false)
             {
                 currentPage = 0;
                 isReading = true;
