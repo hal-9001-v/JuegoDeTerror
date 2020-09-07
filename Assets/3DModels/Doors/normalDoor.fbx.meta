@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e417b4378c006114080c4f37d8b077a5
+guid: 91527dafbc92f464dbd2d5a38eab3f7f
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,18 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn3
-    second: {fileID: 2100000, guid: 7607e9c78bb7a19489fdeb60438ae57a, type: 2}
+      name: lambert2
+    second: {fileID: 2100000, guid: 29fc5f4d1621d23479618bc57123cd39, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn4
-    second: {fileID: 2100000, guid: bc86df4fe60bbae48b5ca86cca84332c, type: 2}
+      name: phong1
+    second: {fileID: 2100000, guid: ab049f329317b19469f4357a6ce3b087, type: 2}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: blinn5
-    second: {fileID: 2100000, guid: 69303a82257adb64ea70a93f3b0ce641, type: 2}
+      name: madera_puerta
+    second: {fileID: 2800000, guid: 3967dd163536ba94e85a048f1b3d6053, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

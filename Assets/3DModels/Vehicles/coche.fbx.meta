@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e417b4378c006114080c4f37d8b077a5
+guid: 1f9917c835e41cf41b6c026b88e2a736
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,18 +7,63 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: blinn2
+    second: {fileID: 2100000, guid: ee7b49eabbccc734fb87ad39ce938663, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: blinn3
-    second: {fileID: 2100000, guid: 7607e9c78bb7a19489fdeb60438ae57a, type: 2}
+    second: {fileID: 2100000, guid: 45bef49daaf8ad74381e1764d0fde44f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: blinn4
-    second: {fileID: 2100000, guid: bc86df4fe60bbae48b5ca86cca84332c, type: 2}
+    second: {fileID: 2100000, guid: aa87f13b11619ac49b1cb382ae28ecfb, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn5
-    second: {fileID: 2100000, guid: 69303a82257adb64ea70a93f3b0ce641, type: 2}
+      name: cristal1
+    second: {fileID: 2100000, guid: dca9988277483024a9b73efbab1647bf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert3
+    second: {fileID: 2100000, guid: 6964f70290ea69846897edd08a217f14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert4
+    second: {fileID: 2100000, guid: 30cde89e46ef72b4fa14f0c644e6b9f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: phong2
+    second: {fileID: 2100000, guid: 927689f9e976e6446b189b984c9873f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rejilla_rueda
+    second: {fileID: 2100000, guid: 9f4f208f8fe09d643876d45464392467, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rueda1
+    second: {fileID: 2100000, guid: 50afa4994ba230f439de9acd0c0d3691, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface2
+    second: {fileID: 2100000, guid: d178ca70c537019469f1f176931fb63c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: standardSurface3
+    second: {fileID: 2100000, guid: f75de04c4524d3542b8734562a79ab66, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rueda
+    second: {fileID: 2800000, guid: 032f7c228d9bad845aa68a5a73c359d0, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0

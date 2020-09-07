@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e417b4378c006114080c4f37d8b077a5
+guid: 9c1094e353e5bb6488369edb8f8f8ea2
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,18 +7,43 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn3
-    second: {fileID: 2100000, guid: 7607e9c78bb7a19489fdeb60438ae57a, type: 2}
+      name: cristal
+    second: {fileID: 2100000, guid: 43e2dc2e35fed11468b0c30f4f24c5ef, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn4
-    second: {fileID: 2100000, guid: bc86df4fe60bbae48b5ca86cca84332c, type: 2}
+      name: luz_blanca
+    second: {fileID: 2100000, guid: 9baa22a92a0f8ac4c9401fb0530e53f7, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: blinn5
-    second: {fileID: 2100000, guid: 69303a82257adb64ea70a93f3b0ce641, type: 2}
+      name: luz_naranja
+    second: {fileID: 2100000, guid: 64dafad45b6c99844b28ae61ddba2461, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rejillanegra
+    second: {fileID: 2100000, guid: e0622a108409fcd47ae73f76a010caf1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rejillarueda
+    second: {fileID: 2100000, guid: 8390e39b30df800458640ff2aad50547, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rojocoche
+    second: {fileID: 2100000, guid: b6303c1937d744644b61b3a515f1c68b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rueda
+    second: {fileID: 2100000, guid: 4f740d736f1edfc42811d0a8c607e6ca, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: rueda
+    second: {fileID: 2800000, guid: e036dae1009f0384ca498c556407cd52, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
