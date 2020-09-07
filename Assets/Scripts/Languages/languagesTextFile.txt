@@ -53,5 +53,37 @@ Day 1 since the new study began:
 D
 ;
 Study1P2
-A never seen before creature got into the bunker while the helicopter was entering the secondary entrance/exit. We were able to capture it with no losses and trap it inside a capsule, where right now various tests are being started.
+A never seen before creature entered the bunker while the helicopter was entering the secondary entrance/exit. We were able to capture it with no losses and trap it inside a capsule. We have since started various tests.
+D
+;
+Study1P3
+It seems like this creatures is what is left of life on the surface. We must be extremely cautious when approaching it, since no one knows how it may react under stress, even if it is trapped now.
+D
+;
+Study1P4
+Day 2 since the new study began:
+D
+;
+Study1P5
+The creature has proven extremely reluctant towards any human presence. However, to our surprise, it has not tried to escape, not even once. If any human steps close to the capsule, it will start growling and making some kind of guttural gargle, while trying to hide from any surveillance.
+D
+;
+Study1P6
+When not paid attention by the scientist, but only the security cameras, the creature will behave like a predator. It’s movements are extremely quiet, apart from the throaty noises. It appears to attack from the prey’s back, probably in just one stroke.
+D
+;
+Study1P7
+Day 3 since the new study began:
+D
+;
+Study1P8
+The creature now seems more relaxed and has started secreting a thick substance. We cannot get in the capsule in order to take any kind of sample, since anyone would suffer a sudden death before even trying to exit the room.
+D
+;
+Study1P9
+It seems to have developed an interest in shiny objects, such as the keys used to open the security doors.
+D
+;
+Study1P10
+In case the creature somehow escapes the capsule, a new security system is being installed over the whole bunker.
 D

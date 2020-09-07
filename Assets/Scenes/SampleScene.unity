@@ -3962,7 +3962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -550, y: 0}
+  m_AnchoredPosition: {x: -510, y: 0}
   m_SizeDelta: {x: 30, y: 800}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1333638510
@@ -4595,7 +4595,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1393745597}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -5283,67 +5283,9 @@ MonoBehaviour:
   noteCloseSound: {fileID: 0}
   noteCanvas: {fileID: 1393745600}
   text: {fileID: 1406969800}
-  bar: {fileID: 1333638510}
-  textKey: 
-  contentPages:
-  - 'Day 1 since the new study began:
-
-
-
-    A never seen before creature got into
-    the bunker while the helicopter was entering the secondary entrance/exit. We
-    were able to capture it with no losses and trap it inside a capsule, where right
-    now various tests are being started.
-
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-
-    A
-
-    A
-
-    A
-
-    A
-
-    A
-
-    ADSDSDSDDSD
-
-
-
-    SDSD
-
-    D
-
-    SD
-
-    SS
-
-
-    S
-
-'
-  - kjsfkgsjdjsjfkdf
+  scrollbar: {fileID: 0}
+  textKey: Study1
+  paragraphs: []
 --- !u!114 &1552695042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5892,7 +5834,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818800631}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -8384,10 +8326,9 @@ MonoBehaviour:
   noteCloseSound: {fileID: 0}
   noteCanvas: {fileID: 1393745600}
   text: {fileID: 1406969800}
-  bar: {fileID: 0}
-  textKey: 
-  contentPages:
-  - HOLAAA
+  scrollbar: {fileID: 1333638510}
+  textKey: Study1
+  paragraphs: []
 --- !u!4 &2049983448 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6117892511947384361, guid: b04d96399842740498ee469dbf5fd7d4,

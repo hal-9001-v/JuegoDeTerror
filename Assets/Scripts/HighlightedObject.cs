@@ -41,6 +41,11 @@ public class HighlightedObject : MonoBehaviour
                     StopCoroutine(Highlighting());
                 }
             }
+            else
+            {
+                light.enabled = false;
+                Destroy(this);
+            }
         }
     }
 
