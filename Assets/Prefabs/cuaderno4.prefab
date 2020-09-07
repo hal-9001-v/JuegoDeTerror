@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6444150181298152852}
   - component: {fileID: 7980910599267985969}
   - component: {fileID: 5270641677262151419}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: cuaderno4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
