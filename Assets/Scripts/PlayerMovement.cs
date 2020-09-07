@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement sharedInstance;
+
     public CharacterController controller;
 
     public float speed = 10.0f; //Velocidad al andar
@@ -35,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
 
     private float fatigueCounter;
 
+
+    private void Awake()
+    {
+        sharedInstance = this;
+    }
+
     private void Start()
     {
         fatigueCounter = 0.0f;
@@ -45,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        //Checking player is not reading any notes
+        /*Checking player is not reading any notes CAMBIARRRR
         for(int i = 0; i < notes.Length; i++)
         {
             if(notes[i].GetComponent<ReadNote>().isReading == true)
@@ -56,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isReading = false;
             }
-        }
+        }*/
 
         if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
         {

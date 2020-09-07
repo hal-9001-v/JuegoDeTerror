@@ -9,14 +9,12 @@ public class ReadNote : MonoBehaviour
 {
     public Transform Player;
     public float minDist;//Distancia mínima para que pueda interactuar con la nota
-    public bool isReading;
     public AudioClip noteOpenSound;
     public AudioClip noteCloseSound;
     public Canvas noteCanvas;//Cnvas de la nota
     public TextMeshProUGUI text;//Texto intercambiable de la nota
-    public Image nextPageArrow;
-    public Image lastPageArrow;
-
+    public Scrollbar bar;
+    public string textKey;
     [TextArea(0, 40)] public List<string> contentPages = new List<string>(); //Lista de todos los textos. Cada posicion es una hoja
 
     private int currentPage = 0;//Página actual
@@ -25,7 +23,7 @@ public class ReadNote : MonoBehaviour
 
     private void Start()
     {
-        isReading = false;
+        PlayerMovement.sharedInstance.isReading = false;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -36,34 +34,31 @@ public class ReadNote : MonoBehaviour
         if (dist <= minDist)
         {
             //Entrar al modo Nota
-            if (Input.GetButtonDown("Interact") && isReading == false)
+            if (Input.GetButtonDown("Interact") && PlayerMovement.sharedInstance.isReading == false)
             {
                 currentPage = 0;
-                isReading = true;
+                PlayerMovement.sharedInstance.isReading = true;
+                Debug.Log("EH");
                 audioSource.PlayOneShot(noteOpenSound);
                 Page(contentPages[currentPage]);
                 noteCanvas.enabled = true;
 
             }
 
-            if (contentPages.Count != 0 && isReading)
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                ArrowManager();
+                bar.value += 0.1f;
+            }
 
-                //Si hay siguiente página...
-                if (Input.GetKeyDown(KeyCode.RightArrow) && isReading && nextPageArrow.enabled)
-                {
-                    NextPage();
-                }
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                bar.value -= 0.1f;
+            }
 
-                //Si hay página anterior...
-                if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && lastPageArrow.enabled)
-                {
-                    PreviousPage();
-                }
-
+            if (contentPages.Count != 0 && PlayerMovement.sharedInstance.isReading)
+            {
                 //Salir del modo Nota
-                if (Input.GetButtonDown("Exit") && isReading)
+                if (Input.GetButtonDown("Exit") && PlayerMovement.sharedInstance.isReading)
                 {
                     ExitPage();
                 }
@@ -76,46 +71,10 @@ public class ReadNote : MonoBehaviour
         text.text = page;
     }
 
-    //Método encargado de pasar a la página siguiente (si la hubiera)
-    public void NextPage()
-    {
-        currentPage++;
-        Page(contentPages[currentPage]);
-    }
-
-    //Método encargado de pasar a la página anterior (si la hubiera)
-    public void PreviousPage()
-    {
-        currentPage--;
-        Page(contentPages[currentPage]);
-    }
-
-    //Método encargado de mostrar u ocultar las flechas de página siguiente y anterior
-    public void ArrowManager()
-    {
-        if (contentPages.Count() > currentPage + 1)
-        {
-            nextPageArrow.enabled = true;
-        }
-        else
-        {
-            nextPageArrow.enabled = false;
-        }
-
-        if (currentPage - 1 >= 0)
-        {
-            lastPageArrow.enabled = true;
-        }
-        else
-        {
-            lastPageArrow.enabled = false;
-        }
-    }
-
     //Método para salir del estado "Leer Nota"
     public void ExitPage()
     {
-        isReading = false;
+        PlayerMovement.sharedInstance.isReading = false;
         audioSource.PlayOneShot(noteCloseSound);
         noteCanvas.enabled = false;
     }
