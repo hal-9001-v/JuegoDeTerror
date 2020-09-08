@@ -79,7 +79,7 @@ public class Pursuer : MonoBehaviour
     {
 
         //Stack the path to player
-        rooms = game.myRoomMap.getPath(currentRoom, player.currentRoom);
+        rooms = game.myRoomMap.getPath(startingRoom, player.currentRoom);
         currentRoom = startingRoom;
 
         myPursueIdleState.enter();
@@ -90,7 +90,7 @@ public class Pursuer : MonoBehaviour
     {
 
         //Stack the path to player
-        rooms = game.myRoomMap.getPath(currentRoom, game.myRoomMap.getRandomRoom());
+        rooms = game.myRoomMap.getPath(startingRoom, game.myRoomMap.getRandomRoom());
         currentRoom = startingRoom;
 
         myRandomIdleState.enter();
