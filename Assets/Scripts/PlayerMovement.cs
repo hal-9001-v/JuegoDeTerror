@@ -93,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
         {
             fatigueCounter -= fatigueRecoverTimeIncrease * Time.deltaTime;
         }
-        Debug.Log(fatigueCounter);
+        //Debug.Log(fatigueCounter);
 
         if(fatigueCounter >= maxRunningTime)
         {

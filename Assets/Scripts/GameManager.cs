@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        BackToMenu();
+        if (currentGameState == GameState.menu)
+            BackToMenu();
     }
 
     //Método que cambia a el estado inGame
@@ -57,7 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void SetGameState(GameState newGameState)
     {
-        switch(newGameState)
+        switch (newGameState)
         {
             case GameState.inGame:
                 //Mostranmos y ocultamos los canvas que toquen
