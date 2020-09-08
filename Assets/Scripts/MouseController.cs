@@ -7,9 +7,9 @@ public class MouseController : MonoBehaviour
 
     float xRotation = 0f;
 
-    void Start(){
+    /*void Start(){
         Cursor.lockState = CursorLockMode.Locked;
-    }
+    }*/
 
 
     private void Update()

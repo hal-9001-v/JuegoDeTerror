@@ -7,25 +7,40 @@ using System.Linq;
 
 public class ReadNote : MonoBehaviour
 {
-    public Transform Player;
-    public float minDist;//Distancia mínima para que pueda interactuar con la nota
-    public bool isReading;
-    public AudioClip noteOpenSound;
-    public AudioClip noteCloseSound;
-    public Canvas noteCanvas;//Cnvas de la nota
-    public TextMeshProUGUI text;//Texto intercambiable de la nota
-    public Image nextPageArrow;
-    public Image lastPageArrow;
-    [TextArea(0, 40)] public List<string> contentPages = new List<string>(); //Lista de todos los textos. Cada posicion es una hoja
+    public Transform Player;                                                  //Posioción del jugador
+    public float minDist;                                                     //Distancia mínima para que pueda interactuar con la nota
+    public AudioClip noteOpenSound;                                           //Sonido al abrir la nota
+    public AudioClip noteCloseSound;                                          //Sonido al cerrar la nota
+    public Canvas noteCanvas;                                                 //Canvas de la nota
+    public TextMeshProUGUI text;                                              //Texto intercambiable de la nota
+    public Scrollbar scrollbar;                                               //Barra de scroll de la derecha
+    public string textKey;                                                    //Letras en común de las claves de los párrafos de la Hashtable
+    public List<string> paragraphs = new List<string>();                      //Lista de todos los párrafos
 
-    private int currentPage = 0;//Página actual
+    private int counter = 1;
+    private string provisional;
+    private string result = "";                                               //Resultado de todos los párrafos de la nota
     private AudioSource audioSource;
-    private float dist;//Distancia actual entre Player y Nota
+    private float dist;                                                       //Distancia actual entre Player y Nota
 
     private void Start()
     {
-        isReading = false;
+        PlayerMovement.sharedInstance.isReading = false;
         audioSource = GetComponent<AudioSource>();
+
+        provisional = textKey + "P" + counter;
+
+        while (LanguageController.GetTextInLanguage(provisional) != provisional)
+        {
+            paragraphs.Add(LanguageController.GetTextInLanguage(provisional));
+            counter++;
+            provisional = textKey + "P" + counter;
+        }
+
+        for(int i = 0; i < paragraphs.Count; i++)
+        {
+            result += paragraphs[i] + "\n\n";
+        }
     }
 
     private void Update()
@@ -35,60 +50,35 @@ public class ReadNote : MonoBehaviour
         if (dist <= minDist)
         {
             //Entrar al modo Nota
-            if (Input.GetButtonDown("ReadNote") && isReading == false)
+            if (Input.GetButtonDown("Interact") && PlayerMovement.sharedInstance.isReading == false)
             {
-                currentPage = 0;
-                isReading = true;
+                scrollbar.value = 1;
+                PlayerMovement.sharedInstance.isReading = true;
                 audioSource.PlayOneShot(noteOpenSound);
-                Page(contentPages[currentPage]);
-                
-            }
-
-            if (contentPages.Count != 0 && isReading)
-            {
-                if (contentPages.Count() > currentPage + 1)
-                {
-                    nextPageArrow.enabled = true;
-                }
-                else
-                {
-                    nextPageArrow.enabled = true;
-                }
-
-                if (currentPage - 1 >= 0)
-                {
-                    lastPageArrow.enabled = true;
-                }
-                else
-                {
-                    lastPageArrow.enabled = false;
-                }
-
+                Page(result);
                 noteCanvas.enabled = true;
-
-                Debug.Log("Estás leyendo una nota");
+                this.GetComponent<HighlightedObject>().SetOpenObject(true);
             }
 
-            //Si hay siguiente página...
-            if (Input.GetKeyDown(KeyCode.RightArrow) && isReading && nextPageArrow.enabled)
+            //Subir texto de la nota
+            if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                NextPage();
+                scrollbar.value -= 0.1f;
             }
 
-            //Si hay página anterior...
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && isReading && lastPageArrow.enabled)
+            //Bajar texto de la nota
+            if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                PreviousPage();
+                scrollbar.value += 0.1f;
             }
 
-            //Salir del modo Nota
-            if (Input.GetButtonDown("Exit") && isReading)
+            if (PlayerMovement.sharedInstance.isReading)
             {
-                isReading = false;
-                audioSource.PlayOneShot(noteCloseSound);
-                noteCanvas.enabled = false;
-
-                Debug.Log("Has dejado de leer");
+                //Salir del modo Nota
+                if (Input.GetButtonDown("Exit") && PlayerMovement.sharedInstance.isReading)
+                {
+                    ExitPage();
+                }
             }
         }
     }
@@ -98,15 +88,11 @@ public class ReadNote : MonoBehaviour
         text.text = page;
     }
 
-    public void NextPage()
+    //Método para salir del estado "Leer Nota"
+    public void ExitPage()
     {
-        currentPage++;
-        Page(contentPages[currentPage]);
-    }
-
-    public void PreviousPage()
-    {
-        currentPage--;
-        Page(contentPages[currentPage]);
+        PlayerMovement.sharedInstance.isReading = false;
+        audioSource.PlayOneShot(noteCloseSound);
+        noteCanvas.enabled = false;
     }
 }
