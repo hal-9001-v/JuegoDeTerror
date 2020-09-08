@@ -50,40 +50,40 @@ Encuentra una forma de salir
 ;
 Study1P1
 Day 1 since the new study began:
-D
+Día 1 desde el inicio del nuevo estudio:
 ;
 Study1P2
-A never seen before creature entered the bunker while the helicopter was entering the secondary entrance/exit. We were able to capture it with no losses and trap it inside a capsule. We have since started various tests.
-D
+A creature never seen before entered the bunker while the helicopter was coming through the secondary entrance/exit. We were able to capture it with no losses and trap it inside a capsule. We have since started various tests.
+Un ser del que no se han encontrado registros previos entró en el búnker mientras el helicóptero llegaba a la salida/entrada secundaria. Hemos sido capaces de capturarlo sin pérdidas y encerrarlo en una cápsula, donde está siendo sometido a diversos estímulos.
 ;
 Study1P3
-It seems like this creatures is what is left of life on the surface. We must be extremely cautious when approaching it, since no one knows how it may react under stress, even if it is trapped now.
-D
+It seems like this creature is what is left of life on the surface. We must be extremely cautious when approaching it, since no one knows how it may react under stress, even if it is trapped right now.
+Parece que esta criatura es lo que queda de vida en la superficie. Debemos tener especial cuidado al acercarnos a ella puesto que no sabemos cómo reaccionará bajo estrés, aunque esté encerrada ahora mismo.
 ;
 Study1P4
 Day 2 since the new study began:
-D
+Día 2 desde el inicio del nuevo estudio:
 ;
 Study1P5
-The creature has proven extremely reluctant towards any human presence. However, to our surprise, it has not tried to escape, not even once. If any human steps close to the capsule, it will start growling and making some kind of guttural gargle, while trying to hide from any surveillance.
-D
+The creature has proven extremely resistant towards any human presence. However, to our surprise, it has not tried to escape, not even once. If any human steps close to the capsule, it will start growling and making some kind of guttural gargle, while trying to hide from any surveillance.
+La criatura ha demostrado ser extremadamente reacia a la presencia humana. Sin embargo, sorprendentemente, no ha tratado de escapar ni una sola vez. En el caso de que un humano se acerque a la cápsula, esta comenzará a realizar un extraño sonido gutural, tratando mientras tanto de esconderse de cualquier vigilancia.
 ;
 Study1P6
-When not paid attention by the scientist, but only the security cameras, the creature will behave like a predator. It’s movements are extremely quiet, apart from the throaty noises. It appears to attack from the prey’s back, probably in just one stroke.
-D
+When not watched by the scientist, only the security cameras, the creature will behave like a predator. Its movements are extremely quiet, apart from the throaty noises. It appears to attack from the prey’s back, probably in just one stroke.
+Cuando no está siendo vigilada por los científicos, sino únicamente por las cámaras, la criatura se comporta como un depredador. Sus movimientos son silenciosos, aparte de los extraños sonidos previamente mencionados, y parece atacar a sus presas por la espalda, probablemente acabando con ellas con un solo golpe.
 ;
 Study1P7
 Day 3 since the new study began:
-D
+Día 3 desde el inicio del nuevo estudio:
 ;
 Study1P8
-The creature now seems more relaxed and has started secreting a thick substance. We cannot get in the capsule in order to take any kind of sample, since anyone would suffer a sudden death before even trying to exit the room.
-D
+The creature now seems more relaxed and has started secreting a thick substance. We cannot get into the capsule in order to take any kind of sample, since anyone would suffer a sudden death before even trying to leave the room.
+La criatura parece más relajada, pero ha empezado a secretar una sustancia espesa. No es posible entrar en la cápsula para tomar una muestra, ya que cualquier persona sufriría una muerte súbita antes incluso de poder tratar de huir.
 ;
 Study1P9
 It seems to have developed an interest in shiny objects, such as the keys used to open the security doors.
-D
+Parece tener gran interés en los objetos brillantes, como las llaves que abren las puertas de seguridad.
 ;
 Study1P10
-In case the creature somehow escapes the capsule, a new security system is being installed over the whole bunker.
-D
+In case the creature somehow escapes the capsule, a new security system is being installed throughout the whole bunker.
+Como medida de precaución, se ha iniciado la instalación de un nuevo sistema de seguridad en todo el búnker, en caso de que el sujeto de estudio escapase.
