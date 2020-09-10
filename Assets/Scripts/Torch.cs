@@ -42,6 +42,7 @@ public class Torch : MonoBehaviour
                     if (Input.GetButtonDown("Interact"))
                     {
                         hasPlayer = true;
+                        torchAsset.GetComponent<HighlightedObject>().SetOpenObject(true);
                         torchAsset.SetActive(false);
                     }
                 }
