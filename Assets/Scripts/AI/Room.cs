@@ -54,4 +54,9 @@ public class Room : MonoBehaviour
         }
     }
 
+    public void initialize() {
+        lights = new List<Light>();
+        neighbourRooms = new List<Room>();
+    }
+
 }
