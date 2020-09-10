@@ -9,14 +9,20 @@ public class HighlightedObject : MonoBehaviour
     public float minDist = 3.0f;
     public Light light;
 
-    public bool openObject = false;
+    public string lightColor;
+
+    private Color color;
+    private bool openObject = false;
     private float dist;
     private bool alreadyHighlighting = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        lightColor = "#" + lightColor;
         light.enabled = false;
+        ColorUtility.TryParseHtmlString(lightColor, out Color color);
+        light.color = color;
     }
 
     // Update is called once per frame
