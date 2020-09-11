@@ -32,6 +32,9 @@ public class Torch : MonoBehaviour
                 {
                     torch.enabled = !torch.enabled;
                     audioSource.PlayOneShot(torchOnOffSound);
+
+                    //Linea de prueba
+                    Inventory.sharedInstance.DeleteItem(GetComponent<Item>());
                 }
             }
             else

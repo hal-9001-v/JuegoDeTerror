@@ -31,8 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (currentGameState == GameState.menu)
-            BackToMenu();
+        BackToMenu();
     }
 
     //Método que cambia a el estado inGame

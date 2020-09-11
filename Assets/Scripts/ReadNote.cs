@@ -65,6 +65,8 @@ public class ReadNote : MonoBehaviour
                     this.GetComponent<HighlightedObject>().SetOpenObject(true);
                     highlighted = false;
                 }
+
+                Inventory.sharedInstance.AddItem(GetComponent<Item>());
             }
 
             //Subir texto de la nota
