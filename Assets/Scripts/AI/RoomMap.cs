@@ -38,7 +38,7 @@ public class RoomMap
         foreach (Room r in roomList)
         {
             //Non-set nodes will be valued as the max value
-            r.distance = int.MaxValue;
+            r.distance = float.MaxValue;
             r.previousRoom = null;
             r.visited = false;
 

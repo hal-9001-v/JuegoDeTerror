@@ -8,8 +8,8 @@ public class Room : MonoBehaviour
 {
     public List<Room> neighbourRooms;
 
-    public int distance;
-    public int weight = 1;
+    public float distance;
+    public float weight = 1;
 
     public bool visited;
     public Room previousRoom;
@@ -24,24 +24,32 @@ public class Room : MonoBehaviour
     private Color nearbyColor;
     private Color dangerColor;
 
+    public MapNode myMapNode;
 
-    private void Start()
+    private void Awake()
     {
-        Game myGame = FindObjectOfType<Game>();
+        EnviromentManager myEM = FindObjectOfType<EnviromentManager>();
 
-        if (myGame != null)
+        if (myEM != null)
         {
-            dangerColor = FindObjectOfType<Game>().dangerColor;
-            nearbyColor = FindObjectOfType<Game>().nearbyColor;
-            safeColor = FindObjectOfType<Game>().safeColor;
-
-            setSafeRoom();
+            dangerColor = myEM.dangerColor;
+            nearbyColor = myEM.nearbyColor;
+            safeColor = myEM.safeColor;
         }
         else
         {
-            Debug.LogWarning("No Game Object in Scene");
+            Debug.LogWarning("No Enviroment Manager in Scene");
         }
 
+        if (myMapNode == null)
+        {
+            myMapNode = GetComponentInChildren<MapNode>();
+        }
+    }
+
+    private void Start()
+    {
+        setSafeRoom();
     }
 
     public void setSafeRoom()
@@ -50,6 +58,11 @@ public class Room : MonoBehaviour
         {
             l.color = safeColor;
         }
+
+        if (myMapNode != null) {
+            myMapNode.setSafe();
+        }
+
     }
 
     public void setNearbyRoom()
@@ -58,6 +71,11 @@ public class Room : MonoBehaviour
         {
             l.color = nearbyColor;
         }
+
+        if (myMapNode != null)
+        {
+            myMapNode.setNearby();
+        }
     }
 
     public void setDangerColor()
@@ -65,6 +83,12 @@ public class Room : MonoBehaviour
         foreach (Light l in lights)
         {
             l.color = dangerColor;
+        }
+
+
+        if (myMapNode != null)
+        {
+            myMapNode.setDanger();
         }
     }
 
