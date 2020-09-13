@@ -228,7 +228,16 @@ public class RoomTool : EditorWindow
 
             foreach (Room r in roomSelection)
             {
-                selectedRoom.neighbourRooms.Add(r);
+                if (r == selectedRoom) continue;
+
+                if (!selectedRoom.neighbourRooms.Contains(r)) {
+                    selectedRoom.neighbourRooms.Add(r);
+
+                    if (!r.neighbourRooms.Contains(selectedRoom)) {
+                        r.neighbourRooms.Add(selectedRoom);                    
+                    }
+                }
+
             }
 
             cleanList<Room>(selectedRoom.neighbourRooms);
