@@ -24,37 +24,52 @@ public class Room : MonoBehaviour
     private Color nearbyColor;
     private Color dangerColor;
 
+
     private void Start()
     {
-        dangerColor = FindObjectOfType<Game>().dangerColor;
-        nearbyColor = FindObjectOfType<Game>().nearbyColor;
-        safeColor = FindObjectOfType<Game>().safeColor;
+        Game myGame = FindObjectOfType<Game>();
 
-        setSafeRoom();
+        if (myGame != null)
+        {
+            dangerColor = FindObjectOfType<Game>().dangerColor;
+            nearbyColor = FindObjectOfType<Game>().nearbyColor;
+            safeColor = FindObjectOfType<Game>().safeColor;
+
+            setSafeRoom();
+        }
+        else
+        {
+            Debug.LogWarning("No Game Object in Scene");
+        }
+
     }
 
-    public void setSafeRoom() {
-        foreach (Light l in lights) {
-            
+    public void setSafeRoom()
+    {
+        foreach (Light l in lights)
+        {
             l.color = safeColor;
         }
     }
 
-    public void setNearbyRoom() {
+    public void setNearbyRoom()
+    {
         foreach (Light l in lights)
         {
             l.color = nearbyColor;
         }
     }
 
-    public void setDangerColor() {
+    public void setDangerColor()
+    {
         foreach (Light l in lights)
         {
             l.color = dangerColor;
         }
     }
 
-    public void initialize() {
+    public void initialize()
+    {
         lights = new List<Light>();
         neighbourRooms = new List<Room>();
     }

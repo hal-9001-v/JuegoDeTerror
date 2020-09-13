@@ -12,6 +12,8 @@ public class RoomTool : EditorWindow
     int lightIndex = 0;
     int roomIndex = 0;
 
+    GameObject roomGroup;
+
 
     [MenuItem("Tools/Room Tool")]
     public static void showWindow()
@@ -21,10 +23,16 @@ public class RoomTool : EditorWindow
 
     private void OnGUI()
     {
+        roomGroup = GameObject.FindGameObjectWithTag("RoomGroup");
+
         if (createRoom())
         {
             return;
+        }
 
+        for (int i = 0; i < 5; i++)
+        {
+            EditorGUILayout.Space();
         }
 
         if (getObjectFromSelection<Room>() != null && !block)
@@ -73,12 +81,18 @@ public class RoomTool : EditorWindow
 
         roomMenu();
 
+
+        EditorGUILayout.Space();
+
+        EditorGUILayout.HelpBox("Removed Objects aren't eliminated from scene", MessageType.Warning);
+
         for (int i = 0; i < 5; i++)
         {
             EditorGUILayout.Space();
         }
 
-        EditorGUILayout.HelpBox("Removed Objects aren't eliminated from scene", MessageType.Warning);
+        roomColliderMenu();
+
 
     }
 
@@ -270,6 +284,160 @@ public class RoomTool : EditorWindow
 
     }
 
+
+
+    bool createRoom()
+    {
+        if (Selection.activeObject == null)
+        {
+            GUILayout.Label("Selected Object: NONE", EditorStyles.boldLabel);
+        }
+        else
+        {
+            GUILayout.Label("Selected Object: " + Selection.activeObject.name, EditorStyles.boldLabel);
+
+        }
+
+        if (GUILayout.Button("Create Room Object"))
+        {
+
+            GameObject go = new GameObject();
+
+            if (Selection.activeGameObject != null)
+            {
+                go.name = Selection.activeObject.name + " Room";
+
+            }
+            else
+            {
+                go.name = "New Room";
+            }
+            go.tag = "Room";
+
+            if (roomGroup != null)
+            {
+                go.transform.parent = roomGroup.transform;
+            }
+
+            go.AddComponent<BoxCollider>().size = new Vector3(5, 5, 5);
+            go.GetComponent<BoxCollider>().isTrigger = true;
+
+            go.AddComponent<Room>().initialize();
+
+            if (Selection.gameObjects.Length == 0)
+            {
+                go.transform.position = new Vector3(0, 0, 0);
+
+            }
+            else
+            {
+                Vector3 auxVector = new Vector3(0, 0, 0);
+                foreach (GameObject gAux in Selection.gameObjects)
+                {
+                    auxVector += gAux.transform.position;
+                }
+
+                auxVector /= Selection.gameObjects.Length;
+
+                go.transform.position = auxVector;
+            }
+
+            Selection.activeObject = go;
+
+            EditorUtility.SetDirty(Selection.activeGameObject);
+            return true;
+        }
+
+
+        //Add Room Component
+        if (GUILayout.Button("Turn to Room"))
+        {
+            if (Selection.activeGameObject != null)
+            {
+                foreach (GameObject go in Selection.gameObjects)
+                {
+                    go.tag = "Room";
+
+                    if (roomGroup != null)
+                    {
+                        go.transform.parent = roomGroup.transform;
+                    }
+
+                    if (go.GetComponent<Room>() == null)
+                        go.AddComponent<Room>().initialize();
+
+                    if (go.GetComponent<BoxCollider>() == null)
+                    {
+                        go.AddComponent<BoxCollider>().size = new Vector3(5, 5, 5);
+                        go.AddComponent<BoxCollider>().isTrigger = true;
+
+                    }
+
+                    EditorUtility.SetDirty(Selection.activeGameObject);
+
+                }
+
+
+                return true;
+            }
+
+        }
+
+
+
+        return false;
+    }
+    private void roomColliderMenu()
+    {
+        GUILayout.Label("SUB-COLLIDERS", EditorStyles.boldLabel);
+        EditorGUILayout.HelpBox("Sub-Colliders make possible difficult shapes for rooms' collisions. \n Sub-Colliders are child objects of rooms", MessageType.Info);
+        string listString = "";
+
+        if (selectedRoom.GetComponentsInChildren<RoomCollider>().Length == 0)
+        {
+            listString = "No Sub-Colliders in selected Room";
+        }
+
+        foreach (RoomCollider rc in selectedRoom.GetComponentsInChildren<RoomCollider>())
+        {
+
+            if (rc == null)
+            {
+                listString += "Empty \n";
+            }
+            else
+            {
+                listString += rc.name + "\n";
+            }
+        }
+        GUILayout.TextArea(listString, EditorStyles.linkLabel);
+
+        GUILayout.BeginHorizontal();
+        if (GUILayout.Button("Add SubCollider"))
+        {
+            GameObject go = new GameObject();
+            go.name = "Sub-Collider";
+            go.tag = "RoomCollider";
+            go.transform.position = selectedRoom.transform.position;
+            go.transform.parent = selectedRoom.transform;
+
+            go.AddComponent<RoomCollider>();
+
+            BoxCollider collider = go.AddComponent<BoxCollider>();
+
+            collider.isTrigger = true;
+
+            collider.size = new Vector3(5, 5, 5);
+
+
+            Selection.activeObject = go;
+
+        }
+        GUILayout.EndHorizontal();
+
+
+    }
+
     T getObjectFromSelection<T>()
     {
         foreach (GameObject go in Selection.gameObjects)
@@ -311,73 +479,6 @@ public class RoomTool : EditorWindow
             }
         }
     }
-
-    bool createRoom()
-    {
-
-        //Add Room Component
-        if (GUILayout.Button("Turn to Room"))
-        {
-            if (Selection.activeGameObject != null)
-            {
-                foreach (GameObject go in Selection.gameObjects)
-                {
-
-                    if (go.GetComponent<Room>() == null)
-                        go.AddComponent<Room>().initialize();
-
-                    if (go.GetComponent<BoxCollider>() == null)
-                    {
-                        go.AddComponent<BoxCollider>().size = new Vector3(5, 5, 5);
-                    }
-
-
-                    EditorUtility.SetDirty(Selection.activeGameObject);
-
-                }
-
-
-                return true;
-            }
-
-        }
-
-        if (GUILayout.Button("Create Room Object"))
-        {
-
-            GameObject go = new GameObject();
-            go.name = "New Room";
-            go.AddComponent<BoxCollider>().size = new Vector3(5, 5, 5);
-            go.AddComponent<Room>().initialize();
-
-            if (Selection.gameObjects.Length == 0)
-            {
-                go.transform.position = new Vector3(0, 0, 0);
-
-            }
-            else
-            {
-                Vector3 auxVector = new Vector3(0, 0, 0);
-                foreach (GameObject gAux in Selection.gameObjects)
-                {
-                    auxVector += gAux.transform.position;
-                }
-
-                auxVector /= Selection.gameObjects.Length;
-
-                go.transform.position = auxVector;
-            }
-
-            Selection.activeObject = go;
-
-            EditorUtility.SetDirty(Selection.activeGameObject);
-            return true;
-        }
-
-
-        return false;
-    }
-
 
 }
 
