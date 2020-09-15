@@ -6,6 +6,7 @@ public class Pursuer : MonoBehaviour
 {
     PlayerTracker player;
     EnviromentManager myEM;
+    CutsceneController myCutsceneController;
 
     public Stack<Room> rooms;
     public Room currentRoom;
@@ -30,6 +31,7 @@ public class Pursuer : MonoBehaviour
     {
         player = FindObjectOfType<PlayerTracker>();
         myEM = FindObjectOfType<EnviromentManager>();
+        myCutsceneController = FindObjectOfType<CutsceneController>();
 
         myInactiveState = new InactiveState(this);
         myPursueIdleState = new PursueIdleState(this, pursueTime, currentRoom);
@@ -46,11 +48,17 @@ public class Pursuer : MonoBehaviour
         myInactiveState.enter();
     }
 
+    public void killPlayer()
+    {
+        Debug.Log("Kill Player");
+        myCutsceneController.killPlayer();
+    }
     public Room moveToNextRoom()
     {
         currentRoom.setSafeRoom();
 
-        foreach (Room r in currentRoom.neighbourRooms) {
+        foreach (Room r in currentRoom.neighbourRooms)
+        {
             r.setSafeRoom();
         }
 
@@ -156,7 +164,7 @@ public class Pursuer : MonoBehaviour
 
         private IEnumerator Execute()
         {
-            yield return new WaitForSeconds(holdingTime*currentRoom.weight);
+            yield return new WaitForSeconds(holdingTime * currentRoom.weight);
 
             exit();
         }
@@ -232,13 +240,13 @@ public class Pursuer : MonoBehaviour
         public void enter()
         {
             timeCounter = 0;
-            
+
             execute();
         }
 
         private IEnumerator Execute()
         {
-            yield return new WaitForSeconds(holdingTime*currentRoom.weight);
+            yield return new WaitForSeconds(holdingTime * currentRoom.weight);
 
             exit();
         }
@@ -327,7 +335,7 @@ public class Pursuer : MonoBehaviour
         private IEnumerator Execute()
         {
 
-            yield return new WaitForSeconds(timeToKill*currentRoom.weight);
+            yield return new WaitForSeconds(timeToKill * currentRoom.weight);
 
             exit();
         }
@@ -336,10 +344,11 @@ public class Pursuer : MonoBehaviour
         {
             if (myPursuer.currentRoom == myPursuer.player.currentRoom)
             {
-                Debug.LogWarning("Kill Player");
+                myPursuer.killPlayer();
                 myPursuer.myInactiveState.enter();
             }
-            else {
+            else
+            {
                 myPursuer.myDecideActionState.enter();
             }
         }

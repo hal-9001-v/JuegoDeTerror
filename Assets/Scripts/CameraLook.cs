@@ -12,6 +12,7 @@ public class CameraLook : MonoBehaviour
     float mouseX;
     float mouseY;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +22,11 @@ public class CameraLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame && playerBody.GetComponent<PlayerMovement>().isReading == false)
-        {
-            CameraRotation();
-        }
+            if (GameManager.sharedInstance.currentGameState == GameState.inGame && playerBody.GetComponent<PlayerMovement>().isReading == false)
+            {
+                CameraRotation();
+            }
+    
     }
 
     public void CameraRotation()

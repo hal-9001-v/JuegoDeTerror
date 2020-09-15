@@ -8,20 +8,29 @@ public class PlayerTracker : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (currentRoom != null) {
-            
-            if (collider.gameObject.tag == "Room")
-            {
-                currentRoom.atEnter.Invoke();
-            }
-            else if (collider.gameObject.tag == "RoomCollider")
-            {
-                currentRoom.atEnter.Invoke();
+        if (collider.gameObject.tag == "Room")
+        {
+            currentRoom = collider.GetComponent<Room>();
 
+            if (currentRoom != null)
+                currentRoom.atEnter.Invoke();
+            else
+            {
+                Debug.LogError("Object" + collider.gameObject.name + " is tagged as Room but has no Room Component");
+            }
+        }
+        else if (collider.gameObject.tag == "RoomCollider")
+        {
+            currentRoom = collider.GetComponent<Room>();
+
+            if (currentRoom != null)
+                currentRoom.atEnter.Invoke();
+            else
+            {
+                Debug.LogError("Object" + collider.gameObject.name + " is tagged as Room but has no Room Component");
             }
         }
 
-        
     }
 
     private void OnTriggerStay(Collider other)
