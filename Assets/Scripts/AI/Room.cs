@@ -8,8 +8,8 @@ public class Room : MonoBehaviour
 {
     public List<Room> neighbourRooms;
 
-    public int distance;
-    public int weight = 1;
+    public float distance;
+    public float weight = 1;
 
     public bool visited;
     public Room previousRoom;
@@ -24,34 +24,78 @@ public class Room : MonoBehaviour
     private Color nearbyColor;
     private Color dangerColor;
 
-    private void Start()
+    public MapNode myMapNode;
+
+    private void Awake()
     {
-        dangerColor = FindObjectOfType<Game>().dangerColor;
-        nearbyColor = FindObjectOfType<Game>().nearbyColor;
-        safeColor = FindObjectOfType<Game>().safeColor;
+        EnviromentManager myEM = FindObjectOfType<EnviromentManager>();
 
-        setSafeRoom();
-    }
+        if (myEM != null)
+        {
+            dangerColor = myEM.dangerColor;
+            nearbyColor = myEM.nearbyColor;
+            safeColor = myEM.safeColor;
+        }
+        else
+        {
+            Debug.LogWarning("No Enviroment Manager in Scene");
+        }
 
-    public void setSafeRoom() {
-        foreach (Light l in lights) {
-            
-            l.color = safeColor;
+        if (myMapNode == null)
+        {
+            myMapNode = GetComponentInChildren<MapNode>();
         }
     }
 
-    public void setNearbyRoom() {
+    private void Start()
+    {
+        setSafeRoom();
+    }
+
+    public void setSafeRoom()
+    {
+        foreach (Light l in lights)
+        {
+            l.color = safeColor;
+        }
+
+        if (myMapNode != null) {
+            myMapNode.setSafe();
+        }
+
+    }
+
+    public void setNearbyRoom()
+    {
         foreach (Light l in lights)
         {
             l.color = nearbyColor;
         }
+
+        if (myMapNode != null)
+        {
+            myMapNode.setNearby();
+        }
     }
 
-    public void setDangerColor() {
+    public void setDangerColor()
+    {
         foreach (Light l in lights)
         {
             l.color = dangerColor;
         }
+
+
+        if (myMapNode != null)
+        {
+            myMapNode.setDanger();
+        }
+    }
+
+    public void initialize()
+    {
+        lights = new List<Light>();
+        neighbourRooms = new List<Room>();
     }
 
 }

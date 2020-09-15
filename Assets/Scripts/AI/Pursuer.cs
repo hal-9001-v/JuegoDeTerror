@@ -5,7 +5,8 @@ using UnityEngine;
 public class Pursuer : MonoBehaviour
 {
     PlayerTracker player;
-    Game game;
+    EnviromentManager myEM;
+    CutsceneController myCutsceneController;
 
     public Stack<Room> rooms;
     public Room currentRoom;
@@ -29,16 +30,17 @@ public class Pursuer : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerTracker>();
-        game = FindObjectOfType<Game>();
+        myEM = FindObjectOfType<EnviromentManager>();
+        myCutsceneController = FindObjectOfType<CutsceneController>();
 
         myInactiveState = new InactiveState(this);
-        myPursueIdleState = new PursueIdleState(this, pursueTime);
+        myPursueIdleState = new PursueIdleState(this, pursueTime, currentRoom);
         myPursueMoveState = new PursueMoveState(this);
 
-        myRandomIdleState = new RandomIdleState(this, patrolTime);
+        myRandomIdleState = new RandomIdleState(this, patrolTime, currentRoom);
         myRandomMoveState = new RandomMoveState(this);
 
-        myKillPlayerState = new KillPlayerState(this, timeForKill);
+        myKillPlayerState = new KillPlayerState(this, timeForKill, currentRoom);
 
         myDecideActionState = new DecideActionState(this);
 
@@ -46,11 +48,17 @@ public class Pursuer : MonoBehaviour
         myInactiveState.enter();
     }
 
+    public void killPlayer()
+    {
+        Debug.Log("Kill Player");
+        myCutsceneController.killPlayer();
+    }
     public Room moveToNextRoom()
     {
         currentRoom.setSafeRoom();
 
-        foreach (Room r in currentRoom.neighbourRooms) {
+        foreach (Room r in currentRoom.neighbourRooms)
+        {
             r.setSafeRoom();
         }
 
@@ -64,13 +72,7 @@ public class Pursuer : MonoBehaviour
         }
 
         //Move to Room(Just for debugging)
-        Vector3 aux = currentRoom.transform.position;
-        aux.y = transform.position.y;
-
-        aux.z -= 10;
-        aux.x += 10;
-
-        transform.position = aux;
+        transform.position = currentRoom.transform.position;
 
         return currentRoom;
     }
@@ -79,7 +81,7 @@ public class Pursuer : MonoBehaviour
     {
 
         //Stack the path to player
-        rooms = game.myRoomMap.getPath(startingRoom, player.currentRoom);
+        rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
         currentRoom = startingRoom;
 
         myPursueIdleState.enter();
@@ -90,7 +92,7 @@ public class Pursuer : MonoBehaviour
     {
 
         //Stack the path to player
-        rooms = game.myRoomMap.getPath(startingRoom, game.myRoomMap.getRandomRoom());
+        rooms = myEM.myRoomMap.getPath(startingRoom, myEM.myRoomMap.getRandomRoom());
         currentRoom = startingRoom;
 
         myRandomIdleState.enter();
@@ -100,12 +102,12 @@ public class Pursuer : MonoBehaviour
     public void updatePursuing()
     {
         //Stack the path to player
-        rooms = game.myRoomMap.getPath(currentRoom, game.myRoomMap.getRandomRoom());
+        rooms = myEM.myRoomMap.getPath(currentRoom, myEM.myRoomMap.getRandomRoom());
     }
 
     public int distanceToPlayer()
     {
-        return game.myRoomMap.getPath(currentRoom, player.currentRoom).Count;
+        return myEM.myRoomMap.getPath(currentRoom, player.currentRoom).Count;
     }
 
     public class InactiveState : State
@@ -141,12 +143,16 @@ public class Pursuer : MonoBehaviour
         public float holdingTime;
         public float timeCounter;
 
+        Room currentRoom;
+
         Pursuer myPursuer;
 
-        public PursueIdleState(Pursuer myPursuer, float holdingTime)
+        public PursueIdleState(Pursuer myPursuer, float holdingTime, Room currentRoom)
         {
             this.myPursuer = myPursuer;
             this.holdingTime = holdingTime;
+
+            this.currentRoom = currentRoom;
 
         }
 
@@ -158,7 +164,7 @@ public class Pursuer : MonoBehaviour
 
         private IEnumerator Execute()
         {
-            yield return new WaitForSeconds(holdingTime);
+            yield return new WaitForSeconds(holdingTime * currentRoom.weight);
 
             exit();
         }
@@ -218,25 +224,29 @@ public class Pursuer : MonoBehaviour
         public float holdingTime;
         public float timeCounter;
 
+        Room currentRoom;
+
         Pursuer myPursuer;
 
-        public RandomIdleState(Pursuer myPursuer, float holdingTime)
+        public RandomIdleState(Pursuer myPursuer, float holdingTime, Room currentRoom)
         {
             this.myPursuer = myPursuer;
             this.holdingTime = holdingTime;
+
+            this.currentRoom = currentRoom;
 
         }
 
         public void enter()
         {
             timeCounter = 0;
-            
+
             execute();
         }
 
         private IEnumerator Execute()
         {
-            yield return new WaitForSeconds(holdingTime);
+            yield return new WaitForSeconds(holdingTime * currentRoom.weight);
 
             exit();
         }
@@ -302,10 +312,14 @@ public class Pursuer : MonoBehaviour
         Pursuer myPursuer;
         float timeToKill;
 
-        public KillPlayerState(Pursuer pursuer, float timeToKill)
+        Room currentRoom;
+
+        public KillPlayerState(Pursuer pursuer, float timeToKill, Room currentRoom)
         {
             myPursuer = pursuer;
             this.timeToKill = timeToKill;
+
+            this.currentRoom = currentRoom;
         }
 
         public void enter()
@@ -321,7 +335,7 @@ public class Pursuer : MonoBehaviour
         private IEnumerator Execute()
         {
 
-            yield return new WaitForSeconds(timeToKill);
+            yield return new WaitForSeconds(timeToKill * currentRoom.weight);
 
             exit();
         }
@@ -330,10 +344,11 @@ public class Pursuer : MonoBehaviour
         {
             if (myPursuer.currentRoom == myPursuer.player.currentRoom)
             {
-                Debug.LogWarning("Kill Player");
+                myPursuer.killPlayer();
                 myPursuer.myInactiveState.enter();
             }
-            else {
+            else
+            {
                 myPursuer.myDecideActionState.enter();
             }
         }

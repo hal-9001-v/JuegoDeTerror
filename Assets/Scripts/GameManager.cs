@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.menu:
                 //Mostranmos y ocultamos los canvas que toquen
-                noteCanvas.enabled = false;
+                //noteCanvas.enabled = false;
                 inGameCanvas.enabled = false;
                 mainMenuCanvas.enabled = true;
                 break;
