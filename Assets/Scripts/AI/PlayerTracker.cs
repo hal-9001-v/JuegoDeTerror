@@ -21,7 +21,7 @@ public class PlayerTracker : MonoBehaviour
         }
         else if (collider.gameObject.tag == "RoomCollider")
         {
-            currentRoom = collider.GetComponent<Room>();
+            currentRoom = collider.GetComponentInParent<Room>();
 
             if (currentRoom != null)
                 currentRoom.atEnter.Invoke();
