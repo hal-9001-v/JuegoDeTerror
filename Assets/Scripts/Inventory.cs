@@ -8,6 +8,7 @@ public class Inventory : MonoBehaviour
     public const int numItems = 5;
     public Item[] inventoryItems = new Item[numItems];
     public GameObject[] inventorySquares = new GameObject[numItems];
+    public Item[] allItems = new Item[2];
 
     public static Inventory sharedInstance;
 
@@ -56,24 +57,40 @@ public class Inventory : MonoBehaviour
                 found = true;
             }
         } while (found == false && counter < inventoryItems.Length);
-        /*
-        for(int i = counter; i < (itemsCounter - 1); i++)
-        {
-            inventoryItems[i] = inventoryItems[i + 1];
-            Destroy(inventorySquares[i].transform.GetChild(0).gameObject);
-        }
-
-        inventoryItems[itemsCounter - 1] = null;
-        Destroy(inventorySquares[itemsCounter - 1].transform.GetChild(0).gameObject);
-        itemsCounter--;
-        */
 
         inventoryItems[counter] = null;
         Destroy(inventorySquares[counter].transform.GetChild(0).gameObject);
     }
 
-    public void AddItemInPosition()
+    public void DeleteAllItems()
     {
+        for(int i = 0; i < inventoryItems.Length; i++)
+        {
+            inventoryItems[i] = null;
+            try
+            {
+                Destroy(inventorySquares[i].transform.GetChild(0).gameObject);
+            }
+            catch (System.Exception e)
+            {
+                Debug.Log("Inventory. La casilla " + i + " está vacía." + e);
+            }
+        }
+    }
 
+    public void LoadInventory(string[] loadItemNames)
+    {
+        DeleteAllItems();
+
+        for (int i = 0; i < inventoryItems.Length; i++)
+        {
+            for(int j = 0; j < allItems.Length; j++)
+            {
+                if(loadItemNames[i] == allItems[j].itemName)
+                {
+                    AddItem(allItems[j]);
+                }
+            }
+        }
     }
 }

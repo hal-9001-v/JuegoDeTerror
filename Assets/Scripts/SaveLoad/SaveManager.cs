@@ -38,6 +38,7 @@ public class SaveManager : MonoBehaviour
             GameData data = new GameData();
 
             SavePlayer(data);
+            SaveInventory(data);
 
             formatter.Serialize(file, data);
 
@@ -55,6 +56,31 @@ public class SaveManager : MonoBehaviour
         data.myPlayerData = new PlayerData(pos);
     }
 
+    private void SaveInventory(GameData data)
+    {
+        string[] inventory = new string[5];
+
+        for (int i = 0; i < inventory.Length; i++)
+        {
+            if (Inventory.sharedInstance.inventoryItems[i] != null)
+            {
+
+                inventory[i] = Inventory.sharedInstance.inventoryItems[i].itemName;
+            }
+            else
+            {
+                inventory[i] = "empty";
+            }
+        }
+
+        data.myInventory = new PlayerInventory(inventory);
+    }
+
+    private void SaveIA(GameData data)
+    {
+
+    }
+
     private void Load()
     {
         try
@@ -70,6 +96,7 @@ public class SaveManager : MonoBehaviour
                 file.Close();
 
                 LoadPlayer(data);
+                LoadInventory(data);
             }
         }
         catch (System.Exception e)
@@ -81,11 +108,27 @@ public class SaveManager : MonoBehaviour
     private void LoadPlayer(GameData data)
     {
         Vector3 position;
-        position.x = data.myPlayerData.playerPosition[0];
-        position.y = data.myPlayerData.playerPosition[1];
-        position.z = data.myPlayerData.playerPosition[2];
+        position = data.myPlayerData.playerPosition.GetVector3();
 
-        Debug.Log(position.x);
+        Debug.Log(position.x + " " + position.y + " " + position.z);
         PlayerMovement.sharedInstance.transform.position = position;
+    }
+
+    private void LoadInventory(GameData data)
+    {
+        string[] myInventory = new string[5];
+
+        for (int i = 0; i < myInventory.Length; i++)
+        {
+            myInventory[i] = data.myInventory.objectNames[i];
+            Debug.Log(myInventory[i]);
+        }
+
+        Inventory.sharedInstance.LoadInventory(myInventory);
+    }
+
+    private void LoadIA(GameData data)
+    {
+
     }
 }

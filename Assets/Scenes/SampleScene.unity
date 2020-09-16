@@ -4960,7 +4960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -222935.14}
+  m_AnchoredPosition: {x: 0, y: -227888.83}
   m_SizeDelta: {x: 800, y: 1000}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1406969800
@@ -5868,7 +5868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db2857875361934eadcff070a800dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Study1
+  itemName: star
   icon: {fileID: 2800000, guid: 9f15db82a7d5af54c8613af527680cb3, type: 3}
 --- !u!1 &1671804094
 GameObject:
@@ -9015,7 +9015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db2857875361934eadcff070a800dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Study2
+  itemName: arrow
   icon: {fileID: 2800000, guid: ce09c49d3ae6e1b41b1c65549e19f351, type: 3}
 --- !u!114 &2049791111
 MonoBehaviour:
@@ -9126,6 +9126,9 @@ MonoBehaviour:
   - {fileID: 1879392569}
   - {fileID: 935883419}
   - {fileID: 504991925}
+  allItems:
+  - {fileID: 2049791109}
+  - {fileID: 1660617722}
 --- !u!1 &2092176310
 GameObject:
   m_ObjectHideFlags: 0
