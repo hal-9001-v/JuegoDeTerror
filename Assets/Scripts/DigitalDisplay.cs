@@ -5,20 +5,28 @@ using TMPro;
 
 public class DigitalDisplay : MonoBehaviour
 {
+    public int unlockCode = 0000;
     public TextMeshProUGUI text;
     public float minDist;
     public float dist;
     public Transform player;
     public Canvas displayCnavas;
     public AudioClip clickSound;
+    public TextMeshProUGUI deleteText;
+    public TextMeshProUGUI doneText;
+    public TextMeshProUGUI exitText;
     private AudioSource audioSource;
     private bool displayActivated = false;
     private string secuence = "";
-
+    private bool unlocked = false;
+    
     private void Start()
     {
         displayCnavas.enabled = false;
         audioSource = this.GetComponent<AudioSource>();
+        deleteText.text = LanguageController.GetTextInLanguage("Delete");
+        doneText.text = LanguageController.GetTextInLanguage("Done");
+        exitText.text = LanguageController.GetTextInLanguage("Exit");
     }
     void Update()
     {
@@ -43,14 +51,42 @@ public class DigitalDisplay : MonoBehaviour
 
     public void AddDigitToSequence(int number)
     {
-        secuence += number;
-        text.text = secuence;
-        audioSource.PlayOneShot(clickSound);
+        if (secuence.Length < 4)
+        {
+            secuence += number;
+            text.text = secuence;
+            audioSource.PlayOneShot(clickSound);
+        }
     }
 
     public void DeleteSecuence()
     {
         secuence = "";
         text.text = secuence;
+    }
+
+    public void CheckCode()
+    {
+        if(unlockCode.ToString() == secuence)
+        {
+            unlocked = true;
+            Debug.Log("Código correcto");
+            Exit();
+        }
+    }
+
+    public void Exit()
+    {
+        displayActivated = false;
+        displayCnavas.enabled = false;
+        PlayerMovement.sharedInstance.isReading = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        secuence = "";
+        text.text = secuence;
+
+        if (unlocked == true)
+        {
+            this.GetComponent<DigitalDisplay>().enabled = false;
+        }
     }
 }

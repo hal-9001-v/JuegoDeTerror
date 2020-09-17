@@ -20,6 +20,14 @@ Exit
 Exit
 Salir
 ;
+Delete
+Delete
+Borrar
+;
+Done
+Done
+Hecho
+;
 Mission1
 Hello
 Investiga el lugar
