@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     public Canvas noteCanvas;
+    public Canvas displayCanvas;
     public Canvas inGameCanvas;
     public Canvas mainMenuCanvas;
     public Canvas gameOverCanvas;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         BackToMenu();
+        LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
     //Método que cambia a el estado inGame
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour
                 mainMenuCanvas.enabled = false;
                 break;
         }
+
+        displayCanvas.enabled = false;
 
         currentGameState = newGameState;
     }
