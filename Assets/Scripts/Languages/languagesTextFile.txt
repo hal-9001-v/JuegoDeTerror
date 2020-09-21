@@ -28,6 +28,14 @@ Done
 Done
 Hecho
 ;
+Sensibility
+Sensibility
+Sensibilidad
+;
+Volume
+Volume
+Volumen
+;
 Mission1
 Hello
 Investiga el lugar

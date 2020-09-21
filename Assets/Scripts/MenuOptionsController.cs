@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public enum OptionType
 {
     language,
-    volume
+    volume,
+    sensibility
 }
 public class MenuOptionsController : MonoBehaviour
 {
@@ -24,9 +26,15 @@ public class MenuOptionsController : MonoBehaviour
             currentPosition = PlayerPrefs.GetInt("language");
             text.text = posibilities[currentPosition];
         }
-        else if(type == OptionType.volume)
+        else if(type == OptionType.sensibility)
         {
+            currentPosition = (int)PlayerPrefs.GetFloat("sensibility");
+            if(currentPosition == 0)
+            {
+                currentPosition = 100;
+            }
 
+            this.GetComponent<Slider>().value = currentPosition;
         }
     }
 
@@ -95,5 +103,12 @@ public class MenuOptionsController : MonoBehaviour
             PlayerPrefs.SetInt("language", currentPosition);
         }
         return currentPosition;
+    }
+
+    //Change Sensibility
+    public void SetSensibility(float newSensibility)
+    {
+        PlayerPrefs.SetFloat("sensibility", newSensibility);
+        CameraLook.sharedInstance.mouseSensitivity = newSensibility;
     }
 }
