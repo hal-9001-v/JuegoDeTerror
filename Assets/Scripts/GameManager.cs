@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Posibles Estados de Juego
 public enum GameState
@@ -17,8 +18,10 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState;
 
     public Canvas noteCanvas;
+    public Canvas displayCanvas;
     public Canvas inGameCanvas;
     public Canvas mainMenuCanvas;
+    public Canvas settingsCanvas;
     public Canvas gameOverCanvas;
 
     public static GameManager sharedInstance;
@@ -27,36 +30,37 @@ public class GameManager : MonoBehaviour
     {
         sharedInstance = this;
         LanguageController.LoadLanguagesFile("languagesTextFile.txt");
+        DontDestroyOnLoad(this);
     }
 
     private void Start()
     {
-        if (currentGameState == GameState.menu)
-            BackToMenu();
+        //BackToMenu();
+        LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
     //Método que cambia a el estado inGame
     public void StartGame()
     {
-        SetGameState(GameState.inGame);
+        //SetGameState(GameState.inGame);
         Cursor.lockState = CursorLockMode.Locked;
     }
 
     //Método que cambia a el estado menu
     public void BackToMenu()
     {
-        SetGameState(GameState.menu);
+        //SetGameState(GameState.menu);
         Cursor.lockState = CursorLockMode.None;
     }
 
     //Método que cambia a el estado gameOver
     public void GameOver()
     {
-        SetGameState(GameState.gameOver);
+        //SetGameState(GameState.gameOver);
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void SetGameState(GameState newGameState)
+    /*public void SetGameState(GameState newGameState)
     {
         switch (newGameState)
         {
@@ -80,7 +84,20 @@ public class GameManager : MonoBehaviour
                 break;
         }
 
+        displayCanvas.enabled = false;
+
         currentGameState = newGameState;
+    }*/
+
+    public void Options()
+    {
+        SceneManager.LoadScene("SettingsMenu");
+        currentGameState = GameState.menu;
+        mainMenuCanvas = null;
+        if(settingsCanvas != null)
+        {
+            Debug.Log("yeahhh");
+        }
     }
 
 }

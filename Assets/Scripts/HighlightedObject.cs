@@ -5,17 +5,24 @@ using UnityEngine;
 public class HighlightedObject : MonoBehaviour
 {
     public Transform playerPosition;
+    public GameObject obj;
     public float minDist = 3.0f;
     public Light light;
 
-    public static bool openObject = false;
+    public string lightColor;
+
+    private Color color;
+    private bool openObject = false;
     private float dist;
     private bool alreadyHighlighting = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        lightColor = "#" + lightColor;
         light.enabled = false;
+        ColorUtility.TryParseHtmlString(lightColor, out Color color);
+        light.color = color;
     }
 
     // Update is called once per frame
@@ -23,6 +30,7 @@ public class HighlightedObject : MonoBehaviour
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
+            //Si todavía no se ha interactuado...
             if (openObject == false)
             {
                 dist = Vector3.Distance(playerPosition.position, this.transform.position);
@@ -41,10 +49,13 @@ public class HighlightedObject : MonoBehaviour
                     StopCoroutine(Highlighting());
                 }
             }
+
+            //Si ya se ha interactuado se destruye
             else
             {
                 light.enabled = false;
-                Destroy(this);
+                //Destroy(this.GetComponent<HighlightedObject>());
+                obj.GetComponent<HighlightedObject>().enabled = false;
             }
         }
     }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    public float mouseSensevitiy = 10f;
+    public float mouseSensivity = 10f;
     public Transform playerBody;
 
     float xRotation = 0f;
@@ -14,8 +14,8 @@ public class MouseController : MonoBehaviour
 
     private void Update()
     {
-        float xInput = Input.GetAxis("MouseX") * mouseSensevitiy;
-        float yInput = Input.GetAxis("MouseY") * mouseSensevitiy;
+        float xInput = Input.GetAxis("MouseX") * mouseSensivity;
+        float yInput = Input.GetAxis("MouseY") * mouseSensivity;
 
         xRotation -= yInput;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);

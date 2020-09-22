@@ -22,6 +22,7 @@ public class ReadNote : MonoBehaviour
     private string result = "";                                               //Resultado de todos los párrafos de la nota
     private AudioSource audioSource;
     private float dist;                                                       //Distancia actual entre Player y Nota
+    private bool highlighted = true;                                          //Booleano que guarda si el objeto está remarcado
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class ReadNote : MonoBehaviour
 
         if (dist <= minDist)
         {
+            
             //Entrar al modo Nota
             if (Input.GetButtonDown("Interact") && PlayerMovement.sharedInstance.isReading == false)
             {
@@ -57,17 +59,24 @@ public class ReadNote : MonoBehaviour
                 audioSource.PlayOneShot(noteOpenSound);
                 Page(result);
                 noteCanvas.enabled = true;
-                this.GetComponent<HighlightedObject>().SetOpenObject(true);
+
+                if (highlighted == true)
+                {
+                    this.GetComponent<HighlightedObject>().SetOpenObject(true);
+                    highlighted = false;
+                }
+
+                Inventory.sharedInstance.AddItem(GetComponent<Item>());
             }
 
             //Subir texto de la nota
-            if (Input.GetKeyDown(KeyCode.DownArrow))
+            if (Input.GetKeyDown(KeyCode.DownArrow) && PlayerMovement.sharedInstance.isReading)
             {
                 scrollbar.value -= 0.1f;
             }
 
             //Bajar texto de la nota
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow) && PlayerMovement.sharedInstance.isReading)
             {
                 scrollbar.value += 0.1f;
             }
@@ -94,5 +103,10 @@ public class ReadNote : MonoBehaviour
         PlayerMovement.sharedInstance.isReading = false;
         audioSource.PlayOneShot(noteCloseSound);
         noteCanvas.enabled = false;
+    }
+
+    public void DoAfterHighlighted()
+    {
+        this.GetComponent<HighlightedObject>().enabled = false;
     }
 }

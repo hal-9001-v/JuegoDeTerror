@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: fa50cb42c759a4641b232a8837411055
+<<<<<<< HEAD:Assets/3DModels/Materials.meta
+guid: 8e8dccfef981c2b44a17edf8ff7fc21d
+=======
+guid: f4e6d76fc5aee51479d9c39d9772d9ff
+>>>>>>> miscelanea2:Assets/3DMaterials/m_Books.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

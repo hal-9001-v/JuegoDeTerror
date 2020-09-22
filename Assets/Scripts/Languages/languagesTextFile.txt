@@ -1,5 +1,9 @@
 2
 ;
+Play
+Play
+Jugar
+;
 NewGame
 New game
 Nueva Partida
@@ -12,6 +16,10 @@ Language
 Language
 Idioma
 ;
+Options
+Options
+Opciones
+;
 Credits
 Credits
 Créditos
@@ -19,6 +27,26 @@ Créditos
 Exit
 Exit
 Salir
+;
+Delete
+Delete
+Borrar
+;
+Done
+Done
+Hecho
+;
+Sensibility
+Sensibility
+Sensibilidad
+;
+Volume
+Volume
+Volumen
+;
+Back
+Back
+Atrás
 ;
 Mission1
 Hello

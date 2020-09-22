@@ -22,8 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 move; //Vector velocidad
 
-    public GameObject[] notes;
-
     public bool isReading = false;
 
     //Fatigue variables
@@ -45,26 +43,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        fatigueCounter = 0.0f;
-
-        notes = GameObject.FindGameObjectsWithTag("Note");
-                
+        fatigueCounter = 0.0f;                
     }
 
     private void Update()
     {
-        /*Checking player is not reading any notes CAMBIARRRR
-        for(int i = 0; i < notes.Length; i++)
-        {
-            if(notes[i].GetComponent<ReadNote>().isReading == true)
-            {
-                this.isReading = true;
-            }
-            else
-            {
-                isReading = false;
-            }
-        }*/
 
         if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
         {
