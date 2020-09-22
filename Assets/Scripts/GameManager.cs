@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas settingsCanvas;
     public Canvas gameOverCanvas;
+    private bool pauseIsOpen = false;
 
     public static GameManager sharedInstance;
 
@@ -39,10 +40,17 @@ public class GameManager : MonoBehaviour
         LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
+    private void Update()
+    {
+        Pause();
+    }
+
     //Método que cambia a el estado inGame
     public void StartGame()
     {
         //SetGameState(GameState.inGame);
+        SceneManager.LoadScene("SampleScene");
+        currentGameState = GameState.inGame;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -89,15 +97,31 @@ public class GameManager : MonoBehaviour
         currentGameState = newGameState;
     }*/
 
-    public void Options()
+    public void BackToMainMenu()
     {
-        SceneManager.LoadScene("SettingsMenu");
-        currentGameState = GameState.menu;
-        mainMenuCanvas = null;
-        if(settingsCanvas != null)
-        {
-            Debug.Log("yeahhh");
-        }
+        SceneManager.LoadScene("MainMneu");
     }
 
+    public void Pause()
+    {
+        if(currentGameState == GameState.inGame)
+        {
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                Canvas pause = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
+                if (pauseIsOpen == false)
+                {
+                    pause.enabled = true;
+                    pauseIsOpen = true;
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    pause.enabled = false;
+                    pauseIsOpen = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
+        }
+    }
 }
