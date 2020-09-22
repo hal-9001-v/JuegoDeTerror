@@ -17,15 +17,15 @@ public class StaticTool : MonoBehaviour
         return component;
     }
 
-    static public void move()
-    {
-        
-
-    }
-
-    IEnumerator Move()
-    {
-        yield return null;
+    static public bool DoesTagExist(string tag) {
+        try
+        {
+            GameObject.FindGameObjectWithTag(tag);
+            return true;
+        }
+        catch {
+            return false;
+        }
     }
 
 }

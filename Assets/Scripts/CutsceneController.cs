@@ -61,6 +61,8 @@ public class CutsceneController : MonoBehaviour
         myPlayerMovement.enabled = false;
         myCameraHeadBob.enabled = false;
 
+
+
         if (playerAnimator == null)
         {
             playerAnimator = player.GetComponentInChildren<Animator>();
@@ -73,8 +75,29 @@ public class CutsceneController : MonoBehaviour
             }
         }
 
-        playerAnimator.SetTrigger("Death");
-        playerAnimator.SetInteger("DeathNumber", 1);
+        List<AnimationCollider> readyACList = new List<AnimationCollider>();
+
+        foreach (AnimationCollider animColl in player.GetComponentsInChildren<AnimationCollider>()) {
+            if (animColl.isReady) {
+                readyACList.Add(animColl);
+            }
+        }
+
+        if (readyACList.Count != 0)
+        {
+            int number = readyACList[Random.Range(0, readyACList.Count)].animationID;
+
+            try {
+                playerAnimator.SetTrigger("Death");
+                playerAnimator.SetInteger("DeathNumber", number);
+
+            } catch {
+                Debug.LogError("Error at Animation Controller variables");
+            }
+        }
+        else {
+            Debug.LogError("No Death Animation avaliable!");
+        }
     }
 
 }
