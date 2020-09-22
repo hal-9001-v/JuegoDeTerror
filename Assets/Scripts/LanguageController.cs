@@ -4,7 +4,7 @@ using System.IO;
 
 public static class LanguageController
 {
-    public static int language = 0;             //0 = inglés, 1 = español
+    public static int language = 1;             //0 = inglés, 1 = español
 
     private static Hashtable languageHashTable; //HashTable de tipo key(string nombre) -> value(atring[] con el valor en multiples idiomas)
     private static int totalLanguages;          //Número total de idiomas

@@ -1,5 +1,9 @@
 2
 ;
+Play
+Play
+Jugar
+;
 NewGame
 New game
 Nueva Partida
@@ -11,6 +15,10 @@ Cargar partida
 Language
 Language
 Idioma
+;
+Options
+Options
+Opciones
 ;
 Credits
 Credits
@@ -35,6 +43,10 @@ Sensibilidad
 Volume
 Volume
 Volumen
+;
+Back
+Back
+Atrás
 ;
 Mission1
 Hello
