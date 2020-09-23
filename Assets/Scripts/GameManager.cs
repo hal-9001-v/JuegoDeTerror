@@ -40,11 +40,6 @@ public class GameManager : MonoBehaviour
         LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
-    private void Update()
-    {
-        Pause();
-    }
-
     //Método que cambia a el estado inGame
     public void StartGame()
     {
@@ -100,28 +95,5 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMneu");
-    }
-
-    public void Pause()
-    {
-        if(currentGameState == GameState.inGame)
-        {
-            if (Input.GetKeyDown(KeyCode.U))
-            {
-                Canvas pause = GameObject.Find("PauseCanvas").GetComponent<Canvas>();
-                if (pauseIsOpen == false)
-                {
-                    pause.enabled = true;
-                    pauseIsOpen = true;
-                    Cursor.lockState = CursorLockMode.None;
-                }
-                else
-                {
-                    pause.enabled = false;
-                    pauseIsOpen = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                }
-            }
-        }
     }
 }
