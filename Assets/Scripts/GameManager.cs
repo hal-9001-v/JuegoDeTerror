@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 //Posibles Estados de Juego
 public enum GameState
 {
+    preLoad,
     menu,
     inGame,
     gameOver
@@ -36,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //BackToMenu();
+        SetGameState(GameState.preLoad);
         LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
@@ -63,34 +64,26 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    /*public void SetGameState(GameState newGameState)
+    public void SetGameState(GameState newGameState)
     {
         switch (newGameState)
         {
             case GameState.inGame:
                 //Mostranmos y ocultamos los canvas que toquen
-                inGameCanvas.enabled = true;
-                noteCanvas.enabled = false;
-                mainMenuCanvas.enabled = false;
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.menu:
-                //Mostranmos y ocultamos los canvas que toquen
-                //noteCanvas.enabled = false;
-                inGameCanvas.enabled = false;
-                mainMenuCanvas.enabled = true;
+                Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.gameOver:
-                //Mostranmos y ocultamos los canvas que toquen
-                noteCanvas.enabled = false;
-                inGameCanvas.enabled = false;
-                mainMenuCanvas.enabled = false;
+                
+                break;
+            case GameState.preLoad:
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
         }
-
-        displayCanvas.enabled = false;
-
         currentGameState = newGameState;
-    }*/
+    }
 
     public void BackToMainMenu()
     {

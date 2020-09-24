@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PauseMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-    public Canvas pauseCanvas;
+    public Canvas menuCanvas;
+    public bool startEnabled;
+    public AudioClip buttonSound;
+    public AudioSource audioSource;
     private GameManager gameManager;
 
     private void Start()
     {
-        pauseCanvas.enabled = false;
+        menuCanvas.enabled = startEnabled;
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -21,16 +24,17 @@ public class PauseMenu : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.U))
             {
                 gameManager.SetGameState(GameState.menu);
-                pauseCanvas.enabled = true;
+                menuCanvas.enabled = true;
             }
         }
     }
 
     public void BackToGame()
-    {        if(gameManager.currentGameState == GameState.menu)
+    {
+        if (gameManager.currentGameState == GameState.menu)
         {
-            gameManager.currentGameState = GameState.inGame;
-            pauseCanvas.enabled = false;
+            gameManager.SetGameState(GameState.inGame);
+            menuCanvas.enabled = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
@@ -40,7 +44,23 @@ public class PauseMenu : MonoBehaviour
         {
             SceneManager.LoadScene("MainMneu");
             Cursor.lockState = CursorLockMode.None;
-            Destroy(gameManager.gameObject);
+        }
+    }
+
+    public void NewGame()
+    {
+        if(gameManager.currentGameState == GameState.menu)
+        {
+            gameManager.SetGameState(GameState.inGame);
+            SceneManager.LoadScene("SampleScene");
+        }
+    }
+
+    public void PlayButtonSound()
+    {
+        if (menuCanvas.enabled)
+        {
+            audioSource.PlayOneShot(buttonSound);
         }
     }
 }
