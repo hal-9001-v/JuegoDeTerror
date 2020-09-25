@@ -7,6 +7,8 @@ public class CanvasFade : MonoBehaviour
 {
     public Image darkFade;
     public bool inOut; //true = FadeIn and false = FadeOut
+    public float time = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,17 +34,17 @@ public class CanvasFade : MonoBehaviour
 
     public void FadeOut()
     {
-        darkFade.CrossFadeAlpha(0.0f, 2.0f, false);
+        darkFade.CrossFadeAlpha(0.0f, time, false);
     }
 
     public void FadeIn()
     {
-        darkFade.CrossFadeAlpha(1.0f, 2.0f, false);
+        darkFade.CrossFadeAlpha(1.0f, time, false);
     }
 
     public IEnumerator Enable()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(time);
         darkFade.enabled = false;
         yield return null;
     }

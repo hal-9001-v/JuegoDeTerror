@@ -10,6 +10,7 @@ public class CameraHeadBob : MonoBehaviour
     public float bobbingAmountX = 0.05f;
     public PlayerMovement playerController;
     private float footFall;
+    private bool sounding = false;
 
     public AudioClip footsteps;
     public AudioSource audioSource;
@@ -47,9 +48,15 @@ public class CameraHeadBob : MonoBehaviour
             transform.localPosition = new Vector3(defaultPosX + Mathf.Cos(timer) * bobbingAmountX, defaultPosY + Mathf.Sin(timer) * bobbingAmountY, transform.localPosition.z);
 
             footFall = Mathf.Cos(timer);
-            if (footFall < 0)
+            if (footFall < 0 && sounding == false)
             {
-                audioSource.Play();
+                FootstepMethod();
+                sounding = true;
+                audioSource.PlayOneShot(footsteps);
+            }
+            else if(sounding && footFall > 0)
+            {
+                sounding = false;
             }
         }
         else
@@ -57,6 +64,24 @@ public class CameraHeadBob : MonoBehaviour
             //Idle
             timer = 0;
             transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosY, Time.deltaTime * bobbingSpeed), transform.localPosition.z);
+        }
+    }
+
+    public void FootstepMethod()
+    {
+        string tag = "";
+        RaycastHit hit;
+
+        if(Physics.Raycast(PlayerMovement.sharedInstance.transform.position, (Vector3.down), out hit, 5.0f))
+        {
+            tag = hit.transform.tag;
+            Debug.Log(tag);
+        }
+        switch (tag)
+        {
+            case "Metal":
+                this.footsteps = FootstepsSystem.sharedInstance.ChooseSound("Metal");
+                break;
         }
     }
 }
