@@ -21,13 +21,14 @@ public class PlayerTracker : MonoBehaviour
         }
         else if (collider.gameObject.tag == "RoomCollider")
         {
-            currentRoom = collider.GetComponentInParent<Room>();
+
+            currentRoom = collider.GetComponent<RoomCollider>().myRoom;
 
             if (currentRoom != null)
                 currentRoom.atEnter.Invoke();
             else
             {
-                Debug.LogError("Object" + collider.gameObject.name + " is tagged as Room but has no Room Component");
+                Debug.LogError("Object: " + collider.gameObject.name + " is tagged as Room Collider but has no RoomCollider Component");
             }
         }
 
