@@ -8,11 +8,6 @@ public class Pursuer : MonoBehaviour
     EnviromentManager myEM;
     CutsceneController myCutsceneController;
 
-    public Stack<Room> rooms;
-    public Room currentRoom;
-
-    public int currentState;
-
     public InactiveState myInactiveState;
     public PursueIdleState myPursueIdleState;
     public RandomIdleState myRandomIdleState;
@@ -95,12 +90,24 @@ public class Pursuer : MonoBehaviour
     }
 
 
+    [Header("Timers")]
     //Time Waiting on every room
     public float patrolTime = 2;
     public float pursueTime = 1;
     public float timeForKill = 2;
 
+    [Space(10)]
+    [Header("Settings")]
     public int spottingDistance = 2;
+
+    [Space(10)]
+    [Header("Information")]
+    public Room currentRoom;
+    [Tooltip("0 => Inactive, 1 => Patrol randomly, 2 => Pursue player")]
+    public int currentState;
+
+
+    public Stack<Room> rooms;
 
     private void Awake()
     {
