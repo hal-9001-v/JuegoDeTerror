@@ -62,27 +62,31 @@ public class GameManager : MonoBehaviour
 
     /*public void SetGameState(GameState newGameState)
     {
-        switch (newGameState)
-        {
-            case GameState.inGame:
-                //Mostranmos y ocultamos los canvas que toquen
-                inGameCanvas.enabled = true;
-                noteCanvas.enabled = false;
-                mainMenuCanvas.enabled = false;
-                break;
-            case GameState.menu:
-                //Mostranmos y ocultamos los canvas que toquen
-                //noteCanvas.enabled = false;
-                inGameCanvas.enabled = false;
-                mainMenuCanvas.enabled = true;
-                break;
-            case GameState.gameOver:
-                //Mostranmos y ocultamos los canvas que toquen
-                noteCanvas.enabled = false;
-                inGameCanvas.enabled = false;
-                mainMenuCanvas.enabled = false;
-                break;
+        if (inGameCanvas != null && noteCanvas != null && mainMenuCanvas != null) {
+            switch (newGameState)
+            {
+                case GameState.inGame:
+
+                    //Mostranmos y ocultamos los canvas que toquen
+                    inGameCanvas.enabled = true;
+                    noteCanvas.enabled = false;
+                    mainMenuCanvas.enabled = false;
+                    break;
+                case GameState.menu:
+                    //Mostranmos y ocultamos los canvas que toquen
+                    //noteCanvas.enabled = false;
+                    inGameCanvas.enabled = false;
+                    mainMenuCanvas.enabled = true;
+                    break;
+                case GameState.gameOver:
+                    //Mostramos y ocultamos los canvas que toquen
+                    noteCanvas.enabled = false;
+                    inGameCanvas.enabled = false;
+                    mainMenuCanvas.enabled = false;
+                    break;
+            }
         }
+        
 
         displayCanvas.enabled = false;
 
