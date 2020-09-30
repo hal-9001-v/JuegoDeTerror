@@ -9,7 +9,6 @@ TagManager:
   - Metal
   - RoomCollider
   - RoomGroup
-  - Interactable
   layers:
   - Default
   - TransparentFX
