@@ -52,7 +52,7 @@ public class Menu : MonoBehaviour
         if(gameManager.currentGameState == GameState.menu)
         {
             gameManager.SetGameState(GameState.inGame);
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("Escenario");
         }
     }
 
