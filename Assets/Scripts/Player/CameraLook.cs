@@ -6,9 +6,13 @@ public class CameraLook : PlayerComponent
 
     [Range(0.1f, 10)]
     public float mouseSensitivity;
+    
+    [Range(0.1f, 10)]
+    public float gamePadSensitivity;
     public GameObject playerBody;
 
-    Vector2 aim;
+    Vector2 gamePadAim;
+    Vector2 mouseAim;
     bool haveToAim;
 
     float xRotation = 0.0f;
@@ -39,13 +43,23 @@ public class CameraLook : PlayerComponent
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame && playerBody.GetComponent<PlayerMovement>().isReading == false)
         {
-            xRotation -= aim.y * mouseSensitivity;
+            Vector2 aim;
+
+            if (gamePadAim == Vector2.zero)
+            {
+                aim = mouseAim * mouseSensitivity;
+            }
+            else {
+                aim = gamePadAim * gamePadSensitivity;
+            }
+
+            xRotation -= aim.y;
             xRotation = Mathf.Clamp(xRotation, -80, 80f);
 
+            
             transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-            //playerBody.transform.Rotate(Vector3.right * aim.y);
-            playerBody.transform.Rotate(Vector3.up * aim.x * mouseSensitivity);
+            
+            playerBody.transform.Rotate(Vector3.up * aim.x);
 
         }
 
@@ -54,9 +68,16 @@ public class CameraLook : PlayerComponent
     public override void setPlayerControls(PlayerControls pc)
     {
         pc.Normal.Aim.performed += ctx => {
-            aim = ctx.ReadValue<Vector2>();
+            gamePadAim = ctx.ReadValue<Vector2>();
         };
-        pc.Normal.Aim.canceled += ctx => aim = Vector2.zero;
+
+        pc.Normal.MouseAim.performed += ctx => {
+            mouseAim = ctx.ReadValue<Vector2>();
+        };
+
+        pc.Normal.Aim.canceled += ctx => gamePadAim = Vector2.zero;
+
+        pc.Normal.MouseAim.canceled += ctx => mouseAim = Vector2.zero;
 
     }
 }

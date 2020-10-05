@@ -30,7 +30,15 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""7ed4e3d8-3d46-4308-8884-1879eacf8ed3"",
-                    ""expectedControlType"": """",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseAim"",
+                    ""type"": ""Value"",
+                    ""id"": ""a13e9387-cb7a-490a-ad14-9ac98352c281"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
@@ -119,6 +127,61 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""fa70b49e-87e5-49c7-974a-47b33c59490b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""3dac63b4-6e32-4cf9-994f-a714a82dba7d"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f3f386c1-ca63-4c89-9419-9388c0e53752"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""59e669d6-0174-4c1e-be13-84b40eba1fe6"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""bcdb5e38-75d2-4ba6-8f4f-0f0ef9645653"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": """",
                     ""id"": ""ef631e62-f07e-472e-9c25-af3b8afd872c"",
                     ""path"": ""<Gamepad>/rightStick"",
@@ -148,6 +211,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bb8ef70-d466-4caa-9358-1c11cd1fab2d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""MouseAim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -182,6 +256,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal = asset.FindActionMap("Normal", throwIfNotFound: true);
         m_Normal_Move = m_Normal.FindAction("Move", throwIfNotFound: true);
         m_Normal_Aim = m_Normal.FindAction("Aim", throwIfNotFound: true);
+        m_Normal_MouseAim = m_Normal.FindAction("MouseAim", throwIfNotFound: true);
         m_Normal_Run = m_Normal.FindAction("Run", throwIfNotFound: true);
         m_Normal_Interaction = m_Normal.FindAction("Interaction", throwIfNotFound: true);
     }
@@ -235,6 +310,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private INormalActions m_NormalActionsCallbackInterface;
     private readonly InputAction m_Normal_Move;
     private readonly InputAction m_Normal_Aim;
+    private readonly InputAction m_Normal_MouseAim;
     private readonly InputAction m_Normal_Run;
     private readonly InputAction m_Normal_Interaction;
     public struct NormalActions
@@ -243,6 +319,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public NormalActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Normal_Move;
         public InputAction @Aim => m_Wrapper.m_Normal_Aim;
+        public InputAction @MouseAim => m_Wrapper.m_Normal_MouseAim;
         public InputAction @Run => m_Wrapper.m_Normal_Run;
         public InputAction @Interaction => m_Wrapper.m_Normal_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
@@ -260,6 +337,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Aim.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnAim;
+                @MouseAim.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnMouseAim;
+                @MouseAim.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnMouseAim;
+                @MouseAim.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnMouseAim;
                 @Run.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnRun;
@@ -276,6 +356,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @MouseAim.started += instance.OnMouseAim;
+                @MouseAim.performed += instance.OnMouseAim;
+                @MouseAim.canceled += instance.OnMouseAim;
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
@@ -299,6 +382,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnMouseAim(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
     }
