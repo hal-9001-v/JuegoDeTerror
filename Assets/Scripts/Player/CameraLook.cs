@@ -1,52 +1,62 @@
 ﻿using UnityEngine;
 
-public class CameraLook : MonoBehaviour
+public class CameraLook : PlayerComponent
 {
     public static CameraLook sharedInstance;
-    public float mouseSensitivity = 100f;
+
+    [Range(0.1f, 10)]
+    public float mouseSensitivity;
     public GameObject playerBody;
 
-    float xRotation = 0.0f;
+    Vector2 aim;
+    bool haveToAim;
 
-    float mouseX;
-    float mouseY;
+    float xRotation = 0.0f;
 
     private void Awake()
     {
         sharedInstance = this;
-    }
 
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        if(PlayerPrefs.GetFloat("sensibility") >= 50)
+        /*
+        if (PlayerPrefs.GetFloat("sensibility") >= 50)
         {
             mouseSensitivity = PlayerPrefs.GetFloat("sensibility");
+        }*/
+    }
+
+    void FixedUpdate()
+    {
+        cameraRotation();
+    }
+
+    public void cameraRotation()
+    {
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame && playerBody.GetComponent<PlayerMovement>().isReading == false)
+        {
+            xRotation -= aim.y * mouseSensitivity;
+            xRotation = Mathf.Clamp(xRotation, -80, 80f);
+
+            transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+
+            //playerBody.transform.Rotate(Vector3.right * aim.y);
+            playerBody.transform.Rotate(Vector3.up * aim.x * mouseSensitivity);
+
         }
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void setPlayerControls(PlayerControls pc)
     {
-            if (GameManager.sharedInstance.currentGameState == GameState.inGame && playerBody.GetComponent<PlayerMovement>().isReading == false)
-            {
-                CameraRotation();
-            }
-    
-    }
+        pc.Normal.Aim.performed += ctx => {
+            aim = ctx.ReadValue<Vector2>();
+        };
+        pc.Normal.Aim.canceled += ctx => aim = Vector2.zero;
 
-    public void CameraRotation()
-    {
-        mouseX = Input.GetAxis("MouseX") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("MouseY") * mouseSensitivity * Time.deltaTime;
-
-        xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        playerBody.transform.Rotate(Vector3.up * mouseX);
     }
 }

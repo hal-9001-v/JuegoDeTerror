@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectInteractor : MonoBehaviour
+public class ObjectInteractor : PlayerComponent
 {
     public Camera myCamera;
 
@@ -21,18 +21,18 @@ public class ObjectInteractor : MonoBehaviour
                 Debug.LogWarning("Took camera " + myCamera.name + " as player camera");
         }
 
+
     }
 
     private void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        checkForObject();
 
     }
 
     public void checkForObject()
     {
-        Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
+        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f , 0.5f , 0.5f));
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction);
 
@@ -41,31 +41,35 @@ public class ObjectInteractor : MonoBehaviour
 
             if (hit.collider.tag == "Interactable")
             {
-                if (Input.GetKeyDown(KeyCode.E))
+
+                Interactable myInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+
+                if (myInteractable != null)
                 {
-                    Interactable myInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+                    myInteractable.interact();
+
+                }
+                else
+                {
+                    myInteractable = hit.collider.gameObject.GetComponentInChildren<Interactable>();
 
                     if (myInteractable != null)
                     {
                         myInteractable.interact();
-
                     }
                     else
                     {
-                        myInteractable = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-
-                        if (myInteractable != null)
-                        {
-                            myInteractable.interact();
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Object " + hit.collider.gameObject.name + " is tagged as Interactable but has no Interactable component!");
-                        }
+                        Debug.LogWarning("Object " + hit.collider.gameObject.name + " is tagged as Interactable but has no Interactable component!");
                     }
                 }
             }
         }
     }
 
+    public override void setPlayerControls(PlayerControls pc)
+    {
+
+        pc.Normal.Interaction.performed += ctx => checkForObject();
+
+    }
 }

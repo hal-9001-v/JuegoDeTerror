@@ -72,7 +72,7 @@ public static class LanguageController
             }
             else
             {
-                Debug.LogWarning("LanguageController : La palabra " + key + " no se encontró en la tabla");
+                Debug.LogWarning("LanguageController : La palabra " + key + " no se encontró en la tabla ");
                 return key;
             }
         }

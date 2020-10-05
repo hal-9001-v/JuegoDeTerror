@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : PlayerComponent
 {
     public static PlayerMovement sharedInstance;
 
@@ -20,8 +20,6 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isRunning = false;
 
-    public Vector3 move; //Vector velocidad
-
     public bool isReading = false;
 
     //Fatigue variables
@@ -35,15 +33,19 @@ public class PlayerMovement : MonoBehaviour
 
     private float fatigueCounter;
 
+    bool run;
+
+    public Vector2 moveInput;
 
     private void Awake()
     {
         sharedInstance = this;
     }
 
+
     private void Start()
     {
-        fatigueCounter = 0.0f;                
+        fatigueCounter = 0.0f;
     }
 
     private void Update()
@@ -62,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        makeMovement();
+    }
+
     //Método que controla el contador de fatiga del jugador mientras este sea igual a false
     public bool Fatigue()
     {
@@ -78,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
         //Debug.Log(fatigueCounter);
 
-        if(fatigueCounter >= maxRunningTime)
+        if (fatigueCounter >= maxRunningTime)
         {
             hasFatigue = true;
         }
@@ -104,18 +111,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Para fuerzas constantes
-    void FixedUpdate()
+
+    private void makeMovement()
     {
         if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
         {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-
-            move = (transform.right * x) + (transform.forward * z);
-
             SetGravity();
 
-            if (Input.GetButton("Run") && hasFatigue == false)
+            Vector3 move;
+
+            move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
+
+            if (run && hasFatigue == false)
             {
                 isRunning = true;
                 controller.Move(move * speed * runningIncrease * Time.deltaTime);
@@ -128,21 +135,9 @@ public class PlayerMovement : MonoBehaviour
 
             }
         }
+
     }
 
-    /*
-    public bool IsStop(float xMovement, float zMovement)
-    {
-        if (xMovement > -0.01f && xMovement < 0.01f && zMovement > -0.01f && zMovement < 0.01f)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    */
 
     public void SetGravity()
     {
@@ -150,17 +145,28 @@ public class PlayerMovement : MonoBehaviour
         if (controller.isGrounded)
         {
             fallVelocity = (-1) * gravity * Time.deltaTime;
-            move.y = fallVelocity;
         }
         else
         {
             fallVelocity -= gravity * Time.deltaTime;
-            move.y = fallVelocity;
         }
     }
 
     public void Kill()
     {
         GameManager.sharedInstance.GameOver();
+    }
+
+    public override void setPlayerControls(PlayerControls pc)
+    {
+        pc.Normal.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+
+        pc.Normal.Move.canceled += ctx => moveInput = Vector2.zero;
+
+        pc.Normal.Run.performed += ctx => run = true;
+
+        pc.Normal.Run.canceled += ctx => run = false;
+
+
     }
 }

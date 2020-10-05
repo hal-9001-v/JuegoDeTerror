@@ -17,15 +17,32 @@ public class StaticTool : MonoBehaviour
         return component;
     }
 
-    static public bool DoesTagExist(string tag) {
+    static public bool DoesTagExist(string tag)
+    {
         try
         {
             GameObject.FindGameObjectWithTag(tag);
             return true;
         }
-        catch {
+        catch
+        {
             return false;
         }
     }
 
+
+    static public void FindInSceneWithLog<T>(T myComponent) where T : MonoBehaviour
+    {
+
+        if (myComponent == null)
+        {
+            myComponent = FindObjectOfType<T>();
+
+            if (myComponent == null)
+            {
+                Debug.LogWarning("No " + typeof(T).Name + " in Scene");
+            }
+
+        }
+    }
 }
