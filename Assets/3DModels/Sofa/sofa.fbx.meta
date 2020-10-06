@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fa5ab1b52e652e2488124bddf53f1d44
+guid: 18eba20b7958b664cb67f0b25a217108
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -23,12 +23,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: mapa_normales_sofa
-    second: {fileID: 2800000, guid: bf91f777196961746b630cfb634b9057, type: 3}
+    second: {fileID: 2800000, guid: 03844ddb37118a049b888e38e70d01b2, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: terciopelo_sofa
-    second: {fileID: 2800000, guid: 148606b37bb0b6a4ab54c5060efffe5b, type: 3}
+    second: {fileID: 2800000, guid: a0b8a562d87fe3245927497a5acf38b5, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
