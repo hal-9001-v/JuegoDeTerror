@@ -51,6 +51,8 @@ public class CameraLook : PlayerComponent
             }
             else {
                 aim = gamePadAim * gamePadSensitivity;
+
+                Debug.Log(aim);
             }
 
             xRotation -= aim.y;

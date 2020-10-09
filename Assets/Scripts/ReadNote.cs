@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ReadNote : Interactable
 {
-
+    
     public static ReadingSystem myReadingSystem;
 
     public string textKey;                                                    //Letras en común de las claves de los párrafos de la Hashtable
@@ -41,6 +41,7 @@ public class ReadNote : Interactable
         scrollbar = myReadingSystem.scrollbar;
 
         audioSource = myReadingSystem.audioSource;
+        
 
     }
 
@@ -56,6 +57,7 @@ public class ReadNote : Interactable
             counter++;
             provisional = textKey + "P" + counter;
         }
+        
 
         for (int i = 0; i < paragraphs.Count; i++)
         {

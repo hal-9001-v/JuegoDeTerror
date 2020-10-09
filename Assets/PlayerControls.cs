@@ -205,6 +205,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""7a77abc9-8ece-4c7c-a04a-61b8ea85b342"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""c0347b95-4b6c-4be1-bdb2-c0c0c3baa231"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",

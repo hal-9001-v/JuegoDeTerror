@@ -2,27 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraHeadBob : MonoBehaviour
+public class CameraHeadBob : PlayerComponent
 {
-    public float bobbingSpeed = 14f;
-    public float runningSpeedIncrease = 1.5f;
+    public float bobbingSpeed = 1f;
+    public float runningSpeed = 1.5f;
     public float bobbingAmountY = 0.05f;
     public float bobbingAmountX = 0.05f;
+
+    
     public PlayerMovement playerController;
     private float footFall;
 
     public AudioClip footsteps;
     public AudioSource audioSource;
 
-    float defaultPosY = 0;
-    float defaultPosX = 0.0f;
+    public Vector3 defaultPosition { private set; get; }
     float timer = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Awake()
     {
-        defaultPosY = transform.localPosition.y;
-        defaultPosX = transform.localPosition.x;
+        defaultPosition = transform.localPosition;
     }
 
     // Update is called once per frame
@@ -35,17 +35,10 @@ public class CameraHeadBob : MonoBehaviour
                 Mathf.Clamp(1.0f, -2.0f, 2.0f);
             }
 
-            //Player is moving
-            if (playerController.isRunning)
-            {
-                timer += Time.deltaTime * bobbingSpeed * runningSpeedIncrease;
-            }
-            else
-            {
-                timer += Time.deltaTime * bobbingSpeed;
-            }
+            timer += Time.deltaTime * bobbingSpeed * runningSpeed ;
 
-            transform.localPosition = new Vector3(defaultPosX + Mathf.Cos(timer) * bobbingAmountX, defaultPosY + Mathf.Sin(timer) * bobbingAmountY, transform.localPosition.z);
+
+            transform.localPosition = new Vector3(defaultPosition.x + Mathf.Cos(timer) * bobbingAmountX, defaultPosition.y + Mathf.Sin(timer) * bobbingAmountY, transform.localPosition.z);
 
             footFall = Mathf.Cos(timer);
             if (footFall < 0)
@@ -57,10 +50,17 @@ public class CameraHeadBob : MonoBehaviour
         {
             //Idle
             timer = 0;
-            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosY, Time.deltaTime * bobbingSpeed), transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Lerp(transform.localPosition.y, defaultPosition.y, Time.deltaTime * bobbingSpeed), transform.localPosition.z);
         }
-    
+
 
     }
-    
+
+    public override void setPlayerControls(PlayerControls pc)
+    {
+
+        pc.Normal.Move.performed += ctx => runningSpeed = ctx.ReadValue<Vector2>().magnitude;
+
+        pc.Normal.Move.canceled += ctx => runningSpeed = 0;
+    }
 }

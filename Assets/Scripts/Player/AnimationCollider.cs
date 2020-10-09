@@ -11,17 +11,24 @@ public class AnimationCollider : MonoBehaviour
     public bool alwaysReady;
 
     public bool isReady { get; private set; }
-    private bool hasCollided = false;
 
+    public bool fadeOut;
+
+    public float startWait;
+
+    public float frameWait;
+
+    private bool hasCollided = false;
 
     private void Awake()
     {
         if (alwaysReady)
         {
             isReady = true;
-            
+
         }
-        else {
+        else
+        {
             Collider myCollider = GetComponent<Collider>();
 
             if (myCollider == null)
@@ -38,12 +45,12 @@ public class AnimationCollider : MonoBehaviour
                 Debug.LogWarning("Tag does not exist");
             }
         }
-        
+
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag.Equals(tagOfCollision))
+        if (other.gameObject.tag.Equals(tagOfCollision))
             hasCollided = true;
     }
 
