@@ -1440,7 +1440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 356, y: 155}
+  m_AnchoredPosition: {x: 317, y: 155}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &779955044
@@ -5182,7 +5182,7 @@ MonoBehaviour:
   - {fileID: 753745942}
   - {fileID: 1685103897}
   distance: 0
-  weight: 5
+  weight: 1
   visited: 0
   previousRoom: {fileID: 0}
   atEnter:
@@ -5281,7 +5281,7 @@ MonoBehaviour:
   animationID: 0
   hasToCollide: 0
   alwaysReady: 1
-  fadeOut: 0
+  fadeOut: 1
   startWait: 2
   frameWait: 0.05
 --- !u!1 &1508090131
@@ -5807,7 +5807,7 @@ RectTransform:
   m_GameObject: {fileID: 1688264750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 9.9993, y: 6.0131, z: 1}
+  m_LocalScale: {x: 9.9993, y: 6.539246, z: 1}
   m_Children: []
   m_Father: {fileID: 2119641852}
   m_RootOrder: 1
@@ -6277,7 +6277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -6540,7 +6540,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6117892511121978324}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -81.9, y: 8.1, z: -111.61}
+  m_LocalPosition: {x: -81.9, y: -2.63, z: -111.61}
   m_LocalScale: {x: 1, y: 0.80495, z: 1}
   m_Children:
   - {fileID: 1774603663}
