@@ -19,8 +19,7 @@ public class PauseMenu : MonoBehaviour
         if (gameManager.currentGameState == GameState.inGame)
         {
             if (Input.GetKeyDown(KeyCode.U))
-            {
-                gameManager.SetGameState(GameState.menu);
+            {                gameManager.SetGameState(GameState.menu);
                 pauseCanvas.enabled = true;
             }
         }

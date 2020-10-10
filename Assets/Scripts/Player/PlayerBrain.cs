@@ -5,16 +5,25 @@ using UnityEngine;
 public class PlayerBrain : MonoBehaviour
 {
     PlayerControls myPlayerControls;
+    PlayerComponent[] myComponents;
 
     private void Awake()
     {
         myPlayerControls = new PlayerControls();
 
-        foreach (PlayerComponent component in GetComponentsInChildren<PlayerComponent>(true))
+        myComponents = FindObjectsOfType<PlayerComponent>();
+
+        foreach (PlayerComponent component in myComponents)
         {
             component.setPlayerControls(myPlayerControls);
+        }
+    }
 
-            Debug.Log(component.GetType());
+    public void enablePlayer(bool b)
+    {
+        foreach (PlayerComponent component in myComponents)
+        {
+            component.enabled = b;
         }
     }
 

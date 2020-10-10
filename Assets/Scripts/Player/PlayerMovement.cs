@@ -48,22 +48,6 @@ public class PlayerMovement : PlayerComponent
         fatigueCounter = 0.0f;
     }
 
-    private void Update()
-    {
-
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
-        {
-            if (hasFatigue == false)
-            {
-                hasFatigue = Fatigue();
-            }
-            else
-            {
-                hasFatigue = FatigueRecover();
-            }
-        }
-    }
-
     private void FixedUpdate()
     {
         makeMovement();
@@ -114,8 +98,18 @@ public class PlayerMovement : PlayerComponent
 
     private void makeMovement()
     {
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame && this.isReading == false)
+        if (isReading == false)
         {
+
+            if (hasFatigue == false)
+            {
+                hasFatigue = Fatigue();
+            }
+            else
+            {
+                hasFatigue = FatigueRecover();
+            }
+
             SetGravity();
 
             Vector3 move;
