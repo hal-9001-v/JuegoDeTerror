@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 //Posibles Estados de Juego
 public enum GameState
 {
+    preLoad,
     menu,
     inGame,
     gameOver
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas settingsCanvas;
     public Canvas gameOverCanvas;
+    private bool pauseIsOpen = false;
 
     public static GameManager sharedInstance;
 
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //BackToMenu();
+        SetGameState(GameState.preLoad);
         LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         //SetGameState(GameState.inGame);
+        SceneManager.LoadScene("SampleScene");
+        currentGameState = GameState.inGame;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -60,7 +64,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    /*public void SetGameState(GameState newGameState)
+    public void SetGameState(GameState newGameState)
     {
         if (inGameCanvas != null && noteCanvas != null && mainMenuCanvas != null) {
             switch (newGameState)
@@ -90,18 +94,27 @@ public class GameManager : MonoBehaviour
 
         displayCanvas.enabled = false;
 
-        currentGameState = newGameState;
-    }*/
-
-    public void Options()
-    {
-        SceneManager.LoadScene("SettingsMenu");
-        currentGameState = GameState.menu;
-        mainMenuCanvas = null;
-        if(settingsCanvas != null)
+        switch (newGameState)
         {
-            Debug.Log("yeahhh");
+            case GameState.inGame:
+                //Mostranmos y ocultamos los canvas que toquen
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
+            case GameState.menu:
+                Cursor.lockState = CursorLockMode.None;
+                break;
+            case GameState.gameOver:
+                
+                break;
+            case GameState.preLoad:
+                Cursor.lockState = CursorLockMode.Locked;
+                break;
         }
+        currentGameState = newGameState;
     }
 
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMneu");
+    }
 }

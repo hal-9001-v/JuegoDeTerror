@@ -11,7 +11,7 @@ public class Torch : MonoBehaviour
     private Light torch;
     private AudioSource audioSource;
     private float dist;
-    private bool hasPlayer = false;
+    private bool hasPlayer = true;//Cambiar a false cuando se termine de hacer pruebas
 
     // Start is called before the first frame update
     void Start()

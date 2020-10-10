@@ -12,12 +12,20 @@ LoadGame
 Load game
 Cargar partida
 ;
+BackToGame
+Back to game
+Volver al juego
+;
+BackToMenu
+Back to menu
+Volver al menú
+;
 Language
 Language
 Idioma
 ;
-Options
-Options
+Settings
+Settings
 Opciones
 ;
 Credits
