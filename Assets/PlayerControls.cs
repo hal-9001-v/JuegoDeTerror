@@ -227,6 +227,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""023494eb-41f8-4fc0-8d68-0e108155445f"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1bb8ef70-d466-4caa-9358-1c11cd1fab2d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
