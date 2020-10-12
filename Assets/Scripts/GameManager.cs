@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public Canvas gameOverCanvas;
     private bool pauseIsOpen = false;
 
+    public PlayerBrain myPlayerBrain;
+
     public static GameManager sharedInstance;
 
     private void Awake()
@@ -33,11 +35,16 @@ public class GameManager : MonoBehaviour
         sharedInstance = this;
         LanguageController.LoadLanguagesFile("languagesTextFile.txt");
         DontDestroyOnLoad(this);
+
+        if (myPlayerBrain == null)
+        {
+            myPlayerBrain = FindObjectOfType<PlayerBrain>();
+        }
     }
 
     private void Start()
     {
-        SetGameState(GameState.preLoad);
+        //SetGameState(GameState.preLoad);
         LanguageController.language = PlayerPrefs.GetInt("language");
     }
 
@@ -66,7 +73,8 @@ public class GameManager : MonoBehaviour
 
     public void SetGameState(GameState newGameState)
     {
-        if (inGameCanvas != null && noteCanvas != null && mainMenuCanvas != null) {
+        if (inGameCanvas != null && noteCanvas != null && mainMenuCanvas != null && myPlayerBrain != null)
+        {
             switch (newGameState)
             {
                 case GameState.inGame:
@@ -76,20 +84,31 @@ public class GameManager : MonoBehaviour
                     noteCanvas.enabled = false;
                     mainMenuCanvas.enabled = false;
                     displayCanvas.enabled = false;
+
+
+                    myPlayerBrain.enablePlayer(true);
+
                     break;
                 case GameState.menu:
                     //Mostranmos y ocultamos los canvas que toquen
-                    //noteCanvas.enabled = false;
+                    noteCanvas.enabled = false;
                     inGameCanvas.enabled = false;
                     mainMenuCanvas.enabled = true;
+
+                    myPlayerBrain.enablePlayer(true);
                     break;
                 case GameState.gameOver:
                     //Mostramos y ocultamos los canvas que toquen
                     noteCanvas.enabled = false;
                     inGameCanvas.enabled = false;
                     mainMenuCanvas.enabled = false;
+
+                    myPlayerBrain.enablePlayer(false);
                     break;
             }
+
+            displayCanvas.enabled = false;
+
         }
 
         switch (newGameState)
@@ -102,12 +121,13 @@ public class GameManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 break;
             case GameState.gameOver:
-                
+
                 break;
             case GameState.preLoad:
                 Cursor.lockState = CursorLockMode.Locked;
                 break;
         }
+
         currentGameState = newGameState;
     }
 

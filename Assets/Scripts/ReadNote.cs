@@ -7,15 +7,13 @@ using System.Linq;
 
 public class ReadNote : Interactable
 {
-    
+
     public static ReadingSystem myReadingSystem;
 
     public string textKey;                                                    //Letras en común de las claves de los párrafos de la Hashtable
     public List<string> paragraphs = new List<string>();                      //Lista de todos los párrafos
 
 
-    private Transform Player;                                                  //Posición del jugador
-    private float minDist;                                                     //Distancia mínima para que pueda interactuar con la nota
     private AudioClip noteOpenSound;                                           //Sonido al abrir la nota
     private AudioClip noteCloseSound;                                          //Sonido al cerrar la nota
     private Canvas noteCanvas;                                                 //Canvas de la nota
@@ -26,14 +24,12 @@ public class ReadNote : Interactable
     private int counter = 1;
     private string provisional;
     private string result = "";                                               //Resultado de todos los párrafos de la nota
-    private float dist;                                                       //Distancia actual entre Player y Nota
     private bool highlighted = true;                                          //Booleano que guarda si el objeto está remarcado
 
     private void Awake()
     {
         myReadingSystem = FindObjectOfType<ReadingSystem>();
 
-        Player = myReadingSystem.myPlayer;
         noteOpenSound = myReadingSystem.noteOpenSound;
         noteCloseSound = myReadingSystem.noteCloseSound;
         noteCanvas = myReadingSystem.noteCanvas;
@@ -41,7 +37,7 @@ public class ReadNote : Interactable
         scrollbar = myReadingSystem.scrollbar;
 
         audioSource = myReadingSystem.audioSource;
-        
+
 
     }
 
@@ -57,7 +53,7 @@ public class ReadNote : Interactable
             counter++;
             provisional = textKey + "P" + counter;
         }
-        
+
 
         for (int i = 0; i < paragraphs.Count; i++)
         {
@@ -78,10 +74,6 @@ public class ReadNote : Interactable
         noteCanvas.enabled = false;
     }
 
-    public void DoAfterHighlighted()
-    {
-        GetComponent<HighlightedObject>().enabled = false;
-    }
 
     public override void interact()
     {
@@ -96,7 +88,6 @@ public class ReadNote : Interactable
 
             if (highlighted == true)
             {
-                this.GetComponent<HighlightedObject>().SetOpenObject(true);
                 highlighted = false;
             }
 

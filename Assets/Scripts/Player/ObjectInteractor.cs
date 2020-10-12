@@ -9,6 +9,8 @@ public class ObjectInteractor : PlayerComponent
     [Range(1, 200)]
     public float range;
 
+    Interactable selectedObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,19 +22,18 @@ public class ObjectInteractor : PlayerComponent
             else
                 Debug.LogWarning("Took camera " + myCamera.name + " as player camera");
         }
-
-
     }
 
-    private void Update()
+    public void Update()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-
+        checkForObject();
     }
+
+
 
     public void checkForObject()
     {
-        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f , 0.5f , 0.5f));
+        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction);
 
@@ -41,35 +42,62 @@ public class ObjectInteractor : PlayerComponent
 
             if (hit.collider.tag == "Interactable")
             {
-
-                Interactable myInteractable = hit.collider.gameObject.GetComponent<Interactable>();
-
-                if (myInteractable != null)
+                Interactable auxInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+                if (selectedObject != auxInteractable)
                 {
-                    myInteractable.interact();
+                    if (auxInteractable != null)
+                    {
+
+                        if (selectedObject != null)
+                        {
+                            selectedObject.selectForInteraction(false);
+                        }
+
+                        selectedObject = auxInteractable;
+
+                        selectedObject.selectForInteraction(true);
+                    }
+
 
                 }
-                else
-                {
-                    myInteractable = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-
-                    if (myInteractable != null)
-                    {
-                        myInteractable.interact();
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Object " + hit.collider.gameObject.name + " is tagged as Interactable but has no Interactable component!");
-                    }
+                else {
+                    Debug.LogWarning("Object "+hit.collider.gameObject.name + " is tagged as interactable but has no Interactable Component");
                 }
+
             }
+        }
+        else
+        {
+            if (selectedObject != null)
+            {
+                selectedObject.selectForInteraction(false);
+                selectedObject = null;
+            }
+
         }
     }
 
-    public override void setPlayerControls(PlayerControls pc)
+    private void interact()
     {
 
-        pc.Normal.Interaction.performed += ctx => checkForObject();
+        if (this.enabled)
+        {
+            if (selectedObject != null)
+            {
+                selectedObject.interact();
+
+            }
+
+        }
+
+    }
+
+
+
+
+    public override void setPlayerControls(PlayerControls pc)
+    {
+        pc.Normal.Interaction.performed += ctx => interact();
 
     }
 }
