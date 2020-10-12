@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
                     inGameCanvas.enabled = true;
                     noteCanvas.enabled = false;
                     mainMenuCanvas.enabled = false;
+                    displayCanvas.enabled = false;
                     break;
                 case GameState.menu:
                     //Mostranmos y ocultamos los canvas que toquen
@@ -90,9 +91,6 @@ public class GameManager : MonoBehaviour
                     break;
             }
         }
-        
-
-        displayCanvas.enabled = false;
 
         switch (newGameState)
         {

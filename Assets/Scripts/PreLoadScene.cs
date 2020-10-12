@@ -20,7 +20,7 @@ public class PreLoadScene : MonoBehaviour
     {
         audioSource.PlayOneShot(preLoadSound);
         yield return new WaitForSeconds(7);
-
+        Debug.Log("HOLA jeje");
         gameManager.SetGameState(GameState.menu);
         SceneManager.LoadScene("MainMneu");
 
