@@ -57,8 +57,6 @@ public class CameraLook : PlayerComponent
             xRotation -= aim.y;
             xRotation = Mathf.Clamp(xRotation, -80, 80f);
 
-            Debug.Log(xRotation);
-
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
             playerBody.transform.Rotate(Vector3.up * aim.x);

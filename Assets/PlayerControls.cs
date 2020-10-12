@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Light"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dcacc8c-7760-4276-becf-36f5e1fd8ff8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -227,12 +235,45 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""02fe859a-7004-427d-8348-fbdd2e2638e1"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""1bb8ef70-d466-4caa-9358-1c11cd1fab2d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""MouseAim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48dc29d7-e555-4083-808e-e40b1419dea4"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Light"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""339d2ca4-e95f-41ff-961d-fb6209f18df3"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -270,6 +311,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_MouseAim = m_Normal.FindAction("MouseAim", throwIfNotFound: true);
         m_Normal_Run = m_Normal.FindAction("Run", throwIfNotFound: true);
         m_Normal_Interaction = m_Normal.FindAction("Interaction", throwIfNotFound: true);
+        m_Normal_Light = m_Normal.FindAction("Light", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -324,6 +366,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_MouseAim;
     private readonly InputAction m_Normal_Run;
     private readonly InputAction m_Normal_Interaction;
+    private readonly InputAction m_Normal_Light;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -333,6 +376,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @MouseAim => m_Wrapper.m_Normal_MouseAim;
         public InputAction @Run => m_Wrapper.m_Normal_Run;
         public InputAction @Interaction => m_Wrapper.m_Normal_Interaction;
+        public InputAction @Light => m_Wrapper.m_Normal_Light;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -357,6 +401,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
+                @Light.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
+                @Light.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
+                @Light.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -376,6 +423,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
+                @Light.started += instance.OnLight;
+                @Light.performed += instance.OnLight;
+                @Light.canceled += instance.OnLight;
             }
         }
     }
@@ -396,5 +446,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMouseAim(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
+        void OnLight(InputAction.CallbackContext context);
     }
 }

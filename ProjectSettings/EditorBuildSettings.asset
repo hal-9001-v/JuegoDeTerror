@@ -20,4 +20,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Escenario.unity
     guid: 01802ed8b17e654459e35eb16b8b2747
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 688374af8d0984049b99b5e5f0f33f02,
+      type: 2}

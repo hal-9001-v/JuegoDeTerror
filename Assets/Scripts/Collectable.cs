@@ -12,4 +12,5 @@ public enum Type
 public class Collectable : MonoBehaviour
 {
     public Type currentType;
+    
 }

@@ -4,6 +4,82 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    public Light myLight;
+
+    float maxIntensity;
+
+    Coroutine myCoroutine;
+
+    private void Awake()
+    {
+        maxIntensity = myLight.intensity;
+    }
+
     public abstract void interact();
+
+    public void selectForInteraction(bool b) {
+        
+        if (b)
+        {
+            highLight(true);
+        }
+        else {
+            highLight(false);
+        }
+    }
+
+    public void highLight(bool b)
+    {
+        if (myLight != null)
+        {
+            if (b)
+            {
+                myCoroutine = StartCoroutine(Highlighting());
+            }
+            else
+            {
+                StopCoroutine(myCoroutine);
+            }
+        }
+
+    }
+
+    public IEnumerator Highlighting()
+    {
+        bool direction = true;
+
+        myLight.intensity = 1;
+
+        do
+        {
+            if (myLight.intensity > 0.0f && myLight.intensity < maxIntensity)
+            {
+                if (direction)
+                {
+                    myLight.intensity += 1.0f;
+                }
+                else
+                {
+                    myLight.intensity -= 1.0f;
+                }
+            }
+            else
+            {
+                if (direction)
+                {
+                    myLight.intensity -= 1.0f;
+                }
+                else
+                {
+                    myLight.intensity += 1.0f;
+                    yield return new WaitForSeconds(1.0f);
+                }
+
+                direction = !direction;
+            }
+            yield return new WaitForSeconds(0.02f);
+
+        } while (true);
+    }
 
 }

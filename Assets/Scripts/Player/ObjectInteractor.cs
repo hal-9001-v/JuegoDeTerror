@@ -9,6 +9,8 @@ public class ObjectInteractor : PlayerComponent
     [Range(1, 200)]
     public float range;
 
+    Interactable selectedObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,49 +24,80 @@ public class ObjectInteractor : PlayerComponent
         }
     }
 
+    public void Update()
+    {
+        checkForObject();
+    }
+
+
+
     public void checkForObject()
     {
+        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+        RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction);
+
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, range))
+        {
+
+            if (hit.collider.tag == "Interactable")
+            {
+                Interactable auxInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+                if (selectedObject != auxInteractable)
+                {
+                    if (auxInteractable != null)
+                    {
+
+                        if (selectedObject != null)
+                        {
+                            selectedObject.selectForInteraction(false);
+                        }
+
+                        selectedObject = auxInteractable;
+
+                        selectedObject.selectForInteraction(true);
+                    }
+
+
+                }
+                else {
+                    Debug.LogWarning("Object "+hit.collider.gameObject.name + " is tagged as interactable but has no Interactable Component");
+                }
+
+            }
+        }
+        else
+        {
+            if (selectedObject != null)
+            {
+                selectedObject.selectForInteraction(false);
+                selectedObject = null;
+            }
+
+        }
+    }
+
+    private void interact()
+    {
+
         if (this.enabled)
         {
-            Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
-            RaycastHit hit;
-            Debug.DrawRay(ray.origin, ray.direction);
-
-            if (Physics.Raycast(ray.origin, ray.direction, out hit, range))
+            if (selectedObject != null)
             {
+                selectedObject.interact();
 
-                if (hit.collider.tag == "Interactable")
-                {
-
-                    Interactable myInteractable = hit.collider.gameObject.GetComponent<Interactable>();
-
-                    if (myInteractable != null)
-                    {
-                        myInteractable.interact();
-
-                    }
-                    else
-                    {
-                        myInteractable = hit.collider.gameObject.GetComponentInChildren<Interactable>();
-
-                        if (myInteractable != null)
-                        {
-                            myInteractable.interact();
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Object " + hit.collider.gameObject.name + " is tagged as Interactable but has no Interactable component!");
-                        }
-                    }
-                }
             }
+
         }
 
     }
 
+
+
+
     public override void setPlayerControls(PlayerControls pc)
     {
-        pc.Normal.Interaction.performed += ctx => checkForObject();
+        pc.Normal.Interaction.performed += ctx => interact();
 
     }
 }

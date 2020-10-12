@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
@@ -23,6 +21,7 @@ public class Inventory : MonoBehaviour
         {
             int counter = -1;
             bool found = false;
+
             do
             {
                 counter++;
@@ -52,6 +51,7 @@ public class Inventory : MonoBehaviour
         do
         {
             counter++;
+
             if (itemToDelete.itemName == inventoryItems[counter].itemName)
             {
                 found = true;
