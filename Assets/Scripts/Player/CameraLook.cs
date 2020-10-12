@@ -70,6 +70,7 @@ public class CameraLook : PlayerComponent
         pc.Normal.Aim.performed += ctx =>
         {
             gamePadAim = ctx.ReadValue<Vector2>();
+            Debug.Log(gamePadAim);
         };
 
         pc.Normal.MouseAim.performed += ctx =>

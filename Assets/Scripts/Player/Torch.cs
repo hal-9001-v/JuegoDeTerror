@@ -8,23 +8,27 @@ public class Torch : PlayerComponent
     private Light torch;
     private AudioSource audioSource;
 
-    bool readyToUSe;
+    public bool readyToUse;
+
+    bool torchIsLit;
 
     // Start is called before the first frame update
     void Start()
     {
         torch = GetComponent<Light>();
         torch.enabled = false;
+
         audioSource = GetComponent<AudioSource>();
 
-        torch.enabled = false;
     }
 
-    void enableLight(bool b)
+    void switchLight()
     {
-        if (readyToUSe)
+        if (readyToUse)
         {
-            if (b)
+            torchIsLit = !torchIsLit;
+
+            if (torchIsLit)
             {
                 torch.enabled = true;
             }
@@ -39,9 +43,7 @@ public class Torch : PlayerComponent
 
     public override void setPlayerControls(PlayerControls pc)
     {
-        pc.Normal.Light.performed += ctx => enableLight(true);
-
-        pc.Normal.Light.canceled += ctx => enableLight(false);
+        pc.Normal.Light.performed += ctx => switchLight();
     }
 
 }
