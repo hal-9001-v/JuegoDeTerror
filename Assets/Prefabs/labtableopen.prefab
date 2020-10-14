@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 8808326175685418527}
   - component: {fileID: 5589721856628101562}
   - component: {fileID: 7671417010648966512}
+  - component: {fileID: 3138722206316143585}
+  - component: {fileID: 5996538722408074045}
   m_Layer: 0
   m_Name: labtableopen
   m_TagString: Untagged
@@ -79,3 +81,29 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3138722206316143585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175903938251408549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.999113, y: 6.013042, z: 10.064043}
+  m_Center: {x: -20.999352, y: 0.048205335, z: 1.7115288}
+--- !u!65 &5996538722408074045
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175903938251408549}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 36.099483, y: 8.668684, z: 15.5285635}
+  m_Center: {x: -0.019852266, y: 1.3345984, z: 4.4437685}

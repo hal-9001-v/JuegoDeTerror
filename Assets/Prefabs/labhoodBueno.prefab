@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2793619480630758084}
   - component: {fileID: 1255155781709628769}
   - component: {fileID: 3931575135521501611}
+  - component: {fileID: 729739234331196806}
   m_Layer: 0
   m_Name: labhoodBueno
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &729739234331196806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3282911584752226430}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.021274716, y: 0.07400119, z: 0.057309672}
+  m_Center: {x: -0.0010089178, y: 3.475895e-17, z: 0.029268576}
