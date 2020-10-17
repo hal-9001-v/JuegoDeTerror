@@ -27,6 +27,7 @@ public class ObjectInteractor : PlayerComponent
     public void Update()
     {
         checkForObject();
+        
     }
 
 
@@ -59,9 +60,6 @@ public class ObjectInteractor : PlayerComponent
                     }
 
 
-                }
-                else {
-                    Debug.LogWarning("Object "+hit.collider.gameObject.name + " is tagged as interactable but has no Interactable Component");
                 }
 
             }
