@@ -10,26 +10,31 @@ public class MissionController : MonoBehaviour
     private int missionNumber = 1;
     public int totalMissions = 10;
 
-    private void Start()
+    public Task firstTask;
+    Task currentTask;
+
+    private void Awake()
     {
         missionCanvasText = GetComponent<TextMeshProUGUI>();
+
+        currentTask = firstTask;
     }
 
-    private void Update()
+
+
+    public void StartMission(Task task)
     {
-      /*  if(Input.GetKeyDown(KeyCode.P))
-        {
-            NextMission();
+        if (currentTask != null) {
+            currentTask.atEndEvent.Invoke();
         }
-        */
-    }
+        currentTask = task;
 
-    public void NextMission()
-    {
-        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission" + missionNumber);
+        missionCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
         if (missionNumber < totalMissions)
         {
-            missionNumber++;
+            missionNumber = task.taskNumber;
         }
+
+        currentTask.atStartEvent.Invoke();
     }
 }

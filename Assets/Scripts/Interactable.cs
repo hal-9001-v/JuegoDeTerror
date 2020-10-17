@@ -10,9 +10,19 @@ public abstract class Interactable : MonoBehaviour
 
     Coroutine myCoroutine;
 
+    bool haveLight;
+
     private void Awake()
     {
-        maxIntensity = myLight.intensity;
+        if (myLight != null)
+        {
+            haveLight = true;
+            maxIntensity = myLight.intensity;
+        }
+        else {
+            haveLight = false;
+        }
+        
     }
 
     public abstract void interact();
@@ -30,7 +40,7 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-        if (myLight != null)
+        if (haveLight)
         {
             if (b)
             {
