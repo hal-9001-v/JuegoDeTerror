@@ -52,12 +52,12 @@ MonoBehaviour:
   gravity: 8
   isInclined: 0
   isRunning: 0
-  move: {x: 0, y: 0, z: 0}
   isReading: 0
   maxRunningTime: 40
   minRecoverTime: 4
   fatigueRecoverTimeIncrease: 0.7
   hasFatigue: 0
+  moveInput: {x: 0, y: 0}
 --- !u!143 &3603643741099103335
 CharacterController:
   m_ObjectHideFlags: 0
@@ -200,10 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 148d783deabad1e4794a188800a65645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torchAsset: {fileID: 0}
-  player: {fileID: 3603643741099103337}
-  minDist: 10
   torchOnOffSound: {fileID: 8300000, guid: 665a262731f0c9344b2cd88a99741e66, type: 3}
+  readyToUse: 0
 --- !u!82 &3603643741448416535
 AudioSource:
   m_ObjectHideFlags: 0
@@ -375,7 +373,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 40
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -414,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 150
+  gamePadSensitivity: 0
   playerBody: {fileID: 3603643741099103332}
 --- !u!114 &3603643742186961604
 MonoBehaviour:
@@ -428,7 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bobbingSpeed: 14
-  runningSpeedIncrease: 1.4
+  runningSpeed: 1.5
   bobbingAmountY: 0.1
   bobbingAmountX: 0.03
   playerController: {fileID: 3603643741099103336}
