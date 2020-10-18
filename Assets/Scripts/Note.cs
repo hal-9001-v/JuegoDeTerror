@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
-public class ReadNote : Interactable
+public class Note : Interactable
 {
 
     public static ReadingSystem myReadingSystem;
@@ -37,7 +37,6 @@ public class ReadNote : Interactable
         scrollbar = myReadingSystem.scrollbar;
 
         audioSource = myReadingSystem.audioSource;
-
 
     }
 

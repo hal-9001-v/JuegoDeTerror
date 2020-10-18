@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ReadingSystem : MonoBehaviour
+public class NoteReader : PlayerComponent
 {
     static ReadingSystem instance;
 
@@ -29,9 +29,18 @@ public class ReadingSystem : MonoBehaviour
     private void Awake()
     {
         //Singleton
-        if (instance != null)
+        if (instance != null) {
             Debug.LogWarning("Reading System is a singleton. Kept: " + instance.gameObject.name + " Discarded: " + gameObject.name);
-        Destroy(this);
+            Destroy(this);
+        }
+
+
+    }
+
+
+    public override void setPlayerControls(PlayerControls pc)
+    {
+        throw new System.NotImplementedException();
     }
 
 }
