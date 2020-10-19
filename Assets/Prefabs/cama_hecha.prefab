@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5657198132180539773}
   - component: {fileID: 8731842163170662104}
   - component: {fileID: 6830073214706655762}
+  - component: {fileID: 7933458335177746966}
   m_Layer: 0
   m_Name: cama_hecha
   m_TagString: Untagged
@@ -82,3 +83,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &7933458335177746966
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028751768317559751}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.054501418, y: 0.03412246, z: 0.079690784}
+  m_Center: {x: 0, y: 0.0069724494, z: 0.00059629045}
