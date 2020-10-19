@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7219637592518624722}
   - component: {fileID: 6025417964062116471}
   - component: {fileID: 8393129703740735165}
+  - component: {fileID: 4900926404292050773}
   m_Layer: 0
   m_Name: mesita_noche2
   m_TagString: Untagged
@@ -80,3 +81,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &4900926404292050773
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8032907222513180520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.040625446, y: 0.05462559, z: 0.039301157}
+  m_Center: {x: 0.0006621452, y: 0.026217965, z: -1.2333416e-12}
