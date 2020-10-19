@@ -6,10 +6,12 @@ public class Door : KeyLock
     Animator myAnimator;
     private bool doorIsOpen;
 
+
+
     protected void Awake()
     {
         myAnimator = GetComponent<Animator>();
-        
+
         if (myAnimator == null)
         {
             Debug.LogWarning("No Animator Component in Object");
@@ -31,4 +33,8 @@ public class Door : KeyLock
         }
     }
 
+    public override void loadData(InteractableData myData)
+    {
+        //No need to do anything
+    }
 }

@@ -31,4 +31,10 @@ public class EnviromentManager : MonoBehaviour
         myRoomMap = new RoomMap();
     }
 
+    public void setAllRoomsSafe() {
+        foreach (Room r in myRoomMap.roomList) {
+            r.setSafeRoom();
+        }
+    }
+
 }

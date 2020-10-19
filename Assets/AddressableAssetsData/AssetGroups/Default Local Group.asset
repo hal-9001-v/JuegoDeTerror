@@ -16,13 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 05132d7e9c080a340b2ec1e8eb0d4e9c
-  m_SerializeEntries:
-  - m_GUID: 4a0106208262e8c4896b935fc6bf7b2f
-    m_Address: Assets/ANote.txt
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 4900000, guid: 4a0106208262e8c4896b935fc6bf7b2f, type: 3}
-    m_TargetAsset: {fileID: 4900000, guid: 4a0106208262e8c4896b935fc6bf7b2f, type: 3}
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 5f53c50d711ce7446accccfc57d9c683, type: 2}
   m_SchemaSet:

@@ -27,7 +27,7 @@ public class ObjectInteractor : PlayerComponent
     public void Update()
     {
         checkForObject();
-        
+
     }
 
 
@@ -82,7 +82,7 @@ public class ObjectInteractor : PlayerComponent
         {
             if (selectedObject != null)
             {
-                selectedObject.interact();
+                selectedObject.invokeInteractionActions();
 
             }
 

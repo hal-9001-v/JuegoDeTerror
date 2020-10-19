@@ -111,23 +111,26 @@ public class PlayerMovement : PlayerComponent
             }
 
             SetGravity();
+            if (moveInput != Vector2.zero) {
 
-            Vector3 move;
+                Vector3 move;
 
-            move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
+                move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
 
-            if (run && hasFatigue == false)
-            {
-                isRunning = true;
-                controller.Move(move * speed * runningIncrease * Time.deltaTime);
+                if (run && hasFatigue == false)
+                {
+                    isRunning = true;
+                    controller.Move(move * speed * runningIncrease * Time.deltaTime);
+                }
+                else
+                {
+                    isRunning = false;
+
+                    controller.Move(move * speed * Time.deltaTime);
+                }
             }
-            else
-            {
-                isRunning = false;
 
-                controller.Move(move * speed * Time.deltaTime);
 
-            }
         }
 
     }

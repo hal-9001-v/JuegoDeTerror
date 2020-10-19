@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Interactable : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public abstract class Interactable : MonoBehaviour
 
     bool haveLight;
 
+    public UnityEvent interactionActions;
+    //Execute Event only once
+    public bool eventOnlyOnce;
+
+    //Event has been executed
+    public bool done { get; protected set; }
+
     private void Awake()
     {
         if (myLight != null)
@@ -19,21 +27,43 @@ public abstract class Interactable : MonoBehaviour
             haveLight = true;
             maxIntensity = myLight.intensity;
         }
-        else {
+        else
+        {
             haveLight = false;
         }
-        
+
     }
 
     public abstract void interact();
 
-    public void selectForInteraction(bool b) {
-        
+    public InteractableData getSaveData() {
+
+        return new InteractableData(gameObject.name, done);
+    }
+
+    public abstract void loadData(InteractableData myData);
+
+    public void invokeInteractionActions()
+    {
+        interact();
+
+        if (eventOnlyOnce && done)
+            return;
+
+        done = true;
+
+        interactionActions.Invoke();
+    }
+
+    public void selectForInteraction(bool b)
+    {
+
         if (b)
         {
             highLight(true);
         }
-        else {
+        else
+        {
             highLight(false);
         }
     }
@@ -90,6 +120,11 @@ public abstract class Interactable : MonoBehaviour
             yield return new WaitForSeconds(0.02f);
 
         } while (true);
+    }
+
+    protected void OnDestroy()
+    {
+        Debug.LogWarning("Interactables shouldn't be destroyed!");
     }
 
 }

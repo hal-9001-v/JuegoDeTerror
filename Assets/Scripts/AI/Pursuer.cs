@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Pursuer : MonoBehaviour
 {
+    public static Pursuer instance { get; private set; }
+
     PlayerTracker player;
     EnviromentManager myEM;
     CutsceneController myCutsceneController;
@@ -21,74 +23,6 @@ public class Pursuer : MonoBehaviour
         Patrol = 1,
         Pursue = 2
     }
-
-    public PursuerSave saveDataOfPursuer()
-    {
-        return new PursuerSave(currentRoom, currentState);
-    }
-
-    public void LoadDataOfPursuer(PursuerSave ps)
-    {
-        currentState = ps.currentState;
-
-        bool roomFound = false;
-
-        foreach (Room r in FindObjectsOfType<Room>())
-        {
-            if (r.GetInstanceID() == ps.currentRoomID)
-            {
-                currentRoom = r;
-                roomFound = true;
-                break;
-            }
-
-        }
-
-        if (roomFound)
-        {
-            switch (currentState)
-            {
-
-                case (int)pursuerStates.Inactive:
-                    myPursueIdleState.enter();
-                    break;
-
-
-                case (int)pursuerStates.Patrol:
-                    myRandomIdleState.enter();
-                    break;
-
-
-                case (int)pursuerStates.Pursue:
-                    myPursueIdleState.enter();
-                    break;
-
-            }
-        }
-        else
-        {
-            Debug.LogError("Room wasn't found");
-        }
-
-
-
-    }
-
-    [System.Serializable]
-    public class PursuerSave
-    {
-
-        public int currentRoomID;
-        public int currentState;
-
-        public PursuerSave(Room currentRoom, int currentState)
-        {
-            this.currentRoomID = currentRoom.GetInstanceID();
-            this.currentState = currentState;
-        }
-
-    }
-
 
     [Header("Timers")]
     //Time Waiting on every room
@@ -111,21 +45,42 @@ public class Pursuer : MonoBehaviour
 
     private void Awake()
     {
-        initialize();
+        if (instance == null)
+        {
+            initialize();
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+
 
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        myEM.setAllRoomsSafe();
         myInactiveState.enter();
+
     }
 
     private void initialize()
     {
         player = FindObjectOfType<PlayerTracker>();
+        
         myEM = FindObjectOfType<EnviromentManager>();
+        if (myEM == null)
+        {
+            Debug.LogWarning("No Enviromental Manager in Scene!");
+        }
+
         myCutsceneController = FindObjectOfType<CutsceneController>();
+        if (myCutsceneController == null)
+        {
+            Debug.LogWarning("No cutscene controller in Scene!");
+        }
 
         myInactiveState = new InactiveState(this);
         myPursueIdleState = new PursueIdleState(this, pursueTime);
@@ -206,6 +161,66 @@ public class Pursuer : MonoBehaviour
         return myEM.myRoomMap.getPath(currentRoom, player.currentRoom).Count;
     }
 
+    public PursuerData getSaveData()
+    {
+        return new PursuerData(currentRoom, currentState);
+    }
+
+    public void loadData(PursuerData ps)
+    {
+        StopAllCoroutines();
+
+        myEM.setAllRoomsSafe();
+
+        currentState = ps.currentState;
+        rooms.Clear();
+
+        bool roomFound = false;
+
+        foreach (Room r in FindObjectsOfType<Room>())
+        {
+            if (r.name == ps.currentRoomName)
+            {
+                currentRoom = r;
+                roomFound = true;
+                break;
+            }
+
+        }
+
+        if (roomFound)
+        {
+            switch (currentState)
+            {
+
+                case (int)pursuerStates.Inactive:
+                    myPursueIdleState.enter();
+                    Debug.Log("1");
+                    break;
+
+
+                case (int)pursuerStates.Patrol:
+                    myRandomIdleState.enter();
+                    Debug.Log("2");
+                    break;
+
+
+                case (int)pursuerStates.Pursue:
+                    myPursueIdleState.enter();
+                    Debug.Log("3");
+                    break;
+
+            }
+        }
+        else
+        {
+            Debug.LogError("Room wasn't found");
+        }
+
+
+
+    }
+
     public class InactiveState : State
     {
         Pursuer myPursuer;
@@ -275,7 +290,7 @@ public class Pursuer : MonoBehaviour
             {
                 if (myPursuer.rooms.Count != 0)
                 {
-                   myPursueMoveState.enter();
+                    myPursueMoveState.enter();
                 }
                 else
                 {

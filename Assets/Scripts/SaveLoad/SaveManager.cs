@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEditor.Purchasing;
+using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
@@ -14,22 +16,11 @@ public class SaveManager : MonoBehaviour
         path = Application.persistentDataPath + "/save.dat";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Save();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            Load();
-        }
-    }
 
-    private void Save()
+    public void Save()
     {
-        try
+        Debug.Log("SAVE");
+        //try
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
@@ -39,15 +30,17 @@ public class SaveManager : MonoBehaviour
 
             SavePlayer(data);
             SaveInventory(data);
+            SavePursuer(data);
+            saveInteractables(data);
 
             formatter.Serialize(file, data);
 
             file.Close();
         }
-        catch (System.Exception e)
+        /*catch (System.Exception e)
         {
             Debug.LogError(e);
-        }
+        }*/
     }
 
     private void SavePlayer(GameData data)
@@ -58,31 +51,64 @@ public class SaveManager : MonoBehaviour
 
     private void SaveInventory(GameData data)
     {
-        string[] inventory = new string[5];
-
-        for (int i = 0; i < inventory.Length; i++)
+        if (Inventory.sharedInstance != null)
         {
-            if (Inventory.sharedInstance.inventoryItems[i] != null)
-            {
 
-                inventory[i] = Inventory.sharedInstance.inventoryItems[i].itemName;
-            }
-            else
+            string[] inventory = new string[5];
+
+            for (int i = 0; i < inventory.Length; i++)
             {
-                inventory[i] = "empty";
+                if (Inventory.sharedInstance.inventoryItems[i] != null)
+                {
+
+                    inventory[i] = Inventory.sharedInstance.inventoryItems[i].itemName;
+                }
+                else
+                {
+                    inventory[i] = "empty";
+                }
             }
+
+            data.myInventory = new PlayerInventory(inventory);
+        }
+        else {
+            Debug.LogWarning("There is no Inventory in Scene"); 
         }
 
-        data.myInventory = new PlayerInventory(inventory);
     }
 
-    private void SaveIA(GameData data)
+    private void SavePursuer(GameData data)
     {
+        if (Pursuer.instance != null)
+        {
+            data.myPursuerData = Pursuer.instance.getSaveData();
+
+        }
+        else {
+            Debug.LogWarning("There is no Pursuer in Scene");
+        }
 
     }
 
-    private void Load()
+    private void saveInteractables(GameData data)
     {
+        Interactable[] interactables = FindObjectsOfType<Interactable>();
+
+        InteractableData[] saveDatas = new InteractableData[interactables.Length];
+
+        for (int i = 0; i < interactables.Length; i++)
+        {
+            saveDatas[i] = interactables[i].getSaveData();
+        }
+
+        data.myInteractablesData = saveDatas;
+
+    }
+
+
+    public void Load()
+    {
+        Debug.Log("LOAD");
         try
         {
             if (File.Exists(path))
@@ -97,6 +123,9 @@ public class SaveManager : MonoBehaviour
 
                 LoadPlayer(data);
                 LoadInventory(data);
+                LoadIA(data);
+                loadInteractables(data);
+
             }
         }
         catch (System.Exception e)
@@ -110,25 +139,59 @@ public class SaveManager : MonoBehaviour
         Vector3 position;
         position = data.myPlayerData.playerPosition.GetVector3();
 
-        Debug.Log(position.x + " " + position.y + " " + position.z);
         PlayerMovement.sharedInstance.transform.position = position;
     }
 
     private void LoadInventory(GameData data)
     {
-        string[] myInventory = new string[5];
-
-        for (int i = 0; i < myInventory.Length; i++)
+        if (Inventory.sharedInstance != null)
         {
-            myInventory[i] = data.myInventory.objectNames[i];
-            Debug.Log(myInventory[i]);
-        }
+            string[] myInventory = new string[5];
 
-        Inventory.sharedInstance.LoadInventory(myInventory);
+            for (int i = 0; i < myInventory.Length; i++)
+            {
+                myInventory[i] = data.myInventory.objectNames[i];
+                Debug.Log(myInventory[i]);
+            }
+
+            Inventory.sharedInstance.LoadInventory(myInventory);
+        }
+        else {
+            Debug.LogWarning("There is no Inventory in Scene");
+        }
+        
     }
 
     private void LoadIA(GameData data)
     {
+        if (Pursuer.instance != null)
+        {
+            Pursuer.instance.loadData(data.myPursuerData);
+        }
+        else {
+            Debug.LogWarning("There is no Pursuer in Scene");
+        }
+        
+    }
+
+    private void loadInteractables(GameData data)
+    {
+        Interactable[] interactables = FindObjectsOfType<Interactable>();
+
+        for (int i = 0; i < interactables.Length; i++)
+        {
+            if (interactables[i].gameObject.name == data.myInteractablesData[i].interactableName)
+            {
+                interactables[i].loadData(data.myInteractablesData[i]);
+            }
+            else
+            {
+                Debug.LogError("Scene has changed! Can't load Interactables from save data");
+            }
+
+        }
+
 
     }
+
 }

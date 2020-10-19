@@ -23,7 +23,9 @@ public class GameData
 
     public PlayerInventory myInventory;
 
-    public IAData myIAData;
+    public PursuerData myPursuerData;
+
+    public InteractableData[] myInteractablesData;
 
     public GameData()
     {
@@ -59,11 +61,33 @@ public class PlayerInventory
     }
 }
 
-[Serializable]
-public class IAData
-{
-    public IAData()
-    {
 
+[Serializable]
+public class PursuerData
+{
+    public string currentRoomName;
+    public int currentState;
+
+    public PursuerData(Room currentRoom, int currentState)
+    {
+        if (currentRoom != null)
+        {
+            currentRoomName = currentRoom.name;
+        }
+
+
+        this.currentState = currentState;
+    }
+
+}
+
+[Serializable]
+public class InteractableData {
+    public string interactableName { get; private set; }
+    public bool interactionDone { get; private set; }
+
+    public InteractableData(string name, bool done) {
+        interactableName = name;
+        interactionDone = done;
     }
 }

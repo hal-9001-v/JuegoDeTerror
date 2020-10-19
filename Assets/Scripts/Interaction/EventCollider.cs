@@ -5,17 +5,24 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
-public class EventCollider : MonoBehaviour
+public class EventCollider : Interactable
 {
     public UnityEvent atEnterEvent;
-    public bool onlyOnce;
 
-    bool done = false;
+    public override void interact()
+    {
+        //Do nothing
+    }
+
+    public override void loadData(InteractableData myData)
+    {
+        done = myData.interactionDone;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (onlyOnce && !done)
-            if (other.tag == "player")
+        if (eventOnlyOnce && !done)
+            if (other.tag == "Player")
             {
                 done = true;
                 atEnterEvent.Invoke();
