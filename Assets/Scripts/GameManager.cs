@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public Canvas mainMenuCanvas;
     public Canvas settingsCanvas;
     public Canvas gameOverCanvas;
-    private bool pauseIsOpen = false;
 
     public PlayerBrain myPlayerBrain;
 

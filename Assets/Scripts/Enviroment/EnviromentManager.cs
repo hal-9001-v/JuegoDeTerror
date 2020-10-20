@@ -12,6 +12,8 @@ public class EnviromentManager : MonoBehaviour
     public Color nearbyColor;
     public Color dangerColor;
 
+    public bool startGame;
+
     private void Awake()
     {
         if (instance == null)
@@ -23,12 +25,8 @@ public class EnviromentManager : MonoBehaviour
             Destroy(this);
         }
 
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
         myRoomMap = new RoomMap();
+
     }
 
     public void setAllRoomsSafe() {

@@ -122,9 +122,4 @@ public abstract class Interactable : MonoBehaviour
         } while (true);
     }
 
-    protected void OnDestroy()
-    {
-        Debug.LogWarning("Interactables shouldn't be destroyed!");
-    }
-
 }

@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CutsceneController : MonoBehaviour
 {
-    public GameObject player;
+    public bool startGame;
 
-    PlayerMovement myPlayerMovement;
-    CameraLook myCameraLook;
-    CameraHeadBob myCameraHeadBob;
+    public GameObject player;
+    PlayerBrain playerBrain;
+
+    SaveManager saveManager;
+
+    public UnityEvent atStartActions;
+    public UnityEvent afterDeathActions;
 
     public Camera mainCamera;
     public Transform cameraTransform;
@@ -18,39 +23,58 @@ public class CutsceneController : MonoBehaviour
 
     public Image myImage;
 
+    Animator playerAnimator;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+
+        playerAnimator = player.GetComponentInChildren<Animator>();
+        playerBrain = player.GetComponent<PlayerBrain>();
 
         if (player == null)
         {
             Debug.LogWarning("No player in Scene");
         }
 
-        myCameraLook = player.GetComponent<CameraLook>();
+        saveManager = FindObjectOfType<SaveManager>();
 
-        myCameraLook = StaticTool.GetComponentInAll<CameraLook>(player);
+    }
 
-        if (myCameraLook == null)
+    private void Start()
+    {
+        if(startGame)
+        restartGame();
+    }
+
+    public void restartGame()
+    {
+        StopAllCoroutines();
+
+        fadeScreen(true, 0f, 0.1f, atStartActions);
+
+        playerAnimator.SetTrigger("Restore");
+
+        saveManager.Load();
+
+        playerBrain.enablePlayer(true);
+    }
+
+    IEnumerator deathScreen(float startTime, float frameTime)
+    {
+        yield return new WaitForSeconds(startTime);
+
+        myImage.enabled = true;
+
+        //Fade out (Get to Color)
+        for (float i = 0; i < 1; i += 0.01f)
         {
-            Debug.LogWarning("Player has no CameraLook Component!");
+            myImage.color = new Color(0, 0, 0, i);
+
+            yield return new WaitForSeconds(frameTime);
         }
 
-        myPlayerMovement = StaticTool.GetComponentInAll<PlayerMovement>(player);
-
-        if (myPlayerMovement == null)
-        {
-            Debug.LogWarning("Player has no PlayerMovement Component!");
-        }
-
-
-        myCameraHeadBob = StaticTool.GetComponentInAll<CameraHeadBob>(player);
-
-        if (myCameraHeadBob == null)
-        {
-            Debug.LogWarning("Player has no CameraHeadBob Component!");
-        }
-
+        restartGame();
     }
 
     public void screenShake(float time, int iterations, float distance)
@@ -79,53 +103,53 @@ public class CutsceneController : MonoBehaviour
         cameraTransform.localPosition = originalPosition;
     }
 
-    public void fadeScreen(bool b, float startTime, float frameTime)
+    public void fadeScreen(bool fadeIn, float startTime, float frameTime, UnityEvent atEndActions)
     {
-        StartCoroutine(FadeScreen(b, startTime, frameTime));
+        StopAllCoroutines();
+        StartCoroutine(FadeScreen(fadeIn, startTime, frameTime, atEndActions));
     }
 
-    IEnumerator FadeScreen(bool b, float startTime, float frameTime)
+    IEnumerator FadeScreen(bool fadeIn, float startTime, float frameTime, UnityEvent atEndActions)
     {
         yield return new WaitForSeconds(startTime);
 
         myImage.enabled = true;
 
-        if (b)
+        if (fadeIn)
         {
-            //Fade in
-            for (float i = 10; i > 0; i -= 0.01f)
+            //Fade in (Get to Visible)
+            for (float i = 1; i > 0; i -= 0.01f)
             {
                 myImage.color = new Color(0, 0, 0, i);
 
                 yield return new WaitForSeconds(frameTime);
-
             }
+
+            myImage.enabled = false;
+
         }
         else
         {
-            //Fade out
-            for (float i = 0; i < 10; i += 0.01f)
+            //Fade out(Get to Black)
+            for (float i = 0; i < 1; i += 0.01f)
             {
                 myImage.color = new Color(0, 0, 0, i);
 
                 yield return new WaitForSeconds(frameTime);
 
             }
-
         }
 
-        myImage.enabled = false;
+        if (atEndActions != null)
+        {
+            atEndActions.Invoke();
+        }
+
     }
 
     public void killPlayer()
     {
-
-        Animator playerAnimator = player.GetComponent<Animator>();
-        myCameraLook.enabled = false;
-        myPlayerMovement.enabled = false;
-        myCameraHeadBob.enabled = false;
-
-
+        playerBrain.enablePlayer(false);
 
         if (playerAnimator == null)
         {
@@ -161,7 +185,7 @@ public class CutsceneController : MonoBehaviour
 
                 if (selectedAC.fadeOut)
                 {
-                    fadeScreen(false, selectedAC.startWait, selectedAC.frameWait);
+                    StartCoroutine(deathScreen(selectedAC.startWait, selectedAC.frameWait));
 
                 }
 

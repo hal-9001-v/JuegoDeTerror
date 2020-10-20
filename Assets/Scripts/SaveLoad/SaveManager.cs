@@ -12,7 +12,7 @@ public class SaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
         path = Application.persistentDataPath + "/save.dat";
     }
 
@@ -20,7 +20,7 @@ public class SaveManager : MonoBehaviour
     public void Save()
     {
         Debug.Log("SAVE");
-        //try
+        try
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
@@ -37,16 +37,20 @@ public class SaveManager : MonoBehaviour
 
             file.Close();
         }
-        /*catch (System.Exception e)
+        catch (System.Exception e)
         {
             Debug.LogError(e);
-        }*/
+        }
     }
 
     private void SavePlayer(GameData data)
     {
         Vector3 pos = PlayerMovement.sharedInstance.transform.position;
-        data.myPlayerData = new PlayerData(pos);
+        Vector3 rotation = PlayerMovement.sharedInstance.transform.eulerAngles;
+
+        Vector3 cameraRotation = CameraLook.sharedInstance.transform.eulerAngles;
+
+        data.myPlayerData = new PlayerData(pos, rotation, cameraRotation);
     }
 
     private void SaveInventory(GameData data)
@@ -71,8 +75,9 @@ public class SaveManager : MonoBehaviour
 
             data.myInventory = new PlayerInventory(inventory);
         }
-        else {
-            Debug.LogWarning("There is no Inventory in Scene"); 
+        else
+        {
+            Debug.LogWarning("There is no Inventory in Scene");
         }
 
     }
@@ -84,7 +89,8 @@ public class SaveManager : MonoBehaviour
             data.myPursuerData = Pursuer.instance.getSaveData();
 
         }
-        else {
+        else
+        {
             Debug.LogWarning("There is no Pursuer in Scene");
         }
 
@@ -108,7 +114,6 @@ public class SaveManager : MonoBehaviour
 
     public void Load()
     {
-        Debug.Log("LOAD");
         try
         {
             if (File.Exists(path))
@@ -136,10 +141,17 @@ public class SaveManager : MonoBehaviour
 
     private void LoadPlayer(GameData data)
     {
-        Vector3 position;
+        Vector3 position, rotation, cameraRotation;
+
         position = data.myPlayerData.playerPosition.GetVector3();
+        rotation = data.myPlayerData.playerRotation.GetVector3();
+        cameraRotation = data.myPlayerData.cameraRotation.GetVector3();
 
         PlayerMovement.sharedInstance.transform.position = position;
+        PlayerMovement.sharedInstance.transform.eulerAngles = rotation;
+
+        CameraLook.sharedInstance.transform.eulerAngles = cameraRotation;
+
     }
 
     private void LoadInventory(GameData data)
@@ -156,10 +168,11 @@ public class SaveManager : MonoBehaviour
 
             Inventory.sharedInstance.LoadInventory(myInventory);
         }
-        else {
-            Debug.LogWarning("There is no Inventory in Scene");
+        else
+        {
+            //Debug.LogWarning("There is no Inventory in Scene");
         }
-        
+
     }
 
     private void LoadIA(GameData data)
@@ -168,10 +181,11 @@ public class SaveManager : MonoBehaviour
         {
             Pursuer.instance.loadData(data.myPursuerData);
         }
-        else {
+        else
+        {
             Debug.LogWarning("There is no Pursuer in Scene");
         }
-        
+
     }
 
     private void loadInteractables(GameData data)

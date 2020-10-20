@@ -62,17 +62,19 @@ public class ObjectInteractor : PlayerComponent
 
                 }
 
-            }
-        }
-        else
-        {
-            if (selectedObject != null)
-            {
-                selectedObject.selectForInteraction(false);
-                selectedObject = null;
-            }
+                //Dont turn null selectedObject
+                return;
 
+            }
         }
+
+        if (selectedObject != null)
+        {
+            selectedObject.selectForInteraction(false);
+            selectedObject = null;
+        }
+
+
     }
 
     private void interact()

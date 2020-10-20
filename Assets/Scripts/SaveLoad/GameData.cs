@@ -37,12 +37,24 @@ public class GameData
 public class PlayerData
 {
     public SerializableVector3 playerPosition;
+    public SerializableVector3 playerRotation;
+    public SerializableVector3 cameraRotation;
+    
 
-    public PlayerData(Vector3 position)
+    public PlayerData(Vector3 position, Vector3 rotation, Vector3 camRotation)
     {
         this.playerPosition.x = position.x;
         this.playerPosition.y = position.y;
         this.playerPosition.z = position.z;
+
+        playerRotation.x = rotation.x;
+        playerRotation.y = rotation.y;
+        playerRotation.z = rotation.z;
+
+        cameraRotation.x = camRotation.x;
+        cameraRotation.y = camRotation.y;
+        cameraRotation.z = camRotation.z;
+
     }
 }
 

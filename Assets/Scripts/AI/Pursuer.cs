@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Pursuer : MonoBehaviour
@@ -69,7 +70,7 @@ public class Pursuer : MonoBehaviour
     private void initialize()
     {
         player = FindObjectOfType<PlayerTracker>();
-        
+
         myEM = FindObjectOfType<EnviromentManager>();
         if (myEM == null)
         {
@@ -126,6 +127,8 @@ public class Pursuer : MonoBehaviour
     {
         if (player.currentRoom != null)
         {
+            StopAllCoroutines();
+
             //Stack the path to player
             rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
             currentRoom = startingRoom;
@@ -142,6 +145,7 @@ public class Pursuer : MonoBehaviour
 
     public void startPatrol(Room startingRoom)
     {
+        StopAllCoroutines();
 
         //Stack the path to player
         rooms = myEM.myRoomMap.getPath(startingRoom, myEM.myRoomMap.getRandomRoom());
@@ -173,7 +177,11 @@ public class Pursuer : MonoBehaviour
         myEM.setAllRoomsSafe();
 
         currentState = ps.currentState;
-        rooms.Clear();
+
+        if (rooms != null)
+        {
+            rooms.Clear();
+        }
 
         bool roomFound = false;
 
@@ -188,35 +196,39 @@ public class Pursuer : MonoBehaviour
 
         }
 
-        if (roomFound)
+
+        switch (currentState)
         {
-            switch (currentState)
-            {
 
-                case (int)pursuerStates.Inactive:
-                    myPursueIdleState.enter();
-                    Debug.Log("1");
-                    break;
+            case (int)pursuerStates.Inactive:
+                myInactiveState.enter();
+                break;
 
 
-                case (int)pursuerStates.Patrol:
+            case (int)pursuerStates.Patrol:
+
+                if (roomFound)
                     myRandomIdleState.enter();
-                    Debug.Log("2");
-                    break;
+                else
+                {
+                    Debug.LogError("Room wasn't found");
+                    myInactiveState.enter();
+                }
+                break;
 
 
-                case (int)pursuerStates.Pursue:
+            case (int)pursuerStates.Pursue:
+
+                if (roomFound)
                     myPursueIdleState.enter();
-                    Debug.Log("3");
-                    break;
+                else
+                {
+                    Debug.LogError("Room wasn't found");
+                    myInactiveState.enter();
+                }
+                break;
 
-            }
         }
-        else
-        {
-            Debug.LogError("Room wasn't found");
-        }
-
 
 
     }
@@ -233,8 +245,8 @@ public class Pursuer : MonoBehaviour
         public void enter()
         {
             myPursuer.currentState = (int)pursuerStates.Inactive;
-        }
 
+        }
 
         public void execute()
         {
