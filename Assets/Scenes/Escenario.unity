@@ -49412,17 +49412,17 @@ PrefabInstance:
     - target: {fileID: 867739416012089040, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.8
+      value: -184.6
       objectReference: {fileID: 0}
     - target: {fileID: 867739416012089040, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 235.1
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 867739416012089040, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1518
+      value: -1603.8
       objectReference: {fileID: 0}
     - target: {fileID: 867739416012089040, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
@@ -49507,7 +49507,12 @@ PrefabInstance:
     - target: {fileID: 867739416012089054, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
       propertyPath: m_StepOffset
-      value: 20
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 867739416012089054, guid: ab4930c9aedfd664bab5a940927fe705,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 867739416012089055, guid: ab4930c9aedfd664bab5a940927fe705,
         type: 3}
@@ -69813,6 +69818,7 @@ GameObject:
   - component: {fileID: 7255501236027203985}
   - component: {fileID: 6708149614380112118}
   - component: {fileID: 4898563709837622613}
+  - component: {fileID: 320859008655998398}
   m_Layer: 0
   m_Name: suelo salida secundaria
   m_TagString: Untagged
@@ -69820,6 +69826,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!64 &320859008655998398
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320859008655998397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1635553507496698734, guid: 23f5a78f3c747824ba9b4a677b405c7c, type: 3}
 --- !u!4 &324952828564020927
 Transform:
   m_ObjectHideFlags: 0
@@ -72178,6 +72198,9 @@ GameObject:
   - component: {fileID: 1638300816159183230}
   - component: {fileID: 8759374478637640427}
   - component: {fileID: 517737104647338638}
+  - component: {fileID: 2337773728731239861}
+  - component: {fileID: 2337773728731239862}
+  - component: {fileID: 2337773728731239863}
   m_Layer: 0
   m_Name: pared pasillos oficinas
   m_TagString: Untagged
@@ -72185,6 +72208,45 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!65 &2337773728731239861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337773728731239860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5888425, y: 3.664119, z: 2.7900012}
+  m_Center: {x: -123.480896, y: 159.25124, z: 5.246513}
+--- !u!65 &2337773728731239862
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337773728731239860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.51807, y: 23.671873, z: 2.7900012}
+  m_Center: {x: -132.57811, y: 146.32632, z: 5.24651}
+--- !u!65 &2337773728731239863
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337773728731239860}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.404864, y: 3.854296, z: 2.7900012}
+  m_Center: {x: -143.63501, y: 132.56732, z: 5.2465158}
 --- !u!33 &2349180742030575108
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -76287,8 +76349,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.4320474, y: 15.218567, z: 2.7900012}
-  m_Center: {x: -146.32019, y: 179.2048, z: 5.246507}
+  m_Size: {x: 6.4320474, y: 3.815071, z: 2.7900012}
+  m_Center: {x: -146.32019, y: 184.90697, z: 5.246526}
 --- !u!65 &5601160827515989122
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76471,6 +76533,11 @@ GameObject:
   - component: {fileID: 8613681179735142386}
   - component: {fileID: 3034671675426803674}
   - component: {fileID: 23716180595590900}
+  - component: {fileID: 5724732571579977582}
+  - component: {fileID: 5724732571579977583}
+  - component: {fileID: 5724732571579977584}
+  - component: {fileID: 5724732571579977585}
+  - component: {fileID: 5724732571579977586}
   m_Layer: 0
   m_Name: pared oficinas
   m_TagString: Untagged
@@ -76478,6 +76545,71 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
+--- !u!65 &5724732571579977582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724732571579977581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.716197, y: 11.061271, z: 6.641498}
+  m_Center: {x: -122.986664, y: 166.0648, z: 3.3207488}
+--- !u!65 &5724732571579977583
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724732571579977581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 21.895638, y: 0.4414585, z: 6.641498}
+  m_Center: {x: -137.84888, y: 160.90985, z: 3.320749}
+--- !u!65 &5724732571579977584
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724732571579977581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.327278, y: 0.43579704, z: 6.641498}
+  m_Center: {x: -157.89865, y: 161.39877, z: 3.320749}
+--- !u!65 &5724732571579977585
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724732571579977581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46544096, y: 5.0602913, z: 6.641498}
+  m_Center: {x: -145.21176, y: 163.37413, z: 3.320749}
+--- !u!65 &5724732571579977586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724732571579977581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.46544096, y: 4.755789, z: 6.641498}
+  m_Center: {x: -145.21176, y: 169.52637, z: 3.320749}
 --- !u!23 &5732596631995627540
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76670,7 +76802,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &6026057981475266247
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -78265,8 +78397,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.5166794, y: 5.274676, z: 2.6200016}
-  m_Center: {x: -155.21806, y: 180.27043, z: 5.3315015}
+  m_Size: {x: 12.367538, y: 5.274676, z: 2.6200016}
+  m_Center: {x: -149.29272, y: 180.27043, z: 5.3315015}
 --- !u!65 &7282728349986624881
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78317,8 +78449,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 12.51801, y: 0.1868431, z: 2.6200016}
-  m_Center: {x: -161.25153, y: 177.72655, z: 5.3314996}
+  m_Size: {x: 24.415241, y: 6.4139953, z: 2.6200016}
+  m_Center: {x: -155.30304, y: 174.6131, z: 5.331501}
 --- !u!65 &7282728349986624885
 BoxCollider:
   m_ObjectHideFlags: 0
