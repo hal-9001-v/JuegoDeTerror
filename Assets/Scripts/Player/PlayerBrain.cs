@@ -5,23 +5,28 @@ using UnityEngine;
 public class PlayerBrain : MonoBehaviour
 {
     PlayerControls myPlayerControls;
-    PlayerComponent[] myComponents;
+    PlayerComponent[] myPlayerComponents;
+    StatsComponent[] myStatsComponents;
 
     private void Awake()
     {
         myPlayerControls = new PlayerControls();
 
-        myComponents = FindObjectsOfType<PlayerComponent>();
+        myPlayerComponents = FindObjectsOfType<PlayerComponent>();
+        myStatsComponents = FindObjectsOfType<StatsComponent>();
 
-        foreach (PlayerComponent component in myComponents)
+
+        foreach (PlayerComponent component in myPlayerComponents)
         {
             component.setPlayerControls(myPlayerControls);
         }
+
+        setStatsValues();
     }
 
     public void enablePlayer(bool b)
     {
-        foreach (PlayerComponent component in myComponents)
+        foreach (PlayerComponent component in myPlayerComponents)
         {
             component.enabled = b;
         }
@@ -35,5 +40,15 @@ public class PlayerBrain : MonoBehaviour
     private void OnDisable()
     {
         myPlayerControls.Disable();
+    }
+
+    public void setStatsValues()
+    {
+        StatsData stats = SaveManager.loadStats();
+
+        foreach (StatsComponent component in myStatsComponents)
+        {
+            component.setStats(stats);
+        }
     }
 }

@@ -9,7 +9,6 @@ public class PreLoadScene : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip preLoadSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(PreLoad());
@@ -20,8 +19,7 @@ public class PreLoadScene : MonoBehaviour
     {
         audioSource.PlayOneShot(preLoadSound);
         yield return new WaitForSeconds(7);
-        Debug.Log("HOLA jeje");
-        gameManager.SetGameState(GameState.menu);
+        gameManager.pauseGame();
         SceneManager.LoadScene("MainMneu");
 
         yield return null;

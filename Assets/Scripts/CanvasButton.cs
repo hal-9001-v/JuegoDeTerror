@@ -12,22 +12,16 @@ public class CanvasButton : MonoBehaviour
 
     private void Start()
     {
+        
         buttonText = GetComponent<TextMeshProUGUI>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (canvas.enabled == true)
+        if (LanguageController.language == 0)
         {
-            if (LanguageController.language == 0)
-            {
-                buttonText.text = LanguageController.GetTextInLanguage(buttonKey);
-            }
-            else if(LanguageController.language == 1)
-            {
-                buttonText.text = LanguageController.GetTextInLanguage(buttonKey);
-            }
+            buttonText.text = LanguageController.GetTextInLanguage(buttonKey);
+        }
+        else if (LanguageController.language == 1)
+        {
+            buttonText.text = LanguageController.GetTextInLanguage(buttonKey);
         }
     }
 }

@@ -7,26 +7,29 @@ using UnityEngine.Events;
 [RequireComponent(typeof(BoxCollider))]
 public class EventCollider : Interactable
 {
-    public UnityEvent atEnterEvent;
-
     public override void interact()
     {
         //Do nothing
     }
 
-    public override void loadData(InteractableData myData)
+    //Interactions are done through collision
+    public override void invokeInteractionActions()
     {
-        done = myData.interactionDone;
+        //Do nothing
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (eventOnlyOnce && !done)
+        {
             if (other.tag == "Player")
             {
                 done = true;
-                atEnterEvent.Invoke();
+                interactionActions.Invoke();
 
             }
+        }
+
+
     }
 }

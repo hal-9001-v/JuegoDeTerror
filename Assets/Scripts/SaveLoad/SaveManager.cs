@@ -6,25 +6,58 @@ using System.IO;
 using UnityEditor.Purchasing;
 using UnityEngine.UI;
 
-public class SaveManager : MonoBehaviour
+public static class SaveManager 
 {
-    private string path;
+    private static string safePath = Application.persistentDataPath + "/safeSave.dat";
+    private static string tempPath = Application.persistentDataPath + "/tempSave.dat";
+    private static string statsPath = Application.persistentDataPath + "/statsSave.dat";
+
+    public static float defaultGamepadSens = 0.25f;
+    public static float defaultMouseSens = 3;
+    public static float defaultVolume = 5;
+
     // Start is called before the first frame update
-    void Start()
+   
+
+    public static void deleteData()
     {
-        //Debug.Log(Application.persistentDataPath);
-        path = Application.persistentDataPath + "/save.dat";
+        try
+        {
+            File.Delete(safePath);
+            File.Delete(tempPath);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning(e);
+        }
+
     }
-
-
-    public void Save()
+    public static void SaveGame()
     {
         Debug.Log("SAVE");
+
+        try
+        {
+            if (File.Exists(safePath))
+            {
+                File.Delete(safePath);
+            }
+
+            //Temp file is now safe
+            File.Move(tempPath, safePath);
+
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogWarning(e);
+        };
+
         try
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
-            FileStream file = File.Open(path, FileMode.OpenOrCreate);
+            //Make new Temp file, which is unsafe for now
+            FileStream file = File.Open(tempPath, FileMode.Create);
 
             GameData data = new GameData();
 
@@ -32,6 +65,7 @@ public class SaveManager : MonoBehaviour
             SaveInventory(data);
             SavePursuer(data);
             saveInteractables(data);
+            saveTask(data);
 
             formatter.Serialize(file, data);
 
@@ -43,7 +77,63 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void SavePlayer(GameData data)
+    public static void saveStats(StatsData data)
+    {
+        try
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            FileStream file = File.Open(statsPath, FileMode.Create);
+
+            formatter.Serialize(file, data);
+
+            file.Close();
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e);
+        }
+    }
+
+    public static StatsData loadStats()
+    {
+
+        try
+        {
+            if (File.Exists(statsPath))
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+
+                FileStream file = File.Open(statsPath, FileMode.Open);
+
+                StatsData data = (StatsData)formatter.Deserialize(file);
+
+                file.Close();
+
+                return data;
+
+            }
+            else
+            {
+                StatsData newStats = new StatsData();
+                newStats.gamePadSens = defaultGamepadSens;
+                newStats.mouseSens = defaultMouseSens;
+                newStats.volume = defaultVolume;
+
+                saveStats(newStats);
+
+                return newStats;
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e);
+
+        }
+        return null;
+    }
+
+    private static void SavePlayer(GameData data)
     {
         Vector3 pos = PlayerMovement.sharedInstance.transform.position;
         Vector3 rotation = PlayerMovement.sharedInstance.transform.eulerAngles;
@@ -53,7 +143,7 @@ public class SaveManager : MonoBehaviour
         data.myPlayerData = new PlayerData(pos, rotation, cameraRotation);
     }
 
-    private void SaveInventory(GameData data)
+    private static void SaveInventory(GameData data)
     {
         if (Inventory.sharedInstance != null)
         {
@@ -82,7 +172,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void SavePursuer(GameData data)
+    private static void SavePursuer(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -96,9 +186,9 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void saveInteractables(GameData data)
+    private static void saveInteractables(GameData data)
     {
-        Interactable[] interactables = FindObjectsOfType<Interactable>();
+        Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
 
         InteractableData[] saveDatas = new InteractableData[interactables.Length];
 
@@ -111,16 +201,21 @@ public class SaveManager : MonoBehaviour
 
     }
 
-
-    public void Load()
+    private static void saveTask(GameData data)
     {
+        TaskController.instance.saveData(data);
+    }
+
+    public static void LoadGame()
+    {
+        Debug.Log("Load");
         try
         {
-            if (File.Exists(path))
+            if (File.Exists(safePath))
             {
                 BinaryFormatter formatter = new BinaryFormatter();
 
-                FileStream file = File.Open(path, FileMode.Open);
+                FileStream file = File.Open(safePath, FileMode.Open);
 
                 GameData data = (GameData)formatter.Deserialize(file);
 
@@ -130,6 +225,7 @@ public class SaveManager : MonoBehaviour
                 LoadInventory(data);
                 LoadIA(data);
                 loadInteractables(data);
+                loadTask(data);
 
             }
         }
@@ -139,7 +235,8 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void LoadPlayer(GameData data)
+
+    private static void LoadPlayer(GameData data)
     {
         Vector3 position, rotation, cameraRotation;
 
@@ -154,7 +251,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void LoadInventory(GameData data)
+    private static void LoadInventory(GameData data)
     {
         if (Inventory.sharedInstance != null)
         {
@@ -175,7 +272,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void LoadIA(GameData data)
+    private static void LoadIA(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -188,9 +285,16 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void loadInteractables(GameData data)
+    private static void loadInteractables(GameData data)
     {
-        Interactable[] interactables = FindObjectsOfType<Interactable>();
+        Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
+
+        if (interactables.Length != data.myInteractablesData.Length)
+        {
+            Debug.LogError("Scene has changed! Can't load Interactables from save data");
+            return;
+
+        }
 
         for (int i = 0; i < interactables.Length; i++)
         {
@@ -208,4 +312,8 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    private static void loadTask(GameData data)
+    {
+        TaskController.instance.loadData(data);
+    }
 }

@@ -12,8 +12,6 @@ public class CutsceneController : MonoBehaviour
     public GameObject player;
     PlayerBrain playerBrain;
 
-    SaveManager saveManager;
-
     public UnityEvent atStartActions;
     public UnityEvent afterDeathActions;
 
@@ -37,8 +35,6 @@ public class CutsceneController : MonoBehaviour
             Debug.LogWarning("No player in Scene");
         }
 
-        saveManager = FindObjectOfType<SaveManager>();
-
     }
 
     private void Start()
@@ -55,7 +51,7 @@ public class CutsceneController : MonoBehaviour
 
         playerAnimator.SetTrigger("Restore");
 
-        saveManager.Load();
+        SaveManager.LoadGame();
 
         playerBrain.enablePlayer(true);
     }

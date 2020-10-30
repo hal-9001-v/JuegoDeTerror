@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public enum OptionType
 {
@@ -17,6 +18,13 @@ public class MenuOptionsController : MonoBehaviour
     public OptionType type;
     public List<string> posibilities = new List<string>();
 
+    public Slider gamePadSlider;
+    public Slider mouseSlider;
+    public Slider volumeSlider;
+
+
+    StatsData myData;
+
     private void Start()
     {
 
@@ -26,10 +34,11 @@ public class MenuOptionsController : MonoBehaviour
             currentPosition = PlayerPrefs.GetInt("language");
             text.text = posibilities[currentPosition];
         }
-        else if(type == OptionType.sensibility)
+
+        else if (type == OptionType.sensibility)
         {
             currentPosition = (int)PlayerPrefs.GetFloat("sensibility");
-            if(currentPosition == 0)
+            if (currentPosition == 0)
             {
                 currentPosition = 100;
             }
@@ -38,11 +47,36 @@ public class MenuOptionsController : MonoBehaviour
         }
     }
 
+    StatsData loadStatsObject()
+    {
+        return SaveManager.loadStats();
+    }
+
+    void saveStatsObject(StatsData data)
+    {
+        SaveManager.saveStats(myData);
+    }
+
+    public void loadSettingsValues()
+    {
+        myData = loadStatsObject();
+
+        gamePadSlider.value = myData.gamePadSens;
+        mouseSlider.value = myData.mouseSens;
+        volumeSlider.value = myData.volume;
+
+    }
+
+    public void saveSettingsValues()
+    {
+        saveStatsObject(myData);
+    }
+
     public void Next()
     {
-        if(GameManager.sharedInstance.currentGameState == GameState.menu)
+        if (GameManager.sharedInstance.currentGameState == GameState.pause)
         {
-            if(type == OptionType.language)
+            if (type == OptionType.language)
             {
                 currentPosition = ManagePosition(true);
                 text.text = posibilities[currentPosition];
@@ -52,7 +86,7 @@ public class MenuOptionsController : MonoBehaviour
 
     public void Previous()
     {
-        if (GameManager.sharedInstance.currentGameState == GameState.menu)
+        if (GameManager.sharedInstance.currentGameState == GameState.pause)
         {
             if (type == OptionType.language)
             {
@@ -64,7 +98,7 @@ public class MenuOptionsController : MonoBehaviour
 
     public int ManagePosition(bool direction)
     {
-        if(currentPosition == (posibilities.Count - 1))
+        if (currentPosition == (posibilities.Count - 1))
         {
             if (direction)
             {
@@ -75,7 +109,7 @@ public class MenuOptionsController : MonoBehaviour
                 currentPosition--;
             }
         }
-        else if(currentPosition == 0)
+        else if (currentPosition == 0)
         {
             if (direction)
             {
@@ -106,9 +140,50 @@ public class MenuOptionsController : MonoBehaviour
     }
 
     //Change Sensibility
-    public void SetSensibility(float newSensibility)
+    public void setGamepadSens(float newSensibility)
     {
-        PlayerPrefs.SetFloat("sensibility", newSensibility);
-        CameraLook.sharedInstance.mouseSensitivity = newSensibility;
+        if (myData != null)
+            myData.gamePadSens = newSensibility;
+        else
+            Debug.LogWarning("No data is loaded!");
     }
+
+    public void setMouseSens(float newSensibility)
+    {
+        if (myData != null)
+            myData.mouseSens = newSensibility;
+        else
+            Debug.LogWarning("No data is loaded!");
+    }
+
+    public void setVolume(float newVolume)
+    {
+        if (myData != null)
+        {
+            myData.volume = newVolume;
+        }
+
+        else Debug.LogWarning("No data is loaded");
+
+
+
+    }
+
+    public float getGamePadSens()
+    {
+        if (myData != null)
+            return myData.gamePadSens;
+        else
+            return 0;
+    }
+
+    public float getMouseSens()
+    {
+        if (myData != null)
+            return myData.mouseSens;
+        else
+            return 0;
+    }
+
+
 }

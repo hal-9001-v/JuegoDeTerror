@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class CameraLook : PlayerComponent
+public class CameraLook : StatsComponent
 {
     public static CameraLook sharedInstance;
 
@@ -20,18 +20,13 @@ public class CameraLook : PlayerComponent
     private void Awake()
     {
         sharedInstance = this;
-
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        /*
-        if (PlayerPrefs.GetFloat("sensibility") >= 50)
-        {
-            mouseSensitivity = PlayerPrefs.GetFloat("sensibility");
-        }*/
+
     }
 
     void FixedUpdate()
@@ -70,7 +65,6 @@ public class CameraLook : PlayerComponent
         pc.Normal.Aim.performed += ctx =>
         {
             gamePadAim = ctx.ReadValue<Vector2>();
-            Debug.Log(gamePadAim);
         };
 
         pc.Normal.MouseAim.performed += ctx =>
@@ -82,5 +76,11 @@ public class CameraLook : PlayerComponent
 
         pc.Normal.MouseAim.canceled += ctx => mouseAim = Vector2.zero;
 
+    }
+
+    public override void setStats(StatsData data)
+    {
+        mouseSensitivity = data.mouseSens;
+        gamePadSensitivity = data.gamePadSens;
     }
 }

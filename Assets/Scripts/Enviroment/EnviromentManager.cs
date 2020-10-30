@@ -12,8 +12,6 @@ public class EnviromentManager : MonoBehaviour
     public Color nearbyColor;
     public Color dangerColor;
 
-    public bool startGame;
-
     private void Awake()
     {
         if (instance == null)

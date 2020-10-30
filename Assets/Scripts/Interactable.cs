@@ -17,8 +17,10 @@ public abstract class Interactable : MonoBehaviour
     //Execute Event only once
     public bool eventOnlyOnce;
 
+    public bool readyForInteraction = true;
+
     //Event has been executed
-    public bool done { get; protected set; }
+    public bool done;
 
     private void Awake()
     {
@@ -36,23 +38,24 @@ public abstract class Interactable : MonoBehaviour
 
     public abstract void interact();
 
-    public InteractableData getSaveData() {
-
-        return new InteractableData(gameObject.name, done);
+    public virtual void loadData(InteractableData myData) {
+        done = myData.interactionDone;
+        readyForInteraction = myData.readyForInteraction;
     }
 
-    public abstract void loadData(InteractableData myData);
-
-    public void invokeInteractionActions()
+    public virtual void invokeInteractionActions()
     {
-        interact();
+        if (readyForInteraction)
+        {
+            if (eventOnlyOnce && done)
+                return;
 
-        if (eventOnlyOnce && done)
-            return;
+            interact();
 
-        done = true;
+            done = true;
 
-        interactionActions.Invoke();
+            interactionActions.Invoke();
+        }
     }
 
     public void selectForInteraction(bool b)
@@ -122,4 +125,12 @@ public abstract class Interactable : MonoBehaviour
         } while (true);
     }
 
+    public InteractableData getSaveData()
+    {
+        return new InteractableData(gameObject.name, done, readyForInteraction);
+    }
+
+    public void setReadyForInteraction(bool b) {
+        readyForInteraction = b;
+    }
 }

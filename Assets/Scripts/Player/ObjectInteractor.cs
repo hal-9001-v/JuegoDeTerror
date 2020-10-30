@@ -82,7 +82,7 @@ public class ObjectInteractor : PlayerComponent
 
         if (this.enabled)
         {
-            if (selectedObject != null)
+            if (selectedObject != null && selectedObject.readyForInteraction)
             {
                 selectedObject.invokeInteractionActions();
 

@@ -27,10 +27,22 @@ public class GameData
 
     public InteractableData[] myInteractablesData;
 
+    public int safeTask;
+
     public GameData()
     {
 
     }
+}
+
+[Serializable]
+public class StatsData {
+    public float gamePadSens;
+    public float mouseSens;
+    public int language;
+
+    public float volume;
+
 }
 
 [Serializable]
@@ -97,9 +109,11 @@ public class PursuerData
 public class InteractableData {
     public string interactableName { get; private set; }
     public bool interactionDone { get; private set; }
+    public bool readyForInteraction { get; private set; }
 
-    public InteractableData(string name, bool done) {
+    public InteractableData(string name, bool done, bool ready) {
         interactableName = name;
         interactionDone = done;
+        readyForInteraction = ready;
     }
 }

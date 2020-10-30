@@ -5,19 +5,24 @@ using UnityEngine.Events;
 
 public class Task : MonoBehaviour
 {
-    public UnityEvent atStartEvent;
-    public UnityEvent atEndEvent;
+    public UnityEvent startEvent;
+    public UnityEvent doneEvent;
 
     public int taskNumber;
 
     public Task nextTask;
 
-    public MissionController myMissionController;
-
-    public void goToNextTask() {
-        if (nextTask != null) {
-            myMissionController.StartMission(nextTask);
-        }
+    public void goToNextTask()
+    {
+        if (TaskController.instance.currentTask == this)
+            if (nextTask != null)
+            {
+                Debug.Log(" You have to: " + nextTask.name);
+                TaskController.instance.StartTask(nextTask);
+            }
+            else {
+                Debug.Log("No more taks");
+            }
     }
 
 }
