@@ -26,7 +26,7 @@ public class CameraLook : StatsComponent
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-
+        mouseSensitivity = 2.0f;
     }
 
     void FixedUpdate()
