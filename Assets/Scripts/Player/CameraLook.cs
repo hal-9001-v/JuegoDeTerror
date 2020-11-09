@@ -9,7 +9,7 @@ public class CameraLook : StatsComponent
 
     [Range(0.1f, 10)]
     public float gamePadSensitivity;
-    public GameObject playerBody;
+    PlayerMovement pm;
 
     Vector2 gamePadAim;
     Vector2 mouseAim;
@@ -20,12 +20,14 @@ public class CameraLook : StatsComponent
     private void Awake()
     {
         sharedInstance = this;
+        
     }
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        pm = PlayerMovement.sharedInstance;
 
     }
 
@@ -36,7 +38,7 @@ public class CameraLook : StatsComponent
 
     public void cameraRotation()
     {
-        if (playerBody.GetComponent<PlayerMovement>().isReading == false)
+        if (!pm.isReading)
         {
             Vector2 aim;
 
@@ -54,7 +56,7 @@ public class CameraLook : StatsComponent
 
             transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
-            playerBody.transform.Rotate(Vector3.up * aim.x);
+            pm.transform.Rotate(Vector3.up * aim.x);
 
         }
 

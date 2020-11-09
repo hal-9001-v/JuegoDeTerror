@@ -10,6 +10,7 @@ TagManager:
   - RoomCollider
   - RoomGroup
   - Interactable
+  - Stairs
   layers:
   - Default
   - TransparentFX

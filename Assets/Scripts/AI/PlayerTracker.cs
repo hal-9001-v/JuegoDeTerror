@@ -5,6 +5,12 @@ using UnityEngine;
 public class PlayerTracker : MonoBehaviour
 {
     public Room currentRoom;
+    PlayerMovement myPlayerMovement;
+
+    private void Start()
+    {
+        myPlayerMovement = PlayerMovement.sharedInstance;
+    }
 
     private void OnTriggerEnter(Collider collider)
     {
@@ -21,7 +27,6 @@ public class PlayerTracker : MonoBehaviour
         }
         else if (collider.gameObject.tag == "RoomCollider")
         {
-
             currentRoom = collider.GetComponent<RoomCollider>().myRoom;
 
             if (currentRoom != null)
@@ -36,6 +41,11 @@ public class PlayerTracker : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        roomTriggerStay(other);
+        stairsTriggerStay(other);
+    }
+
+    void roomTriggerStay(Collider other) {
         if (other.tag == "Room")
         {
             Room myRoom;
@@ -70,10 +80,19 @@ public class PlayerTracker : MonoBehaviour
 
             }
         }
+
     }
 
-    private void OnTriggerExit(Collider other)
-    {
+    void stairsTriggerStay(Collider other) {
+        if (other.tag == "Stairs") {
+            myPlayerMovement.setCanRun(false);
+            Debug.Log("THERE");
+        }
+    
+    }
+
+    void roomTriggerExit(Collider other) {
+
         if (other.tag == "Room")
         {
             other.gameObject.GetComponent<Room>().atExit.Invoke();
@@ -83,7 +102,18 @@ public class PlayerTracker : MonoBehaviour
             other.gameObject.GetComponent<RoomCollider>().myRoom.atExit.Invoke();
         }
 
+    }
 
+    void stairsTriggerExit(Collider other) {
+        if (other.tag == "Stairs") {
+            myPlayerMovement.setCanRun(true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        roomTriggerExit(other);
+        stairsTriggerExit(other);
     }
 
 

@@ -18,10 +18,7 @@ public class GameManager : MonoBehaviour
 {
     public GameState currentGameState;
 
-    public GameObject noteCanvas;
-    public GameObject inGameCanvas;
-
-    public GameObject pauseCanvas;
+    CanvasManager myCanvasManager;
 
     public PlayerBrain myPlayerBrain;
 
@@ -45,6 +42,8 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("More than one Game Manager in scene");
             Destroy(this);
         }
+
+        myCanvasManager = FindObjectOfType<CanvasManager>();
 
 
     }
@@ -71,11 +70,9 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0;
 
-        //Mostranmos y ocultamos los canvas que toquen
-        noteCanvas.SetActive(false);
-        inGameCanvas.SetActive(false);
-        pauseCanvas.SetActive(true);
-
+        if (myCanvasManager != null) {
+            myCanvasManager.setPause();
+        }
         myPlayerBrain.enablePlayer(false);
 
     }
@@ -86,10 +83,9 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 1;
 
-        //Mostranmos y ocultamos los canvas que toquen
-        inGameCanvas.SetActive(true);
-        noteCanvas.SetActive(false);
-        pauseCanvas.SetActive(false);
+        if (myCanvasManager != null) {
+            myCanvasManager.setInGame();
+        }
 
         myPlayerBrain.enablePlayer(true);
 
@@ -99,10 +95,9 @@ public class GameManager : MonoBehaviour
 
     void endState()
     {
-        //Mostramos y ocultamos los canvas que toquen
-        noteCanvas.SetActive(false);
-        inGameCanvas.SetActive(false);
-        pauseCanvas.SetActive(false);
+        if (myCanvasManager != null) {
+            myCanvasManager.setDeath();
+        }
 
         myPlayerBrain.enablePlayer(false);
         Cursor.lockState = CursorLockMode.None;

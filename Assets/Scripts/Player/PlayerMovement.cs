@@ -35,6 +35,8 @@ public class PlayerMovement : PlayerComponent
 
     bool run;
 
+    bool canRun;
+
     public Vector2 moveInput;
 
     private void Awake()
@@ -117,7 +119,7 @@ public class PlayerMovement : PlayerComponent
 
                 move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
 
-                if (run && hasFatigue == false)
+                if (run && canRun && !hasFatigue)
                 {
                     isRunning = true;
                     controller.Move(move * speed * runningIncrease * Time.deltaTime);
@@ -135,6 +137,9 @@ public class PlayerMovement : PlayerComponent
 
     }
 
+    public void setCanRun(bool b) {
+        canRun = b;
+    }
 
     public void SetGravity()
     {
