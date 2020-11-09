@@ -29,6 +29,7 @@ public class CameraLook : StatsComponent
         Cursor.lockState = CursorLockMode.Locked;
         pm = PlayerMovement.sharedInstance;
 
+
     }
 
     void FixedUpdate()
