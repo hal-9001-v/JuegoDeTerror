@@ -3,6 +3,17 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
+
+/*
+Needed elements on Scene:
+-Room Components on Room GameObjects(Rooms must be linked as neighbours in order to work)
+
+-Player Tracker Component on Player
+
+-Enviromental Manager Component on Singleton GameObject
+-CutsceneController Component on Singleton GameObject
+
+ */
 public class Pursuer : MonoBehaviour
 {
     public static Pursuer instance { get; private set; }

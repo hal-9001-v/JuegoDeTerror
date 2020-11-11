@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class EventInteractable : Interactable
 {
-    public bool setInactive;
+
+    /*
+     Only Executes Events on Inspector
+     */
+
 
     public override void interact()
     {
@@ -17,7 +21,7 @@ public class EventInteractable : Interactable
         done = myData.interactionDone;
         readyForInteraction = myData.readyForInteraction;
 
-        if (setInactive && eventOnlyOnce && done)
+        if (eventOnlyOnce && done)
         {
             gameObject.SetActive(false);
         }

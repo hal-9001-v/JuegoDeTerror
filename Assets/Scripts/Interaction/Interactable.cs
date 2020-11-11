@@ -133,4 +133,8 @@ public abstract class Interactable : MonoBehaviour
     public void setReadyForInteraction(bool b) {
         readyForInteraction = b;
     }
+
+    public void debugInteraction() {
+        Debug.Log("Interaction with "+ gameObject.name);
+    }
 }
