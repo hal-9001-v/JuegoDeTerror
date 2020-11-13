@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //Posibles Estados de Juego
@@ -18,11 +14,13 @@ public class GameManager : MonoBehaviour
 {
     public GameState currentGameState;
 
-    CanvasManager myCanvasManager;
+    public CanvasManager myCanvasManager;
 
     public PlayerBrain myPlayerBrain;
 
     public static GameManager sharedInstance;
+
+    bool paused;
 
     private void Awake()
     {
@@ -31,14 +29,14 @@ public class GameManager : MonoBehaviour
 
             sharedInstance = this;
             LanguageController.LoadLanguagesFile("languagesTextFile.txt");
-            DontDestroyOnLoad(this);
 
             if (myPlayerBrain == null)
             {
                 myPlayerBrain = FindObjectOfType<PlayerBrain>();
             }
         }
-        else {
+        else
+        {
             Debug.LogWarning("More than one Game Manager in scene");
             Destroy(this);
         }
@@ -52,6 +50,8 @@ public class GameManager : MonoBehaviour
     {
         //SetGameState(GameState.preLoad);
         LanguageController.language = PlayerPrefs.GetInt("language");
+
+        setGameState(currentGameState);
     }
 
     //Método que cambia a el estado inGame
@@ -67,39 +67,66 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
 
+        paused = true;
 
         Time.timeScale = 0;
 
-        if (myCanvasManager != null) {
-            myCanvasManager.setPause();
+        if (myCanvasManager != null)
+        {
+            myCanvasManager.setPauseCanvas();
         }
-        myPlayerBrain.enablePlayer(false);
+
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+
+    }
+    
+    public void switchPause() {
+
+        if (paused)
+        {
+            resumeGame();
+
+        }
+        else {
+            pauseGame();
+        }
 
     }
 
     void resumeState()
     {
+        paused = false;
+
         Cursor.lockState = CursorLockMode.Locked;
 
         Time.timeScale = 1;
 
-        if (myCanvasManager != null) {
-            myCanvasManager.setInGame();
+        if (myCanvasManager != null)
+        {
+            myCanvasManager.setInGameCanvas();
         }
 
-        myPlayerBrain.enablePlayer(true);
+        if (myPlayerBrain != null)
+        {
+            myPlayerBrain.enablePlayer(true);
 
-        myPlayerBrain.setStatsValues();
+            myPlayerBrain.setStatsValues();
+        }
+
 
     }
 
     void endState()
     {
-        if (myCanvasManager != null) {
-            myCanvasManager.setDeath();
+        if (myCanvasManager != null)
+        {
+            myCanvasManager.setDeathCanvas();
         }
 
-        myPlayerBrain.enablePlayer(false);
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+
         Cursor.lockState = CursorLockMode.None;
     }
 

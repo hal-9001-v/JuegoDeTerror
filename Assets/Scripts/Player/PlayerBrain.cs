@@ -11,7 +11,10 @@ public class PlayerBrain : MonoBehaviour
     private void Awake()
     {
         myPlayerControls = new PlayerControls();
+    }
 
+    private void Start()
+    {
         myPlayerComponents = FindObjectsOfType<PlayerComponent>();
         myStatsComponents = FindObjectsOfType<StatsComponent>();
 

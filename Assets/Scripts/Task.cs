@@ -14,15 +14,14 @@ public class Task : MonoBehaviour
 
     public void goToNextTask()
     {
-        if (TaskController.instance.currentTask == this)
-            if (nextTask != null)
-            {
-                Debug.Log(" You have to: " + nextTask.name);
-                TaskController.instance.StartTask(nextTask);
-            }
-            else {
-                Debug.Log("No more taks");
-            }
+        if (nextTask != null)
+        {
+            TaskController.instance.StartTask(nextTask);
+        }
+        else
+        {
+            Debug.Log("No more taks");
+        }
     }
 
 }

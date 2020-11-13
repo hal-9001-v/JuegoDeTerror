@@ -8,23 +8,19 @@ public class TaskController : MonoBehaviour
 {
     public static TaskController instance;
 
-    public TextMeshProUGUI textMesh;
+    private TextMeshProUGUI textMesh;
 
     public Task firstTask;
     public Task currentTask { get; private set; }
     public Task safeTask { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
         if (instance == null)
         {
             instance = this;
+            initialize();
 
-            currentTask = firstTask;
-
-            safeTask = currentTask;
-
-            applyTaskEffect(currentTask);
         }
         else
         {
@@ -33,25 +29,41 @@ public class TaskController : MonoBehaviour
 
     }
 
+    private void initialize()
+    {
+        textMesh = FindObjectOfType<CanvasManager>().taskText;
+
+        setCurrentTask(firstTask);
+
+        safeTask = currentTask;
+    }
+
     public void StartTask(Task task)
     {
-        applyTaskEffect(task);
+        Debug.Log("Start Task");
+        if (task == currentTask.nextTask)
+        {
+            setCurrentTask(task);
 
-        setSafeTask(safeTask.nextTask);
-
+            setSafeTask(safeTask.nextTask);
+        }
+        else
+        {
+            Debug.LogWarning("Tried to start incorrect task on sequence: " + task.name + "!");
+        }
 
     }
 
-    void applyTaskEffect(Task task)
+    void setCurrentTask(Task newTask)
     {
-        if (task != null)
+        if (newTask != null)
         {
             if (currentTask != null)
             {
                 currentTask.doneEvent.Invoke();
             }
 
-            currentTask = task;
+            currentTask = newTask;
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
             textMesh.text = currentTask.name;

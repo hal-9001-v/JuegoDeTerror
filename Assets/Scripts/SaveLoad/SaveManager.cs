@@ -8,23 +8,14 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
-    private static string safePath;
-    private static string tempPath;
-    private static string statsPath;
+    private static string safePath = Application.persistentDataPath + "/safeSave.dat";
+    private static string tempPath = Application.persistentDataPath + "/tempSave.dat";
+    private static string statsPath = Application.persistentDataPath + "/statsSave.dat";
 
     public static float defaultGamepadSens = 0.25f;
     public static float defaultMouseSens = 3;
     public static float defaultVolume = 5;
 
-    // Start is called before the first frame update
-
-    private void Awake()
-    {
-        safePath = Application.persistentDataPath + "/safeSave.dat";
-        tempPath = Application.persistentDataPath + "/tempSave.dat";
-        statsPath = Application.persistentDataPath + "/statsSave.dat";
-
-    }
     public static void deleteData()
     {
         try
@@ -85,19 +76,21 @@ public class SaveManager : MonoBehaviour
 
     public static void saveStats(StatsData data)
     {
-        try
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
+        if (data != null) {
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
 
-            FileStream file = File.Open(statsPath, FileMode.Create);
+                FileStream file = File.Open(statsPath, FileMode.Create);
 
-            formatter.Serialize(file, data);
+                formatter.Serialize(file, data);
 
-            file.Close();
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogError(e);
+                file.Close();
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
     }
 
