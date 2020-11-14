@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4901539398604160097}
   - component: {fileID: 8334508730795094980}
   - component: {fileID: 6075048866191640334}
+  - component: {fileID: 1054592819578613950}
   m_Layer: 0
   m_Name: vater2
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &1054592819578613950
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714527729916946139}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.043043733, y: 0.04854755, z: 0.03155518}
+  m_Center: {x: 0.006070855, y: 0.018064406, z: 0.00097215036}
