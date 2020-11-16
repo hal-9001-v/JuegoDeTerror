@@ -12,7 +12,7 @@ public class SettingsTool : MonoBehaviour
 
     SaveManager mySaveManager;
 
-    private void Start()
+    private void Awake()
     {
         mySaveManager = FindObjectOfType<SaveManager>();
     }

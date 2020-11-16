@@ -30,6 +30,8 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
+            Debug.LogWarning(gameObject.name + " has been deleted, to keep " + instance.name + ". There must be only one singleton!");
+
             Destroy(this);
         }
     }
