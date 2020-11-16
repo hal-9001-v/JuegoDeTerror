@@ -167,6 +167,7 @@ public class SaveManager : MonoBehaviour
 
     private void SaveInventory(GameData data)
     {
+        /*
         if (Inventory.sharedInstance != null)
         {
 
@@ -190,7 +191,7 @@ public class SaveManager : MonoBehaviour
         else
         {
             Debug.LogWarning("There is no Inventory in Scene");
-        }
+        }*/
 
     }
 
@@ -274,6 +275,7 @@ public class SaveManager : MonoBehaviour
 
     private void LoadInventory(GameData data)
     {
+        /*
         if (Inventory.sharedInstance != null)
         {
             string[] myInventory = new string[5];
@@ -290,7 +292,7 @@ public class SaveManager : MonoBehaviour
         {
             //Debug.LogWarning("There is no Inventory in Scene");
         }
-
+        */
     }
 
     private void LoadIA(GameData data)

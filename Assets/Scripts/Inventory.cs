@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
 public class Inventory : MonoBehaviour
 {
     public const int numItems = 5;
@@ -94,3 +94,4 @@ public class Inventory : MonoBehaviour
         }
     }
 }
+*/
