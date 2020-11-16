@@ -20,7 +20,7 @@ public class EventCollider : Interactable
 
     private void OnTriggerEnter(Collider other)
     {
-        if (eventOnlyOnce && !done)
+        if (eventOnlyOnce && !done && readyForInteraction)
         {
             if (other.tag == "Player")
             {

@@ -26,7 +26,7 @@ public class GroupInteractable : MonoBehaviour
 
         myInteractables = GetComponentsInChildren<Interactable>();
 
-        foreach (EventInteractable child in myInteractables)
+        foreach (Interactable child in myInteractables)
         {
             interactionMax++;
 

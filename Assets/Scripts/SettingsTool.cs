@@ -10,9 +10,16 @@ public class SettingsTool : MonoBehaviour
 
     StatsData myData;
 
+    SaveManager mySaveManager;
+
+    private void Start()
+    {
+        mySaveManager = FindObjectOfType<SaveManager>();
+    }
+
     StatsData loadStatsObject()
     {
-        return SaveManager.loadStats();
+        return mySaveManager.loadStats();
     }
 
     public void loadSettingsValues()
@@ -28,7 +35,7 @@ public class SettingsTool : MonoBehaviour
     public void saveSettingsValues()
     {
         if (myData != null) {
-            SaveManager.saveStats(myData);
+            mySaveManager.saveStats(myData);
 
         }
             

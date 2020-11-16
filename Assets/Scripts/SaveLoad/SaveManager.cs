@@ -8,15 +8,33 @@ using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
-    private static string safePath = Application.persistentDataPath + "/safeSave.dat";
-    private static string tempPath = Application.persistentDataPath + "/tempSave.dat";
-    private static string statsPath = Application.persistentDataPath + "/statsSave.dat";
+    private static SaveManager instance;
 
-    public static float defaultGamepadSens = 0.25f;
-    public static float defaultMouseSens = 3;
-    public static float defaultVolume = 5;
+    private string safePath;
+    private string tempPath;
+    private string statsPath;
 
-    public static void deleteData()
+    public float defaultGamepadSens = 0.25f;
+    public float defaultMouseSens = 3;
+    public float defaultVolume = 5;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            tempPath = Application.persistentDataPath + "/tempSave.dat";
+            safePath = Application.persistentDataPath + "/safeSave.dat";
+            statsPath = Application.persistentDataPath + "/statsSave.dat";
+
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    public void deleteData()
     {
         try
         {
@@ -29,10 +47,11 @@ public class SaveManager : MonoBehaviour
         }
 
     }
-    public static void SaveGame()
+    public void SaveGame()
     {
         Debug.Log("SAVE");
 
+        //Replace safeFile with tempFile
         try
         {
             if (File.Exists(safePath))
@@ -49,6 +68,7 @@ public class SaveManager : MonoBehaviour
             Debug.LogWarning(e);
         };
 
+        //Create new tempFile
         try
         {
             BinaryFormatter formatter = new BinaryFormatter();
@@ -74,9 +94,10 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public static void saveStats(StatsData data)
+    public void saveStats(StatsData data)
     {
-        if (data != null) {
+        if (data != null)
+        {
             try
             {
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -94,7 +115,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public static StatsData loadStats()
+    public StatsData loadStats()
     {
 
         try
@@ -132,7 +153,7 @@ public class SaveManager : MonoBehaviour
         return null;
     }
 
-    private static void SavePlayer(GameData data)
+    private void SavePlayer(GameData data)
     {
         Vector3 pos = PlayerMovement.sharedInstance.transform.position;
         Vector3 rotation = PlayerMovement.sharedInstance.transform.eulerAngles;
@@ -142,7 +163,7 @@ public class SaveManager : MonoBehaviour
         data.myPlayerData = new PlayerData(pos, rotation, cameraRotation);
     }
 
-    private static void SaveInventory(GameData data)
+    private void SaveInventory(GameData data)
     {
         if (Inventory.sharedInstance != null)
         {
@@ -171,7 +192,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void SavePursuer(GameData data)
+    private void SavePursuer(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -185,7 +206,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void saveInteractables(GameData data)
+    private void saveInteractables(GameData data)
     {
         Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
 
@@ -200,12 +221,12 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void saveTask(GameData data)
+    private void saveTask(GameData data)
     {
         TaskController.instance.saveData(data);
     }
 
-    public static void LoadGame()
+    public void LoadGame()
     {
         Debug.Log("Load");
         try
@@ -234,8 +255,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-
-    private static void LoadPlayer(GameData data)
+    private void LoadPlayer(GameData data)
     {
         Vector3 position, rotation, cameraRotation;
 
@@ -250,7 +270,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void LoadInventory(GameData data)
+    private void LoadInventory(GameData data)
     {
         if (Inventory.sharedInstance != null)
         {
@@ -271,7 +291,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void LoadIA(GameData data)
+    private void LoadIA(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -284,7 +304,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void loadInteractables(GameData data)
+    private void loadInteractables(GameData data)
     {
         Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
 
@@ -311,7 +331,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private static void loadTask(GameData data)
+    private void loadTask(GameData data)
     {
         TaskController.instance.loadData(data);
     }

@@ -23,6 +23,8 @@ public class CutsceneController : MonoBehaviour
 
     Animator playerAnimator;
 
+    SaveManager mySaveManager;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -37,10 +39,14 @@ public class CutsceneController : MonoBehaviour
 
     }
 
+
+
     private void Start()
     {
-        if(startGame)
-        restartGame();
+        if (startGame)
+            restartGame();
+
+        mySaveManager = FindObjectOfType<SaveManager>();
     }
 
     public void restartGame()
@@ -51,7 +57,7 @@ public class CutsceneController : MonoBehaviour
 
         playerAnimator.SetTrigger("Restore");
 
-        SaveManager.LoadGame();
+        mySaveManager.LoadGame();
 
         playerBrain.enablePlayer(true);
     }

@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : MonoBehaviour
+public class Key : Interactable
 {
-    [HideInInspector]
-    public string myKeyWord;
+    static KeyTaker keyTaker;
 
+    private void Awake()
+    {
+        if (keyTaker == null)
+            keyTaker = FindObjectOfType<KeyTaker>();
+    }
+
+    public override void interact()
+    {
+        Debug.Log("HOI");
+        keyTaker.AddKey(this);
+    }
 }

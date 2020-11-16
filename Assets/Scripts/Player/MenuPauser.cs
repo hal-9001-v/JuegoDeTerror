@@ -14,8 +14,7 @@ public class MenuPauser : PlayerComponent
         gameManager = GameManager.sharedInstance;
 
         if (gameManager != null) {
-            pc.Normal.Pause.performed += ctx => gameManager.switchPause();
-            
+            pc.Normal.Pause.performed += ctx => gameManager.switchPause();            
 
         }
 

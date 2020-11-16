@@ -12,10 +12,7 @@ public class NoteReader : PlayerComponent
     //Sonido al cerrar la nota
     public AudioClip noteCloseSound;
 
-    public AudioSource audioSource;
-
-    //Canvas de la nota
-    public Canvas noteCanvas;
+    private AudioSource audioSource;
 
     //Texto intercambiable de la nota
     public TextMeshProUGUI textMesh;
@@ -23,6 +20,9 @@ public class NoteReader : PlayerComponent
     //Barra de scroll de la derecha
     public Scrollbar scrollbar;
 
+    public CanvasManager myCanvasManager;
+
+    GameManager myGameManager;
 
     private void Awake()
     {
@@ -32,31 +32,44 @@ public class NoteReader : PlayerComponent
             Debug.LogWarning("Note Reader is a singleton. Kept: " + instance.gameObject.name + " Discarded: " + gameObject.name);
             Destroy(this);
         }
-        else {
+        else
+        {
             instance = this;
         }
 
 
     }
 
-    public void startReading(string text) {
+    private void Start()
+    {
+        audioSource = FindObjectOfType<AudioSource>();
+        myGameManager = FindObjectOfType<GameManager>();
+    }
+
+    public void startReading(string text)
+    {
         //Entrar al modo Nota
         if (PlayerMovement.sharedInstance.isReading == false)
         {
             setText(text);
             scrollbar.value = 1;
-            PlayerMovement.sharedInstance.isReading = true;
-            audioSource.PlayOneShot(noteOpenSound);
 
-            noteCanvas.enabled = true;
-            
+            myGameManager.displayNote();
+
+            audioSource.PlayOneShot(noteOpenSound);
         }
     }
 
-    void stopReading() {
-        PlayerMovement.sharedInstance.isReading = false;
-        audioSource.PlayOneShot(noteCloseSound);
-        noteCanvas.enabled = false;
+    void stopReading()
+    {
+
+        if (PlayerMovement.sharedInstance.isReading)
+        {
+            myGameManager.resumeGame();
+            audioSource.PlayOneShot(noteCloseSound);
+        }
+
+
     }
 
     private void scrollInput(Vector2 input)
@@ -93,12 +106,12 @@ public class NoteReader : PlayerComponent
             }
         };
 
-        pc.Normal.Cancel.performed += ctx => {
-            if (PlayerMovement.sharedInstance.isReading)
-                stopReading();
+        pc.Normal.Cancel.performed += ctx =>
+        {
+            stopReading();
         };
 
-      
+
 
     }
 

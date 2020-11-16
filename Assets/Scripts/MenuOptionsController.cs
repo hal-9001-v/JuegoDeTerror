@@ -22,11 +22,14 @@ public class MenuOptionsController : MonoBehaviour
     public Slider mouseSlider;
     public Slider volumeSlider;
 
+    SaveManager mySaveManager;
 
     StatsData myData;
 
     private void Start()
     {
+
+        mySaveManager = FindObjectOfType<SaveManager>();
 
         if (type == OptionType.language)
         {
@@ -49,12 +52,12 @@ public class MenuOptionsController : MonoBehaviour
 
     StatsData loadStatsObject()
     {
-        return SaveManager.loadStats();
+        return mySaveManager.loadStats();
     }
 
     void saveStatsObject(StatsData data)
     {
-        SaveManager.saveStats(myData);
+        mySaveManager.saveStats(myData);
     }
 
     public void loadSettingsValues()

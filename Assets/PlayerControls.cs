@@ -89,6 +89,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""InventoryAxis"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""bc15f16f-b20a-4ed5-b5b2-2c68f9a716d3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -151,61 +159,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""right"",
                     ""id"": ""53184b49-15eb-4e99-add6-8e135cf59dbe"",
                     ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""fa70b49e-87e5-49c7-974a-47b33c59490b"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""3dac63b4-6e32-4cf9-994f-a714a82dba7d"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""f3f386c1-ca63-4c89-9419-9388c0e53752"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""59e669d6-0174-4c1e-be13-84b40eba1fe6"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""bcdb5e38-75d2-4ba6-8f4f-0f0ef9645653"",
-                    ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
@@ -458,7 +411,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""aafea083-e968-4dd7-a5eb-2687dcbe8dc8"",
-                    ""path"": ""<Keyboard>/escape"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
@@ -485,6 +438,83 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""672a6991-fe3f-4c0f-aa00-30743ceca4dd"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""8ae556e0-d424-4a6c-9ec6-6ada11d75bf6"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""3b4eb1db-54c0-47a1-9f8c-3c531e8187b0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""ba4e7f93-d95d-40cb-8316-e57b8d5f2c89"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""50b91abd-279a-4fa7-b5a3-fb233cb9b55d"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cb5959c7-323a-4bd8-bc00-d6453c8dcbc5"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f59fe5b4-c22c-4be0-a8f4-dba3fb3e4348"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""InventoryAxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -526,6 +556,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_KeyAxis = m_Normal.FindAction("KeyAxis", throwIfNotFound: true);
         m_Normal_Cancel = m_Normal.FindAction("Cancel", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
+        m_Normal_InventoryAxis = m_Normal.FindAction("InventoryAxis", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -584,6 +615,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_KeyAxis;
     private readonly InputAction m_Normal_Cancel;
     private readonly InputAction m_Normal_Pause;
+    private readonly InputAction m_Normal_InventoryAxis;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -597,6 +629,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @KeyAxis => m_Wrapper.m_Normal_KeyAxis;
         public InputAction @Cancel => m_Wrapper.m_Normal_Cancel;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
+        public InputAction @InventoryAxis => m_Wrapper.m_Normal_InventoryAxis;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -633,6 +666,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnPause;
+                @InventoryAxis.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
+                @InventoryAxis.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
+                @InventoryAxis.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -664,6 +700,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @InventoryAxis.started += instance.OnInventoryAxis;
+                @InventoryAxis.performed += instance.OnInventoryAxis;
+                @InventoryAxis.canceled += instance.OnInventoryAxis;
             }
         }
     }
@@ -688,5 +727,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnKeyAxis(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnInventoryAxis(InputAction.CallbackContext context);
     }
 }

@@ -14,12 +14,16 @@ public class TaskController : MonoBehaviour
     public Task currentTask { get; private set; }
     public Task safeTask { get; private set; }
 
+    SaveManager mySaveManager;
+
     private void Start()
     {
         if (instance == null)
         {
             instance = this;
             initialize();
+
+            mySaveManager = FindObjectOfType<SaveManager>();
 
         }
         else
@@ -77,7 +81,7 @@ public class TaskController : MonoBehaviour
     {
         safeTask = task;
 
-        SaveManager.SaveGame();
+        mySaveManager.SaveGame();
     }
 
     public void loadData(GameData myData)

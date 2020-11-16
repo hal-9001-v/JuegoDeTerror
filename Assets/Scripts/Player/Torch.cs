@@ -35,10 +35,15 @@ public class Torch : PlayerComponent
             else
             {
                 torch.enabled = false;
+
                 audioSource.PlayOneShot(torchOnOffSound);
             }
         }
 
+    }
+
+    public void setReadyToUse(bool b) {
+        readyToUse = b;
     }
 
     public override void setPlayerControls(PlayerControls pc)

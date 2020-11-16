@@ -1,26 +1,51 @@
 ﻿using UnityEngine;
 
-public class Door : KeyLock
+public class Door : Interactable
 {
 
     Animator myAnimator;
     private bool doorIsOpen;
+    private static KeyTaker keyTaker;
 
-
+    public Key neededKey;
 
     protected void Awake()
     {
+        if (keyTaker == null)
+            keyTaker = FindObjectOfType<KeyTaker>();
+
         myAnimator = GetComponent<Animator>();
 
         if (myAnimator == null)
         {
-            Debug.LogWarning("No Animator Component in Object");
+
+            myAnimator = GetComponentInParent<Animator>();
+
+            if (myAnimator == null)
+            {
+                myAnimator = GetComponentInChildren<Animator>();
+
+                if (myAnimator == null)
+                {
+                    Debug.LogWarning("No Animator Component in Object");
+                }
+            }
+
         }
 
     }
 
-    protected override void interactionAction()
+    public override void loadData(InteractableData myData)
     {
+        //No need to do anything
+    }
+
+    public override void interact()
+    {
+        if (neededKey != null)
+            if (!keyTaker.takenKeys.Contains(neededKey))
+                return;
+
         if (doorIsOpen)
         {
             doorIsOpen = false;
@@ -31,10 +56,5 @@ public class Door : KeyLock
             doorIsOpen = true;
             myAnimator.SetTrigger("OpenDoor");
         }
-    }
-
-    public override void loadData(InteractableData myData)
-    {
-        //No need to do anything
     }
 }

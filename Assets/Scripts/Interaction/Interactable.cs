@@ -7,11 +7,11 @@ public abstract class Interactable : MonoBehaviour
 {
     public Light myLight;
 
-    float maxIntensity;
+    protected float maxIntensity;
 
     Coroutine myCoroutine;
 
-    bool haveLight;
+    protected bool haveLight;
 
     public UnityEvent interactionActions;
     //Execute Event only once
@@ -60,28 +60,24 @@ public abstract class Interactable : MonoBehaviour
 
     public void selectForInteraction(bool b)
     {
-
-        if (b)
-        {
-            highLight(true);
-        }
-        else
-        {
-            highLight(false);
-        }
+        highLight(b);
     }
 
     public void highLight(bool b)
     {
         if (haveLight)
         {
+            myLight.enabled = b;
+
+
             if (b)
             {
-                myCoroutine = StartCoroutine(Highlighting());
+                //myCoroutine = StartCoroutine(Highlighting());
+                
             }
             else
             {
-                StopCoroutine(myCoroutine);
+                //StopCoroutine(myCoroutine);
             }
         }
 

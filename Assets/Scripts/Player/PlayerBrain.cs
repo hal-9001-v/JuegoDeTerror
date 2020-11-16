@@ -8,17 +8,19 @@ public class PlayerBrain : MonoBehaviour
     PlayerComponent[] myPlayerComponents;
     StatsComponent[] myStatsComponents;
 
+    SaveManager mySaveManager;
+
     private void Awake()
     {
         myPlayerControls = new PlayerControls();
+
+        myPlayerComponents = FindObjectsOfType<PlayerComponent>();
+        myStatsComponents = FindObjectsOfType<StatsComponent>();
+        mySaveManager = FindObjectOfType<SaveManager>();
     }
 
     private void Start()
     {
-        myPlayerComponents = FindObjectsOfType<PlayerComponent>();
-        myStatsComponents = FindObjectsOfType<StatsComponent>();
-
-
         foreach (PlayerComponent component in myPlayerComponents)
         {
             component.setPlayerControls(myPlayerControls);
@@ -35,6 +37,8 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
+
+
     private void OnEnable()
     {
         myPlayerControls.Enable();
@@ -47,7 +51,7 @@ public class PlayerBrain : MonoBehaviour
 
     public void setStatsValues()
     {
-        StatsData stats = SaveManager.loadStats();
+        StatsData stats = mySaveManager.loadStats();
 
         foreach (StatsComponent component in myStatsComponents)
         {

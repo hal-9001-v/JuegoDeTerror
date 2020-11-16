@@ -154,10 +154,6 @@ public class PlayerMovement : PlayerComponent
         }
     }
 
-    public void Kill()
-    {
-        GameManager.sharedInstance.GameOver();
-    }
 
     public override void setPlayerControls(PlayerControls pc)
     {

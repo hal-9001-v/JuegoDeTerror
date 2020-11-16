@@ -16,10 +16,24 @@ public class Note : Interactable
     private string provisional;
     private string result = "";                                               //Resultado de todos los párrafos de la nota
 
+    public TextAsset myTextAsset;
+
     private void Awake()
     {
 
-        loadText();
+        if (myLight != null)
+        {
+            haveLight = true;
+            maxIntensity = myLight.intensity;
+        }
+        else
+        {
+            haveLight = false;
+        }
+
+        //loadText();
+
+        result = myTextAsset.text;
 
         if (myNoteReader == null)
         {
@@ -48,8 +62,8 @@ public class Note : Interactable
 
     public override void interact()
     {
-        //myNoteReader.startReading(result);
-        myNoteReader.startReading("HEY");
+        myNoteReader.startReading(result);
+
         done = true;
     }
 
@@ -57,7 +71,8 @@ public class Note : Interactable
     {
         done = myData.interactionDone;
 
-        if (done && eventOnlyOnce) { 
+        if (done && eventOnlyOnce)
+        {
             //Do some stuff
 
         }

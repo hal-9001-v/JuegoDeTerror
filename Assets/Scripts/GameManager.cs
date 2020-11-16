@@ -6,6 +6,7 @@ public enum GameState
 {
     preLoad,
     pause,
+    note,
     inGame,
     gameOver
 }
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public static GameManager sharedInstance;
 
     bool paused;
+
+    bool canChangePause;
 
     private void Awake()
     {
@@ -63,39 +66,46 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void pauseState()
+    public void switchPause()
     {
-        Cursor.lockState = CursorLockMode.None;
-
-        paused = true;
-
-        Time.timeScale = 0;
-
-        if (myCanvasManager != null)
-        {
-            myCanvasManager.setPauseCanvas();
-        }
-
-        if (myPlayerBrain != null)
-            myPlayerBrain.enablePlayer(false);
-
-    }
-    
-    public void switchPause() {
 
         if (paused)
         {
             resumeGame();
 
         }
-        else {
+        else
+        {
             pauseGame();
         }
 
     }
 
+    void pauseState()
+    {
+        if (canChangePause)
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+            paused = true;
+
+            Time.timeScale = 0;
+
+            if (myCanvasManager != null)
+            {
+                myCanvasManager.setPauseCanvas();
+            }
+
+            if (myPlayerBrain != null)
+                myPlayerBrain.enablePlayer(false);
+        }
+    }
+
     void resumeState()
     {
+        canChangePause = true;
+        PlayerMovement.sharedInstance.isReading = false;
+
         paused = false;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -114,9 +124,7 @@ public class GameManager : MonoBehaviour
             myPlayerBrain.setStatsValues();
         }
 
-
     }
-
     void endState()
     {
         if (myCanvasManager != null)
@@ -128,6 +136,21 @@ public class GameManager : MonoBehaviour
             myPlayerBrain.enablePlayer(false);
 
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    void noteState()
+    {
+        canChangePause = false;
+        PlayerMovement.sharedInstance.isReading = true;
+
+        if (myCanvasManager != null)
+            myCanvasManager.setNoteCanvas();
+
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+
+        Cursor.lockState = CursorLockMode.None;
+
     }
 
     //Método que cambia a el estado menu
@@ -147,11 +170,12 @@ public class GameManager : MonoBehaviour
         setGameState(GameState.inGame);
     }
 
-    //Método que cambia a el estado gameOver
-    public void GameOver()
+    public void displayNote()
     {
-        setGameState(GameState.gameOver);
+        setGameState(GameState.note);
     }
+
+    //Método que cambia a el estado gameOver
 
     void setGameState(GameState newGameState)
     {
@@ -164,6 +188,11 @@ public class GameManager : MonoBehaviour
             case GameState.pause:
                 pauseState();
                 break;
+
+            case GameState.note:
+                noteState();
+                break;
+
 
             case GameState.gameOver:
                 endState();
@@ -182,4 +211,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMneu");
     }
+
 }
