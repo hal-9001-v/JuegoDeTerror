@@ -43,7 +43,7 @@ public class ObjectInteractor : PlayerComponent
 
             if (hit.collider.tag == "Interactable")
             {
-                Interactable auxInteractable = hit.collider.gameObject.GetComponent<Interactable>();
+                Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
                 if (selectedObject != auxInteractable)
                 {
                     if (auxInteractable != null)

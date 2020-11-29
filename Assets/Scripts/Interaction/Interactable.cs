@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public abstract class Interactable : MonoBehaviour
 {
+
+    //Highligthing only works if a light is assigned on inspector. Otherwise, nothing will happen.
+
     public Light myLight;
 
     protected float maxIntensity;
@@ -38,7 +41,8 @@ public abstract class Interactable : MonoBehaviour
 
     public abstract void interact();
 
-    public virtual void loadData(InteractableData myData) {
+    public virtual void loadData(InteractableData myData)
+    {
         done = myData.interactionDone;
         readyForInteraction = myData.readyForInteraction;
     }
@@ -72,12 +76,12 @@ public abstract class Interactable : MonoBehaviour
 
             if (b)
             {
-                //myCoroutine = StartCoroutine(Highlighting());
-                
+                myCoroutine = StartCoroutine(Highlighting());
+
             }
             else
             {
-                //StopCoroutine(myCoroutine);
+                StopCoroutine(myCoroutine);
             }
         }
 
@@ -85,38 +89,26 @@ public abstract class Interactable : MonoBehaviour
 
     public IEnumerator Highlighting()
     {
-        bool direction = true;
+        float changeFactor = maxIntensity * 0.1f;
+        float highLightValue = changeFactor;
 
-        myLight.intensity = 1;
+        myLight.intensity = maxIntensity;
 
         do
         {
-            if (myLight.intensity > 0.0f && myLight.intensity < maxIntensity)
-            {
-                if (direction)
-                {
-                    myLight.intensity += 1.0f;
-                }
-                else
-                {
-                    myLight.intensity -= 1.0f;
-                }
-            }
-            else
-            {
-                if (direction)
-                {
-                    myLight.intensity -= 1.0f;
-                }
-                else
-                {
-                    myLight.intensity += 1.0f;
-                    yield return new WaitForSeconds(1.0f);
-                }
 
-                direction = !direction;
+            if (myLight.intensity <= 0)
+            {
+                highLightValue = changeFactor;
             }
-            yield return new WaitForSeconds(0.02f);
+            else if (myLight.intensity >= maxIntensity)
+            {
+                highLightValue = -changeFactor;
+            }
+
+            myLight.intensity += highLightValue;
+
+            yield return new WaitForSeconds(0.1f);
 
         } while (true);
     }
@@ -126,11 +118,13 @@ public abstract class Interactable : MonoBehaviour
         return new InteractableData(gameObject.name, done, readyForInteraction);
     }
 
-    public void setReadyForInteraction(bool b) {
+    public void setReadyForInteraction(bool b)
+    {
         readyForInteraction = b;
     }
 
-    public void debugInteraction() {
-        Debug.Log("Interaction with "+ gameObject.name);
+    public void debugInteraction()
+    {
+        Debug.Log("Interaction with " + gameObject.name);
     }
 }
