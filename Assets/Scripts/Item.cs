@@ -5,23 +5,17 @@ using UnityEngine.UI;
 
 public class Item : MonoBehaviour
 {
-    public static Item sharedInstance;
 
-    public List<string> itemNames;
-    public List<Texture> itemIcons;
+    public string itemName;
+    public Texture itemIcon;
 
-    private void Awake()
+    public string GetItemName()
     {
-        sharedInstance = this;
+        return this.itemName;
     }
 
-    public string GetItemName(int index)
+    public Texture GetItemIcon()
     {
-        return this.itemNames[index];
-    }
-
-    public Texture GetItemIcon(int index)
-    {
-        return this.itemIcons[index];
+        return this.itemIcon;
     }
 }

@@ -97,6 +97,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TestButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""19817050-6a25-4c04-8f40-4731f9208e36"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -517,6 +525,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""InventoryAxis"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d17d76fb-5c71-4c01-9226-4fb82d99d21c"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""TestButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -557,6 +576,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_Cancel = m_Normal.FindAction("Cancel", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
         m_Normal_InventoryAxis = m_Normal.FindAction("InventoryAxis", throwIfNotFound: true);
+        m_Normal_TestButton = m_Normal.FindAction("TestButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -616,6 +636,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_Cancel;
     private readonly InputAction m_Normal_Pause;
     private readonly InputAction m_Normal_InventoryAxis;
+    private readonly InputAction m_Normal_TestButton;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -630,6 +651,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Normal_Cancel;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
         public InputAction @InventoryAxis => m_Wrapper.m_Normal_InventoryAxis;
+        public InputAction @TestButton => m_Wrapper.m_Normal_TestButton;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -669,6 +691,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InventoryAxis.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
                 @InventoryAxis.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
                 @InventoryAxis.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
+                @TestButton.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
+                @TestButton.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
+                @TestButton.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -703,6 +728,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InventoryAxis.started += instance.OnInventoryAxis;
                 @InventoryAxis.performed += instance.OnInventoryAxis;
                 @InventoryAxis.canceled += instance.OnInventoryAxis;
+                @TestButton.started += instance.OnTestButton;
+                @TestButton.performed += instance.OnTestButton;
+                @TestButton.canceled += instance.OnTestButton;
             }
         }
     }
@@ -728,5 +756,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnInventoryAxis(InputAction.CallbackContext context);
+        void OnTestButton(InputAction.CallbackContext context);
     }
 }

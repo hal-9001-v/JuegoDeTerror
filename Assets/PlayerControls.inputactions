@@ -84,6 +84,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TestButton",
+                    "type": "Button",
+                    "id": "19817050-6a25-4c04-8f40-4731f9208e36",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -502,6 +510,17 @@
                     "processors": "",
                     "groups": "Normal Scheme",
                     "action": "InventoryAxis",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d17d76fb-5c71-4c01-9226-4fb82d99d21c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal Scheme",
+                    "action": "TestButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

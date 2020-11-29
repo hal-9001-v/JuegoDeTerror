@@ -5,6 +5,4 @@ using UnityEngine;
 public abstract class PlayerComponent : MonoBehaviour
 {
     public abstract void setPlayerControls(PlayerControls pc);
-    
-
 }

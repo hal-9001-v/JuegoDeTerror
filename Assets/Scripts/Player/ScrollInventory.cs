@@ -7,16 +7,29 @@ using TMPro;
 //PlayerComponent inheritance makes input interaction possible!
 public class ScrollInventory : PlayerComponent
 {
+    public static ScrollInventory sharedInstance;
+
     public Item selectedItem { get; private set; }
+    public List<Item> currentItems;
     public RawImage image;
     public TextMeshProUGUI text;
     public int currentIndex;
 
+    private void Awake()
+    {
+        if(sharedInstance == null)
+        {
+            sharedInstance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        currentIndex = 0;
-        SetItem(currentIndex);
+        currentItems = new List<Item>();
+        
+        currentIndex = currentItems.Count;
+        image.CrossFadeAlpha(0.0f, 0.0f, false);
     }
 
     void upPressed()
@@ -35,11 +48,43 @@ public class ScrollInventory : PlayerComponent
         ChangeItem(false);
     }
 
+    public void AddItem(Item newItem)
+    {
+        currentItems.Add(newItem);
+
+        if (currentItems.Count == 1)
+        {
+            image.CrossFadeAlpha(1.0f, 0.0f, false);
+            SetItem(0);
+        }
+    }
+
+    public void DeleteItem(Item newItem)
+    {
+        currentItems.Remove(newItem);
+
+        ChangeItem(true);
+    }
+
+    public IEnumerator NameFadeOut()
+    {
+        int count = 0;
+
+        if (count == 0)
+        {
+            yield return new WaitForSeconds(3.0f);
+            count++;
+        }
+
+        text.CrossFadeAlpha(0f, 2.0f, false);
+        yield return null;
+    }
+
     public void ChangeItem(bool direction)
     {
         if(direction)
         {
-            if(Item.sharedInstance.itemIcons.Count - 1 == currentIndex)
+            if(currentItems.Count - 1 == currentIndex)
             {
                 currentIndex = 0;
             }
@@ -52,7 +97,7 @@ public class ScrollInventory : PlayerComponent
         {
             if (currentIndex == 0)
             {
-                currentIndex = Item.sharedInstance.itemIcons.Count - 1;
+                currentIndex = currentItems.Count - 1;
             }
             else
             {
@@ -65,8 +110,11 @@ public class ScrollInventory : PlayerComponent
 
     public void SetItem(int index)
     {
-        image.texture = Item.sharedInstance.itemIcons[index];
-        text.text = Item.sharedInstance.itemNames[index];
+        text.CrossFadeAlpha(1.0f, 0.0f, false);
+        image.texture = currentItems[index].itemIcon;
+        text.text = currentItems[index].itemName;
+
+        StartCoroutine(NameFadeOut());
     }
 
     public override void setPlayerControls(PlayerControls pc)
@@ -82,5 +130,4 @@ public class ScrollInventory : PlayerComponent
 
         };
     }
-
 }

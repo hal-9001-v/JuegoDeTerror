@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,8 @@ public class Torch : PlayerComponent
     private Light torch;
     private AudioSource audioSource;
 
+    private Item torchItem;
+
     public bool readyToUse;
 
     bool torchIsLit;
@@ -15,11 +18,10 @@ public class Torch : PlayerComponent
     // Start is called before the first frame update
     void Start()
     {
+        torchItem = GetComponent<Item>();
         torch = GetComponent<Light>();
         torch.enabled = false;
-
         audioSource = GetComponent<AudioSource>();
-
     }
 
     void switchLight()
@@ -44,11 +46,14 @@ public class Torch : PlayerComponent
 
     public void setReadyToUse(bool b) {
         readyToUse = b;
+
+        ScrollInventory.sharedInstance.AddItem(torchItem);
     }
 
     public override void setPlayerControls(PlayerControls pc)
     {
         pc.Normal.Light.performed += ctx => switchLight();
+        pc.Normal.TestButton.performed += ctx => setReadyToUse(true);
     }
 
 }
