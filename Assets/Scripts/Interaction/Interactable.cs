@@ -6,7 +6,27 @@ using UnityEngine.Events;
 public abstract class Interactable : MonoBehaviour
 {
 
-    //Highligthing only works if a light is assigned on inspector. Otherwise, nothing will happen.
+    /*
+     a)How to make it work:
+        -Object must be tagged as interactable
+
+        -interactionActions are executed ONLY when object is interacted. Interaction happens when pressing Interaction button
+        over an interactable object
+
+        -Object NEEDS a collider and a mesh
+     
+    b)HighLighting:
+        -Highligthing only works if a light is assigned on inspector. Otherwise, nothing will happen. 
+
+        -HighLighting is enabled automatically when an object is ready to be interacted
+
+    c)Properties:
+        -Object can only be interacted if "readyForInteraction" is true.
+        
+        -If "eventOnlyOnce" is true, it can only be interacted once.
+     
+     */
+
 
     public Light myLight;
 
