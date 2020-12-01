@@ -2,6 +2,9 @@
 
 public class Door : Interactable
 {
+    /*
+     Door needs a key if "neededKey" is not null. Key must an object in scene.
+     */
 
     Animator myAnimator;
     private bool doorIsOpen;

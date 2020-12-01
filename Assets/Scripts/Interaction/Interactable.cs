@@ -25,6 +25,9 @@ public abstract class Interactable : MonoBehaviour
         
         -If "eventOnlyOnce" is true, it can only be interacted once.
      
+
+    NOTE: to make this Interactable "dissapear", add this.setActive(false) in "interactionActions" on inspector.
+
      */
 
 

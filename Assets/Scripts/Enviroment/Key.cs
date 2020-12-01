@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Key : Interactable
 {
+
+    /*
+     keys work just like Interactable. The only difference is it will add this key to the list of keys in "keyTaker" component
+     of player, which is used to open locked doors. "InteractionActions" are invoke aswell.
+
+     NOTE: to make this key "dissapear", add this.setActive(false) in "interactionActions" on inspector.
+     
+     */
+
     static KeyTaker keyTaker;
 
     private void Awake()
@@ -14,7 +23,6 @@ public class Key : Interactable
 
     public override void interact()
     {
-        Debug.Log("HOI");
         keyTaker.AddKey(this);
     }
 }
