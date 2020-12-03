@@ -9,11 +9,22 @@ public class ScrollInventory : PlayerComponent
 {
     public static ScrollInventory sharedInstance;
 
-    public Item selectedItem { get; private set; }
-    public List<Item> currentItems;
+    [Tooltip("Image of the inventory square")]
     public RawImage image;
+
+    [Tooltip("Item's text name behind the inventory square")]
     public TextMeshProUGUI text;
-    public int currentIndex;
+
+    [Header("Text's Fade")]
+
+    [Tooltip("Time before text start fading")]
+    public float timeUntilNameFadeHappens = 3.0f;
+
+    [Tooltip("Fade time")]
+    public float nameFadeTime = 2.0f;
+
+    private List<Item> currentItems;
+    private int currentIndex;
 
     private void Awake()
     {
@@ -23,13 +34,37 @@ public class ScrollInventory : PlayerComponent
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         currentItems = new List<Item>();
         
         currentIndex = currentItems.Count;
         image.CrossFadeAlpha(0.0f, 0.0f, false);
+        SetItem(currentIndex);
+
+        //Subscribing to GameEventManager events...
+        GameEventManager.sharedInstance.OnAddedItemToInventory += GameEventManager_OnAddedItemToInventory;
+        GameEventManager.sharedInstance.OnDeletedItemToInventory += GameEventManager_OnDeletedItemToInventory;
+    }
+
+    //When this object is destroyed we unsubscribed to avoid future null pointer errors
+    public void OnDestroy()
+    {
+        GameEventManager.sharedInstance.OnAddedItemToInventory -= GameEventManager_OnAddedItemToInventory;
+        GameEventManager.sharedInstance.OnDeletedItemToInventory -= GameEventManager_OnDeletedItemToInventory;
+    }
+
+    private void GameEventManager_OnDeletedItemToInventory(object sender, GameEventManager.OnUsedItemForInventory e)
+    {
+        if (currentItems.Count != 0)
+        {
+            DeleteItem(e.myItem);
+        }
+    }
+
+    private void GameEventManager_OnAddedItemToInventory(object sender, GameEventManager.OnUsedItemForInventory e)
+    {
+        AddItem(e.myItem);
     }
 
     void upPressed()
@@ -63,28 +98,30 @@ public class ScrollInventory : PlayerComponent
     {
         currentItems.Remove(newItem);
 
-        ChangeItem(true);
+        currentIndex = 0;
+        SetItem(currentIndex);
     }
 
+    //Coroutine that makes disappear item's name after x time
     public IEnumerator NameFadeOut()
     {
         int count = 0;
 
         if (count == 0)
         {
-            yield return new WaitForSeconds(3.0f);
+            yield return new WaitForSeconds(timeUntilNameFadeHappens);
             count++;
         }
 
-        text.CrossFadeAlpha(0f, 2.0f, false);
+        text.CrossFadeAlpha(0f, nameFadeTime, false);
         yield return null;
     }
 
     public void ChangeItem(bool direction)
     {
-        if(direction)
+        if (direction)
         {
-            if(currentItems.Count - 1 == currentIndex)
+            if (currentItems.Count - 1 == currentIndex)
             {
                 currentIndex = 0;
             }
@@ -110,9 +147,20 @@ public class ScrollInventory : PlayerComponent
 
     public void SetItem(int index)
     {
+
         text.CrossFadeAlpha(1.0f, 0.0f, false);
-        image.texture = currentItems[index].itemIcon;
-        text.text = currentItems[index].itemName;
+        if (currentItems.Count != 0)
+        {
+            image.color = new Vector4(1, 1, 1, 1);
+            image.texture = currentItems[index].itemIcon;
+            text.text = currentItems[index].itemName;
+        }
+        else
+        {
+            image.texture = null;
+            image.color = new Vector4(0, 0, 0, 0);
+            text.text = "Empty";
+        }
 
         StartCoroutine(NameFadeOut());
     }

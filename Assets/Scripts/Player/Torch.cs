@@ -46,14 +46,21 @@ public class Torch : PlayerComponent
 
     public void setReadyToUse(bool b) {
         readyToUse = b;
-
-        ScrollInventory.sharedInstance.AddItem(torchItem);
     }
 
     public override void setPlayerControls(PlayerControls pc)
     {
         pc.Normal.Light.performed += ctx => switchLight();
-        pc.Normal.TestButton.performed += ctx => setReadyToUse(true);
+        pc.Normal.TestButton.performed += ctx =>
+        {
+            setReadyToUse(true);
+            GameEventManager.sharedInstance.AddedItemToInventoryEvent(torchItem);
+        };
+
+        pc.Normal.TestButton2.performed += ctx =>
+        {
+            GameEventManager.sharedInstance.DeletedItemToInventoryEvent(torchItem);
+        };
     }
 
 }

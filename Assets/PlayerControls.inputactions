@@ -92,6 +92,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TestButton2",
+                    "type": "Button",
+                    "id": "7ff72039-6df7-4b93-b8dd-4003d9680088",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -521,6 +529,17 @@
                     "processors": "",
                     "groups": "Normal Scheme",
                     "action": "TestButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73b905ba-b5e2-4e9e-b981-ef417e1dc13f",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal Scheme",
+                    "action": "TestButton2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
