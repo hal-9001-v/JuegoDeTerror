@@ -44,6 +44,7 @@ public class Door : Interactable
 
     public override void interact()
     {
+        /*
         if (inventory != null && inventory.selectedItem != null)
         {
             if (inventory.selectedItem.name != neededKey.name) {
@@ -52,7 +53,7 @@ public class Door : Interactable
             }
             
         }
-
+        */
         if (doorIsOpen)
         {
             doorIsOpen = false;
