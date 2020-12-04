@@ -13,16 +13,22 @@ public class Key : Interactable
      
      */
 
-    static KeyTaker keyTaker;
+    static ScrollInventory inventory;
 
     private void Awake()
     {
-        if (keyTaker == null)
-            keyTaker = FindObjectOfType<KeyTaker>();
+        if (inventory == null)
+        {
+            inventory = FindObjectOfType<ScrollInventory>();
+        }
     }
 
     public override void interact()
     {
-        keyTaker.AddKey(this);
+        Item key = new Item();
+
+        key.setKey(name);
+
+        inventory.AddItem(key);
     }
 }

@@ -48,7 +48,13 @@ public abstract class Interactable : MonoBehaviour
     //Event has been executed
     public bool done;
 
-    private void Awake()
+    static Transform playerTransform;
+
+    [Range(1, 500)]
+    public float highLightRange;
+    bool isLit;
+
+    protected void Awake()
     {
         if (myLight != null)
         {
@@ -58,6 +64,27 @@ public abstract class Interactable : MonoBehaviour
         else
         {
             haveLight = false;
+        }
+
+        if (playerTransform == null)
+            playerTransform = FindObjectOfType<PlayerMovement>().transform;
+    }
+
+
+    protected void FixedUpdate()
+    {
+        if (haveLight && playerTransform != null)
+        {
+
+            if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange)
+            {
+                highLight(true);
+            }
+            else
+            {
+                highLight(false);
+            }
+
         }
 
     }
@@ -87,7 +114,8 @@ public abstract class Interactable : MonoBehaviour
 
     public void selectForInteraction(bool b)
     {
-        highLight(b);
+        //highLight(b);
+        //This will be executed when player is staring at this object
     }
 
     public void highLight(bool b)
@@ -99,15 +127,26 @@ public abstract class Interactable : MonoBehaviour
 
             if (b)
             {
-                myCoroutine = StartCoroutine(Highlighting());
+
+                if (!isLit)
+                {
+                    myCoroutine = StartCoroutine(Highlighting());
+                    isLit = true;
+                }
 
             }
             else
             {
-                StopCoroutine(myCoroutine);
-            }
-        }
+                if (isLit)
+                {
+                    StopCoroutine(myCoroutine);
+                    isLit = false;
+                }
 
+
+            }
+
+        }
     }
 
     public IEnumerator Highlighting()
@@ -149,5 +188,11 @@ public abstract class Interactable : MonoBehaviour
     public void debugInteraction()
     {
         Debug.Log("Interaction with " + gameObject.name);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, highLightRange);
     }
 }

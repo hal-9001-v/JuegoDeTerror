@@ -9,6 +9,9 @@ public class Item : MonoBehaviour
     public string itemName;
     public Texture itemIcon;
 
+    public bool isKey;
+    public string name { get; private set; } 
+
     public string GetItemName()
     {
         return this.itemName;
@@ -18,4 +21,14 @@ public class Item : MonoBehaviour
     {
         return this.itemIcon;
     }
+
+    public void setKey(string name) {
+        isKey = true;
+
+        this.name = name;
+
+
+    }
+
+
 }

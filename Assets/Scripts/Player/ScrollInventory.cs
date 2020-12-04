@@ -26,6 +26,8 @@ public class ScrollInventory : PlayerComponent
     private List<Item> currentItems;
     private int currentIndex;
 
+    public Item selectedItem { get; private set;}
+
     private void Awake()
     {
         if(sharedInstance == null)
@@ -163,6 +165,8 @@ public class ScrollInventory : PlayerComponent
         }
 
         StartCoroutine(NameFadeOut());
+
+        selectedItem = currentItems[index];
     }
 
     public override void setPlayerControls(PlayerControls pc)

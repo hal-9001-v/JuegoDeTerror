@@ -8,14 +8,14 @@ public class Door : Interactable
 
     Animator myAnimator;
     private bool doorIsOpen;
-    private static KeyTaker keyTaker;
 
+    ScrollInventory inventory;
     public Key neededKey;
 
     protected void Awake()
     {
-        if (keyTaker == null)
-            keyTaker = FindObjectOfType<KeyTaker>();
+        if (inventory == null)
+            inventory = FindObjectOfType<ScrollInventory>();
 
         myAnimator = GetComponent<Animator>();
 
@@ -35,7 +35,6 @@ public class Door : Interactable
             }
 
         }
-
     }
 
     public override void loadData(InteractableData myData)
@@ -45,9 +44,14 @@ public class Door : Interactable
 
     public override void interact()
     {
-        if (neededKey != null)
-            if (!keyTaker.takenKeys.Contains(neededKey))
+        if (inventory != null && inventory.selectedItem != null)
+        {
+            if (inventory.selectedItem.name != neededKey.name) {
+                Debug.Log("Nope");
                 return;
+            }
+            
+        }
 
         if (doorIsOpen)
         {
