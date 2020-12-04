@@ -84,6 +84,7 @@ public class ObjectInteractor : PlayerComponent
         {
             if (selectedObject != null && selectedObject.readyForInteraction)
             {
+                Debug.Log("VAMONOS");
                 selectedObject.invokeInteractionActions();
 
             }
