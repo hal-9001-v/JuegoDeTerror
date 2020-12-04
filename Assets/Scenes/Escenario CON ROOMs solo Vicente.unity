@@ -3359,7 +3359,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86767047}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -5529,7 +5529,7 @@ GameObject:
   - component: {fileID: 140795444}
   - component: {fileID: 140795443}
   m_Layer: 0
-  m_Name: Dormitorios Room
+  m_Name: Pasillo
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5543,11 +5543,19 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140795441}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -985, y: 235, z: -2404}
+  m_LocalPosition: {x: 548, y: -9.521179, z: 410}
   m_LocalScale: {x: 1, y: 0.39948952, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1973466245}
-  m_RootOrder: 7
+  m_Children:
+  - {fileID: 1384308095}
+  - {fileID: 774673662}
+  - {fileID: 1497094435}
+  - {fileID: 1514710797}
+  - {fileID: 966641635}
+  - {fileID: 1375174619}
+  - {fileID: 1189701294}
+  - {fileID: 350246680}
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &140795443
 MonoBehaviour:
@@ -5562,8 +5570,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 1766554302}
-  - {fileID: 2098846616}
+  - {fileID: 1978154665}
+  - {fileID: 508652081}
+  - {fileID: 160717891}
+  - {fileID: 245610608}
+  - {fileID: 1527993211}
+  - {fileID: 1752712962}
+  - {fileID: 1814244680}
+  - {fileID: 805343678}
+  - {fileID: 546179515}
+  - {fileID: 1687917043}
   distance: 0
   weight: 1
   visited: 0
@@ -5598,8 +5614,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1003.2935, y: 142.94649, z: 770.9801}
-  m_Center: {x: -358.57578, y: 25.531532, z: -462.76508}
+  m_Size: {x: 43.028503, y: 142.94649, z: 294.828}
+  m_Center: {x: -526.37695, y: 25.531532, z: -224.68903}
 --- !u!1 &142091547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5793,6 +5809,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391222316}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &150480564
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 150480565}
+  - component: {fileID: 150480567}
+  - component: {fileID: 150480566}
+  m_Layer: 0
+  m_Name: Oficinas Room (8)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &150480565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150480564}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1018444981}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &150480566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150480564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &150480567
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150480564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 51.601562, y: 142.94649, z: 833.2031}
+  m_Center: {x: -456.41846, y: 25.531532, z: -534.05457}
 --- !u!1001 &155473696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6268,6 +6341,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 158759469}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &160717889
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160717890}
+  - component: {fileID: 160717892}
+  - component: {fileID: 160717891}
+  m_Layer: 0
+  m_Name: Dormitorios Room 2
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160717890
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160717889}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 294.11694, y: -9.521179, z: 627}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &160717891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160717889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &160717892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160717889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 141.05322, y: 142.94649, z: 239.99182}
+  m_Center: {x: -516.82715, y: 25.531532, z: -711.0953}
 --- !u!1001 &167465249
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8585,6 +8729,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 243019294}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &245610606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245610607}
+  - component: {fileID: 245610609}
+  - component: {fileID: 245610608}
+  m_Layer: 0
+  m_Name: Dormitorios Room 3
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &245610607
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245610606}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 491, y: -9.521179, z: 627}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245610608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245610606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &245610609
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245610606}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 141.05322, y: 142.94649, z: 239.99182}
+  m_Center: {x: -516.82715, y: 25.531532, z: -711.0953}
 --- !u!1001 &245859241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9261,7 +9476,7 @@ PrefabInstance:
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
@@ -10697,7 +10912,7 @@ PrefabInstance:
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
@@ -12143,6 +12358,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 348927035}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &350246679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 350246680}
+  - component: {fileID: 350246682}
+  - component: {fileID: 350246681}
+  m_Layer: 0
+  m_Name: Pasillo (8)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &350246680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350246679}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -384.9, y: 0, z: -137.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &350246681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350246679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &350246682
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350246679}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 533.61115, y: 142.94649, z: 37.982788}
+  m_Center: {x: -137.25278, y: 25.531532, z: -505.8604}
 --- !u!1001 &351958633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12523,6 +12795,46 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 359962539}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &360452636 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5775401255909395207, guid: 9bfce07b2a851d1489d67906eec25a37,
+    type: 3}
+  m_PrefabInstance: {fileID: 920822675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &360452638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360452636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11f33e16fc0a8469586a30396ceefd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myLight: {fileID: 0}
+  interactionActions:
+    m_PersistentCalls:
+      m_Calls: []
+  eventOnlyOnce: 0
+  readyForInteraction: 1
+  done: 0
+  neededKey: {fileID: 1404872162}
+--- !u!64 &360452639
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360452636}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -6272889511477299192, guid: 9f17ae4bda6089a42881adec51e43217, type: 3}
 --- !u!1001 &360858856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14994,7 +15306,7 @@ Transform:
   - {fileID: 133279046}
   - {fileID: 366903253}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &415127038
 PrefabInstance:
@@ -15753,6 +16065,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 438005986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &438968842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 438968843}
+  - component: {fileID: 438968845}
+  - component: {fileID: 438968844}
+  m_Layer: 0
+  m_Name: Oficinas Room (9)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &438968843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438968842}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1018444981}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &438968844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438968842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &438968845
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438968842}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 148.64856, y: 142.94649, z: 47.50232}
+  m_Center: {x: -361.58063, y: 25.531532, z: -926.90497}
 --- !u!1001 &445960371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16769,6 +17138,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 133279047}
         m_MethodName: setReadyForInteraction
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1404872160}
+        m_MethodName: SetActive
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18249,6 +18629,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 506729788}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &508652079
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 508652080}
+  - component: {fileID: 508652082}
+  - component: {fileID: 508652081}
+  m_Layer: 0
+  m_Name: Dormitorios Room 4
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &508652080
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508652079}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 149.8, y: -9.521179, z: 527.2}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &508652081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508652079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &508652082
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508652079}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 91.73865, y: 142.94649, z: 189.61377}
+  m_Center: {x: -541.48444, y: 25.531532, z: -685.90625}
 --- !u!1001 &510302611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20232,6 +20683,78 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 542237219}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &546179514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 546179517}
+  - component: {fileID: 546179516}
+  - component: {fileID: 546179515}
+  m_Layer: 0
+  m_Name: Pasillo Salida
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &546179515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546179514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  - {fileID: 2098846616}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &546179516
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546179514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 255.12054, y: 428.594, z: 46.8396}
+  m_Center: {x: -724.0321, y: -127.868034, z: -823.19226}
+--- !u!4 &546179517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 546179514}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23, y: 235, z: -2069}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &557067480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23114,6 +23637,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 630289482}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &631264858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 631264859}
+  m_Layer: 0
+  m_Name: Laboratorios
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &631264859
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631264858}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 830, y: 214.5, z: -820}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2107838659}
+  - {fileID: 1724468421}
+  - {fileID: 816235323}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &631701890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24162,6 +24718,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6340312824352457827, guid: 6ecbe61afb561b5458f1febc8afe45d3,
     type: 3}
   m_PrefabInstance: {fileID: 657218454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &662210964 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+    type: 3}
+  m_PrefabInstance: {fileID: 920822675}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &662933987
 PrefabInstance:
@@ -27877,6 +28439,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 766098131}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &774673661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774673662}
+  - component: {fileID: 774673664}
+  - component: {fileID: 774673663}
+  m_Layer: 0
+  m_Name: Pasillo (2)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &774673662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774673661}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &774673663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774673661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &774673664
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774673661}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 245.3977, y: 142.94649, z: 43.746216}
+  m_Center: {x: -668.0149, y: 25.531532, z: -350.22992}
 --- !u!1001 &776888278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29349,6 +29968,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 662933987}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &805343676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805343677}
+  - component: {fileID: 805343679}
+  - component: {fileID: 805343678}
+  m_Layer: 0
+  m_Name: Dormitorios Room 1
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &805343677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805343676}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 294.1, y: -9.521179, z: 818.4}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805343678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805343676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &805343679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805343676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 186.7193, y: 142.94649, z: 90.37695}
+  m_Center: {x: -588.9746, y: 25.531532, z: -636.28784}
 --- !u!1001 &807561099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29634,6 +30324,151 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4506aa3fa85de45b851f4dfd5ece87, type: 3}
+--- !u!1 &816235322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816235323}
+  - component: {fileID: 816235325}
+  - component: {fileID: 816235324}
+  m_Layer: 0
+  m_Name: Laboratorios Room 3
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816235323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816235322}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -481}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 631264859}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816235324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816235322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1724468422}
+  - {fileID: 1620932810}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &816235325
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816235322}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 231.29651, y: 73.05963, z: 233.57788}
+  m_Center: {x: 54.19574, y: -34.424408, z: -192.05554}
+--- !u!1 &816299878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816299879}
+  - component: {fileID: 816299881}
+  - component: {fileID: 816299880}
+  m_Layer: 0
+  m_Name: Almacen Room S
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816299879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816299878}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 879, y: 34.67804, z: 558}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1503828976}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816299880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816299878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1672111295}
+  - {fileID: 1620932810}
+  - {fileID: 1698117346}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &816299881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816299878}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 591.04346, y: 96.88367, z: 314.26562}
+  m_Center: {x: -1147.3535, y: -57.09375, z: -942.5654}
 --- !u!1001 &817190144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33775,6 +34610,115 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 920217504}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &920822675
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1515952925}
+    m_Modifications:
+    - target: {fileID: 3478875018379346660, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524067533928689252, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_Name
+      value: Dorms Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 3524067533928689252, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    - target: {fileID: 3596768739151872816, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1487.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 55.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1852.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90.00001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1657.1952
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2396.625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4297507634652525790, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2000.0001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4740244513909646134, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5775401255909395207, guid: 9bfce07b2a851d1489d67906eec25a37,
+        type: 3}
+      propertyPath: m_TagString
+      value: Interactable
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9bfce07b2a851d1489d67906eec25a37, type: 3}
 --- !u!1001 &921801843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33870,6 +34814,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 310343049}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &926292263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 926292264}
+  - component: {fileID: 926292266}
+  - component: {fileID: 926292265}
+  m_Layer: 0
+  m_Name: Pasillo 1
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &926292264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926292263}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 413, y: -34, z: -61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1105638537}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &926292265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926292263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &926292266
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 926292263}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 52.277893, y: 108.63881, z: 582.7048}
+  m_Center: {x: -459.5632, y: 42.68537, z: -404.55234}
 --- !u!1001 &933098907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34915,6 +35916,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 966121665}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &966641634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966641635}
+  - component: {fileID: 966641637}
+  - component: {fileID: 966641636}
+  m_Layer: 0
+  m_Name: Pasillo (5)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966641635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966641634}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -342, y: 0, z: -203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &966641636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966641634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &966641637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966641634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 677.44403, y: 142.94649, z: 40.768066}
+  m_Center: {x: -209.16922, y: 25.531532, z: -537.10425}
 --- !u!1001 &966854616
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35130,7 +36188,7 @@ PrefabInstance:
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7565997972845034886, guid: 98ec6d4c01da2504ab3be022026c2ef2,
         type: 3}
@@ -35154,6 +36212,78 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98ec6d4c01da2504ab3be022026c2ef2, type: 3}
+--- !u!1 &969857384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969857385}
+  - component: {fileID: 969857387}
+  - component: {fileID: 969857386}
+  m_Layer: 0
+  m_Name: Oficinas Room 4
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969857385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969857384}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 748, y: -10.199585, z: 367}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &969857386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969857384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 2011314957}
+  - {fileID: 1199711977}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &969857387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969857384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 340.73956, y: 142.94649, z: 157.25708}
+  m_Center: {x: -454.00937, y: 25.531532, z: -149.80383}
 --- !u!1001 &977315659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37030,6 +38160,80 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1017338782}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1018444980
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018444981}
+  - component: {fileID: 1018444983}
+  - component: {fileID: 1018444982}
+  m_Layer: 0
+  m_Name: Oficinas Room p1
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018444981
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018444980}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 42, y: -10.199585, z: 545.1306}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children:
+  - {fileID: 150480565}
+  - {fileID: 438968843}
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018444982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018444980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1766554302}
+  - {fileID: 1758062057}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1018444983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018444980}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 143.51038, y: 142.94649, z: 50.292114}
+  m_Center: {x: -359.61456, y: 25.531532, z: -147.78223}
 --- !u!1001 &1019176056
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37350,6 +38554,7 @@ Transform:
   m_Children:
   - {fileID: 1788878770}
   - {fileID: 228369191}
+  - {fileID: 1404872161}
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37638,6 +38843,78 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1057292368}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1059089735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1059089736}
+  - component: {fileID: 1059089738}
+  - component: {fileID: 1059089737}
+  m_Layer: 0
+  m_Name: Oficinas Room 3
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1059089736
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059089735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 392.04175, y: -10.199585, z: 985}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1059089737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059089735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1766554302}
+  - {fileID: 1997377766}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1059089738
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1059089735}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 351.4378, y: 142.94649, z: 166.36816}
+  m_Center: {x: -556.8662, y: 25.531532, z: -763.48694}
 --- !u!1001 &1059202230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39321,6 +40598,79 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4506aa3fa85de45b851f4dfd5ece87, type: 3}
+--- !u!1 &1105638536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1105638537}
+  - component: {fileID: 1105638539}
+  - component: {fileID: 1105638538}
+  m_Layer: 0
+  m_Name: Pasillo Espera Presala Room
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1105638537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105638536}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -919, y: 176.94012, z: -474.7151}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children:
+  - {fileID: 926292264}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1105638538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105638536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1568878108}
+  - {fileID: 1853900355}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1105638539
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105638536}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 684.8034, y: 109.63021, z: 50.292114}
+  m_Center: {x: 267.80118, y: 8.87339, z: -147.78223}
 --- !u!1001 &1105807654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41518,6 +42868,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1185223302}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1189701293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1189701294}
+  - component: {fileID: 1189701296}
+  - component: {fileID: 1189701295}
+  m_Layer: 0
+  m_Name: Pasillo (7)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1189701294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189701293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -342, y: 0, z: -203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189701295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189701293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1189701296
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189701293}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 251.7063, y: 142.94649, z: 42.747192}
+  m_Center: {x: -35.523315, y: 25.531532, z: -95.73932}
 --- !u!1001 &1192086375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41598,6 +43005,81 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1192086375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1199711975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1199711976}
+  - component: {fileID: 1199711978}
+  - component: {fileID: 1199711977}
+  m_Layer: 0
+  m_Name: Oficinas Room p2
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1199711976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199711975}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 415, y: -10.199585, z: 368}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children:
+  - {fileID: 2035348396}
+  - {fileID: 1424114092}
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1199711977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199711975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1816902414}
+  - {fileID: 1687917043}
+  - {fileID: 969857386}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1199711978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1199711975}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 52.98639, y: 142.94649, z: 47.375122}
+  m_Center: {x: -329.49686, y: 25.531532, z: -149.24072}
 --- !u!1001 &1200688631
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43608,7 +45090,7 @@ PrefabInstance:
     - target: {fileID: 6052542340125325135, guid: cf61ab04fe0ecec498c14190bd530a40,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6052542340125325135, guid: cf61ab04fe0ecec498c14190bd530a40,
         type: 3}
@@ -47955,6 +49437,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1369682261}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1375174618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1375174619}
+  - component: {fileID: 1375174621}
+  - component: {fileID: 1375174620}
+  m_Layer: 0
+  m_Name: Pasillo (6)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1375174619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375174618}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -342, y: 0, z: -203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1375174620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375174618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1375174621
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375174618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 41.38214, y: 142.94649, z: 438.63123}
+  m_Center: {x: 108.861725, y: 25.531532, z: -293.68134}
 --- !u!4 &1375874290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6962428810052444885, guid: 2a4506aa3fa85de45b851f4dfd5ece87,
@@ -48341,6 +49880,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1383670211}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1384308094
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1384308095}
+  - component: {fileID: 1384308097}
+  - component: {fileID: 1384308096}
+  m_Layer: 0
+  m_Name: Pasillo (1)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1384308095
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384308094}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1384308096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384308094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1384308097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384308094}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.028503, y: 142.94649, z: 294.828}
+  m_Center: {x: -526.37695, y: 25.531532, z: -224.68903}
 --- !u!1001 &1384768007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49181,6 +50777,131 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1399119676}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1404872160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1404872161}
+  - component: {fileID: 1404872165}
+  - component: {fileID: 1404872164}
+  - component: {fileID: 1404872163}
+  - component: {fileID: 1404872162}
+  m_Layer: 0
+  m_Name: Dorms Key
+  m_TagString: Interactable
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1404872161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404872160}
+  m_LocalRotation: {x: -0, y: -0.65019405, z: -0, w: 0.7597683}
+  m_LocalPosition: {x: -18.8, y: -125.4, z: 690.7}
+  m_LocalScale: {x: 9.1441, y: 19.997545, z: 1}
+  m_Children:
+  - {fileID: 1870507931}
+  m_Father: {fileID: 1041734136}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -81.11201, z: 0}
+--- !u!114 &1404872162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404872160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myLight: {fileID: 1870507932}
+  interactionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1404872160}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventOnlyOnce: 1
+  readyForInteraction: 1
+  done: 0
+--- !u!65 &1404872163
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404872160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1404872164
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404872160}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1404872165
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404872160}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1405380778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50072,6 +51793,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1423650313}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1424114091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1424114092}
+  - component: {fileID: 1424114094}
+  - component: {fileID: 1424114093}
+  m_Layer: 0
+  m_Name: Oficinas Room (9)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1424114092
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424114091}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 85, y: 0, z: 293}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1199711976}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1424114093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424114091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1424114094
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1424114091}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 340.94977, y: 142.94649, z: 42.169678}
+  m_Center: {x: -265.43002, y: 25.531532, z: -929.5713}
 --- !u!4 &1424982827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5741796510066967002, guid: b26b7207bbf6bfe4e9c87d8a7cdf7dab,
@@ -51437,6 +53215,45 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1467075288}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1471354958
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1471354959}
+  m_Layer: 0
+  m_Name: Dormitorios
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1471354959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471354958}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1279.117, y: 244.52118, z: -2804.0625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 140795442}
+  - {fileID: 805343677}
+  - {fileID: 160717890}
+  - {fileID: 245610607}
+  - {fileID: 508652080}
+  - {fileID: 1752712961}
+  - {fileID: 1814244679}
+  - {fileID: 1978154664}
+  - {fileID: 1527993210}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1477196002
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52102,6 +53919,136 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1490064536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1497045974
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497045977}
+  - component: {fileID: 1497045976}
+  - component: {fileID: 1497045975}
+  m_Layer: 0
+  m_Name: Pasillo Espera Lab Room
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1497045975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497045974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1853900355}
+  - {fileID: 2107838660}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1497045976
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497045974}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 685.74243, y: 109.63021, z: 50.292114}
+  m_Center: {x: -165.10791, y: 8.87339, z: -147.78223}
+--- !u!4 &1497045977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497045974}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 685.6802, y: 176.94012, z: -474.7151}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children:
+  - {fileID: 2105474051}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1497094434
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1497094435}
+  - component: {fileID: 1497094437}
+  - component: {fileID: 1497094436}
+  m_Layer: 0
+  m_Name: Pasillo (3)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1497094435
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497094434}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -94, y: 0, z: 47}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1497094436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497094434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1497094437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497094434}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 230.73743, y: 142.94649, z: 43.746216}
+  m_Center: {x: -675.34503, y: 25.531532, z: -350.22992}
 --- !u!1001 &1497324337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52393,6 +54340,41 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1502825792}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1503828975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1503828976}
+  m_Layer: 0
+  m_Name: Almacen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1503828976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503828975}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 207.35559, y: 179.82196, z: -1367.6917}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1672111294}
+  - {fileID: 1620932809}
+  - {fileID: 816299879}
+  - {fileID: 1699427368}
+  - {fileID: 1698117345}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1504060186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -52862,6 +54844,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c89d4915e875934c9acf124f7d46d2f, type: 3}
+--- !u!1 &1514710796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1514710797}
+  - component: {fileID: 1514710799}
+  - component: {fileID: 1514710798}
+  m_Layer: 0
+  m_Name: Pasillo (4)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1514710797
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514710796}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -342, y: 0, z: -203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 140795442}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1514710798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514710796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1514710799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514710796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 43.028564, y: 142.94649, z: 399.9812}
+  m_Center: {x: -526.37695, y: 25.531532, z: -317.53772}
 --- !u!1 &1515952924
 GameObject:
   m_ObjectHideFlags: 0
@@ -52898,6 +54937,7 @@ Transform:
   - {fileID: 1566893354}
   - {fileID: 1178155918}
   - {fileID: 1388306493}
+  - {fileID: 662210964}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53281,6 +55321,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1524814926}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1527993209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1527993210}
+  - component: {fileID: 1527993212}
+  - component: {fileID: 1527993211}
+  m_Layer: 0
+  m_Name: Dormitorios Room 8
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1527993210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527993209}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 784, y: -9.521179, z: 477}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527993211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527993209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1527993212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527993209}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 186.7193, y: 142.94649, z: 90.37695}
+  m_Center: {x: -588.9746, y: 25.531532, z: -636.28784}
 --- !u!1001 &1528031087
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53585,77 +55696,6 @@ PrefabInstance:
       objectReference: {fileID: 2800000, guid: 36d326ffdae3b8a4791c09a7bb09d248, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab4930c9aedfd664bab5a940927fe705, type: 3}
---- !u!1 &1532925643
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1532925644}
-  - component: {fileID: 1532925646}
-  - component: {fileID: 1532925645}
-  m_Layer: 0
-  m_Name: Atalaya Room
-  m_TagString: Room
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1532925644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532925643}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 525, y: 396.5, z: -820}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1973466245}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1532925645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532925643}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  neighbourRooms:
-  - {fileID: 1672111295}
-  distance: 0
-  weight: 1
-  visited: 0
-  previousRoom: {fileID: 0}
-  atEnter:
-    m_PersistentCalls:
-      m_Calls: []
-  atExit:
-    m_PersistentCalls:
-      m_Calls: []
-  lights: []
-  myMapNode: {fileID: 0}
---- !u!65 &1532925646
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532925643}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 170.70215, y: 173.95494, z: 138.04346}
-  m_Center: {x: -593.17615, y: -95.62939, z: -542.2864}
 --- !u!1001 &1538908253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54959,7 +56999,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.39948952, z: 1}
   m_Children: []
   m_Father: {fileID: 1973466245}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1568878108
 MonoBehaviour:
@@ -54977,6 +57017,8 @@ MonoBehaviour:
   - {fileID: 1853900355}
   - {fileID: 1672111295}
   - {fileID: 1766554302}
+  - {fileID: 2011314957}
+  - {fileID: 1105638538}
   distance: 0
   weight: 1
   visited: 0
@@ -55000,8 +57042,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 247.85678, y: 142.94649, z: 312.6577}
-  m_Center: {x: -40.855667, y: 25.531532, z: -233.60388}
+  m_Size: {x: 247.85678, y: 142.94649, z: 287.42932}
+  m_Center: {x: -40.855667, y: 25.531532, z: -220.98969}
 --- !u!1001 &1569832241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56538,6 +58580,80 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &1620932808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1620932809}
+  - component: {fileID: 1620932811}
+  - component: {fileID: 1620932810}
+  m_Layer: 0
+  m_Name: Almacen Room E
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1620932809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620932808}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1434, y: 34.67804, z: 547.69165}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1503828976}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1620932810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620932808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1698117346}
+  - {fileID: 1699427369}
+  - {fileID: 816299880}
+  - {fileID: 816235324}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1620932811
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620932808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 515.37164, y: 96.88367, z: 1102.1982}
+  m_Center: {x: -1148.0815, y: -57.09375, z: -548.5991}
 --- !u!1001 &1623485989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57821,7 +59937,7 @@ GameObject:
   - component: {fileID: 1672111296}
   - component: {fileID: 1672111295}
   m_Layer: 0
-  m_Name: Almacen Room
+  m_Name: Almacen Room W
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57835,11 +59951,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1672111293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 525, y: 214.5, z: -820}
+  m_LocalPosition: {x: 317.6444, y: 34.67804, z: 547.69165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1973466245}
-  m_RootOrder: 3
+  m_Father: {fileID: 1503828976}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1672111295
 MonoBehaviour:
@@ -57854,10 +59970,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 1853900355}
-  - {fileID: 2107838660}
+  - {fileID: 1698117346}
+  - {fileID: 1699427369}
+  - {fileID: 816299880}
   - {fileID: 1568878108}
-  - {fileID: 1532925645}
   distance: 0
   weight: 1
   visited: 0
@@ -57881,8 +59997,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1629.183, y: 96.88367, z: 1128.4976}
-  m_Center: {x: -585.8377, y: -57.09375, z: -561.7488}
+  m_Size: {x: 517.6646, y: 96.88367, z: 1102.1982}
+  m_Center: {x: -1141.5969, y: -57.09375, z: -548.5991}
 --- !u!1001 &1674692233
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58025,7 +60141,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1676740574
 PrefabInstance:
@@ -58977,6 +61093,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1683699663}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1687917041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687917042}
+  - component: {fileID: 1687917044}
+  - component: {fileID: 1687917043}
+  m_Layer: 0
+  m_Name: Oficinas Room 8
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1687917042
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687917041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 344.04175, y: -10.199585, z: 545.1306}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687917043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687917041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1758062057}
+  - {fileID: 1199711977}
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1687917044
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687917041}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 352.73138, y: 142.94649, z: 171.95483}
+  m_Center: {x: -100.22659, y: 25.531532, z: -924.17065}
 --- !u!1001 &1688598569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59078,6 +61267,154 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2116095991}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1698117344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1698117345}
+  - component: {fileID: 1698117347}
+  - component: {fileID: 1698117346}
+  m_Layer: 0
+  m_Name: Almacen Room Centro
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1698117345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698117344}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 879, y: 34.67804, z: 850}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1503828976}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1698117346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698117344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1672111295}
+  - {fileID: 1620932810}
+  - {fileID: 1699427369}
+  - {fileID: 816299880}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1698117347
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698117344}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 565.9673, y: 268.9945, z: 362.1266}
+  m_Center: {x: -1152.8525, y: 28.96167, z: -889.35736}
+--- !u!1 &1699427367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1699427368}
+  - component: {fileID: 1699427370}
+  - component: {fileID: 1699427369}
+  m_Layer: 0
+  m_Name: Almacen Room N
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1699427368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699427367}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 879, y: 34.67804, z: 1296}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1503828976}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1699427369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699427367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1672111295}
+  - {fileID: 1620932810}
+  - {fileID: 1698117346}
+  - {fileID: 1853900355}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1699427370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699427367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 591.04346, y: 96.88367, z: 396.52832}
+  m_Center: {x: -1147.3535, y: -57.09375, z: -943.8119}
 --- !u!1001 &1699689909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60796,6 +63133,78 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1168277777}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1724468420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1724468421}
+  - component: {fileID: 1724468423}
+  - component: {fileID: 1724468422}
+  m_Layer: 0
+  m_Name: Laboratorios Room 2
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1724468421
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724468420}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -243}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 631264859}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1724468422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724468420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 2107838660}
+  - {fileID: 816235324}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1724468423
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724468420}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 231.29651, y: 73.05963, z: 233.57788}
+  m_Center: {x: 54.19574, y: -34.424408, z: -192.05554}
 --- !u!1001 &1725129467
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62211,6 +64620,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1751912618}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1752712960
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752712961}
+  - component: {fileID: 1752712963}
+  - component: {fileID: 1752712962}
+  m_Layer: 0
+  m_Name: Dormitorios Room 5
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1752712961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752712960}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 453, y: -9.521179, z: 400.0625}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1752712962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752712960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1752712963
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752712960}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 189.16937, y: 142.94649, z: 88.52649}
+  m_Center: {x: -409.00772, y: 25.531532, z: -803.9919}
 --- !u!1001 &1753176360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62407,6 +64887,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 529040371}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1758062055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758062056}
+  - component: {fileID: 1758062058}
+  - component: {fileID: 1758062057}
+  m_Layer: 0
+  m_Name: Oficinas Room 7
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1758062056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758062055}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -18, y: -10.199585, z: 545.1306}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1758062057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758062055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1816902414}
+  - {fileID: 1018444982}
+  - {fileID: 1687917043}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1758062058
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758062055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 296.7669, y: 142.94649, z: 159.50122}
+  m_Center: {x: -72.244354, y: 25.531532, z: -933.2357}
 --- !u!1 &1766554300
 GameObject:
   m_ObjectHideFlags: 0
@@ -62419,7 +64972,7 @@ GameObject:
   - component: {fileID: 1766554303}
   - component: {fileID: 1766554302}
   m_Layer: 0
-  m_Name: Oficinas Room
+  m_Name: Oficinas Room 1
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62433,11 +64986,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766554300}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -985, y: 235, z: -1464}
+  m_LocalPosition: {x: 392.04175, y: -10.199585, z: 545.1306}
   m_LocalScale: {x: 1, y: 0.39948952, z: 1}
   m_Children: []
-  m_Father: {fileID: 1973466245}
-  m_RootOrder: 6
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1766554302
 MonoBehaviour:
@@ -62452,26 +65005,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 1568878108}
-  - {fileID: 140795443}
+  - {fileID: 2011314957}
+  - {fileID: 1059089737}
+  - {fileID: 1018444982}
   distance: 0
   weight: 1
   visited: 0
   previousRoom: {fileID: 0}
   atEnter:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1675100249}
-        m_MethodName: startPursuing
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1568878108}
-          m_ObjectArgumentAssemblyTypeName: Room, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   atExit:
     m_PersistentCalls:
       m_Calls: []
@@ -62488,8 +65031,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 936.36163, y: 142.94649, z: 935.7113}
-  m_Center: {x: -392.04172, y: 25.531532, z: -545.1307}
+  m_Size: {x: 344.82544, y: 142.94649, z: 161.03415}
+  m_Center: {x: -455.55103, y: 25.531532, z: -150.7481}
 --- !u!1001 &1766915824
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64473,6 +67016,77 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1813551629}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1814244678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814244679}
+  - component: {fileID: 1814244681}
+  - component: {fileID: 1814244680}
+  m_Layer: 0
+  m_Name: Dormitorios Room 6
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814244679
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814244678}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 294.11694, y: -9.521179, z: 400.0625}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814244680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814244678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1814244681
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814244678}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 92.92023, y: 142.94649, z: 186.80237}
+  m_Center: {x: 96.61087, y: 25.531532, z: -657.3234}
 --- !u!1001 &1814725989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64568,6 +67182,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1814725989}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1816902412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1816902413}
+  - component: {fileID: 1816902415}
+  - component: {fileID: 1816902414}
+  m_Layer: 0
+  m_Name: Oficinas Room 6
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1816902413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816902412}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 392.04175, y: -10.199585, z: 545.1306}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1816902414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816902412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1199711977}
+  - {fileID: 1758062057}
+  - {fileID: 1997377766}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1816902415
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816902412}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 359.95337, y: 142.94649, z: 257.82056}
+  m_Center: {x: -552.6084, y: 25.531532, z: -717.76074}
 --- !u!1001 &1820054062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65853,11 +68540,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 18615232}
+  - {fileID: 1699427369}
+  - {fileID: 1105638538}
+  - {fileID: 1497045975}
   - {fileID: 1156252362}
-  - {fileID: 1672111295}
-  - {fileID: 1568878108}
-  - {fileID: 2107838660}
+  - {fileID: 18615232}
   distance: 0
   weight: 1
   visited: 0
@@ -66554,6 +69241,98 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1732220212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1870507930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870507931}
+  - component: {fileID: 1870507932}
+  m_Layer: 0
+  m_Name: Spot Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1870507931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870507930}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 1.2600001, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1404872161}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!108 &1870507932
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870507930}
+  m_Enabled: 0
+  serializedVersion: 10
+  m_Type: 0
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.27668735, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 50
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1001 &1870934818
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -69619,13 +72398,15 @@ Transform:
   - {fileID: 18615231}
   - {fileID: 1156252361}
   - {fileID: 1853900354}
-  - {fileID: 1672111294}
-  - {fileID: 1532925644}
+  - {fileID: 1503828976}
   - {fileID: 1568878107}
-  - {fileID: 1766554301}
-  - {fileID: 140795442}
+  - {fileID: 1471354959}
   - {fileID: 2098846615}
-  - {fileID: 2107838659}
+  - {fileID: 546179517}
+  - {fileID: 631264859}
+  - {fileID: 1983478575}
+  - {fileID: 1497045977}
+  - {fileID: 1105638537}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69914,6 +72695,117 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1977412820}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1978154663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1978154664}
+  - component: {fileID: 1978154666}
+  - component: {fileID: 1978154665}
+  m_Layer: 0
+  m_Name: Dormitorios Room 7
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1978154664
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978154663}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 784, y: -9.521179, z: 675}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1471354959}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1978154665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978154663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 140795443}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1978154666
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978154663}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 91.73865, y: 142.94649, z: 189.61377}
+  m_Center: {x: -541.48444, y: 25.531532, z: -685.90625}
+--- !u!1 &1983478574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983478575}
+  m_Layer: 0
+  m_Name: Oficinas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983478575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983478574}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1377.0417, y: 245.19958, z: -2009.1306}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1766554301}
+  - {fileID: 2011314956}
+  - {fileID: 1059089736}
+  - {fileID: 969857385}
+  - {fileID: 1997377765}
+  - {fileID: 1816902413}
+  - {fileID: 1758062056}
+  - {fileID: 1687917042}
+  - {fileID: 1018444981}
+  - {fileID: 1199711976}
+  m_Father: {fileID: 1973466245}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1986886186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70288,6 +73180,78 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1997289491}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1997377764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1997377765}
+  - component: {fileID: 1997377767}
+  - component: {fileID: 1997377766}
+  m_Layer: 0
+  m_Name: Oficinas Room 5
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1997377765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997377764}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 392.04175, y: -10.199585, z: 811}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1997377766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997377764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 1059089737}
+  - {fileID: 1816902414}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &1997377767
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997377764}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 356.59064, y: 142.94649, z: 166.36816}
+  m_Center: {x: -554.2898, y: 25.531532, z: -763.48694}
 --- !u!1001 &2002963505
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70573,6 +73537,79 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2008303735}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2011314955
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011314956}
+  - component: {fileID: 2011314958}
+  - component: {fileID: 2011314957}
+  m_Layer: 0
+  m_Name: Oficinas Room 2
+  m_TagString: Room
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2011314956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011314955}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 748, y: -10.199585, z: 545.1306}
+  m_LocalScale: {x: 1, y: 0.39948952, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983478575}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2011314957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011314955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74e348760c90194dacdfa9362191922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourRooms:
+  - {fileID: 969857386}
+  - {fileID: 1568878108}
+  - {fileID: 1766554302}
+  distance: 0
+  weight: 1
+  visited: 0
+  previousRoom: {fileID: 0}
+  atEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  atExit:
+    m_PersistentCalls:
+      m_Calls: []
+  lights: []
+  myMapNode: {fileID: 0}
+--- !u!65 &2011314958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011314955}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 340.73956, y: 142.94649, z: 157.25708}
+  m_Center: {x: -454.00937, y: 25.531532, z: -149.80383}
 --- !u!4 &2015323041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3968386739524405836, guid: 2c89d4915e875934c9acf124f7d46d2f,
@@ -70853,6 +73890,63 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034118536}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2035348395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2035348396}
+  - component: {fileID: 2035348398}
+  - component: {fileID: 2035348397}
+  m_Layer: 0
+  m_Name: Oficinas Room (8)
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2035348396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035348395}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 86, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1199711976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035348397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035348395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2035348398
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035348395}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 42.428284, y: 142.94649, z: 531.1422}
+  m_Center: {x: -461.0051, y: 25.531532, z: -391.17816}
 --- !u!1001 &2038101405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73152,6 +76246,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a4506aa3fa85de45b851f4dfd5ece87, type: 3}
+--- !u!1 &2091600884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1729318202361757966, guid: 9bfce07b2a851d1489d67906eec25a37,
+    type: 3}
+  m_PrefabInstance: {fileID: 920822675}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2091600886
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091600884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2471382433259851431, guid: 9f17ae4bda6089a42881adec51e43217, type: 3}
 --- !u!1001 &2091960142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -73657,7 +76771,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.39948952, z: 1}
   m_Children: []
   m_Father: {fileID: 1973466245}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2098846616
 MonoBehaviour:
@@ -73672,7 +76786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 140795443}
+  - {fileID: 546179515}
   distance: 0
   weight: 1
   visited: 0
@@ -73983,6 +77097,63 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2104577838}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2105474050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105474051}
+  - component: {fileID: 2105474053}
+  - component: {fileID: 2105474052}
+  m_Layer: 0
+  m_Name: Pasillo 1
+  m_TagString: RoomCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2105474051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105474050}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 603, y: -34, z: -61}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1497045977}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2105474052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105474050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e963f69d77ca94da2eb934344457c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &2105474053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105474050}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 62.658447, y: 108.63881, z: 236.41791}
+  m_Center: {x: -454.37292, y: 42.68537, z: -235.66196}
 --- !u!1001 &2106862404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74090,7 +77261,7 @@ GameObject:
   - component: {fileID: 2107838661}
   - component: {fileID: 2107838660}
   m_Layer: 0
-  m_Name: Laboratorios Room
+  m_Name: Laboratorios Room 1
   m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74104,11 +77275,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107838658}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 830, y: 214.5, z: -820}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1973466245}
-  m_RootOrder: 9
+  m_Father: {fileID: 631264859}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2107838660
 MonoBehaviour:
@@ -74123,8 +77294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 1853900355}
-  - {fileID: 1672111295}
+  - {fileID: 1724468422}
+  - {fileID: 1497045975}
   distance: 0
   weight: 1
   visited: 0
@@ -74148,8 +77319,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 231.29651, y: 73.05963, z: 699.6379}
-  m_Center: {x: 54.19574, y: -34.424408, z: -425.08554}
+  m_Size: {x: 231.29651, y: 73.05963, z: 233.57788}
+  m_Center: {x: 54.19574, y: -34.424408, z: -192.05554}
 --- !u!1001 &2107855994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89304,7 +92475,7 @@ PrefabInstance:
     - target: {fileID: 8637643481636445788, guid: 461c4ddf874350445997db5d5ea6495f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8637643481636445788, guid: 461c4ddf874350445997db5d5ea6495f,
         type: 3}
