@@ -38,7 +38,7 @@ public class Torch : PlayerComponent
             {
                 torch.enabled = false;
 
-                audioSource.PlayOneShot(torchOnOffSound);
+                //audioSource.PlayOneShot(torchOnOffSound);
             }
         }
 

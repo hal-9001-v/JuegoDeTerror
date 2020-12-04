@@ -222,7 +222,7 @@ public class RoomTool : EditorWindow
         GUILayout.TextArea(listString, EditorStyles.linkLabel);
 
         GUILayout.BeginHorizontal();
-        if (GUILayout.Button("Add N. Rooms"))
+        if (GUILayout.Button("Add Rooms"))
         {
             List<Room> roomSelection = getObjectsFromSelection<Room>();
 
@@ -245,7 +245,7 @@ public class RoomTool : EditorWindow
 
         }
 
-        if (GUILayout.Button("Remove N. Rooms"))
+        if (GUILayout.Button("Remove Rooms"))
         {
             List<Room> roomSelection = getObjectsFromSelection<Room>();
 
@@ -257,6 +257,16 @@ public class RoomTool : EditorWindow
             cleanList<Room>(selectedRoom.neighbourRooms);
             EditorUtility.SetDirty(selectedRoom);
         }
+
+        GUILayout.EndHorizontal();
+        /*
+        if (GUILayout.Button("Select Neighbour Rooms"))
+        {
+
+            Selection.objects = selectedRoom.neighbourRooms.ToArray();
+        }
+        */
+        EditorGUILayout.Space();
 
         string[] popUpOptions = new string[selectedRoom.neighbourRooms.Count];
 
@@ -272,10 +282,6 @@ public class RoomTool : EditorWindow
             }
 
         }
-
-        GUILayout.EndHorizontal();
-
-        EditorGUILayout.Space();
 
         GUILayout.Label("Remove by selection", EditorStyles.boldLabel);
         GUILayout.BeginHorizontal();
