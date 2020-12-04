@@ -24,5 +24,8 @@ public class Key : Interactable
     public override void interact()
     {
         keyTaker.AddKey(this);
+
+        Item keyItem = GetComponent<Item>();
+        GameEventManager.sharedInstance.AddedItemToInventoryEvent(keyItem);
     }
 }

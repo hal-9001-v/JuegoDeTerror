@@ -105,6 +105,7 @@ GameObject:
   - component: {fileID: 8745943434765879117}
   - component: {fileID: 2383434414551774661}
   - component: {fileID: 3649921699538062011}
+  - component: {fileID: 1310101376031345007}
   m_Layer: 0
   m_Name: llave4 interac
   m_TagString: Interactable
@@ -206,3 +207,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.00331577, y: 0.0059760795, z: 0.02002376}
   m_Center: {x: 0.000014655001, y: 0, z: -0.0030762295}
+--- !u!114 &1310101376031345007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7088429725308085912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db2857875361934eadcff070a800dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: key4
+  itemIcon: {fileID: 0}
