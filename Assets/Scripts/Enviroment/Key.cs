@@ -25,7 +25,8 @@ public class Key : Item
     {
         if (inventory != null)
         {
-            inventory.AddItem(this);
+            //inventory.AddItem(this);
+            GameEventManager.sharedInstance.AddedItemToInventoryEvent(this);
         }
         else {
             Debug.LogWarning("No Inventory in scene!");

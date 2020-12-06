@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8651060394112198877}
   - component: {fileID: 4946527311277215976}
   - component: {fileID: 9117702652031274733}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: llave2 interac
   m_TagString: Interactable
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1233787396886412482}
   - component: {fileID: 7134460258422966422}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3539161856194224842}
   m_LocalRotation: {x: 0.50000024, y: -0.5, z: -0.5, w: 0.49999982}
-  m_LocalPosition: {x: 0.0397, y: 0.0002, z: -0.003816397}
+  m_LocalPosition: {x: 0.0202, y: 0.0002, z: -0.002}
   m_LocalScale: {x: 0.04950494, y: 0.04950494, z: 0.04950495}
   m_Children: []
   m_Father: {fileID: 1583912633171815294}
@@ -195,10 +195,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.91540945, g: 1, b: 0, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 4
+  m_Range: 30
+  m_SpotAngle: 90
+  m_InnerSpotAngle: 7
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -232,7 +232,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingLayerMask: 1
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0

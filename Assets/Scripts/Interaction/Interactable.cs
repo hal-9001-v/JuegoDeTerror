@@ -152,10 +152,12 @@ public abstract class Interactable : MonoBehaviour
 
     public IEnumerator Highlighting()
     {
-        float changeFactor = maxIntensity * 0.1f;
+        float changeFactor = maxIntensity * 0.05f;
         float highLightValue = changeFactor;
 
-        myLight.intensity = maxIntensity;
+        myLight.intensity = 0.0f;
+
+        yield return new WaitForSeconds(1.0f);
 
         do
         {

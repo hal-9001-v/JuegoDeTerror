@@ -105,7 +105,7 @@ public class ScrollInventory : PlayerComponent
 
     public void DeleteItem(Item newItem)
     {
-        currentItems.Remove(newItem);
+        currentItems.RemoveAt(currentIndex);
 
         currentIndex = 0;
         SetItem(currentIndex);

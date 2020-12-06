@@ -8,7 +8,9 @@ public class ObjectInteractor : PlayerComponent
 
     [Range(1, 200)]
     public float range;
+    public float minInteractDistance = 10.0f;
 
+    private float interactDistance;
     Interactable selectedObject;
 
     // Start is called before the first frame update
@@ -27,10 +29,7 @@ public class ObjectInteractor : PlayerComponent
     public void Update()
     {
         checkForObject();
-
     }
-
-
 
     public void checkForObject()
     {
@@ -43,23 +42,28 @@ public class ObjectInteractor : PlayerComponent
 
             if (hit.collider.tag == "Interactable")
             {
-                Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
-                if (selectedObject != auxInteractable)
-                {
-                    if (auxInteractable != null)
-                    {
+                interactDistance = Vector3.Distance(ray.origin, hit.transform.position);
 
-                        if (selectedObject != null)
+                if (interactDistance <= minInteractDistance)
+                {
+                    Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
+                    if (selectedObject != auxInteractable)
+                    {
+                        if (auxInteractable != null)
                         {
-                            selectedObject.selectForInteraction(false);
+
+                            if (selectedObject != null)
+                            {
+                                selectedObject.selectForInteraction(false);
+                            }
+
+                            selectedObject = auxInteractable;
+
+                            selectedObject.selectForInteraction(true);
                         }
 
-                        selectedObject = auxInteractable;
 
-                        selectedObject.selectForInteraction(true);
                     }
-
-
                 }
 
                 //Dont turn null selectedObject
