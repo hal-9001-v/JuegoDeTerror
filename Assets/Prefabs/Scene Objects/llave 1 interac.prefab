@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 8283646752779774040}
   - component: {fileID: 7652492464274067105}
   - component: {fileID: 139721551495552922}
-  - component: {fileID: 35920309212522793}
+  - component: {fileID: 3681638992662988792}
   m_Layer: 0
   m_Name: llave 1 interac
   m_TagString: Interactable
@@ -187,13 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myLight: {fileID: 642845715763874867}
-  interactionActions:
-    m_PersistentCalls:
-      m_Calls: []
-  eventOnlyOnce: 0
-  readyForInteraction: 1
-  done: 0
+  itemName: Key 1
+  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}
 --- !u!65 &139721551495552922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -207,7 +202,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.062321287, y: 0.019878529, z: 0.0081545}
   m_Center: {x: 0.009306693, y: 0.00048976485, z: -0.00012612995}
---- !u!114 &35920309212522793
+--- !u!114 &3681638992662988792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,8 +211,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 7635167783615859085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db2857875361934eadcff070a800dbb, type: 3}
+  m_Script: {fileID: 11500000, guid: cd21b853ce26bdb489ef27f95815285b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Key1
-  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}
+  myLight: {fileID: 642845715763874867}
+  interactionActions:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7652492464274067105}
+        m_MethodName: addToInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7635167783615859085}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventOnlyOnce: 1
+  readyForInteraction: 1
+  done: 0
+  highLightRange: 49

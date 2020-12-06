@@ -44,25 +44,43 @@ public class Door : Interactable
 
     public override void interact()
     {
-        /*
-        if (inventory != null && inventory.selectedItem != null)
-        {
-            if (inventory.selectedItem.name != neededKey.name) {
-                Debug.Log("Nope");
-                return;
-            }
-            
-        }
-        */
+        //Closing doors is always possible
         if (doorIsOpen)
         {
-            doorIsOpen = false;
-            myAnimator.SetTrigger("CloseDoor");
+            closeDoor();
+
         }
         else
         {
-            doorIsOpen = true;
-            myAnimator.SetTrigger("OpenDoor");
+            //If a key is needed and there is an inventory, check if key is selected in inventory
+            if (inventory != null && neededKey != null)
+            {
+
+                if (neededKey == inventory.selectedItem)
+                {
+                    openDoor();
+                }
+
+            }
+            //No key is needed, the door can be open every time
+            else
+            {
+                openDoor();
+            }
+
+
         }
+    }
+
+    void openDoor()
+    {
+        doorIsOpen = true;
+        myAnimator.SetTrigger("OpenDoor");
+    }
+
+    void closeDoor()
+    {
+        doorIsOpen = false;
+        myAnimator.SetTrigger("CloseDoor");
     }
 }

@@ -46,6 +46,7 @@ public abstract class Interactable : MonoBehaviour
     public bool readyForInteraction = true;
 
     //Event has been executed
+    [HideInInspector]
     public bool done;
 
     static Transform playerTransform;

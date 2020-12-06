@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Key : Interactable
+public class Key : Item
 {
 
     /*
-     keys work just like Interactable. The only difference is it will add this key to the list of keys in "keyTaker" component
-     of player, which is used to open locked doors. "InteractionActions" are invoke aswell.
-
+     * 
      NOTE: to make this key "dissapear", add this.setActive(false) in "interactionActions" on inspector.
      
      */
@@ -23,18 +21,15 @@ public class Key : Interactable
         }
     }
 
-    public override void interact()
+    public void addToInventory()
     {
-/*        Item key = new Item();
-
-        key.setKey(name);
-
-        inventory.AddItem(key);
-
-/*        keyTaker.AddKey(this);
-
-        Item keyItem = GetComponent<Item>();
-        GameEventManager.sharedInstance.AddedItemToInventoryEvent(keyItem);
-*/
+        if (inventory != null)
+        {
+            inventory.AddItem(this);
+        }
+        else {
+            Debug.LogWarning("No Inventory in scene!");
+        }
+        
     }
 }

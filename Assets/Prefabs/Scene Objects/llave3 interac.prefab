@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8134931986106038608}
   - component: {fileID: 6269541485801164186}
   - component: {fileID: 8682397834793429577}
+  - component: {fileID: 2184122226154230234}
   - component: {fileID: 8131718907978472233}
-  - component: {fileID: 208560264416838049}
   m_Layer: 0
   m_Name: llave3 interac
   m_TagString: Interactable
@@ -95,13 +95,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: Key 3
+  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}
+--- !u!114 &2184122226154230234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5476692379151854671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd21b853ce26bdb489ef27f95815285b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   myLight: {fileID: 7311546705255711730}
   interactionActions:
     m_PersistentCalls:
-      m_Calls: []
-  eventOnlyOnce: 0
+      m_Calls:
+      - m_Target: {fileID: 8682397834793429577}
+        m_MethodName: addToInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5476692379151854671}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventOnlyOnce: 1
   readyForInteraction: 1
   done: 0
+  highLightRange: 17
 --- !u!65 &8131718907978472233
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -115,20 +152,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0061104293, y: 0.010634839, z: 0.028541107}
   m_Center: {x: -0.00006034516, y: 0, z: -0.0052611143}
---- !u!114 &208560264416838049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5476692379151854671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2db2857875361934eadcff070a800dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: key3
-  itemIcon: {fileID: 0}
 --- !u!1 &7549598775077451060
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,11 +26,11 @@ public class ScrollInventory : PlayerComponent
     private List<Item> currentItems;
     private int currentIndex;
 
-    public Item selectedItem { get; private set;}
+    public Item selectedItem { get; private set; }
 
     private void Awake()
     {
-        if(sharedInstance == null)
+        if (sharedInstance == null)
         {
             sharedInstance = this;
         }
@@ -39,21 +39,28 @@ public class ScrollInventory : PlayerComponent
     void Start()
     {
         currentItems = new List<Item>();
-        
-        currentIndex = currentItems.Count;
+
+        currentIndex = 0;
         image.CrossFadeAlpha(0.0f, 0.0f, false);
         SetItem(currentIndex);
 
-        //Subscribing to GameEventManager events...
-        GameEventManager.sharedInstance.OnAddedItemToInventory += GameEventManager_OnAddedItemToInventory;
-        GameEventManager.sharedInstance.OnDeletedItemToInventory += GameEventManager_OnDeletedItemToInventory;
+        if (GameEventManager.sharedInstance != null)
+        {
+            //Subscribing to GameEventManager events...
+            GameEventManager.sharedInstance.OnAddedItemToInventory += GameEventManager_OnAddedItemToInventory;
+            GameEventManager.sharedInstance.OnDeletedItemToInventory += GameEventManager_OnDeletedItemToInventory;
+        }
+        
     }
 
     //When this object is destroyed we unsubscribed to avoid future null pointer errors
     public void OnDestroy()
     {
-        GameEventManager.sharedInstance.OnAddedItemToInventory -= GameEventManager_OnAddedItemToInventory;
-        GameEventManager.sharedInstance.OnDeletedItemToInventory -= GameEventManager_OnDeletedItemToInventory;
+        if (GameEventManager.sharedInstance != null) {
+            GameEventManager.sharedInstance.OnAddedItemToInventory -= GameEventManager_OnAddedItemToInventory;
+            GameEventManager.sharedInstance.OnDeletedItemToInventory -= GameEventManager_OnDeletedItemToInventory;
+        }
+        
     }
 
     private void GameEventManager_OnDeletedItemToInventory(object sender, GameEventManager.OnUsedItemForInventory e)
@@ -149,7 +156,6 @@ public class ScrollInventory : PlayerComponent
 
     public void SetItem(int index)
     {
-
         text.CrossFadeAlpha(1.0f, 0.0f, false);
         if (currentItems.Count != 0)
         {
@@ -166,7 +172,8 @@ public class ScrollInventory : PlayerComponent
 
         StartCoroutine(NameFadeOut());
 
-        selectedItem = currentItems[index];
+        if (index < currentItems.Count && index >= 0)
+            selectedItem = currentItems[index];
     }
 
     public override void setPlayerControls(PlayerControls pc)
