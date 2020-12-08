@@ -8,10 +8,11 @@ public class ObjectInteractor : PlayerComponent
 
     [Range(1, 200)]
     public float range;
-    public float minInteractDistance = 10.0f;
+    //public float minInteractDistance = 10.0f;
 
-    private float interactDistance;
+    //private float interactDistance;
     Interactable selectedObject;
+    Ray ray;
 
     // Start is called before the first frame update
     void Start()
@@ -33,36 +34,30 @@ public class ObjectInteractor : PlayerComponent
 
     public void checkForObject()
     {
-        Ray ray = myCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
+        ray = myCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.5f));
         RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction);
+        Debug.DrawRay(ray.origin, ray.direction * range);
 
         if (Physics.Raycast(ray.origin, ray.direction, out hit, range))
         {
-
+            Debug.DrawRay(transform.position, ray.direction);
             if (hit.collider.tag == "Interactable")
             {
-                interactDistance = Vector3.Distance(ray.origin, hit.transform.position);
 
-                if (interactDistance <= minInteractDistance)
+                Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
+                if (selectedObject != auxInteractable)
                 {
-                    Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
-                    if (selectedObject != auxInteractable)
+                    if (auxInteractable != null)
                     {
-                        if (auxInteractable != null)
+
+                        if (selectedObject != null)
                         {
-
-                            if (selectedObject != null)
-                            {
-                                selectedObject.selectForInteraction(false);
-                            }
-
-                            selectedObject = auxInteractable;
-
-                            selectedObject.selectForInteraction(true);
+                            selectedObject.selectForInteraction(false);
                         }
 
+                        selectedObject = auxInteractable;
 
+                        selectedObject.selectForInteraction(true);
                     }
                 }
 
@@ -78,7 +73,6 @@ public class ObjectInteractor : PlayerComponent
             selectedObject = null;
         }
 
-
     }
 
     private void interact()
@@ -88,17 +82,12 @@ public class ObjectInteractor : PlayerComponent
         {
             if (selectedObject != null && selectedObject.readyForInteraction)
             {
-                Debug.Log("VAMONOS");
                 selectedObject.invokeInteractionActions();
-
             }
 
         }
 
     }
-
-
-
 
     public override void setPlayerControls(PlayerControls pc)
     {

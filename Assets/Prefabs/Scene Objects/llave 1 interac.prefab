@@ -103,9 +103,9 @@ GameObject:
   - component: {fileID: 7115194872656450359}
   - component: {fileID: 6129851665002618002}
   - component: {fileID: 8283646752779774040}
-  - component: {fileID: 7652492464274067105}
   - component: {fileID: 139721551495552922}
   - component: {fileID: 3681638992662988792}
+  - component: {fileID: 8036848250205049934}
   m_Layer: 10
   m_Name: llave 1 interac
   m_TagString: Interactable
@@ -175,20 +175,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &7652492464274067105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7635167783615859085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Key 1
-  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}
 --- !u!65 &139721551495552922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -218,7 +204,7 @@ MonoBehaviour:
   interactionActions:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7652492464274067105}
+      - m_Target: {fileID: 8036848250205049934}
         m_MethodName: addToInventory
         m_Mode: 1
         m_Arguments:
@@ -244,3 +230,17 @@ MonoBehaviour:
   readyForInteraction: 1
   done: 0
   highLightRange: 49
+--- !u!114 &8036848250205049934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7635167783615859085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Key 1
+  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}

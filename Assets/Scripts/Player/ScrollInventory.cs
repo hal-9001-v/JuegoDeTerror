@@ -50,17 +50,18 @@ public class ScrollInventory : PlayerComponent
             GameEventManager.sharedInstance.OnAddedItemToInventory += GameEventManager_OnAddedItemToInventory;
             GameEventManager.sharedInstance.OnDeletedItemToInventory += GameEventManager_OnDeletedItemToInventory;
         }
-        
+
     }
 
     //When this object is destroyed we unsubscribed to avoid future null pointer errors
     public void OnDestroy()
     {
-        if (GameEventManager.sharedInstance != null) {
+        if (GameEventManager.sharedInstance != null)
+        {
             GameEventManager.sharedInstance.OnAddedItemToInventory -= GameEventManager_OnAddedItemToInventory;
             GameEventManager.sharedInstance.OnDeletedItemToInventory -= GameEventManager_OnDeletedItemToInventory;
         }
-        
+
     }
 
     private void GameEventManager_OnDeletedItemToInventory(object sender, GameEventManager.OnUsedItemForInventory e)
@@ -79,17 +80,24 @@ public class ScrollInventory : PlayerComponent
     void upPressed()
     {
         //Do some stuff when up is pressed
-        Debug.Log("Up");
 
         ChangeItem(true);
     }
 
     void downPressed()
     {
-        Debug.Log("Down");
         //Do some stuff when down is pressed
 
         ChangeItem(false);
+    }
+
+    void useItem()
+    {
+        if (selectedItem != null)
+        {
+            selectedItem.useItem();
+        }
+
     }
 
     public void AddItem(Item newItem)
@@ -187,6 +195,11 @@ public class ScrollInventory : PlayerComponent
             else if (verticalInput < 0)
                 downPressed();
 
+        };
+
+        pc.Normal.UseItem.performed += ctx =>
+        {
+            useItem();
         };
     }
 }

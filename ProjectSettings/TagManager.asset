@@ -11,6 +11,7 @@ TagManager:
   - RoomGroup
   - Interactable
   - Stairs
+  - RadioZone
   layers:
   - Default
   - TransparentFX

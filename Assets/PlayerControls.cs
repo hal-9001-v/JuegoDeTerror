@@ -113,6 +113,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""3b17d829-51e8-4ed1-a2c6-3706ca7a4722"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -555,6 +563,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""TestButton2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b14c144d-fe43-410a-9b7b-89923340cf06"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dbf3019c-8808-455c-94e2-3adf0b0ad9d3"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -597,6 +627,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_InventoryAxis = m_Normal.FindAction("InventoryAxis", throwIfNotFound: true);
         m_Normal_TestButton = m_Normal.FindAction("TestButton", throwIfNotFound: true);
         m_Normal_TestButton2 = m_Normal.FindAction("TestButton2", throwIfNotFound: true);
+        m_Normal_UseItem = m_Normal.FindAction("UseItem", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -658,6 +689,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_InventoryAxis;
     private readonly InputAction m_Normal_TestButton;
     private readonly InputAction m_Normal_TestButton2;
+    private readonly InputAction m_Normal_UseItem;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -674,6 +706,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @InventoryAxis => m_Wrapper.m_Normal_InventoryAxis;
         public InputAction @TestButton => m_Wrapper.m_Normal_TestButton;
         public InputAction @TestButton2 => m_Wrapper.m_Normal_TestButton2;
+        public InputAction @UseItem => m_Wrapper.m_Normal_UseItem;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -719,6 +752,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @TestButton2.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
                 @TestButton2.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
                 @TestButton2.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
+                @UseItem.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -759,6 +795,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @TestButton2.started += instance.OnTestButton2;
                 @TestButton2.performed += instance.OnTestButton2;
                 @TestButton2.canceled += instance.OnTestButton2;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
         }
     }
@@ -786,5 +825,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInventoryAxis(InputAction.CallbackContext context);
         void OnTestButton(InputAction.CallbackContext context);
         void OnTestButton2(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
     }
 }

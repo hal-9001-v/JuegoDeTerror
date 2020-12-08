@@ -37,8 +37,6 @@ public class PlayerBrain : MonoBehaviour
         }
     }
 
-
-
     private void OnEnable()
     {
         myPlayerControls.Enable();

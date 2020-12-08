@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 377547759743371611}
   - component: {fileID: 3644127033148081918}
   - component: {fileID: 1546561456082809396}
-  - component: {fileID: 5636126119386847849}
   - component: {fileID: 2206932332909702484}
+  - component: {fileID: 7127036400274427551}
   m_Layer: 0
   m_Name: libro3 interac
   m_TagString: Interactable
@@ -85,25 +85,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5636126119386847849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042162215606539233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd21b853ce26bdb489ef27f95815285b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myLight: {fileID: 0}
-  interactionActions:
-    m_PersistentCalls:
-      m_Calls: []
-  eventOnlyOnce: 0
-  readyForInteraction: 1
-  done: 0
 --- !u!65 &2206932332909702484
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -117,6 +98,29 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.01748051, y: 0.00409085, z: 0.020573199}
   m_Center: {x: 0.00031363498, y: 0.0013260848, z: -0.0002866001}
+--- !u!114 &7127036400274427551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042162215606539233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fedb66adc3c40ef409dc2ed7386231a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myLight: {fileID: 3177418176662923065}
+  interactionActions:
+    m_PersistentCalls:
+      m_Calls: []
+  eventOnlyOnce: 0
+  readyForInteraction: 1
+  done: 0
+  highLightRange: 54
+  textKey: 
+  paragraphs: []
+  myTextAsset: {fileID: 0}
 --- !u!1 &1265731015980506257
 GameObject:
   m_ObjectHideFlags: 0

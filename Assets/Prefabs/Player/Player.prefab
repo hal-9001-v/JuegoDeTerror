@@ -244,10 +244,10 @@ GameObject:
   - component: {fileID: 867739416012089041}
   - component: {fileID: 867739416012089054}
   - component: {fileID: 6408000727804878334}
-  - component: {fileID: 867739416012089052}
   - component: {fileID: 4178210260198594053}
+  - component: {fileID: 4219820130703139631}
   m_Layer: 8
-  m_Name: New Player
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -337,19 +337,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoom: {fileID: 0}
---- !u!114 &867739416012089052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 867739416012089053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5060dce465c7374eb1f9b3ea4f2de97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  takenKeys: []
 --- !u!114 &4178210260198594053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,6 +347,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe722fcf8f0c4b44b867d22c07838187, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4219820130703139631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867739416012089053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe93e3cc48e16a4d88e3844a2263209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6408000726566441887

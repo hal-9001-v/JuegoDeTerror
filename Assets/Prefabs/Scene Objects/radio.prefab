@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 4999784311681513496}
   - component: {fileID: 847543638287244491}
   - component: {fileID: -833787216922663474}
+  - component: {fileID: 7390218929718694697}
   m_Layer: 0
   m_Name: radio
   m_TagString: Interactable
@@ -119,7 +120,7 @@ Transform:
   m_GameObject: {fileID: 5632065776936067746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1039584, y: 0.1039584, z: 0.1039584}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 5912515004864694017}
   - {fileID: 2221050459704165826}
@@ -139,13 +140,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd21b853ce26bdb489ef27f95815285b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myLight: {fileID: 0}
+  myLight: {fileID: 6617854013798169328}
   interactionActions:
     m_PersistentCalls:
-      m_Calls: []
-  eventOnlyOnce: 0
+      m_Calls:
+      - m_Target: {fileID: 8038360896590412907}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8093355229508964851}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7390218929718694697}
+        m_MethodName: addToInventory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  eventOnlyOnce: 1
   readyForInteraction: 1
   done: 0
+  highLightRange: 66
 --- !u!65 &-833787216922663474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -159,6 +194,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5237736, y: 7.9825435, z: 3.144104}
   m_Center: {x: -3.4597192, y: 5.3382955, z: -5.06933}
+--- !u!114 &7390218929718694697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5632065776936067746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5171d0663d0e074ab64ba081cf966a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: Radio
+  itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}
+  text: {fileID: 0}
 --- !u!1 &8038360896590412907
 GameObject:
   m_ObjectHideFlags: 0
