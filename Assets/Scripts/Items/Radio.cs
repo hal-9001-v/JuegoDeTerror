@@ -7,47 +7,80 @@ public class Radio : Item
 {
 
     RadioTracker tracker;
-    public TextMeshProUGUI textMesh;
+    RadioController radioController;
+
     bool readyToCall = true;
-    
+
+    bool skipLine;
 
     private void Awake()
     {
         tracker = FindObjectOfType<RadioTracker>();
+        radioController = FindObjectOfType<RadioController>();
 
     }
 
     public override void useItem()
     {
-        if (tracker != null && textMesh != null && readyToCall ) {
-            StartCoroutine(typeText());
+        if (tracker != null && radioController != null)
+        {
+
+            if (readyToCall)
+            {
+                skipLine = false;
+                StartCoroutine(typeText());
+            }
+
+            else
+                skipLine = true;
+
         }
 
     }
 
-
-    IEnumerator typeText() {
+    
+    IEnumerator typeText()
+    {
+        radioController.show();
         readyToCall = false;
 
-        string[] sentences = tracker.text;
+        string[] sentences;
+        float delay;
+        if (tracker.currentZone != null)
+        {
+            sentences = tracker.currentZone.Text;
+            delay = tracker.currentZone.delay;
+        }
+        else {
+            sentences = new string[1];
 
-        foreach (string s in sentences) {
+            sentences[0] = "...";
+            delay = 0.1f;
+        }
+
+        foreach (string s in sentences)
+        {
 
             char[] characters = s.ToCharArray();
-            textMesh.text = "";
+            radioController.textMesh.text = "";
 
 
             for (int i = 0; i < characters.Length; i++)
             {
-                textMesh.text += characters[i];
+                radioController.textMesh.text += characters[i];
 
-                yield return new WaitForSeconds(tracker.delay);
+                if (!skipLine)
+                    yield return new WaitForSeconds(delay);
             }
+            skipLine = false;
 
             yield return new WaitForSeconds(0.5f);
 
         }
-        textMesh.text = "";
+        radioController.textMesh.text = "";
+
+        radioController.hide();
         readyToCall = true;
     }
+
 }
