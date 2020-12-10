@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Radio : Item
 {
@@ -46,10 +47,16 @@ public class Radio : Item
 
         string[] sentences;
         float delay;
+
         if (tracker.currentZone != null)
         {
             sentences = tracker.currentZone.Text;
             delay = tracker.currentZone.delay;
+
+            tracker.currentZone.startEvent.Invoke();
+
+            tracker.currentZone.done = true;
+
         }
         else {
             sentences = new string[1];
@@ -78,6 +85,12 @@ public class Radio : Item
 
         }
         radioController.textMesh.text = "";
+
+        if (tracker.currentZone != null) {
+            tracker.currentZone.endEvent.Invoke();
+        }
+
+
 
         radioController.hide();
         readyToCall = true;

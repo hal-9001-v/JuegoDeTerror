@@ -10,7 +10,12 @@ public class RadioTracker : MonoBehaviour
     {
         if (collision.gameObject.tag == "RadioZone")
         {
+            
             currentZone = collision.gameObject.GetComponent<RadioZone>();
+
+            if (currentZone.onlyOnce && currentZone.done) {
+                currentZone = null;
+            }
 
         }
     }

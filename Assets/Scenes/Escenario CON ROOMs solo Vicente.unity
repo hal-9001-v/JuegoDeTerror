@@ -26887,6 +26887,13 @@ MonoBehaviour:
   - We must hurry
   - There is no time to waste!
   delay: 0.1
+  startEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  endEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onlyOnce: 0
 --- !u!65 &748718790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42736,6 +42743,35 @@ MonoBehaviour:
   - This is the end
   - My only friend, you know?
   delay: 0.1
+  startEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1224529592}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  endEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1224529592}
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  onlyOnce: 0
 --- !u!65 &1224529594
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43613,6 +43649,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1580658455140162730, guid: cf61ab04fe0ecec498c14190bd530a40,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5038833660814899636, guid: cf61ab04fe0ecec498c14190bd530a40,
         type: 3}
       propertyPath: m_Enabled
@@ -43757,6 +43798,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8121153754971059865, guid: cf61ab04fe0ecec498c14190bd530a40,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8818266318911748142, guid: cf61ab04fe0ecec498c14190bd530a40,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf61ab04fe0ecec498c14190bd530a40, type: 3}
