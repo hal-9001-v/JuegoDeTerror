@@ -26,4 +26,10 @@ public class RadioTracker : MonoBehaviour
             currentZone = null;
         }
     }
+
+    //Ensure there is no active room
+    public void setZoneNull() {
+        currentZone = null;
+    }
+
 }

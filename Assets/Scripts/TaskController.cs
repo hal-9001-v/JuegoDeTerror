@@ -20,6 +20,7 @@ public class TaskController : MonoBehaviour
     {
         if (instance == null)
         {
+            
             instance = this;
             initialize();
 
@@ -45,6 +46,7 @@ public class TaskController : MonoBehaviour
     public void StartTask(Task task)
     {
         Debug.Log("Start Task");
+
         if (task == currentTask.nextTask)
         {
             setCurrentTask(task);
@@ -71,6 +73,8 @@ public class TaskController : MonoBehaviour
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
             textMesh.text = currentTask.name;
+
+            Debug.Log(currentTask.name);
 
             currentTask.startEvent.Invoke();
         }

@@ -129,7 +129,6 @@ GameObject:
   - component: {fileID: 1741766552840404152}
   - component: {fileID: 3719522148505185931}
   - component: {fileID: 3228734466681875833}
-  - component: {fileID: 5823578591977013368}
   m_Layer: 5
   m_Name: Radio Text
   m_TagString: Untagged
@@ -275,19 +274,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5823578591977013368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4750361259265342149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f785d6eb4e865114bb368e0878e1a992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstTask: {fileID: 0}
 --- !u!1 &5199924234986101210
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +386,6 @@ GameObject:
   - component: {fileID: 5199924235071305924}
   - component: {fileID: 5199924235071305927}
   - component: {fileID: 5199924235071305926}
-  - component: {fileID: 5199924235071305925}
   m_Layer: 5
   m_Name: Missions
   m_TagString: Untagged
@@ -546,19 +531,6 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5199924235071305925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5199924235071305979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f785d6eb4e865114bb368e0878e1a992, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstTask: {fileID: 0}
 --- !u!1 &5199924236330180319
 GameObject:
   m_ObjectHideFlags: 0

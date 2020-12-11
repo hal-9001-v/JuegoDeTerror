@@ -39,7 +39,7 @@ public class Radio : Item
 
     }
 
-    
+
     IEnumerator typeText()
     {
         radioController.show();
@@ -47,18 +47,20 @@ public class Radio : Item
 
         string[] sentences;
         float delay;
+        RadioZone currentZone = tracker.currentZone;
 
-        if (tracker.currentZone != null)
+        if (currentZone != null)
         {
-            sentences = tracker.currentZone.Text;
-            delay = tracker.currentZone.delay;
+            sentences = currentZone.Text;
+            delay = currentZone.delay;
 
-            tracker.currentZone.startEvent.Invoke();
+            currentZone.startEvent.Invoke();
 
-            tracker.currentZone.done = true;
+            currentZone.done = true;
 
         }
-        else {
+        else
+        {
             sentences = new string[1];
 
             sentences[0] = "...";
@@ -86,8 +88,9 @@ public class Radio : Item
         }
         radioController.textMesh.text = "";
 
-        if (tracker.currentZone != null) {
-            tracker.currentZone.endEvent.Invoke();
+        if (currentZone != null)
+        {
+            currentZone.endEvent.Invoke();
         }
 
 
