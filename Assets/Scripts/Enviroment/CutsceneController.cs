@@ -64,17 +64,20 @@ public class CutsceneController : MonoBehaviour
 
     IEnumerator deathScreen(float startTime, float frameTime)
     {
-        yield return new WaitForSeconds(startTime);
+        if (myImage != null) {
+            yield return new WaitForSeconds(startTime);
 
-        myImage.enabled = true;
+            myImage.enabled = true;
 
-        //Fade out (Get to Color)
-        for (float i = 0; i < 1; i += 0.01f)
-        {
-            myImage.color = new Color(0, 0, 0, i);
+            //Fade out (Get to Color)
+            for (float i = 0; i < 1; i += 0.01f)
+            {
+                myImage.color = new Color(0, 0, 0, i);
 
-            yield return new WaitForSeconds(frameTime);
+                yield return new WaitForSeconds(frameTime);
+            }
         }
+        
 
         restartGame();
     }

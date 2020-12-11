@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class RadioController : MonoBehaviour
+public class TextBox : MonoBehaviour
 {
     public RawImage image;
     public TextMeshProUGUI textMesh;

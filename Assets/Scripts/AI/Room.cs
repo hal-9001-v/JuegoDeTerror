@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +25,8 @@ public class Room : MonoBehaviour
     private Color dangerColor;
 
     public MapNode myMapNode;
+
+
 
     private void Awake()
     {
@@ -59,7 +61,8 @@ public class Room : MonoBehaviour
             l.color = safeColor;
         }
 
-        if (myMapNode != null) {
+        if (myMapNode != null)
+        {
             myMapNode.setSafe();
         }
 
@@ -96,6 +99,44 @@ public class Room : MonoBehaviour
     {
         lights = new List<Light>();
         neighbourRooms = new List<Room>();
+    }
+
+    private void OnDrawGizmos()
+    {
+
+        BoxCollider[] colliders = GetComponentsInChildren<BoxCollider>();
+
+
+        foreach (BoxCollider collider in colliders)
+        {
+            Handles.color = Color.blue;
+            Handles.Label(collider.bounds.center, weight.ToString());
+
+
+            if (Selection.Contains(gameObject))
+            {
+                Gizmos.color = Color.yellow;
+                Gizmos.DrawCube(collider.bounds.center, collider.bounds.size);
+            }
+            else
+            {
+                if (colliders.Length > 1)
+                {
+                    Gizmos.color = Color.blue;
+                    Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size);
+                }
+                else
+                {
+                    Gizmos.color = Color.green;
+                    Gizmos.DrawWireCube(collider.bounds.center, collider.bounds.size);
+                }
+
+            }
+
+
+        }
+
+
     }
 
 }

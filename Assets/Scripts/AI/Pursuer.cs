@@ -534,6 +534,22 @@ public class Pursuer : MonoBehaviour
 
         void exit();
     }
+
+
+    private void OnDrawGizmos()
+    {
+        if (currentRoom != null)
+        {
+
+            Gizmos.color = Color.red;
+            foreach (BoxCollider b in currentRoom.GetComponentsInChildren<BoxCollider>())
+            {
+                Gizmos.DrawCube(b.bounds.center, b.size * 0.9f);
+            }
+        }
+
+    }
+
 }
 
 

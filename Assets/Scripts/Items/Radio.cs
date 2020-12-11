@@ -7,96 +7,28 @@ using UnityEngine.Events;
 public class Radio : Item
 {
 
+    TextController textController;
     RadioTracker tracker;
-    RadioController radioController;
-
-    bool readyToCall = true;
-
-    bool skipLine;
 
     private void Awake()
     {
         tracker = FindObjectOfType<RadioTracker>();
-        radioController = FindObjectOfType<RadioController>();
+        textController = FindObjectOfType<TextController>();
 
     }
 
     public override void useItem()
     {
-        if (tracker != null && radioController != null)
+        if (tracker != null && textController != null && tracker.currentZone != null)
         {
 
-            if (readyToCall)
+            if(textController.displayText(tracker.currentZone.Text, tracker.currentZone.delay, tracker.currentZone.endEvent))
             {
-                skipLine = false;
-                StartCoroutine(typeText());
+                tracker.currentZone.done = true;
+                tracker.currentZone.startEvent.Invoke();
             }
-
-            else
-                skipLine = true;
-
         }
 
-    }
-
-
-    IEnumerator typeText()
-    {
-        radioController.show();
-        readyToCall = false;
-
-        string[] sentences;
-        float delay;
-        RadioZone currentZone = tracker.currentZone;
-
-        if (currentZone != null)
-        {
-            sentences = currentZone.Text;
-            delay = currentZone.delay;
-
-            currentZone.startEvent.Invoke();
-
-            currentZone.done = true;
-
-        }
-        else
-        {
-            sentences = new string[1];
-
-            sentences[0] = "...";
-            delay = 0.1f;
-        }
-
-        foreach (string s in sentences)
-        {
-
-            char[] characters = s.ToCharArray();
-            radioController.textMesh.text = "";
-
-
-            for (int i = 0; i < characters.Length; i++)
-            {
-                radioController.textMesh.text += characters[i];
-
-                if (!skipLine)
-                    yield return new WaitForSeconds(delay);
-            }
-            skipLine = false;
-
-            yield return new WaitForSeconds(0.5f);
-
-        }
-        radioController.textMesh.text = "";
-
-        if (currentZone != null)
-        {
-            currentZone.endEvent.Invoke();
-        }
-
-
-
-        radioController.hide();
-        readyToCall = true;
     }
 
 }

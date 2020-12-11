@@ -72,6 +72,8 @@ public class RoomTool : EditorWindow
 
         }
 
+        valuesMenu();
+
         lightMenu();
 
         for (int i = 0; i < 5; i++)
@@ -94,6 +96,13 @@ public class RoomTool : EditorWindow
         roomColliderMenu();
 
 
+    }
+
+    void valuesMenu() {
+        GUILayout.Label("Weight", EditorStyles.boldLabel);
+        selectedRoom.weight = EditorGUILayout.FloatField(selectedRoom.weight, GUILayout.Width(30));
+        EditorUtility.SetDirty(selectedRoom);
+        EditorGUILayout.Space();
     }
 
     private void lightMenu()
