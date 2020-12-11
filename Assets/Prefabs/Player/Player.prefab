@@ -246,6 +246,8 @@ GameObject:
   - component: {fileID: 6408000727804878334}
   - component: {fileID: 4178210260198594053}
   - component: {fileID: 4219820130703139631}
+  - component: {fileID: 7217027746614257038}
+  - component: {fileID: 1886972799178235162}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -361,6 +363,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe93e3cc48e16a4d88e3844a2263209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentZone: {fileID: 0}
+--- !u!114 &7217027746614257038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867739416012089053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d0ded0740d85b458bdcdab6029ce11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1886972799178235162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 867739416012089053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d1ded0a1372864393411adacb0700b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  text: {fileID: 0}
+  timeUntilNameFadeHappens: 3
+  nameFadeTime: 2
 --- !u!1 &6408000726566441887
 GameObject:
   m_ObjectHideFlags: 0
