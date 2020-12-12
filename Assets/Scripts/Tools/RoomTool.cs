@@ -98,7 +98,8 @@ public class RoomTool : EditorWindow
 
     }
 
-    void valuesMenu() {
+    void valuesMenu()
+    {
         GUILayout.Label("Weight", EditorStyles.boldLabel);
         
         selectedRoom.weight = EditorGUILayout.FloatField(selectedRoom.weight, GUILayout.Width(30));
@@ -162,8 +163,25 @@ public class RoomTool : EditorWindow
             EditorUtility.SetDirty(selectedRoom);
         }
         GUILayout.EndHorizontal();
+        GUILayout.Space(15);
 
-        if (GUILayout.Button("Create Light"))
+
+        if (GUILayout.Button("Set Childs as Light", GUILayout.Width(300)))
+        {
+            foreach(Light l in selectedRoom.GetComponentsInChildren<Light>())
+            {
+                selectedRoom.lights.Add(l);
+            }
+
+            foreach (Light l in selectedRoom.lights){
+                l.transform.parent = selectedRoom.transform;
+            }
+
+            EditorUtility.SetDirty(selectedRoom);
+
+        }
+
+        if (GUILayout.Button("Create Light", GUILayout.Width(300)))
         {
             GameObject newLight = new GameObject();
             newLight.transform.position = selectedRoom.transform.position;
@@ -241,11 +259,13 @@ public class RoomTool : EditorWindow
             {
                 if (r == selectedRoom) continue;
 
-                if (!selectedRoom.neighbourRooms.Contains(r)) {
+                if (!selectedRoom.neighbourRooms.Contains(r))
+                {
                     selectedRoom.neighbourRooms.Add(r);
 
-                    if (!r.neighbourRooms.Contains(selectedRoom)) {
-                        r.neighbourRooms.Add(selectedRoom);                    
+                    if (!r.neighbourRooms.Contains(selectedRoom))
+                    {
+                        r.neighbourRooms.Add(selectedRoom);
                     }
                 }
 
