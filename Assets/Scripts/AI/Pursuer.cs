@@ -53,6 +53,7 @@ public class Pursuer : MonoBehaviour
     public int currentState;
 
 
+
     public Stack<Room> rooms;
 
     private void Awake()

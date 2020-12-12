@@ -100,8 +100,10 @@ public class RoomTool : EditorWindow
 
     void valuesMenu() {
         GUILayout.Label("Weight", EditorStyles.boldLabel);
+        
         selectedRoom.weight = EditorGUILayout.FloatField(selectedRoom.weight, GUILayout.Width(30));
         EditorUtility.SetDirty(selectedRoom);
+
         EditorGUILayout.Space();
     }
 
