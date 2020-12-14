@@ -316,7 +316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighbourRooms:
-  - {fileID: 5247072647100825121}
   - {fileID: 5247072647018634461}
   - {fileID: 5247072647196951260}
   - {fileID: 5247072646687785839}

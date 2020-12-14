@@ -87,7 +87,6 @@ public class ScrollInventory : PlayerComponent
     void downPressed()
     {
         //Do some stuff when down is pressed
-
         ChangeItem(false);
     }
 
@@ -111,12 +110,16 @@ public class ScrollInventory : PlayerComponent
         }
     }
 
-    public void DeleteItem(Item newItem)
+    public void DeleteItem(Item item)
     {
-        currentItems.RemoveAt(currentIndex);
 
-        currentIndex = 0;
-        SetItem(currentIndex);
+        if (currentItems.Remove(item))
+        {
+            currentIndex = 0;
+            SetItem(currentIndex);
+        }
+
+
     }
 
     //Coroutine that makes disappear item's name after x time
@@ -138,7 +141,7 @@ public class ScrollInventory : PlayerComponent
     {
         if (direction)
         {
-            if (currentItems.Count - 1 == currentIndex)
+            if (currentItems.Count - 1 <= currentIndex)
             {
                 currentIndex = 0;
             }
@@ -149,7 +152,7 @@ public class ScrollInventory : PlayerComponent
         }
         else
         {
-            if (currentIndex == 0)
+            if (currentIndex <= 0)
             {
                 currentIndex = currentItems.Count - 1;
             }
@@ -167,6 +170,7 @@ public class ScrollInventory : PlayerComponent
         text.CrossFadeAlpha(1.0f, 0.0f, false);
         if (currentItems.Count != 0)
         {
+
             image.color = new Vector4(1, 1, 1, 1);
             image.texture = currentItems[index].itemIcon;
             text.text = currentItems[index].itemName;

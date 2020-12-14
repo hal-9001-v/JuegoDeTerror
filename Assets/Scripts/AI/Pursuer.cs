@@ -29,6 +29,8 @@ public class Pursuer : MonoBehaviour
     public KillPlayerState myKillPlayerState;
     public DecideActionState myDecideActionState;
 
+    public bool torchIsLit;
+
     private enum pursuerStates
     {
         Inactive = 0,
@@ -45,12 +47,14 @@ public class Pursuer : MonoBehaviour
     [Space(10)]
     [Header("Settings")]
     public int spottingDistance = 2;
+    public int torchBoost = 1;
 
     [Space(10)]
     [Header("Information")]
     public Room currentRoom;
     [Tooltip("0 => Inactive, 1 => Patrol randomly, 2 => Pursue player")]
     public int currentState;
+
 
 
     public Stack<Room> rooms;
@@ -171,9 +175,26 @@ public class Pursuer : MonoBehaviour
         rooms = myEM.myRoomMap.getPath(currentRoom, myEM.myRoomMap.getRandomRoom());
     }
 
-    public int distanceToPlayer()
+    public int getDistanceToPlayer()
     {
-        return myEM.myRoomMap.getPath(currentRoom, player.currentRoom).Count;
+
+        int distance;
+
+        if (myEM != null)
+        {
+            distance = myEM.myRoomMap.getDistance(currentRoom, player.currentRoom);
+
+            if (torchIsLit) {
+                if (distance > spottingDistance) {
+                    distance -= torchBoost;
+                }
+            }
+        }
+        else {
+            distance = -1;
+        }
+
+        return distance;
     }
 
     public PursuerData getSaveData()
@@ -393,7 +414,7 @@ public class Pursuer : MonoBehaviour
 
         public void exit()
         {
-            if (myPursuer.distanceToPlayer() <= myPursuer.spottingDistance)
+            if (myPursuer.getDistanceToPlayer() <= myPursuer.spottingDistance)
             {
                 myPursuer.startPursuing(myPursuer.currentRoom);
             }
@@ -513,7 +534,7 @@ public class Pursuer : MonoBehaviour
                 return;
             }
 
-            if (myPursuer.distanceToPlayer() < myPursuer.spottingDistance)
+            if (myPursuer.getDistanceToPlayer() < myPursuer.spottingDistance)
             {
                 myPursuer.startPursuing(myPursuer.currentRoom);
                 return;

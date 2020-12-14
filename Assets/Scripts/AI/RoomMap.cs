@@ -94,6 +94,10 @@ public class RoomMap
         return roomList[Random.Range(0,roomList.Count)];
     }
 
+    public int getDistance(Room a, Room b) {
+        return getPath(a, b).Count - 1;
+    }
+    
     class RoomPriorityQueue
     {
 
@@ -140,6 +144,7 @@ public class RoomMap
 
 
     }
+
 
     
 }

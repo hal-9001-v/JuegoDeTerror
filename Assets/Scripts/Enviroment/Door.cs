@@ -12,6 +12,8 @@ public class Door : Interactable
     ScrollInventory inventory;
     public Key neededKey;
 
+    private bool locked = true;
+
     protected void Awake()
     {
         if (inventory == null)
@@ -53,12 +55,14 @@ public class Door : Interactable
         else
         {
             //If a key is needed and there is an inventory, check if key is selected in inventory
-            if (inventory != null && neededKey != null)
+            if (inventory != null && neededKey != null && locked)
             {
 
                 if (neededKey == inventory.selectedItem)
                 {
                     openDoor();
+                    inventory.DeleteItem(neededKey);
+                    locked = false;
                 }
 
             }
@@ -82,5 +86,12 @@ public class Door : Interactable
     {
         doorIsOpen = false;
         myAnimator.SetTrigger("CloseDoor");
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawCube(transform.position, new Vector3(30, 30, 30));
+
     }
 }

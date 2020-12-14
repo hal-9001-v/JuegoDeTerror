@@ -110,7 +110,7 @@ public class Room : MonoBehaviour
         foreach (BoxCollider collider in colliders)
         {
             Handles.color = Color.blue;
-            Handles.Label(collider.bounds.center, weight.ToString());
+            Handles.Label(collider.bounds.center, name+": "+weight.ToString());
 
 
             if (Selection.Contains(gameObject))
