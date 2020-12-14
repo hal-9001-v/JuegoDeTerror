@@ -8,4 +8,13 @@ public class Key : Item
     {
         
     }
+
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.yellow;
+        Vector3 pos = transform.position;
+        pos.y += 40;
+        Gizmos.DrawSphere(pos, 15);
+    }
 }

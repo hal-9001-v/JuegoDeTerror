@@ -6,22 +6,27 @@ using UnityEngine;
 public class Torch : PlayerComponent
 {
     public AudioClip torchOnOffSound;
-    private Light torch;
+    private Light light;
     private AudioSource audioSource;
-
-    private Item torchItem;
 
     public bool readyToUse;
 
     bool torchIsLit;
 
+    Pursuer pursuer;
+
     // Start is called before the first frame update
     void Start()
     {
-        torchItem = GetComponent<Item>();
-        torch = GetComponent<Light>();
-        torch.enabled = false;
         audioSource = GetComponent<AudioSource>();
+        light = FindObjectOfType<Light>();
+
+        pursuer = FindObjectOfType<Pursuer>();
+        if (pursuer != null) {
+            pursuer.torchIsLit = false;
+        }
+        light.enabled = false;
+
     }
 
     void switchLight()
@@ -32,11 +37,16 @@ public class Torch : PlayerComponent
 
             if (torchIsLit)
             {
-                torch.enabled = true;
+                light.enabled = true;
+
+                if (pursuer != null) {
+                    pursuer.torchIsLit = true;
+                }
             }
             else
             {
-                torch.enabled = false;
+                light.enabled = false;
+                pursuer.torchIsLit = false;
 
                 //audioSource.PlayOneShot(torchOnOffSound);
             }
@@ -51,16 +61,6 @@ public class Torch : PlayerComponent
     public override void setPlayerControls(PlayerControls pc)
     {
         pc.Normal.Light.performed += ctx => switchLight();
-        pc.Normal.TestButton.performed += ctx =>
-        {
-            setReadyToUse(true);
-            GameEventManager.sharedInstance.AddedItemToInventoryEvent(torchItem);
-        };
-
-        pc.Normal.TestButton2.performed += ctx =>
-        {
-            GameEventManager.sharedInstance.DeletedItemToInventoryEvent(torchItem);
-        };
     }
 
 }

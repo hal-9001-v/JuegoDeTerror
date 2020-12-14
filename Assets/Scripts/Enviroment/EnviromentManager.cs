@@ -12,6 +12,9 @@ public class EnviromentManager : MonoBehaviour
     public Color nearbyColor;
     public Color dangerColor;
 
+    public Room A;
+    public Room B;
+
     private void Awake()
     {
         if (instance == null)
@@ -25,6 +28,11 @@ public class EnviromentManager : MonoBehaviour
 
         myRoomMap = new RoomMap();
 
+    }
+
+    private void Start()
+    {
+        Debug.Log(myRoomMap.getPath(A, B).Count);
     }
 
     public void setAllRoomsSafe() {
