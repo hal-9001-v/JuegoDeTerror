@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 3649921699538062011}
   - component: {fileID: 6978350029544876512}
   m_Layer: 10
-  m_Name: llave4 interac
+  m_Name: llave 2 interac
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -242,5 +242,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f15e832fa1cda4e41924c97205acbdbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Key 4
+  itemName: Key 2
   itemIcon: {fileID: 2800000, guid: d4644f457f501c447a35b9bee19694cd, type: 3}

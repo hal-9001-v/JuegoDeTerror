@@ -12,6 +12,8 @@ public class EnviromentManager : MonoBehaviour
     public Color nearbyColor;
     public Color dangerColor;
 
+    Door[] doors;
+
 
     private void Awake()
     {
@@ -24,14 +26,41 @@ public class EnviromentManager : MonoBehaviour
             Destroy(this);
         }
 
+        doors = FindObjectsOfType<Door>();
+
         myRoomMap = new RoomMap();
 
     }
 
-    public void setAllRoomsSafe() {
-        foreach (Room r in myRoomMap.roomList) {
+    public void setAllRoomsSafe()
+    {
+        foreach (Room r in myRoomMap.roomList)
+        {
             r.setSafeRoom();
         }
     }
+
+    public void closeAllDoors()
+    {
+        foreach (Door d in doors)
+        {
+            d.closeDoor();
+        }
+    }
+
+    public void openAllDoors()
+    {
+        foreach (Door d in doors)
+        {
+            d.openDoor();
+        }
+    }
+
+    public void unlockAllDoors() {
+        foreach (Door d in doors) { 
+            
+        }
+    }
+
 
 }
