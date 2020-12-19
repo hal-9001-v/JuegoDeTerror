@@ -20,13 +20,15 @@ public class EnviromentManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            myRoomMap = new RoomMap();
         }
         else
         {
+            Debug.Log("2 Enviromental Managers in scene: " + name + " " + instance.name);
             Destroy(this);
         }
 
-        myRoomMap = new RoomMap();
+        
 
     }
 
@@ -35,8 +37,10 @@ public class EnviromentManager : MonoBehaviour
         Debug.Log(myRoomMap.getPath(A, B).Count);
     }
 
-    public void setAllRoomsSafe() {
-        foreach (Room r in myRoomMap.roomList) {
+    public void setAllRoomsSafe()
+    {
+        foreach (Room r in myRoomMap.roomList)
+        {
             r.setSafeRoom();
         }
     }
