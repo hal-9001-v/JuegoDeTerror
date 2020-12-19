@@ -12,8 +12,8 @@ public class EnviromentManager : MonoBehaviour
     public Color nearbyColor;
     public Color dangerColor;
 
-    public Room A;
-    public Room B;
+    Door[] doors;
+
 
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class EnviromentManager : MonoBehaviour
         {
             instance = this;
             myRoomMap = new RoomMap();
+            doors = FindObjectsOfType<Door>();
+
         }
         else
         {
@@ -28,13 +30,7 @@ public class EnviromentManager : MonoBehaviour
             Destroy(this);
         }
 
-        
 
-    }
-
-    private void Start()
-    {
-        Debug.Log(myRoomMap.getPath(A, B).Count);
     }
 
     public void setAllRoomsSafe()
@@ -44,5 +40,30 @@ public class EnviromentManager : MonoBehaviour
             r.setSafeRoom();
         }
     }
+
+
+    public void closeAllDoors()
+    {
+        foreach (Door d in doors)
+        {
+            d.closeDoor();
+        }
+    }
+
+    public void openAllDoors()
+    {
+        foreach (Door d in doors)
+        {
+            d.setLock(false);
+            d.openDoor();
+        }
+    }
+
+    public void unlockAllDoors() {
+        foreach (Door d in doors) { 
+            
+        }
+    }
+
 
 }

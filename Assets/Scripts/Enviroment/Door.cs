@@ -12,8 +12,7 @@ public class Door : Interactable
     ScrollInventory inventory;
     public Key neededKey;
 
-    private bool locked = true;
-
+    public bool locked = false;
     protected void Awake()
     {
         if (inventory == null)
@@ -37,6 +36,11 @@ public class Door : Interactable
             }
 
         }
+
+        if (neededKey != null)
+        {
+            locked = true;
+        }
     }
 
     public override void loadData(InteractableData myData)
@@ -54,35 +58,33 @@ public class Door : Interactable
         }
         else
         {
-            //If a key is needed and there is an inventory, check if key is selected in inventory
-            if (inventory != null && neededKey != null && locked)
+            if (locked)
             {
-
-                if (neededKey == inventory.selectedItem)
+                if (neededKey != null)
                 {
-                    openDoor();
-                    inventory.DeleteItem(neededKey);
-                    locked = false;
+                    if (inventory != null && inventory.selectedItem == neededKey)
+                    {
+                        openDoor();
+                        locked = false;
+                        inventory.DeleteItem(neededKey);
+                    }
                 }
 
             }
-            //No key is needed, the door can be open every time
             else
             {
                 openDoor();
             }
-
-
         }
     }
 
-    void openDoor()
+    public void openDoor()
     {
         doorIsOpen = true;
         myAnimator.SetTrigger("OpenDoor");
     }
 
-    void closeDoor()
+    public void closeDoor()
     {
         doorIsOpen = false;
         myAnimator.SetTrigger("CloseDoor");
