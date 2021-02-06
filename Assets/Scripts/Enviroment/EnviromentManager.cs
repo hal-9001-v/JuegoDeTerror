@@ -60,8 +60,8 @@ public class EnviromentManager : MonoBehaviour
     }
 
     public void unlockAllDoors() {
-        foreach (Door d in doors) { 
-            
+        foreach (Door d in doors) {
+            d.setLock(false);
         }
     }
 

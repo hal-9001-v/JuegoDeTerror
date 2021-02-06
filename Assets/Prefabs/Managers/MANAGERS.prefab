@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8637643481636445788}
   - component: {fileID: 8637643481636445791}
-  - component: {fileID: 8637643481636445790}
   - component: {fileID: 8637643481636445789}
   - component: {fileID: 8637643481636445786}
   - component: {fileID: 2794036683892754492}
@@ -50,23 +49,6 @@ MonoBehaviour:
   currentGameState: 3
   myCanvasManager: {fileID: 0}
   myPlayerBrain: {fileID: 0}
---- !u!114 &8637643481636445790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8637643481636445777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f376b25a35d0adf499105f931ef1a4c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  safeColor: {r: 0, g: 0.3462386, b: 1, a: 0}
-  nearbyColor: {r: 1, g: 0.8874891, b: 0, a: 0}
-  dangerColor: {r: 1, g: 0.051886797, b: 0.051886797, a: 0}
-  A: {fileID: 0}
-  B: {fileID: 0}
 --- !u!114 &8637643481636445789
 MonoBehaviour:
   m_ObjectHideFlags: 0
