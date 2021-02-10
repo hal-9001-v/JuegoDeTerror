@@ -13,6 +13,12 @@ public class Door : Interactable
     public Key neededKey;
 
     public bool locked = false;
+
+    public AudioClip openDoorSound;
+    public AudioClip tryToOpenSound;
+
+    AudioSource audioSource;
+
     protected void Awake()
     {
         if (inventory == null)
@@ -41,11 +47,30 @@ public class Door : Interactable
         {
             locked = true;
         }
+
+        if (openDoorSound != null && tryToOpenSound != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     public override void loadData(InteractableData myData)
     {
-        //No need to do anything
+        done = myData.interactionDone;
+        locked = myData.doorLocked;
+
+        if (myData.doorOpen)
+        {
+            openDoor();
+        }
+    }
+
+    public override InteractableData getSaveData() {
+        InteractableData myData = new InteractableData(name, done, readyForInteraction);
+        myData.doorLocked = locked;
+        myData.doorOpen = doorIsOpen;
+
+        return myData;
     }
 
     public override void interact()
@@ -68,6 +93,23 @@ public class Door : Interactable
                         locked = false;
                         inventory.DeleteItem(neededKey);
                     }
+                    else if (audioSource != null)
+                    {
+                        if (!audioSource.isPlaying)
+                        {
+                            audioSource.clip = tryToOpenSound;
+                            audioSource.Play();
+                        }
+
+                    }
+                }
+                else if (audioSource != null)
+                {
+                    if (!audioSource.isPlaying)
+                    {
+                        audioSource.clip = tryToOpenSound;
+                        audioSource.Play();
+                    }
                 }
 
             }
@@ -82,12 +124,35 @@ public class Door : Interactable
     {
         doorIsOpen = true;
         myAnimator.SetTrigger("OpenDoor");
+
+        if (audioSource != null)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = openDoorSound;
+                audioSource.Play();
+            }
+        }
     }
 
     public void closeDoor()
     {
         doorIsOpen = false;
         myAnimator.SetTrigger("CloseDoor");
+
+        if (audioSource != null)
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = openDoorSound;
+                audioSource.Play();
+            }
+        }
+    }
+
+    public void setLock(bool b)
+    {
+        locked = b;
     }
 
     private void OnDrawGizmos()

@@ -121,7 +121,7 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-        if (haveLight)
+        if (haveLight && readyForInteraction)
         {
             myLight.enabled = b;
 
@@ -178,7 +178,7 @@ public abstract class Interactable : MonoBehaviour
         } while (true);
     }
 
-    public InteractableData getSaveData()
+    public virtual InteractableData getSaveData()
     {
         return new InteractableData(gameObject.name, done, readyForInteraction);
     }

@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
-using UnityEditor.Purchasing;
-using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
@@ -20,6 +16,8 @@ public class SaveManager : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log(gameObject.name);
+
         if (instance == null)
         {
             instance = this;
@@ -49,7 +47,7 @@ public class SaveManager : MonoBehaviour
         }
 
     }
-    public void SaveGame()
+    public void saveGame()
     {
         Debug.Log("SAVE");
 
@@ -80,10 +78,13 @@ public class SaveManager : MonoBehaviour
 
             GameData data = new GameData();
 
-            SavePlayer(data);
-            SaveInventory(data);
-            SavePursuer(data);
+            savePlayer(data);
+            saveInventory(data);
+            savePursuer(data);
+
             saveInteractables(data);
+            saveDialogues(data);
+
             saveTask(data);
 
             formatter.Serialize(file, data);
@@ -155,7 +156,7 @@ public class SaveManager : MonoBehaviour
         return null;
     }
 
-    private void SavePlayer(GameData data)
+    private void savePlayer(GameData data)
     {
         Vector3 pos = PlayerMovement.sharedInstance.transform.position;
         Vector3 rotation = PlayerMovement.sharedInstance.transform.eulerAngles;
@@ -165,7 +166,7 @@ public class SaveManager : MonoBehaviour
         data.myPlayerData = new PlayerData(pos, rotation, cameraRotation);
     }
 
-    private void SaveInventory(GameData data)
+    private void saveInventory(GameData data)
     {
         /*
         if (Inventory.sharedInstance != null)
@@ -195,7 +196,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void SavePursuer(GameData data)
+    private void savePursuer(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -211,7 +212,7 @@ public class SaveManager : MonoBehaviour
 
     private void saveInteractables(GameData data)
     {
-        Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
+        Interactable[] interactables = FindObjectsOfType<Interactable>();
 
         InteractableData[] saveDatas = new InteractableData[interactables.Length];
 
@@ -224,12 +225,26 @@ public class SaveManager : MonoBehaviour
 
     }
 
+    private void saveDialogues(GameData data)
+    {
+        DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+
+        DialogueData[] saveDatas = new DialogueData[dialogueTriggers.Length];
+
+        for (int i = 0; i < dialogueTriggers.Length; i++)
+        {
+            saveDatas[i] = dialogueTriggers[i].getSaveData();
+        }
+
+        data.myDialoguesData = saveDatas;
+    }
+
     private void saveTask(GameData data)
     {
         TaskController.instance.saveData(data);
     }
 
-    public void LoadGame()
+    public void loadGame()
     {
         Debug.Log("Load");
         try
@@ -244,11 +259,23 @@ public class SaveManager : MonoBehaviour
 
                 file.Close();
 
-                LoadPlayer(data);
-                LoadInventory(data);
-                LoadIA(data);
-                loadInteractables(data);
-                loadTask(data);
+                if (data != null)
+                {
+                    loadPlayer(data);
+                    loadInventory(data);
+                    loadIA(data);
+
+                    loadInteractables(data);
+                    loadDialogues(data);
+
+                    loadTask(data);
+
+                }
+                else
+                {
+                    Debug.LogError("No Save Data!");
+                }
+
 
             }
         }
@@ -258,7 +285,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void LoadPlayer(GameData data)
+    private void loadPlayer(GameData data)
     {
         Vector3 position, rotation, cameraRotation;
 
@@ -273,7 +300,7 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void LoadInventory(GameData data)
+    private void loadInventory(GameData data)
     {
         /*
         if (Inventory.sharedInstance != null)
@@ -295,7 +322,7 @@ public class SaveManager : MonoBehaviour
         */
     }
 
-    private void LoadIA(GameData data)
+    private void loadIA(GameData data)
     {
         if (Pursuer.instance != null)
         {
@@ -310,7 +337,7 @@ public class SaveManager : MonoBehaviour
 
     private void loadInteractables(GameData data)
     {
-        Interactable[] interactables = GameObject.FindObjectsOfType<Interactable>();
+        Interactable[] interactables = FindObjectsOfType<Interactable>();
 
         if (interactables.Length != data.myInteractablesData.Length)
         {
@@ -327,12 +354,34 @@ public class SaveManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("Scene has changed! Can't load Interactables from save data");
+                Debug.LogError("Scene has change since previous save!");
             }
 
         }
 
 
+    }
+
+    private void loadDialogues(GameData data)
+    {
+        DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+
+        if (triggers.Length != data.myDialoguesData.Length)
+        {
+            Debug.LogError("Scene has changed! cant load interactables from save data");
+        }
+
+        for (int i = 0; i < triggers.Length; i++)
+        {
+            if (triggers[i].name == data.myDialoguesData[i].dialogueName)
+            {
+                triggers[i].loadData(data.myDialoguesData[i]);
+            }
+            else
+            {
+                Debug.LogError("Scene has change since last save!");
+            }
+        }
     }
 
     private void loadTask(GameData data)

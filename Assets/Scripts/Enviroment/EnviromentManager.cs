@@ -20,15 +20,16 @@ public class EnviromentManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            myRoomMap = new RoomMap();
+            doors = FindObjectsOfType<Door>();
+
         }
         else
         {
+            Debug.Log("2 Enviromental Managers in scene: " + name + " " + instance.name);
             Destroy(this);
         }
 
-        doors = FindObjectsOfType<Door>();
-
-        myRoomMap = new RoomMap();
 
     }
 
@@ -39,6 +40,7 @@ public class EnviromentManager : MonoBehaviour
             r.setSafeRoom();
         }
     }
+
 
     public void closeAllDoors()
     {
@@ -52,13 +54,14 @@ public class EnviromentManager : MonoBehaviour
     {
         foreach (Door d in doors)
         {
+            d.setLock(false);
             d.openDoor();
         }
     }
 
     public void unlockAllDoors() {
-        foreach (Door d in doors) { 
-            
+        foreach (Door d in doors) {
+            d.setLock(false);
         }
     }
 
