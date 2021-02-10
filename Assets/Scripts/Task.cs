@@ -14,14 +14,7 @@ public class Task : MonoBehaviour
 
     public void goToNextTask()
     {
-        if (nextTask != null)
-        {
-            TaskController.instance.StartTask(nextTask);
-        }
-        else
-        {
-            Debug.Log("No more taks");
-        }
+        TaskController.instance.startNextTask();
     }
 
 }

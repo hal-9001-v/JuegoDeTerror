@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class TaskController : MonoBehaviour
@@ -10,21 +7,28 @@ public class TaskController : MonoBehaviour
 
     private TextMeshProUGUI textMesh;
 
-    public Task firstTask;
-    public Task currentTask { get; private set; }
-    public Task safeTask { get; private set; }
+    public Task[] tasks;
+    int taskIndex;
+
+    int safeTaskIndex;
 
     SaveManager mySaveManager;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null)
         {
-            
             instance = this;
-            initialize();
+
+            textMesh = FindObjectOfType<CanvasManager>().taskText;
 
             mySaveManager = FindObjectOfType<SaveManager>();
+
+            if (tasks.Length != 0)
+            {
+                taskIndex = -1;
+                startTask(0);
+            }
 
         }
         else
@@ -34,100 +38,98 @@ public class TaskController : MonoBehaviour
 
     }
 
-    private void initialize()
-    {
-        textMesh = FindObjectOfType<CanvasManager>().taskText;
-
-        setCurrentTask(firstTask);
-
-        safeTask = currentTask;
-    }
-
-    public void StartTask(Task task)
+    public void startTask(int i)
     {
         Debug.Log("Start Task");
-
-        if (task == currentTask.nextTask)
+        if (i >= 0 && i < tasks.Length
+            && tasks[i] != null)
         {
-            setCurrentTask(task);
 
-            setSafeTask(safeTask.nextTask);
-        }
-        else
-        {
-            Debug.LogWarning("Tried to start incorrect task on sequence: " + task.name + "!");
-        }
-
-    }
-
-    void setCurrentTask(Task newTask)
-    {
-        if (newTask != null)
-        {
-            if (currentTask != null)
+            if (taskIndex >= 0 && taskIndex < tasks.Length && tasks[taskIndex] != null)
             {
-                currentTask.doneEvent.Invoke();
+                tasks[taskIndex].doneEvent.Invoke();
             }
 
-            currentTask = newTask;
+            setSafeTask(taskIndex);
+            taskIndex = i;
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
-            textMesh.text = currentTask.name;
+            textMesh.text = tasks[taskIndex].name;
 
-            Debug.Log(currentTask.name);
+            Debug.Log(tasks[taskIndex].name);
 
-            currentTask.startEvent.Invoke();
+            tasks[taskIndex].startEvent.Invoke();
         }
 
     }
 
-    void setSafeTask(Task task)
+    public void startNextTask()
     {
-        safeTask = task;
+        int i = taskIndex;
+        i++;
 
-        mySaveManager.SaveGame();
+        Debug.Log("Start Next Task");
+        if (i >= 0 && i < tasks.Length
+            && tasks[i] != null)
+        {
+
+            if (tasks[taskIndex] != null)
+            {
+                tasks[taskIndex].doneEvent.Invoke();
+            }
+
+            setSafeTask(taskIndex);
+            taskIndex = i;
+
+            //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
+            textMesh.text = tasks[taskIndex].name;
+
+            Debug.Log(tasks[taskIndex].name);
+
+            tasks[taskIndex].startEvent.Invoke();
+        }
+
+    }
+
+
+
+    void setSafeTask(int safe)
+    {
+        safeTaskIndex = safe;
+
+        mySaveManager.saveGame();
     }
 
     public void loadData(GameData myData)
     {
-        Task loopTask;
-
-        loopTask = firstTask;
-
-        int loadNumber = myData.safeTask;
-        bool found = false;
-
-        while (loopTask != null)
+        if (tasks.Length > myData.safeTask)
         {
-            if (loopTask.taskNumber == loadNumber)
+            
+            for (taskIndex = 0; taskIndex < myData.safeTask; taskIndex++)
             {
-                found = true;
+                Debug.Log("HEY BITCHU: " + tasks[taskIndex].name);
+                //Go to next Task
+                tasks[taskIndex].startEvent.Invoke();
+                tasks[taskIndex].doneEvent.Invoke();
 
-                break;
             }
 
-            loopTask = loopTask.nextTask;
-        }
+            Debug.Log("Starting: " + tasks[taskIndex].name);
+            safeTaskIndex = taskIndex;
 
-        if (found)
-        {
-            Debug.Log(loopTask.name);
-            currentTask = loopTask;
-            safeTask = loopTask;
-
-            textMesh.text = currentTask.name;
+            textMesh.text = tasks[taskIndex].name;
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
-
         }
         else
         {
-            Debug.LogError("Loaded Task doesn't exist in current Scene");
+            Debug.LogError("Tasks Save Data Files not correct!");
         }
 
     }
 
     public void saveData(GameData myData)
     {
-        myData.safeTask = safeTask.taskNumber;
+        myData.safeTask = safeTaskIndex;
+
     }
 }

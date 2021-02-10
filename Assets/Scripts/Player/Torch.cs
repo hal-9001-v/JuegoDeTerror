@@ -6,12 +6,10 @@ using UnityEngine;
 public class Torch : PlayerComponent
 {
     public AudioClip torchOnOffSound;
-    private Light light;
+    public Light myLight;
     private AudioSource audioSource;
 
     public bool readyToUse;
-
-    bool torchIsLit;
 
     Pursuer pursuer;
 
@@ -19,13 +17,13 @@ public class Torch : PlayerComponent
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        light = FindObjectOfType<Light>();
 
         pursuer = FindObjectOfType<Pursuer>();
-        if (pursuer != null) {
+        if (pursuer != null)
+        {
             pursuer.torchIsLit = false;
         }
-        light.enabled = false;
+        myLight.enabled = false;
 
     }
 
@@ -33,19 +31,18 @@ public class Torch : PlayerComponent
     {
         if (readyToUse)
         {
-            torchIsLit = !torchIsLit;
-
-            if (torchIsLit)
+            if (myLight.enabled == false)
             {
-                light.enabled = true;
+                myLight.enabled = true;
 
-                if (pursuer != null) {
+                if (pursuer != null)
+                {
                     pursuer.torchIsLit = true;
                 }
             }
             else
             {
-                light.enabled = false;
+                myLight.enabled = false;
                 pursuer.torchIsLit = false;
 
                 //audioSource.PlayOneShot(torchOnOffSound);
@@ -54,7 +51,8 @@ public class Torch : PlayerComponent
 
     }
 
-    public void setReadyToUse(bool b) {
+    public void setReadyToUse(bool b)
+    {
         readyToUse = b;
     }
 

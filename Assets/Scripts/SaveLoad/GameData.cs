@@ -27,6 +27,8 @@ public class GameData
 
     public InteractableData[] myInteractablesData;
 
+    public DialogueData[] myDialoguesData;
+
     public int safeTask;
 
     public GameData()
@@ -36,7 +38,8 @@ public class GameData
 }
 
 [Serializable]
-public class StatsData {
+public class StatsData
+{
     public float gamePadSens;
     public float mouseSens;
     public int language;
@@ -51,7 +54,7 @@ public class PlayerData
     public SerializableVector3 playerPosition;
     public SerializableVector3 playerRotation;
     public SerializableVector3 cameraRotation;
-    
+
 
     public PlayerData(Vector3 position, Vector3 rotation, Vector3 camRotation)
     {
@@ -106,14 +109,34 @@ public class PursuerData
 }
 
 [Serializable]
-public class InteractableData {
+public class InteractableData
+{
     public string interactableName { get; private set; }
     public bool interactionDone { get; private set; }
     public bool readyForInteraction { get; private set; }
 
-    public InteractableData(string name, bool done, bool ready) {
+    //Dont judge me please
+    public bool doorLocked;
+    public bool doorOpen;
+
+    public InteractableData(string name, bool done, bool ready)
+    {
         interactableName = name;
         interactionDone = done;
         readyForInteraction = ready;
     }
+
+}
+
+[Serializable]
+public class DialogueData
+{
+    public string dialogueName { get; private set; }
+    public bool dialogueDone { get; private set; }
+
+    public DialogueData(string name, bool done) {
+        dialogueName = name;
+        dialogueDone = done;
+    }
+
 }

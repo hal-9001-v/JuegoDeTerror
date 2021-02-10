@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class CutsceneController : MonoBehaviour
 {
     public bool startGame;
+    public bool loadGame;
 
     public GameObject player;
     PlayerBrain playerBrain;
@@ -43,10 +44,22 @@ public class CutsceneController : MonoBehaviour
 
     private void Start()
     {
+        mySaveManager = FindObjectOfType<SaveManager>();
+
+
         if (startGame)
+        {
+            mySaveManager.deleteData();
+
             restartGame();
 
-        mySaveManager = FindObjectOfType<SaveManager>();
+        }
+        else if (loadGame)
+        {
+            mySaveManager.loadGame();
+
+        }
+
     }
 
     public void restartGame()
@@ -57,14 +70,15 @@ public class CutsceneController : MonoBehaviour
 
         playerAnimator.SetTrigger("Restore");
 
-        mySaveManager.LoadGame();
+        mySaveManager.loadGame();
 
         playerBrain.enablePlayer(true);
     }
 
     IEnumerator deathScreen(float startTime, float frameTime)
     {
-        if (myImage != null) {
+        if (myImage != null)
+        {
             yield return new WaitForSeconds(startTime);
 
             myImage.enabled = true;
@@ -77,7 +91,7 @@ public class CutsceneController : MonoBehaviour
                 yield return new WaitForSeconds(frameTime);
             }
         }
-        
+
 
         restartGame();
     }
@@ -118,31 +132,35 @@ public class CutsceneController : MonoBehaviour
     {
         yield return new WaitForSeconds(startTime);
 
-        myImage.enabled = true;
-
-        if (fadeIn)
+        if (myImage != null)
         {
-            //Fade in (Get to Visible)
-            for (float i = 1; i > 0; i -= 0.01f)
+            myImage.enabled = true;
+
+            if (fadeIn)
             {
-                myImage.color = new Color(0, 0, 0, i);
+                //Fade in (Get to Visible)
+                for (float i = 1; i > 0; i -= 0.01f)
+                {
+                    myImage.color = new Color(0, 0, 0, i);
 
-                yield return new WaitForSeconds(frameTime);
-            }
+                    yield return new WaitForSeconds(frameTime);
+                }
 
-            myImage.enabled = false;
-
-        }
-        else
-        {
-            //Fade out(Get to Black)
-            for (float i = 0; i < 1; i += 0.01f)
-            {
-                myImage.color = new Color(0, 0, 0, i);
-
-                yield return new WaitForSeconds(frameTime);
+                myImage.enabled = false;
 
             }
+            else
+            {
+                //Fade out(Get to Black)
+                for (float i = 0; i < 1; i += 0.01f)
+                {
+                    myImage.color = new Color(0, 0, 0, i);
+
+                    yield return new WaitForSeconds(frameTime);
+
+                }
+            }
+
         }
 
         if (atEndActions != null)

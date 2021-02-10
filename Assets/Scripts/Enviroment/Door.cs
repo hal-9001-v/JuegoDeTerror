@@ -56,7 +56,21 @@ public class Door : Interactable
 
     public override void loadData(InteractableData myData)
     {
-        //No need to do anything
+        done = myData.interactionDone;
+        locked = myData.doorLocked;
+
+        if (myData.doorOpen)
+        {
+            openDoor();
+        }
+    }
+
+    public override InteractableData getSaveData() {
+        InteractableData myData = new InteractableData(name, done, readyForInteraction);
+        myData.doorLocked = locked;
+        myData.doorOpen = doorIsOpen;
+
+        return myData;
     }
 
     public override void interact()
