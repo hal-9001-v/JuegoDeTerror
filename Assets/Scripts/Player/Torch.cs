@@ -23,7 +23,19 @@ public class Torch : PlayerComponent
         {
             pursuer.torchIsLit = false;
         }
-        myLight.enabled = false;
+
+        if (myLight != null)
+        {
+            myLight.enabled = false;
+        }
+        else {
+            myLight = GetComponent<Light>();
+
+            if (myLight != null) {
+                myLight.enabled = false;
+            }
+        }
+            
 
     }
 
