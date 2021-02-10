@@ -78,7 +78,10 @@ public class TaskController : MonoBehaviour
                 tasks[taskIndex].doneEvent.Invoke();
             }
 
-            setSafeTask(taskIndex);
+            if (taskIndex != 0) {
+                setSafeTask(taskIndex);
+            }
+            
             taskIndex = i;
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
