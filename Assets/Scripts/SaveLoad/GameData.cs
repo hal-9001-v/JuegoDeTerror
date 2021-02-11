@@ -21,7 +21,7 @@ public class GameData
 {
     public PlayerData myPlayerData;
 
-    public PlayerInventory myInventory;
+    public InventoryData myInventory;
 
     public PursuerData myPursuerData;
 
@@ -55,12 +55,16 @@ public class PlayerData
     public SerializableVector3 playerRotation;
     public SerializableVector3 cameraRotation;
 
+    public bool torchReadyToUse;
+    public bool torchIsLit;
 
-    public PlayerData(Vector3 position, Vector3 rotation, Vector3 camRotation)
+
+
+    public PlayerData(Vector3 position, Vector3 rotation, Vector3 camRotation, bool ready, bool lit)
     {
-        this.playerPosition.x = position.x;
-        this.playerPosition.y = position.y;
-        this.playerPosition.z = position.z;
+       playerPosition.x = position.x;
+       playerPosition.y = position.y;
+       playerPosition.z = position.z;
 
         playerRotation.x = rotation.x;
         playerRotation.y = rotation.y;
@@ -70,21 +74,9 @@ public class PlayerData
         cameraRotation.y = camRotation.y;
         cameraRotation.z = camRotation.z;
 
-    }
-}
+        torchReadyToUse = ready;
+        torchIsLit = lit;
 
-[Serializable]
-public class PlayerInventory
-{
-    public string[] objectNames = new string[5];
-
-    public PlayerInventory(string[] names)
-    {
-        this.objectNames[0] = names[0];
-        this.objectNames[1] = names[1];
-        this.objectNames[2] = names[2];
-        this.objectNames[3] = names[3];
-        this.objectNames[4] = names[4];
     }
 }
 
@@ -138,5 +130,11 @@ public class DialogueData
         dialogueName = name;
         dialogueDone = done;
     }
+
+}
+
+[Serializable]
+public class InventoryData {
+    public string[] itemNames;
 
 }

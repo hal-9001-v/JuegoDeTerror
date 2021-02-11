@@ -15,15 +15,4 @@ public class EventInteractable : Interactable
         //Do nothing, just execute events
     }
 
-    public override void loadData(InteractableData myData)
-    {
-
-        done = myData.interactionDone;
-        readyForInteraction = myData.readyForInteraction;
-
-        if (eventOnlyOnce && done)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 }

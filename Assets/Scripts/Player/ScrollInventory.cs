@@ -33,16 +33,16 @@ public class ScrollInventory : PlayerComponent
         if (sharedInstance == null)
         {
             sharedInstance = this;
+
+            currentItems = new List<Item>();
         }
     }
 
     void Start()
     {
-        currentItems = new List<Item>();
-
         currentIndex = 0;
         image.CrossFadeAlpha(0.0f, 0.0f, false);
-        SetItem(currentIndex);
+        setItem(currentIndex);
 
         if (GameEventManager.sharedInstance != null)
         {
@@ -106,7 +106,7 @@ public class ScrollInventory : PlayerComponent
         if (currentItems.Count == 1)
         {
             image.CrossFadeAlpha(1.0f, 0.0f, false);
-            SetItem(0);
+            setItem(0);
         }
     }
 
@@ -116,7 +116,7 @@ public class ScrollInventory : PlayerComponent
         if (currentItems.Remove(item))
         {
             currentIndex = 0;
-            SetItem(currentIndex);
+            setItem(currentIndex);
         }
 
 
@@ -162,10 +162,10 @@ public class ScrollInventory : PlayerComponent
             }
         }
 
-        SetItem(currentIndex);
+        setItem(currentIndex);
     }
 
-    public void SetItem(int index)
+    public void setItem(int index)
     {
         text.CrossFadeAlpha(1.0f, 0.0f, false);
         if (currentItems.Count != 0)
@@ -186,6 +186,59 @@ public class ScrollInventory : PlayerComponent
 
         if (index < currentItems.Count && index >= 0)
             selectedItem = currentItems[index];
+    }
+
+    public void loadData(InventoryData data)
+    {
+        GameObject go;
+        Item goItem;
+        currentItems.Clear();
+
+        if (data.itemNames != null)
+        {
+            for (int i = 0; i < data.itemNames.Length; i++)
+            {
+                go = GameObject.Find(data.itemNames[i]);
+
+                if (go != null)
+                {
+                    goItem = go.GetComponent<Item>();
+
+                    if (goItem != null)
+                    {
+                        currentItems.Add(goItem);
+                    }
+                    else
+                    {
+                        Debug.LogError("Gameobject " + go.name + " saved as Item but has no Item Component!");
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Can't find " + data.itemNames[i] + " Item in scene!");
+
+                }
+
+            }
+        }
+        setItem(0);
+
+    }
+
+    public InventoryData getSaveData()
+    {
+
+        Item[] items = currentItems.ToArray();
+        InventoryData data = new InventoryData();
+
+        data.itemNames = new string[items.Length];
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            data.itemNames[i] = items[i].gameObject.name;
+        }
+
+        return data;
     }
 
     public override void setPlayerControls(PlayerControls pc)
