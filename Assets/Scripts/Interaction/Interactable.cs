@@ -125,14 +125,14 @@ public abstract class Interactable : MonoBehaviour
 
             interact();
 
-            interactionActions.Invoke();
-
             done = true;
 
             if (hideWhenDone)
             {
                 hide();
             }
+
+            interactionActions.Invoke();
         }
     }
 

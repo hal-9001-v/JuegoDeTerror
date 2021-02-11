@@ -57,16 +57,14 @@ public class TaskController : MonoBehaviour
             tasks[taskIndex].startEvent.Invoke();
 
             mySaveManager.saveGame();
+        
         }
 
     }
 
     public void startNextTask()
     {
-        int i = taskIndex;
-        i++;
-
-        startTask(i);
+        startTask(taskIndex + 1);
     }
 
 

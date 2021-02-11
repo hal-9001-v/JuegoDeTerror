@@ -221,10 +221,7 @@ public class ScrollInventory : PlayerComponent
 
             }
         }
-
         setItem(0);
-
-
 
     }
 
