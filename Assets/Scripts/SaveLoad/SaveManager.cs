@@ -17,7 +17,6 @@ public class SaveManager : MonoBehaviour
     public Torch torch;
 
     // GameData safeData;
-
     private void Awake()
     {
 
