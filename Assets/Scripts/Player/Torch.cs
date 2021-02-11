@@ -13,30 +13,33 @@ public class Torch : PlayerComponent
 
     Pursuer pursuer;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-
         pursuer = FindObjectOfType<Pursuer>();
-        if (pursuer != null)
-        {
-            pursuer.torchIsLit = false;
-        }
 
         if (myLight != null)
         {
             myLight.enabled = false;
         }
-        else {
+        else
+        {
             myLight = GetComponent<Light>();
 
-            if (myLight != null) {
+            if (myLight != null)
+            {
                 myLight.enabled = false;
             }
         }
-            
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        if (pursuer != null)
+        {
+            pursuer.torchIsLit = false;
+        }
     }
 
     void switchLight()

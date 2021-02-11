@@ -19,7 +19,7 @@ public class Door : Interactable
 
     AudioSource audioSource;
 
-    protected void Awake()
+    new void Awake()
     {
         if (inventory == null)
             inventory = FindObjectOfType<ScrollInventory>();

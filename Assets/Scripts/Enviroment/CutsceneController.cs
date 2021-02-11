@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class CutsceneController : MonoBehaviour
 {
-    public bool startGame;
-    public bool loadGame;
+    public StartingMode startingMode;
 
     public GameObject player;
     PlayerBrain playerBrain;
@@ -25,6 +24,14 @@ public class CutsceneController : MonoBehaviour
     Animator playerAnimator;
 
     SaveManager mySaveManager;
+
+    public enum StartingMode
+    {
+        start,
+        startAndDelete,
+        load
+    };
+
 
     private void Awake()
     {
@@ -46,19 +53,25 @@ public class CutsceneController : MonoBehaviour
     {
         mySaveManager = FindObjectOfType<SaveManager>();
 
-
-        if (startGame)
+        switch (startingMode)
         {
-            mySaveManager.deleteData();
+            case StartingMode.start:
+                startGame();
+                break;
 
-            restartGame();
+            case StartingMode.startAndDelete:
+                mySaveManager.deleteData();
+                startGame();
+                break;
+
+
+            case StartingMode.load:
+                restartGame();
+                break;
+
 
         }
-        else if (loadGame)
-        {
-            mySaveManager.loadGame();
 
-        }
 
     }
 
@@ -71,6 +84,17 @@ public class CutsceneController : MonoBehaviour
         playerAnimator.SetTrigger("Restore");
 
         mySaveManager.loadGame();
+
+        playerBrain.enablePlayer(true);
+    }
+
+    public void startGame()
+    {
+        StopAllCoroutines();
+
+        fadeScreen(true, 0f, 0.1f, atStartActions);
+
+        playerAnimator.SetTrigger("Restore");
 
         playerBrain.enablePlayer(true);
     }
@@ -136,9 +160,10 @@ public class CutsceneController : MonoBehaviour
         {
             myImage.enabled = true;
 
+            //Fade in (Get to Visible)
             if (fadeIn)
             {
-                //Fade in (Get to Visible)
+                myImage.color = new Color(0,0,0,1);
                 for (float i = 1; i > 0; i -= 0.01f)
                 {
                     myImage.color = new Color(0, 0, 0, i);
@@ -149,9 +174,10 @@ public class CutsceneController : MonoBehaviour
                 myImage.enabled = false;
 
             }
+            //Fade out(Get to Black)
             else
             {
-                //Fade out(Get to Black)
+                
                 for (float i = 0; i < 1; i += 0.01f)
                 {
                     myImage.color = new Color(0, 0, 0, i);

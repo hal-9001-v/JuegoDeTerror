@@ -42,6 +42,10 @@ public abstract class Interactable : MonoBehaviour
     public UnityEvent interactionActions;
     //Execute Event only once
     public bool eventOnlyOnce;
+    public bool hideWhenDone;
+
+    Renderer myRenderer;
+    Collider myCollider;
 
     public bool readyForInteraction = true;
 
@@ -69,12 +73,18 @@ public abstract class Interactable : MonoBehaviour
 
         if (playerTransform == null)
             playerTransform = FindObjectOfType<PlayerMovement>().transform;
+
+        if (hideWhenDone)
+        {
+            myRenderer = GetComponent<Renderer>();
+            myCollider = GetComponent<Collider>();
+        }
     }
 
 
     protected void FixedUpdate()
     {
-        if (haveLight && playerTransform != null)
+        if (readyForInteraction && haveLight && playerTransform != null)
         {
 
             if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange)
@@ -96,6 +106,14 @@ public abstract class Interactable : MonoBehaviour
     {
         done = myData.interactionDone;
         readyForInteraction = myData.readyForInteraction;
+
+        if (hideWhenDone)
+        {
+            if (done)
+                hide();
+            else
+                show();
+        }
     }
 
     public virtual void invokeInteractionActions()
@@ -107,9 +125,46 @@ public abstract class Interactable : MonoBehaviour
 
             interact();
 
+            interactionActions.Invoke();
+
             done = true;
 
-            interactionActions.Invoke();
+            if (hideWhenDone)
+            {
+                hide();
+            }
+        }
+    }
+
+    public void hide()
+    {
+        if (myRenderer != null)
+            myRenderer.enabled = false;
+
+        if (myCollider != null)
+            myCollider.enabled = false;
+
+        if (haveLight) {
+            highLight(false);
+            StopAllCoroutines();
+            enabled = false;
+        }
+    }
+
+    public void show()
+    {
+        if (myRenderer != null)
+            myRenderer.enabled = true;
+        else {
+            Debug.Log("NOPE");
+            }
+
+        if (myCollider != null)
+            myCollider.enabled = true;
+
+        if (haveLight) {
+            myLight.enabled = true;
+            this.enabled = true;
         }
     }
 
@@ -121,33 +176,31 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-        if (haveLight && readyForInteraction)
+
+        //if(myLight != null) Already checking in FixedUpdate
+        myLight.enabled = b;
+
+        if (b)
         {
-            myLight.enabled = b;
 
-
-            if (b)
+            if (!isLit)
             {
-
-                if (!isLit)
-                {
-                    myCoroutine = StartCoroutine(Highlighting());
-                    isLit = true;
-                }
-
-            }
-            else
-            {
-                if (isLit)
-                {
-                    StopCoroutine(myCoroutine);
-                    isLit = false;
-                }
-
-
+                myCoroutine = StartCoroutine(Highlighting());
+                isLit = true;
             }
 
         }
+        else
+        {
+            if (isLit)
+            {
+                StopCoroutine(myCoroutine);
+                isLit = false;
+            }
+
+
+        }
+
     }
 
     public IEnumerator Highlighting()
@@ -192,6 +245,7 @@ public abstract class Interactable : MonoBehaviour
     {
         Debug.Log("Interaction with " + gameObject.name);
     }
+
 
     private void OnDrawGizmos()
     {

@@ -8,9 +8,7 @@ public class TaskController : MonoBehaviour
     private TextMeshProUGUI textMesh;
 
     public Task[] tasks;
-    int taskIndex;
-
-    int safeTaskIndex;
+    int taskIndex = 0;
 
     SaveManager mySaveManager;
 
@@ -24,11 +22,7 @@ public class TaskController : MonoBehaviour
 
             mySaveManager = FindObjectOfType<SaveManager>();
 
-            if (tasks.Length != 0)
-            {
-                taskIndex = -1;
-                startTask(0);
-            }
+
 
         }
         else
@@ -38,19 +32,21 @@ public class TaskController : MonoBehaviour
 
     }
 
-    public void startTask(int i)
+    private void Start()
     {
-        Debug.Log("Start Task");
-        if (i >= 0 && i < tasks.Length
-            && tasks[i] != null)
+        if (tasks.Length != 0)
         {
+            startTask(0);
+        }
+    }
 
-            if (taskIndex >= 0 && taskIndex < tasks.Length && tasks[taskIndex] != null)
-            {
+    void startTask(int i)
+    {
+        if (i >= 0 && i < tasks.Length && tasks[i] != null)
+        {
+            if (tasks[taskIndex] != null)
                 tasks[taskIndex].doneEvent.Invoke();
-            }
 
-            setSafeTask(taskIndex);
             taskIndex = i;
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
@@ -59,6 +55,8 @@ public class TaskController : MonoBehaviour
             Debug.Log(tasks[taskIndex].name);
 
             tasks[taskIndex].startEvent.Invoke();
+
+            mySaveManager.saveGame();
         }
 
     }
@@ -68,57 +66,18 @@ public class TaskController : MonoBehaviour
         int i = taskIndex;
         i++;
 
-        Debug.Log("Start Next Task");
-        if (i >= 0 && i < tasks.Length
-            && tasks[i] != null)
-        {
-
-            if (tasks[taskIndex] != null)
-            {
-                tasks[taskIndex].doneEvent.Invoke();
-            }
-
-            if (taskIndex != 0) {
-                setSafeTask(taskIndex);
-            }
-            
-            taskIndex = i;
-
-            //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
-            textMesh.text = tasks[taskIndex].name;
-
-            Debug.Log(tasks[taskIndex].name);
-
-            tasks[taskIndex].startEvent.Invoke();
-        }
-
+        startTask(i);
     }
 
 
-
-    void setSafeTask(int safe)
-    {
-        safeTaskIndex = safe;
-
-        mySaveManager.saveGame();
-    }
 
     public void loadData(GameData myData)
     {
         if (tasks.Length > myData.safeTask)
         {
-            
-            for (taskIndex = 0; taskIndex < myData.safeTask; taskIndex++)
-            {
-                Debug.Log("HEY BITCHU: " + tasks[taskIndex].name);
-                //Go to next Task
-                tasks[taskIndex].startEvent.Invoke();
-                tasks[taskIndex].doneEvent.Invoke();
-
-            }
+            taskIndex = myData.safeTask;
 
             Debug.Log("Starting: " + tasks[taskIndex].name);
-            safeTaskIndex = taskIndex;
 
             textMesh.text = tasks[taskIndex].name;
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
@@ -132,7 +91,6 @@ public class TaskController : MonoBehaviour
 
     public void saveData(GameData myData)
     {
-        myData.safeTask = safeTaskIndex;
-
+        myData.safeTask = taskIndex;
     }
 }

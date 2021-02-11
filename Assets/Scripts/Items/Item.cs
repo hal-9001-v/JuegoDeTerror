@@ -14,7 +14,6 @@ public abstract class Item : MonoBehaviour
         //inventory.AddItem(this);
         GameEventManager.sharedInstance.AddedItemToInventoryEvent(this);
 
-        Debug.LogWarning("No Inventory in scene!");
     }
 
     public abstract void useItem();
