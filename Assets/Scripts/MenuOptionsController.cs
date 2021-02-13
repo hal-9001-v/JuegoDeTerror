@@ -28,7 +28,6 @@ public class MenuOptionsController : MonoBehaviour
 
     private void Start()
     {
-
         mySaveManager = FindObjectOfType<SaveManager>();
 
         if (type == OptionType.language)
