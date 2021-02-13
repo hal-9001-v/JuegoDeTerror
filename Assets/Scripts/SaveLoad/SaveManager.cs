@@ -84,7 +84,9 @@ public class SaveManager : MonoBehaviour
         savePursuer(data);
 
         saveInteractables(data);
-        saveDialogues(data);
+        saveTriggers(data);
+
+        saveRadioZones(data);
 
         saveTask(data);
 
@@ -211,24 +213,41 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void saveDialogues(GameData data)
+    private void saveTriggers(GameData data)
     {
-        DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        Trigger[] triggers = FindObjectsOfType<Trigger>();
 
-        DialogueData[] saveDatas = new DialogueData[dialogueTriggers.Length];
+        TriggerData[] saveDatas = new TriggerData[triggers.Length];
 
-        for (int i = 0; i < dialogueTriggers.Length; i++)
+        for (int i = 0; i < triggers.Length; i++)
         {
-            saveDatas[i] = dialogueTriggers[i].getSaveData();
+            saveDatas[i] = triggers[i].getSaveData();
         }
 
-        data.myDialoguesData = saveDatas;
+        data.myTriggerData = saveDatas;
+    }
+
+    private void saveRadioZones(GameData data)
+    {
+        RadioZone[] zones = FindObjectsOfType<RadioZone>();
+
+        RadioZoneData[] zoneDatas = new RadioZoneData[zones.Length];
+
+        for (int i = 0; i < zones.Length; i++) {
+            zoneDatas[i] = zones[i].getSaveData();
+
+        }
+
+        data.myRadioZoneData = zoneDatas;
+
     }
 
     private void saveTask(GameData data)
     {
         TaskController.instance.saveData(data);
     }
+
+ 
 
     public void loadGame()
     {
@@ -256,7 +275,9 @@ public class SaveManager : MonoBehaviour
                     loadIA(data);
 
                     loadInteractables(data);
-                    loadDialogues(data);
+                    loadTriggers(data);
+
+                    loadRadioZones(data);
 
                 }
                 else
@@ -353,26 +374,47 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void loadDialogues(GameData data)
+    private void loadTriggers(GameData data)
     {
         DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
 
-        if (triggers.Length != data.myDialoguesData.Length)
+        if (triggers.Length != data.myTriggerData.Length)
         {
-            Debug.LogError("Scene has changed! cant load interactables from save data");
+            Debug.LogError("Scene has changed! can't load interactables from save data!");
+            return;
         }
 
         for (int i = 0; i < triggers.Length; i++)
         {
-            if (triggers[i].name == data.myDialoguesData[i].dialogueName)
+            if (triggers[i].name == data.myTriggerData[i].triggerName)
             {
-                triggers[i].loadData(data.myDialoguesData[i]);
+                triggers[i].loadData(data.myTriggerData[i]);
             }
             else
             {
                 Debug.LogError("Scene has change since last save!");
             }
         }
+    }
+
+    private void loadRadioZones(GameData data) {
+        RadioZone[] zones = FindObjectsOfType<RadioZone>();
+
+        if (zones.Length != data.myRadioZoneData.Length) {
+            Debug.LogError("Scene has changed! can't load Radio Zones from save data!");
+            return;
+        }
+
+        for (int i = 0; i < zones.Length; i++) {
+            if (zones[i].name == data.myRadioZoneData[i].radioName) {
+                zones[i].loadData(data.myRadioZoneData[i]);
+            }
+            else{
+                Debug.LogError("Scene has change since last save!");
+            }
+        
+        }
+
     }
 
     private void loadTask(GameData data)

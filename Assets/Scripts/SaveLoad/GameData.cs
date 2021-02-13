@@ -27,7 +27,9 @@ public class GameData
 
     public InteractableData[] myInteractablesData;
 
-    public DialogueData[] myDialoguesData;
+    public TriggerData[] myTriggerData;
+
+    public RadioZoneData[] myRadioZoneData;
 
     public int safeTask;
 
@@ -121,14 +123,18 @@ public class InteractableData
 }
 
 [Serializable]
-public class DialogueData
+public class TriggerData
 {
-    public string dialogueName { get; private set; }
-    public bool dialogueDone { get; private set; }
+    public string triggerName { get; private set; }
+    public bool triggerDone { get; private set; }
+    public bool triggerReady { get; private set; }
 
-    public DialogueData(string name, bool done) {
-        dialogueName = name;
-        dialogueDone = done;
+
+    public TriggerData(string name, bool done, bool readyForInteraction) {
+        triggerName = name;
+        triggerDone = done;
+        triggerReady = readyForInteraction;
+
     }
 
 }
@@ -136,5 +142,20 @@ public class DialogueData
 [Serializable]
 public class InventoryData {
     public string[] itemNames;
+
+}
+
+[Serializable]
+public class RadioZoneData
+{
+    public string radioName { get; private set; }
+    public bool done { get; private set; }
+    public bool readyForInteraction { get; private set; }
+
+    public RadioZoneData(string name, bool d, bool ready) {
+        radioName = name;
+        done = d;
+        readyForInteraction = ready;
+    }
 
 }

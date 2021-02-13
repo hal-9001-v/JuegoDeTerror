@@ -16,12 +16,38 @@ public class RadioZone : MonoBehaviour
     public UnityEvent startEvent;
     [Space(1)]
     public UnityEvent endEvent;
-    
+
     [Space(2)]
+    public bool readyForInteraction;
     public bool onlyOnce;
 
-    [HideInInspector]
     public bool done;
+
+    Collider myCollider;
+
+    private void Awake()
+    {
+        myCollider = GetComponent<Collider>();
+    }
+
+    public RadioZoneData getSaveData() {
+        return new RadioZoneData(name, done, readyForInteraction);
+    }
+
+    public void loadData(RadioZoneData data) {
+        done = data.done;
+        readyForInteraction = data.readyForInteraction;
+    }
+
+    public void setReadyForInteraction(bool b) {
+        readyForInteraction = b;
+
+        if (b)
+            myCollider.enabled = true;
+        else
+            myCollider.enabled = false;
+
+    }
 
 
 }

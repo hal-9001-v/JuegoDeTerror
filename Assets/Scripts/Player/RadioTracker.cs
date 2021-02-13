@@ -13,7 +13,7 @@ public class RadioTracker : MonoBehaviour
             
             currentZone = collision.gameObject.GetComponent<RadioZone>();
 
-            if (currentZone.onlyOnce && currentZone.done) {
+            if (!currentZone.readyForInteraction || (currentZone.onlyOnce && currentZone.done)) {
                 currentZone = null;
             }
 

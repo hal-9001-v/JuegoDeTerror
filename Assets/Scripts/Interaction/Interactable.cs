@@ -86,8 +86,7 @@ public abstract class Interactable : MonoBehaviour
     {
         if (readyForInteraction && haveLight && playerTransform != null)
         {
-
-            if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange)
+            if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange && !(eventOnlyOnce && done))
             {
                 highLight(true);
             }
@@ -144,7 +143,8 @@ public abstract class Interactable : MonoBehaviour
         if (myCollider != null)
             myCollider.enabled = false;
 
-        if (haveLight) {
+        if (haveLight)
+        {
             highLight(false);
             StopAllCoroutines();
             enabled = false;
@@ -155,14 +155,13 @@ public abstract class Interactable : MonoBehaviour
     {
         if (myRenderer != null)
             myRenderer.enabled = true;
-        else {
-            Debug.Log("NOPE");
-            }
+
 
         if (myCollider != null)
             myCollider.enabled = true;
 
-        if (haveLight) {
+        if (haveLight)
+        {
             myLight.enabled = true;
             this.enabled = true;
         }
@@ -176,8 +175,7 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-
-        //if(myLight != null) Already checking in FixedUpdate
+        if(myLight != null) 
         myLight.enabled = b;
 
         if (b)
@@ -205,30 +203,33 @@ public abstract class Interactable : MonoBehaviour
 
     public IEnumerator Highlighting()
     {
-        float changeFactor = maxIntensity * 0.05f;
-        float highLightValue = changeFactor;
+        if (haveLight) {
+            float changeFactor = maxIntensity * 0.05f;
+            float highLightValue = changeFactor;
 
-        myLight.intensity = 0.0f;
+            myLight.intensity = 0.0f;
 
-        yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1.0f);
 
-        do
-        {
-
-            if (myLight.intensity <= 0)
+            do
             {
-                highLightValue = changeFactor;
-            }
-            else if (myLight.intensity >= maxIntensity)
-            {
-                highLightValue = -changeFactor;
-            }
 
-            myLight.intensity += highLightValue;
+                if (myLight.intensity <= 0)
+                {
+                    highLightValue = changeFactor;
+                }
+                else if (myLight.intensity >= maxIntensity)
+                {
+                    highLightValue = -changeFactor;
+                }
 
-            yield return new WaitForSeconds(0.1f);
+                myLight.intensity += highLightValue;
 
-        } while (true);
+                yield return new WaitForSeconds(0.1f);
+
+            } while (true);
+        }
+        
     }
 
     public virtual InteractableData getSaveData()
@@ -239,6 +240,8 @@ public abstract class Interactable : MonoBehaviour
     public void setReadyForInteraction(bool b)
     {
         readyForInteraction = b;
+
+        highLight(b);
     }
 
     public void debugInteraction()
