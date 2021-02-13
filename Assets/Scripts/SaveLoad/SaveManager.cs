@@ -29,6 +29,12 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
+            instance.torch = torch;
+
+            if (instance.torch == null) {
+                instance.torch = FindObjectOfType<Torch>();
+            }
+
             Debug.LogWarning(gameObject.name + " has been deleted, to keep " + instance.name + ". There must be only one singleton!");
 
             Destroy(this);

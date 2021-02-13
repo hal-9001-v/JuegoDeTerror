@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuLayer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public Button[] buttons;
+
+    public void hideLayer()
     {
-        
+        foreach (Button b in buttons)
+        {
+            
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
