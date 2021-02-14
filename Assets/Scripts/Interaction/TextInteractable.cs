@@ -27,16 +27,4 @@ public class TextInteractable : Interactable
     
     
     }
-
-    public override void loadData(InteractableData myData)
-    {
-
-        done = myData.interactionDone;
-        readyForInteraction = myData.readyForInteraction;
-
-        if (eventOnlyOnce && done)
-        {
-            gameObject.SetActive(false);
-        }
-    }
 }

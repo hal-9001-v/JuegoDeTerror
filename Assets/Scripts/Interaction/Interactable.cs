@@ -145,9 +145,7 @@ public abstract class Interactable : MonoBehaviour
 
         if (haveLight)
         {
-            highLight(false);
             StopAllCoroutines();
-            enabled = false;
         }
     }
 
@@ -163,7 +161,6 @@ public abstract class Interactable : MonoBehaviour
         if (haveLight)
         {
             myLight.enabled = true;
-            this.enabled = true;
         }
     }
 

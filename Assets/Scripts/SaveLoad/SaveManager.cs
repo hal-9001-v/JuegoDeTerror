@@ -376,11 +376,11 @@ public class SaveManager : MonoBehaviour
 
     private void loadTriggers(GameData data)
     {
-        DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+        Trigger[] triggers = FindObjectsOfType<Trigger>();
 
         if (triggers.Length != data.myTriggerData.Length)
         {
-            Debug.LogError("Scene has changed! can't load interactables from save data!");
+            Debug.LogError("Scene has changed! can't load Triggers from save data!");
             return;
         }
 
