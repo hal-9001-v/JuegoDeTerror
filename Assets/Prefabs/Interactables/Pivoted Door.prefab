@@ -650,6 +650,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   eventOnlyOnce: 0
+  hideWhenDone: 0
   readyForInteraction: 1
   done: 0
   highLightRange: 1
@@ -727,7 +728,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

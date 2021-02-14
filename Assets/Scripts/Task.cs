@@ -10,8 +10,6 @@ public class Task : MonoBehaviour
 
     public int taskNumber;
 
-    public Task nextTask;
-
     public void goToNextTask()
     {
         TaskController.instance.startNextTask();
