@@ -311,7 +311,7 @@ public class SaveManager : MonoBehaviour
         if (torch != null)
         {
             torch.myLight.enabled = data.myPlayerData.torchIsLit;
-            torch.readyToUse = data.myPlayerData.torchReadyToUse;
+            torch.setReadyToUse(data.myPlayerData.torchReadyToUse);
         }
 
     }

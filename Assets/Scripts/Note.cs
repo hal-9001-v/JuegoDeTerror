@@ -33,7 +33,9 @@ public class Note : Interactable
 
         //loadText();
 
-        result = myTextAsset.text;
+        if (myTextAsset != null)
+            result = myTextAsset.text;
+
 
         if (myNoteReader == null)
         {

@@ -9,7 +9,7 @@ public class Torch : PlayerComponent
     public Light myLight;
     private AudioSource audioSource;
 
-    public bool readyToUse;
+    public bool readyToUse { get; private set; }
 
     Pursuer pursuer;
 
