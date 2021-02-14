@@ -23,7 +23,7 @@ public class DigitalDisplay : MonoBehaviour
     private void Start()
     {
         displayCnavas.enabled = false;
-        audioSource = this.GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         deleteText.text = LanguageController.GetTextInLanguage("Delete");
         doneText.text = LanguageController.GetTextInLanguage("Done");
         exitText.text = LanguageController.GetTextInLanguage("Exit");
