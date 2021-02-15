@@ -13,6 +13,7 @@ public class Door : Interactable
     public Key neededKey;
 
     public bool locked = false;
+    public bool superLocked = false;
 
     public AudioClip openDoorSound;
     public AudioClip tryToOpenSound;
@@ -83,7 +84,7 @@ public class Door : Interactable
         }
         else
         {
-            if (locked)
+            if (locked || superLocked)
             {
                 if (neededKey != null)
                 {
@@ -153,6 +154,10 @@ public class Door : Interactable
     public void setLock(bool b)
     {
         locked = b;
+    }
+
+    public void serSuperLock(bool b) {
+        superLocked = b;
     }
 
     private void OnDrawGizmos()

@@ -52,7 +52,7 @@ public class TaskController : MonoBehaviour
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
             textMesh.text = tasks[taskIndex].name;
 
-            Debug.Log(tasks[taskIndex].name);
+            Debug.Log("TASK: "+tasks[taskIndex].name);
 
             tasks[taskIndex].startEvent.Invoke();
 

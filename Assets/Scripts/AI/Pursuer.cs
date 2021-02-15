@@ -167,7 +167,7 @@ public class Pursuer : MonoBehaviour
         currentRoom = startingRoom;
 
         myRandomIdleState.enter();
-        //Debug.Log("PURSUER: Start Patrol");
+        Debug.Log("PURSUER: Start Patrol");
     }
     public void updatePursuing()
     {
