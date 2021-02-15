@@ -35,13 +35,14 @@ public class PlayerMovement : PlayerComponent
 
     bool run;
 
-    bool canRun;
+    bool canRun = true;
 
     public Vector2 moveInput;
 
     private void Awake()
     {
         sharedInstance = this;
+
     }
 
 
