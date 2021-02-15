@@ -8,6 +8,7 @@ public abstract class Item : MonoBehaviour
 
     public string itemName;
     public Texture itemIcon;
+    public AudioClip sound;
    
     public void addToInventory()
     {

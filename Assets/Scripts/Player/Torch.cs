@@ -3,11 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(AudioSource))]
 public class Torch : PlayerComponent
 {
     public AudioClip torchOnOffSound;
     public Light myLight;
-    private AudioSource audioSource;
+    AudioSource audioSource;
+
+    [Range(0, 5)]
+    public float onPitch;
+
+    [Range(0, 5)]
+    public float offPitch;
+
 
     public bool readyToUse { get; private set; }
 
@@ -54,14 +63,29 @@ public class Torch : PlayerComponent
                 {
                     pursuer.torchIsLit = true;
                 }
+
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                    audioSource.pitch = onPitch;
+                }
+
             }
             else
             {
                 myLight.enabled = false;
                 pursuer.torchIsLit = false;
 
-                //audioSource.PlayOneShot(torchOnOffSound);
+                if (audioSource != null)
+                {
+                    audioSource.Play();
+                    audioSource.pitch = offPitch;
+                }
+
+                
             }
+
+
         }
 
     }
