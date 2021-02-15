@@ -18,7 +18,7 @@ public class Torch : PlayerComponent
     public float offPitch;
 
 
-    public bool readyToUse { get; private set; }
+    public bool readyToUse;
 
     Pursuer pursuer;
 
