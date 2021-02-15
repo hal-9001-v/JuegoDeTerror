@@ -51,3 +51,5 @@ MonoBehaviour:
   torchBoost: 1
   currentRoom: {fileID: 0}
   currentState: 0
+  loadSpawn: 1
+  spawnDistance: 5

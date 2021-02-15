@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FootSteps))]
 public class PlayerMovement : PlayerComponent
 {
     public static PlayerMovement sharedInstance;
 
     public CharacterController controller;
+
+    FootSteps ft;
 
     public float speed = 10.0f; //Velocidad al andar
 
@@ -42,6 +45,8 @@ public class PlayerMovement : PlayerComponent
     private void Awake()
     {
         sharedInstance = this;
+        ft = GetComponent<FootSteps>();
+
 
     }
 
@@ -124,13 +129,18 @@ public class PlayerMovement : PlayerComponent
                 {
                     isRunning = true;
                     controller.Move(move * speed * runningIncrease * Time.deltaTime);
+                    ft.playRunning();
                 }
                 else
                 {
                     isRunning = false;
 
                     controller.Move(move * speed * Time.deltaTime);
+                    ft.playWalking();
                 }
+
+
+                
             }
 
 

@@ -38,6 +38,12 @@ public class Pursuer : MonoBehaviour
         Pursue = 2
     }
 
+    public enum PursuerLoadSpawn
+    {
+        SaveData,
+        RandomInRange
+    }
+
     [Header("Timers")]
     //Time Waiting on every room
     public float patrolTime = 2;
@@ -54,7 +60,10 @@ public class Pursuer : MonoBehaviour
     public Room currentRoom;
     [Tooltip("0 => Inactive, 1 => Patrol randomly, 2 => Pursue player")]
     public int currentState;
-
+    [Space(10)]
+    [Header("Behaviour")]
+    public PursuerLoadSpawn loadSpawn;
+    public int spawnDistance = 3;
 
 
     public Stack<Room> rooms;
@@ -184,13 +193,16 @@ public class Pursuer : MonoBehaviour
         {
             distance = myEM.myRoomMap.getDistance(currentRoom, player.currentRoom);
 
-            if (torchIsLit) {
-                if (distance > spottingDistance) {
+            if (torchIsLit)
+            {
+                if (distance > spottingDistance)
+                {
                     distance -= torchBoost;
                 }
             }
         }
-        else {
+        else
+        {
             distance = -1;
         }
 
@@ -208,6 +220,25 @@ public class Pursuer : MonoBehaviour
 
         myEM.setAllRoomsSafe();
 
+        switch (loadSpawn)
+        {
+            case PursuerLoadSpawn.SaveData:
+                spawnFromSaveData(ps);
+                break;
+
+            case PursuerLoadSpawn.RandomInRange:
+                Debug.Log("HERE I AM DIRTY AND FACELESS");
+                spawnRandomInRange(spawnDistance);
+                break;
+
+        }
+
+
+
+    }
+
+    void spawnFromSaveData(PursuerData ps)
+    {
         currentState = ps.currentState;
 
         if (rooms != null)
@@ -261,9 +292,53 @@ public class Pursuer : MonoBehaviour
                 break;
 
         }
+    }
 
+    void spawnRandomInRange(int range)
+    {
+        currentState = (int)pursuerStates.Patrol;
+
+        if (rooms != null)
+        {
+            rooms.Clear();
+        }
+
+        bool[] checks = new bool[myEM.myRoomMap.roomList.Count];
+        int i = 0;
+
+        while (true)
+        {
+            i = Random.Range(0, checks.Length);
+
+        restart:
+
+            if (!checks[i])
+            {
+                if (myEM.myRoomMap.getDistance(currentRoom, myEM.myRoomMap.roomList[i]) >= spawnDistance)
+                {
+                    currentRoom = myEM.myRoomMap.roomList[i];
+                    break;
+                }
+            }
+            else
+            {
+                if (i == (checks.Length - 1))
+                {
+                    i = 0;
+                }
+                else
+                {
+                    i++;
+                }
+
+                goto restart;
+            }
+        }
+
+        myRandomIdleState.enter();
 
     }
+
 
     public class InactiveState : State
     {
