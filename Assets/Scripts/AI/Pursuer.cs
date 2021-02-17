@@ -31,7 +31,9 @@ public class Pursuer : MonoBehaviour
 
     public bool torchIsLit;
 
-    private enum pursuerStates
+    public bool isKilling { get; set; }
+
+    public enum pursuerStates
     {
         Inactive = 0,
         Patrol = 1,
@@ -88,6 +90,7 @@ public class Pursuer : MonoBehaviour
     {
         myEM.setAllRoomsSafe();
         myInactiveState.enter();
+
 
     }
 
@@ -338,8 +341,6 @@ public class Pursuer : MonoBehaviour
         myRandomIdleState.enter();
 
     }
-
-
     public class InactiveState : State
     {
         Pursuer myPursuer;
@@ -552,6 +553,7 @@ public class Pursuer : MonoBehaviour
 
         public void enter()
         {
+            myPursuer.isKilling = true;
             execute();
         }
 
@@ -579,6 +581,8 @@ public class Pursuer : MonoBehaviour
             {
                 myPursuer.myDecideActionState.enter();
             }
+
+            myPursuer.isKilling = false;
         }
     }
 

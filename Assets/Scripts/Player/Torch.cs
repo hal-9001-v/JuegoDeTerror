@@ -7,7 +7,6 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Torch : PlayerComponent
 {
-    public AudioClip torchOnOffSound;
     public Light myLight;
     AudioSource audioSource;
 

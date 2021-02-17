@@ -18,6 +18,8 @@ public class CameraLook : StatsComponent
 
     float xRotation = 0.0f;
 
+    public Vector3 vLookAt;
+
     private void Awake()
     {
         sharedInstance = this;
@@ -47,7 +49,9 @@ public class CameraLook : StatsComponent
 
     void FixedUpdate()
     {
+        
         cameraRotation();
+        vLookAt = transform.rotation.eulerAngles;
     }
 
     public void cameraRotation()
