@@ -8,7 +8,6 @@ public class MenuPauser : PlayerComponent
 {
     private GameManager gameManager;
 
-    bool pause = false;
     public override void setPlayerControls(PlayerControls pc)
     {
         gameManager = GameManager.sharedInstance;

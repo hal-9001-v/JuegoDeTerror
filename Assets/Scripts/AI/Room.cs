@@ -26,6 +26,15 @@ public class Room : MonoBehaviour
 
     public MapNode myMapNode;
 
+    public enum SoundProfile
+    {
+        Laboratory,
+        Storage, 
+        Office,
+        Corridor
+    }
+
+    public SoundProfile profile;
 
 
     private void Awake()

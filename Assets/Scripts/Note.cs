@@ -18,7 +18,7 @@ public class Note : Interactable
 
     public TextAsset myTextAsset;
 
-    private void Awake()
+    private new void Awake()
     {
 
         if (myLight != null)

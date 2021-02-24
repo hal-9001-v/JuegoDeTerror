@@ -28,9 +28,11 @@ public class GridMap : MonoBehaviour
 
     public Color cubeColor;
 
+
     // Start is called before the first frame update
     void Start()
     {
+        
 
     }
 
