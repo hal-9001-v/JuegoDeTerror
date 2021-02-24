@@ -235,59 +235,6 @@ public class SoundDirector : MonoBehaviour
 
     }
 
-    AudioClip[] getClips(SoundProfile profile, TypeOfSound type)
-    {
-
-        if (profile == null)
-            return null;
-
-        AudioClip[] clips = null;
-
-
-        switch (type)
-        {
-            case TypeOfSound.Noise:
-                if (profile.noises != null)
-                {
-                    clips = profile.noises;
-                }
-
-                break;
-
-            case TypeOfSound.Roar:
-                if (profile.roars != null)
-                {
-                    clips = profile.noises;
-                }
-
-                break;
-
-            case TypeOfSound.Steps:
-
-                if (profile.steps != null)
-                {
-                    clips = profile.steps;
-                }
-
-                break;
-
-            case TypeOfSound.Ambient:
-
-                if (profile.ambients != null)
-                {
-                    clips = profile.ambients;
-                }
-
-                break;
-
-
-
-        }
-
-
-
-        return clips;
-
-    }
+ 
 
 }

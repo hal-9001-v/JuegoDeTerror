@@ -110,9 +110,4 @@ public class DoorOperator : MonoBehaviour
         openDoors(exclude);
     }
 
-
-
-
-
-
 }
