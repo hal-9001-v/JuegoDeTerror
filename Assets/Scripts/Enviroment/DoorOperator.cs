@@ -63,6 +63,27 @@ public class DoorOperator : MonoBehaviour
         }
     }
 
+
+    public void superLockDoors(bool exclude)
+    {
+        if (!exclude)
+        {
+            foreach (Door d in doors)
+            {
+                d.setSuperLock(true);
+            }
+        }
+        else
+        {
+            foreach (Door d in FindObjectsOfType<Door>())
+            {
+                if (!doors.Contains(d))
+                    d.setSuperLock(true);
+            }
+        }
+    }
+
+
     public void unlockDoors(bool exclude)
     {
         if (!exclude)

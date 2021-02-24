@@ -66,7 +66,8 @@ public class Door : Interactable
         }
     }
 
-    public override InteractableData getSaveData() {
+    public override InteractableData getSaveData()
+    {
         InteractableData myData = new InteractableData(name, done, readyForInteraction);
         myData.doorLocked = locked;
         myData.doorOpen = doorIsOpen;
@@ -84,7 +85,12 @@ public class Door : Interactable
         }
         else
         {
-            if (locked || superLocked)
+            if (superLocked) {
+                playTryToOpen();
+
+                return;
+            }
+            if (locked)
             {
                 if (neededKey != null)
                 {
@@ -94,32 +100,35 @@ public class Door : Interactable
                         locked = false;
                         inventory.DeleteItem(neededKey);
                     }
-                    else if (audioSource != null)
+                    else
                     {
-                        if (!audioSource.isPlaying)
-                        {
-                            audioSource.clip = tryToOpenSound;
-                            audioSource.Play();
-                        }
+                        playTryToOpen();
 
                     }
                 }
-                else if (audioSource != null)
+                else
                 {
-                    if (!audioSource.isPlaying)
-                    {
-                        audioSource.clip = tryToOpenSound;
-                        audioSource.Play();
-                    }
+                    playTryToOpen();
                 }
 
             }
             else
             {
+
                 openDoor();
             }
         }
     }
+
+    public void playTryToOpen()
+    {
+        if (!audioSource.isPlaying && audioSource != null)
+        {
+            audioSource.clip = tryToOpenSound;
+            audioSource.Play();
+        }
+    }
+
 
     public void openDoor()
     {
@@ -154,10 +163,13 @@ public class Door : Interactable
     public void setLock(bool b)
     {
         locked = b;
+        closeDoor();
     }
 
-    public void serSuperLock(bool b) {
+    public void setSuperLock(bool b)
+    {
         superLocked = b;
+        closeDoor();
     }
 
     private void OnDrawGizmos()
