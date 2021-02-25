@@ -6,8 +6,9 @@ using TMPro;
 
 public class TextBox : MonoBehaviour
 {
-    public RawImage image;
     public TextMeshProUGUI textMesh;
+
+    public CanvasGroup group;
 
     private void Awake()
     {
@@ -16,20 +17,18 @@ public class TextBox : MonoBehaviour
 
     public void show()
     {
-        if (image != null && textMesh != null)
+        if (group)
         {
-            image.enabled = true;
-            textMesh.enabled = true;
+            group.alpha = 1;
         }
 
     }
 
     public void hide()
     {
-        if (image != null && textMesh != null)
+        if (group)
         {
-            image.enabled = false;
-            textMesh.enabled = false;
+            group.alpha = 0;
         }
 
     }

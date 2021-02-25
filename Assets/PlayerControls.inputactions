@@ -108,6 +108,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TextInteraction",
+                    "type": "Button",
+                    "id": "4314ef65-f43c-4f98-8c94-e396dc5ad665",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -570,6 +578,17 @@
                     "processors": "",
                     "groups": "Normal Scheme",
                     "action": "UseItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "643a5f1a-5180-49bf-ba61-667f550ba2d8",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal Scheme",
+                    "action": "TextInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

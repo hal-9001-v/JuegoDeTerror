@@ -121,6 +121,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TextInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4314ef65-f43c-4f98-8c94-e396dc5ad665"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -585,6 +593,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""643a5f1a-5180-49bf-ba61-667f550ba2d8"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""TextInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -628,6 +647,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_TestButton = m_Normal.FindAction("TestButton", throwIfNotFound: true);
         m_Normal_TestButton2 = m_Normal.FindAction("TestButton2", throwIfNotFound: true);
         m_Normal_UseItem = m_Normal.FindAction("UseItem", throwIfNotFound: true);
+        m_Normal_TextInteraction = m_Normal.FindAction("TextInteraction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -690,6 +710,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_TestButton;
     private readonly InputAction m_Normal_TestButton2;
     private readonly InputAction m_Normal_UseItem;
+    private readonly InputAction m_Normal_TextInteraction;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -707,6 +728,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @TestButton => m_Wrapper.m_Normal_TestButton;
         public InputAction @TestButton2 => m_Wrapper.m_Normal_TestButton2;
         public InputAction @UseItem => m_Wrapper.m_Normal_UseItem;
+        public InputAction @TextInteraction => m_Wrapper.m_Normal_TextInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -755,6 +777,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @UseItem.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
+                @TextInteraction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
+                @TextInteraction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
+                @TextInteraction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -798,6 +823,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @UseItem.started += instance.OnUseItem;
                 @UseItem.performed += instance.OnUseItem;
                 @UseItem.canceled += instance.OnUseItem;
+                @TextInteraction.started += instance.OnTextInteraction;
+                @TextInteraction.performed += instance.OnTextInteraction;
+                @TextInteraction.canceled += instance.OnTextInteraction;
             }
         }
     }
@@ -826,5 +854,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnTestButton(InputAction.CallbackContext context);
         void OnTestButton2(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+        void OnTextInteraction(InputAction.CallbackContext context);
     }
 }

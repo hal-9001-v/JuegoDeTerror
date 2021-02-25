@@ -4,11 +4,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class TextController : MonoBehaviour
+public class TextController : PlayerComponent
 {
     TextBox box;
 
     bool readyToCall = true;
+
+    bool textInteraction;
 
     // bool skipLine;
 
@@ -57,7 +59,13 @@ public class TextController : MonoBehaviour
             }
             //skipLine = false;
 
-            yield return new WaitForSeconds(0.5f);
+            textInteraction = false;
+            
+            while (!textInteraction) {
+                yield return null;
+            }
+
+
 
         }
         box.textMesh.text = "";
@@ -68,4 +76,12 @@ public class TextController : MonoBehaviour
             endEvents.Invoke();
     }
 
+    public override void setPlayerControls(PlayerControls pc)
+    {
+        pc.Normal.TextInteraction.performed += ctx => {
+            textInteraction = true;
+        };
+
+
+    }
 }

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
+
     const int LOADING_SCENE = 1;
     const int MENU_SCENE = 0;
     public enum Language

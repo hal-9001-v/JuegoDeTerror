@@ -101,6 +101,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void stopPlayer() {
+
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+    }
+
     void resumeState()
     {
         canChangePause = true;

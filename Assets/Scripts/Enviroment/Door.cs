@@ -85,11 +85,16 @@ public class Door : Interactable
         }
         else
         {
-            if (superLocked) {
+            if (superLocked)
+            {
                 playTryToOpen();
 
                 return;
+
+
             }
+
+
             if (locked)
             {
                 if (neededKey != null)
@@ -162,8 +167,13 @@ public class Door : Interactable
 
     public void setLock(bool b)
     {
+        if (b)
+        {
+            closeDoor();
+        }
+        
         locked = b;
-        closeDoor();
+        
     }
 
     public void setSuperLock(bool b)

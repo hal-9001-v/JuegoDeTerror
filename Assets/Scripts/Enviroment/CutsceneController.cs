@@ -47,8 +47,6 @@ public class CutsceneController : MonoBehaviour
 
     }
 
-
-
     private void Start()
     {
         mySaveManager = FindObjectOfType<SaveManager>();
@@ -120,6 +118,12 @@ public class CutsceneController : MonoBehaviour
         restartGame();
     }
 
+    public void blackScreen()
+    {
+
+        StartCoroutine(FadeScreen(false, 0, 0.001f, null));
+    }
+
     public void screenShake(float time, int iterations, float distance)
     {
         StartCoroutine(ScreenShake(0.5f, 0.5f, 20, 5));
@@ -163,7 +167,7 @@ public class CutsceneController : MonoBehaviour
             //Fade in (Get to Visible)
             if (fadeIn)
             {
-                myImage.color = new Color(0,0,0,1);
+                myImage.color = new Color(0, 0, 0, 1);
                 for (float i = 1; i > 0; i -= 0.01f)
                 {
                     myImage.color = new Color(0, 0, 0, i);
@@ -177,7 +181,7 @@ public class CutsceneController : MonoBehaviour
             //Fade out(Get to Black)
             else
             {
-                
+
                 for (float i = 0; i < 1; i += 0.01f)
                 {
                     myImage.color = new Color(0, 0, 0, i);

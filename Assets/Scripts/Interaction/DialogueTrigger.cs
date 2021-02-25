@@ -4,6 +4,7 @@ using UnityEngine.Events;
 public class DialogueTrigger : Trigger
 {
 
+    [TextArea(0, 3)]
     public string[] sentences;
     public float delay = 0.05f;
 

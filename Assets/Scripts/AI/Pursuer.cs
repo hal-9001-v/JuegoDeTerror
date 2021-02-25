@@ -126,6 +126,7 @@ public class Pursuer : MonoBehaviour
         Debug.Log("Kill Player");
         myCutsceneController.killPlayer();
     }
+
     public Room moveToNextRoom()
     {
         currentRoom.setSafeRoom();
@@ -181,6 +182,19 @@ public class Pursuer : MonoBehaviour
         myRandomIdleState.enter();
         Debug.Log("PURSUER: Start Patrol");
     }
+
+    public void startIdle() {
+        StopAllCoroutines();
+
+        foreach (Room r in myEM.myRoomMap.roomList) {
+            r.setSafeRoom();
+        }
+
+        myInactiveState.enter();
+        Debug.Log("PURSUER: Start Idle");
+
+    }
+    
     public void updatePursuing()
     {
         //Stack the path to player
