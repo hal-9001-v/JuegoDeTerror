@@ -33,7 +33,8 @@ public class Room : MonoBehaviour
         Office,
         Corridor
     }
-
+    [Space(5)]
+    [Header("Profile")]
     public SoundProfile profile;
 
 
