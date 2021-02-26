@@ -8,7 +8,7 @@ public class TaskController : MonoBehaviour
     private TextMeshProUGUI textMesh;
 
     public Task[] tasks;
-    int taskIndex = 0;
+    int taskIndex = -1;
 
     SaveManager mySaveManager;
 
@@ -44,7 +44,7 @@ public class TaskController : MonoBehaviour
     {
         if (i >= 0 && i < tasks.Length && tasks[i] != null)
         {
-            if (tasks[taskIndex] != null)
+            if (taskIndex >= 0 && tasks[taskIndex] != null)
                 tasks[taskIndex].doneEvent.Invoke();
 
             taskIndex = i;

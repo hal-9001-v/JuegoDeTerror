@@ -75,6 +75,12 @@ public class SoundDirector : MonoBehaviour
 
     }
 
+    public void restartSound() {
+        manager.stopSounds();
+
+        playerSource.Stop();
+    }
+
     SoundProfile getProfile()
     {
         SoundProfile profile;

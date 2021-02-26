@@ -25,6 +25,8 @@ public class CutsceneController : MonoBehaviour
 
     SaveManager mySaveManager;
 
+    public SoundDirector soundDirector;
+
     public enum StartingMode
     {
         start,
@@ -40,10 +42,17 @@ public class CutsceneController : MonoBehaviour
         playerAnimator = player.GetComponentInChildren<Animator>();
         playerBrain = player.GetComponent<PlayerBrain>();
 
+        if (soundDirector == null)
+        {
+            soundDirector = FindObjectOfType<SoundDirector>();
+        }
+
         if (player == null)
         {
             Debug.LogWarning("No player in Scene");
         }
+
+
 
     }
 
@@ -84,6 +93,10 @@ public class CutsceneController : MonoBehaviour
         mySaveManager.loadGame();
 
         playerBrain.enablePlayer(true);
+
+        soundDirector.restartSound();
+
+
     }
 
     public void startGame()

@@ -17,7 +17,7 @@ public class Torch : PlayerComponent
     public float offPitch;
 
 
-    public bool readyToUse;
+    public bool readyToUse { private set; get; }
 
     Pursuer pursuer;
 
@@ -81,7 +81,7 @@ public class Torch : PlayerComponent
                     audioSource.pitch = offPitch;
                 }
 
-                
+
             }
 
 

@@ -55,6 +55,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void stopSounds()
+    {
+        foreach (AudioSource source in sources)
+        {
+            source.Stop();
+
+        }
+    }
+
+
     Direction getFacingDirection()
     {
         Direction d = Direction.None;
