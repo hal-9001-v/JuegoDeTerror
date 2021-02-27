@@ -19,6 +19,8 @@ public class ScrollInventory : PlayerComponent
 
     [Tooltip("Time before text start fading")]
     public float timeUntilNameFadeHappens = 3.0f;
+    [Range(0.01f, 1)]
+    public float typeDelay = 0.01f;
 
     [Tooltip("Fade time")]
     public float nameFadeTime = 2.0f;
@@ -122,21 +124,6 @@ public class ScrollInventory : PlayerComponent
 
     }
 
-    //Coroutine that makes disappear item's name after x time
-    public IEnumerator NameFadeOut()
-    {
-        int count = 0;
-
-        if (count == 0)
-        {
-            yield return new WaitForSeconds(timeUntilNameFadeHappens);
-            count++;
-        }
-
-        text.CrossFadeAlpha(0f, nameFadeTime, false);
-        yield return null;
-    }
-
     public void ChangeItem(bool direction)
     {
         if (direction)
@@ -168,12 +155,17 @@ public class ScrollInventory : PlayerComponent
     public void setItem(int index)
     {
         text.CrossFadeAlpha(1.0f, 0.0f, false);
-        if (currentItems.Count != 0)
+        if (currentItems.Count != 0 && index < currentItems.Count && index >= 0)
         {
 
             image.color = new Vector4(1, 1, 1, 1);
             image.texture = currentItems[index].itemIcon;
             text.text = currentItems[index].itemName;
+
+            selectedItem = currentItems[index];
+            StopAllCoroutines();
+            StartCoroutine(typeCurrentItem(selectedItem.name));
+
         }
         else
         {
@@ -182,11 +174,27 @@ public class ScrollInventory : PlayerComponent
             text.text = "Empty";
         }
 
-        StartCoroutine(NameFadeOut());
-
-        if (index < currentItems.Count && index >= 0)
-            selectedItem = currentItems[index];
     }
+
+    IEnumerator typeCurrentItem(string itemName)
+    {
+
+        text.text = "";
+
+        foreach (char c in itemName.ToCharArray())
+        {
+            text.text += c;
+
+            yield return new WaitForSeconds(typeDelay);
+
+        }
+
+        yield return new WaitForSeconds(timeUntilNameFadeHappens);
+
+        text.CrossFadeAlpha(0f, nameFadeTime, false);
+
+    }
+
 
     public void loadData(InventoryData data)
     {

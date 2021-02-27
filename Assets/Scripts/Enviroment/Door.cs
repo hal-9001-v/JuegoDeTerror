@@ -9,7 +9,7 @@ public class Door : Interactable
     Animator myAnimator;
     private bool doorIsOpen;
 
-    ScrollInventory inventory;
+    static ScrollInventory inventory;
     public Key neededKey;
 
     public bool locked = false;
@@ -20,10 +20,17 @@ public class Door : Interactable
 
     AudioSource audioSource;
 
+    static PlayerMovement playerMovement;
+
+    float playerDelay = 1;
+
     new void Awake()
     {
         if (inventory == null)
             inventory = FindObjectOfType<ScrollInventory>();
+
+        if (playerMovement == null)
+            playerMovement = FindObjectOfType<PlayerMovement>();
 
         myAnimator = GetComponent<Animator>();
 
@@ -85,6 +92,9 @@ public class Door : Interactable
         }
         else
         {
+            playerMovement.delayControl(playerDelay);
+
+
             if (superLocked)
             {
                 playTryToOpen();
@@ -99,6 +109,8 @@ public class Door : Interactable
             {
                 if (neededKey != null)
                 {
+                    
+
                     if (inventory != null && inventory.selectedItem == neededKey)
                     {
                         openDoor();
@@ -115,6 +127,7 @@ public class Door : Interactable
                 {
                     playTryToOpen();
                 }
+
 
             }
             else

@@ -9,6 +9,8 @@ public class PlayerMovement : PlayerComponent
 
     public CharacterController controller;
 
+    public CameraHeadBob headBob;
+
     FootSteps ft;
 
     public float speed = 10.0f; //Velocidad al andar
@@ -40,12 +42,17 @@ public class PlayerMovement : PlayerComponent
 
     bool canRun = true;
 
+    bool canMove = true;
+
     public Vector2 moveInput;
 
     private void Awake()
     {
         sharedInstance = this;
         ft = GetComponent<FootSteps>();
+
+        if (headBob == null)
+            headBob = FindObjectOfType<CameraHeadBob>();
 
 
     }
@@ -106,6 +113,15 @@ public class PlayerMovement : PlayerComponent
 
     private void makeMovement()
     {
+
+        if (!canMove) {
+
+            headBob.setRunningSpeed(Vector2.zero);
+            return;
+        }
+
+        headBob.setRunningSpeed(moveInput);
+        
         if (isReading == false)
         {
 
@@ -119,7 +135,8 @@ public class PlayerMovement : PlayerComponent
             }
 
             SetGravity();
-            if (moveInput != Vector2.zero) {
+            if (moveInput != Vector2.zero)
+            {
 
                 Vector3 move;
 
@@ -140,7 +157,7 @@ public class PlayerMovement : PlayerComponent
                 }
 
 
-                
+
             }
 
 
@@ -148,7 +165,8 @@ public class PlayerMovement : PlayerComponent
 
     }
 
-    public void setCanRun(bool b) {
+    public void setCanRun(bool b)
+    {
         canRun = b;
     }
 
@@ -178,4 +196,20 @@ public class PlayerMovement : PlayerComponent
 
 
     }
+
+    public void delayControl(float time)
+    {
+        StopAllCoroutines();
+        StartCoroutine(controlDelayCounter(time));
+    }
+
+    IEnumerator controlDelayCounter(float time)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(time);
+
+        canMove = true;
+    }
+
 }

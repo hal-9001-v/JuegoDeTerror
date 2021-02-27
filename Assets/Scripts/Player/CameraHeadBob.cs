@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraHeadBob : PlayerComponent
+public class CameraHeadBob : MonoBehaviour
 {
     public float bobbingSpeed = 1f;
     public float runningSpeed = 1.5f;
@@ -56,11 +56,9 @@ public class CameraHeadBob : PlayerComponent
 
     }
 
-    public override void setPlayerControls(PlayerControls pc)
-    {
-
-        pc.Normal.Move.performed += ctx => runningSpeed = ctx.ReadValue<Vector2>().magnitude;
-
-        pc.Normal.Move.canceled += ctx => runningSpeed = 0;
+    public void setRunningSpeed(Vector2 v) {
+        runningSpeed = v.magnitude;
+    
     }
+
 }

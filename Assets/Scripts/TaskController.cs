@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using System.Collections;
 
 public class TaskController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class TaskController : MonoBehaviour
     int taskIndex = -1;
 
     SaveManager mySaveManager;
+
+    [Range(0.01f, 1)]
+    public float displayDelay = 0.01f;
 
     private void Awake()
     {
@@ -50,7 +54,10 @@ public class TaskController : MonoBehaviour
             taskIndex = i;
 
             //taskCanvasText.text = LanguageController.GetTextInLanguage("Mission" + task.taskNumber);
-            textMesh.text = tasks[taskIndex].name;
+            //textMesh.text = tasks[taskIndex].name;
+
+
+            StartCoroutine(displayTask());
 
             Debug.Log("TASK: "+tasks[taskIndex].name);
 
@@ -60,6 +67,20 @@ public class TaskController : MonoBehaviour
         
         }
 
+    }
+
+    IEnumerator displayTask() {
+
+        textMesh.text = tasks[taskIndex].name;
+        textMesh.alpha = 0;
+
+        for (int i = 0; i < 10; i++) {
+            textMesh.alpha += 0.1f;
+
+            yield return new WaitForSeconds(displayDelay);
+        }
+
+        yield return 0;
     }
 
     public void startNextTask()
