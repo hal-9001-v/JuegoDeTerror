@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿
+#if UNITY_EDITOR
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 public class RoomTool : EditorWindow
 {
+
     Room selectedRoom;
 
     bool block = false;
@@ -525,6 +530,8 @@ public class RoomTool : EditorWindow
             }
         }
     }
+
+#endif
 
 }
 

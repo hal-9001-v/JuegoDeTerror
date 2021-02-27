@@ -111,6 +111,8 @@ public class Room : MonoBehaviour
         neighbourRooms = new List<Room>();
     }
 
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
 
@@ -148,5 +150,7 @@ public class Room : MonoBehaviour
 
 
     }
+#endif
 
 }
+
