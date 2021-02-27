@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
         currentGameState = GameState.inGame;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void switchPause()
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
         if (canChangePause)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             paused = true;
 
@@ -116,6 +118,7 @@ public class GameManager : MonoBehaviour
         paused = false;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         Time.timeScale = 1;
 
