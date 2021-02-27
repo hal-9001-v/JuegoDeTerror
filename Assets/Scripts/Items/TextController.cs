@@ -12,6 +12,8 @@ public class TextController : PlayerComponent
 
     bool textInteraction;
 
+    bool fillLine;
+
     // bool skipLine;
 
     private void Awake()
@@ -43,6 +45,7 @@ public class TextController : PlayerComponent
         box.show();
         readyToCall = false;
 
+        textInteraction = false;
         foreach (string s in sentences)
         {
 
@@ -52,12 +55,19 @@ public class TextController : PlayerComponent
 
             for (int i = 0; i < characters.Length; i++)
             {
-                box.textMesh.text += characters[i];
+                if (!textInteraction)
+                {
+                    box.textMesh.text += characters[i];
 
-                //if (!skipLine)
-                yield return new WaitForSeconds(delay);
+                    yield return new WaitForSeconds(delay);
+                }
+                else {
+                    box.textMesh.text = characters.ArrayToString();
+                    goto endOfLoop;
+                }
             }
-            //skipLine = false;
+
+            endOfLoop:
 
             textInteraction = false;
             
@@ -75,6 +85,7 @@ public class TextController : PlayerComponent
         if (endEvents != null)
             endEvents.Invoke();
     }
+
 
     public override void setPlayerControls(PlayerControls pc)
     {

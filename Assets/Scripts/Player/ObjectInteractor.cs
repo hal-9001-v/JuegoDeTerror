@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ObjectInteractor : PlayerComponent
@@ -13,6 +14,8 @@ public class ObjectInteractor : PlayerComponent
     //private float interactDistance;
     Interactable selectedObject;
     Ray ray;
+
+    public TextMeshProUGUI text;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +33,16 @@ public class ObjectInteractor : PlayerComponent
     public void Update()
     {
         checkForObject();
+
+        if (selectedObject != null && selectedObject.readyForInteraction && text != null)
+        {
+            text.text = "[E] Interact";
+
+        }
+        else
+        {
+            text.text = "";
+        }
     }
 
     public void checkForObject()
