@@ -11,7 +11,8 @@ public abstract class Item : MonoBehaviour
     public AudioClip pickingSound;
     public AudioClip nearSound;
 
-    float delay;
+    [Range(0.1f,10 )]
+    public float delay;
 
     AudioSource source;
 
@@ -39,7 +40,7 @@ public abstract class Item : MonoBehaviour
             source.clip = pickingSound;
             source.Play();
         }
-        
+
     }
 
     IEnumerator playNearSound()
@@ -58,14 +59,15 @@ public abstract class Item : MonoBehaviour
 
                 }
             }
-            else {
+            else
+            {
 
                 yield return new WaitForSeconds(delay);
 
             }
 
 
-            
+
 
 
         }

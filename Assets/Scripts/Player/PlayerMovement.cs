@@ -45,6 +45,8 @@ public class PlayerMovement : PlayerComponent
     bool canMove = true;
 
     public Vector2 moveInput;
+    Vector3 lastMove;
+
 
     private void Awake()
     {
@@ -110,18 +112,18 @@ public class PlayerMovement : PlayerComponent
     }
 
     //Para fuerzas constantes
-
     private void makeMovement()
     {
 
-        if (!canMove) {
+        if (!canMove)
+        {
 
             headBob.setRunningSpeed(Vector2.zero);
             return;
         }
 
         headBob.setRunningSpeed(moveInput);
-        
+
         if (isReading == false)
         {
 
@@ -141,6 +143,14 @@ public class PlayerMovement : PlayerComponent
                 Vector3 move;
 
                 move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
+
+                move.Normalize();
+
+                move = Vector3.Lerp(lastMove, move, Time.deltaTime*2.5f);
+
+
+                lastMove = move;
+
 
                 if (run && canRun && !hasFatigue)
                 {
@@ -188,7 +198,12 @@ public class PlayerMovement : PlayerComponent
     {
         pc.Normal.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
 
-        pc.Normal.Move.canceled += ctx => moveInput = Vector2.zero;
+        pc.Normal.Move.canceled += ctx =>
+        {
+            lastMove = Vector2.zero;
+            moveInput = Vector2.zero;
+
+        };
 
         pc.Normal.Run.performed += ctx => run = true;
 
