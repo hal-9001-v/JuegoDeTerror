@@ -122,9 +122,10 @@ public abstract class Interactable : MonoBehaviour
             if (eventOnlyOnce && done)
                 return;
 
-            interact();
 
             done = true;
+
+            interact();
 
             if (hideWhenDone)
             {

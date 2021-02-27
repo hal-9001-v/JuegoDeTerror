@@ -39,7 +39,6 @@ public abstract class Item : MonoBehaviour
             source.clip = pickingSound;
             source.Play();
         }
-
         
     }
 

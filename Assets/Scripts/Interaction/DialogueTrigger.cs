@@ -25,8 +25,8 @@ public class DialogueTrigger : Trigger
 
         if (textController != null)
         {
-            textController.displayText(sentences, delay, endEvent);
-            done = true;
+            if (textController.displayText(sentences, delay, endEvent))
+                done = true;
         }
 
 
