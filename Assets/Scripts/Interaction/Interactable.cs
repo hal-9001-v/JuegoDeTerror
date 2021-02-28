@@ -44,8 +44,8 @@ public abstract class Interactable : MonoBehaviour
     public bool eventOnlyOnce;
     public bool hideWhenDone;
 
-    Renderer myRenderer;
-    Collider myCollider;
+    Renderer[] myRenderers;
+    Collider[] myColliders;
 
     public bool readyForInteraction = true;
 
@@ -76,8 +76,8 @@ public abstract class Interactable : MonoBehaviour
 
         if (hideWhenDone)
         {
-            myRenderer = GetComponent<Renderer>();
-            myCollider = GetComponent<Collider>();
+            myRenderers = GetComponentsInChildren<Renderer>();
+            myColliders = GetComponentsInChildren<Collider>();
         }
     }
 
@@ -96,7 +96,8 @@ public abstract class Interactable : MonoBehaviour
             }
 
         }
-        else {
+        else
+        {
             highLight(false);
         }
 
@@ -137,18 +138,32 @@ public abstract class Interactable : MonoBehaviour
 
             interactionActions.Invoke();
         }
-        else {
+        else
+        {
             highLight(false);
         }
     }
 
     public void hide()
     {
-        if (myRenderer != null)
-            myRenderer.enabled = false;
+        if (myRenderers != null)
+        {
+            foreach (Renderer r in myRenderers)
+            {
+                r.enabled = false;
+            }
 
-        if (myCollider != null)
-            myCollider.enabled = false;
+        }
+
+
+        if (myColliders != null)
+        {
+            foreach (Collider c in myColliders)
+            {
+                c.enabled = false;
+            }
+        }
+
 
         if (haveLight)
         {
@@ -158,12 +173,25 @@ public abstract class Interactable : MonoBehaviour
 
     public void show()
     {
-        if (myRenderer != null)
-            myRenderer.enabled = true;
+        if (myRenderers != null)
+        {
+            foreach (Renderer r in myRenderers)
+            {
+                r.enabled = true;
+            }
+        }
 
+        if (myColliders != null)
+        {
+            if (myColliders != null)
+            {
+                foreach (Collider c in myColliders)
+                {
+                    c.enabled = true;
+                }
+            }
+        }
 
-        if (myCollider != null)
-            myCollider.enabled = true;
 
         if (haveLight)
         {
@@ -181,7 +209,8 @@ public abstract class Interactable : MonoBehaviour
     {
         if (myLight != null)
             myLight.enabled = b;
-        else {
+        else
+        {
             return;
         }
 
@@ -210,7 +239,8 @@ public abstract class Interactable : MonoBehaviour
 
     public IEnumerator Highlighting()
     {
-        if (haveLight) {
+        if (haveLight)
+        {
             float changeFactor = maxIntensity * 0.05f;
             float highLightValue = changeFactor;
 
@@ -236,7 +266,7 @@ public abstract class Interactable : MonoBehaviour
 
             } while (true);
         }
-        
+
     }
 
     public virtual InteractableData getSaveData()
