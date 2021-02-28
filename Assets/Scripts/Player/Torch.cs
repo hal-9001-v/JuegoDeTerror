@@ -30,14 +30,14 @@ public class Torch : Item
 
     [Space(4)]
     [Header("Intensity")]
-    [Range(5, 60)]
+    [Range(5, 180)]
     public float maxTime;
     float currentTime;
 
     [Range(0, 5)]
     public float minIntensity;
 
-    [Range(0, 5)]
+    [Range(0, 10)]
     public float recoverRatio;
 
     float defaultIntensity;

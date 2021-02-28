@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationCollider : MonoBehaviour
 {
-    public string tagOfCollision;
+    public int layerOfCollision;
     public int animationID = -1;
     public bool hasToCollide;
 
@@ -40,17 +40,13 @@ public class AnimationCollider : MonoBehaviour
                 Debug.LogWarning("Collider is not Trigger in " + gameObject.name);
             }
 
-            if (!StaticTool.DoesTagExist(tagOfCollision))
-            {
-                Debug.LogWarning("Tag does not exist");
-            }
         }
 
 
     }
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag.Equals(tagOfCollision))
+        if (other.gameObject.layer == layerOfCollision)
             hasCollided = true;
     }
 
