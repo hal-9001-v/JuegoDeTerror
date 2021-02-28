@@ -96,6 +96,9 @@ public abstract class Interactable : MonoBehaviour
             }
 
         }
+        else {
+            highLight(false);
+        }
 
     }
 
@@ -133,6 +136,9 @@ public abstract class Interactable : MonoBehaviour
             }
 
             interactionActions.Invoke();
+        }
+        else {
+            highLight(false);
         }
     }
 
@@ -173,8 +179,11 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-        if(myLight != null) 
-        myLight.enabled = b;
+        if (myLight != null)
+            myLight.enabled = b;
+        else {
+            return;
+        }
 
         if (b)
         {

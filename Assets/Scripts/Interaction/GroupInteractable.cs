@@ -19,26 +19,34 @@ public class GroupInteractable : MonoBehaviour
 
     Interactable[] myInteractables;
 
+    List<string> doneChilds;
+
     private void Start()
     {
         interactionMax = 0;
         interactionCounter = 0;
 
+        doneChilds = new List<string>();
+
         myInteractables = GetComponentsInChildren<Interactable>();
 
-        foreach (Interactable child in myInteractables)
+        interactionMax = myInteractables.Length;
+
+        /*foreach (Interactable child in myInteractables)
         {
             interactionMax++;
 
             child.interactionActions.AddListener(addInteraction);
-        }
+        }*/
+
+
     }
 
-    void addInteraction()
+    public void addInteraction()
     {
         interactionCounter++;
 
-        if (interactionCounter >= interactionMax)
+        if (interactionCounter == interactionMax)
         {
 
             if (done && onlyOnce) return;
