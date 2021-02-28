@@ -46,14 +46,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Light",
-                    "type": "Button",
-                    "id": "2dcacc8c-7760-4276-becf-36f5e1fd8ff8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "KeyAxis",
                     "type": "Button",
                     "id": "90c80a16-52d7-4ea3-b322-59eea012eed0",
@@ -248,28 +240,6 @@
                     "processors": "",
                     "groups": "Normal Scheme",
                     "action": "MouseAim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "48dc29d7-e555-4083-808e-e40b1419dea4",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Normal Scheme",
-                    "action": "Light",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "339d2ca4-e95f-41ff-961d-fb6209f18df3",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Normal Scheme",
-                    "action": "Light",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -573,7 +543,7 @@
                 {
                     "name": "",
                     "id": "b14c144d-fe43-410a-9b7b-89923340cf06",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Normal Scheme",

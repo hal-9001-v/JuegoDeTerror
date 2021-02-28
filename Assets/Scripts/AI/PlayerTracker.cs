@@ -60,7 +60,7 @@ public class PlayerTracker : MonoBehaviour
             }
 
 
-            if (myRoom.isSafeVault)
+            if (myRoom.isVault)
                 currentRoom = null;
             else
                 currentRoom = myRoom;

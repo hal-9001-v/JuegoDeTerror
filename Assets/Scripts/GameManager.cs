@@ -69,16 +69,18 @@ public class GameManager : MonoBehaviour
 
     public void switchPause()
     {
+        if (canChangePause) {
+            if (paused)
+            {
+                resumeGame();
 
-        if (paused)
-        {
-            resumeGame();
-
+            }
+            else
+            {
+                pauseGame();
+            }
         }
-        else
-        {
-            pauseGame();
-        }
+        
 
     }
 
@@ -222,6 +224,12 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMneu");
+    }
+
+    public void setCanSwitchPause(bool b) {
+        canChangePause = b;
+
+    
     }
 
 }

@@ -22,11 +22,20 @@ public class Radio : Item
         if (tracker != null && textController != null && tracker.currentZone != null)
         {
 
-            if(textController.displayText(tracker.currentZone.Text, tracker.currentZone.delay, tracker.currentZone.endEvent))
+            if (textController.displayText(tracker.currentZone.Text, tracker.currentZone.delay, tracker.currentZone.endEvent))
             {
                 tracker.currentZone.done = true;
                 tracker.currentZone.startEvent.Invoke();
             }
+        }
+        else
+        {
+            var s = new string[1];
+            s[0] = "...";
+
+            textController.displayText(s, 0.1f, null);
+
+
         }
 
     }

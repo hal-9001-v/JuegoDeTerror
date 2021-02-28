@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RoomMap
 {
+
     public List<Room> roomList { get; private set; }
 
     public Material defaultMaterial;
@@ -150,6 +151,7 @@ public class RoomMap
 
 
     }
+
 
 
 

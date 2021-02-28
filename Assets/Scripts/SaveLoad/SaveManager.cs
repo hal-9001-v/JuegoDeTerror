@@ -31,7 +31,8 @@ public class SaveManager : MonoBehaviour
         {
             instance.torch = torch;
 
-            if (instance.torch == null) {
+            if (instance.torch == null)
+            {
                 instance.torch = FindObjectOfType<Torch>();
             }
 
@@ -163,7 +164,6 @@ public class SaveManager : MonoBehaviour
 
         if (torch != null)
         {
-            ready = torch.readyToUse;
             lit = torch.myLight.enabled;
 
         }
@@ -233,7 +233,8 @@ public class SaveManager : MonoBehaviour
 
         RadioZoneData[] zoneDatas = new RadioZoneData[zones.Length];
 
-        for (int i = 0; i < zones.Length; i++) {
+        for (int i = 0; i < zones.Length; i++)
+        {
             zoneDatas[i] = zones[i].getSaveData();
 
         }
@@ -247,7 +248,7 @@ public class SaveManager : MonoBehaviour
         TaskController.instance.saveData(data);
     }
 
- 
+
 
     public void loadGame()
     {
@@ -311,7 +312,6 @@ public class SaveManager : MonoBehaviour
         if (torch != null)
         {
             torch.myLight.enabled = data.myPlayerData.torchIsLit;
-            torch.setReadyToUse(data.myPlayerData.torchReadyToUse);
         }
 
     }
@@ -397,22 +397,27 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    private void loadRadioZones(GameData data) {
+    private void loadRadioZones(GameData data)
+    {
         RadioZone[] zones = FindObjectsOfType<RadioZone>();
 
-        if (zones.Length != data.myRadioZoneData.Length) {
+        if (zones.Length != data.myRadioZoneData.Length)
+        {
             Debug.LogError("Scene has changed! can't load Radio Zones from save data!");
             return;
         }
 
-        for (int i = 0; i < zones.Length; i++) {
-            if (zones[i].name == data.myRadioZoneData[i].radioName) {
+        for (int i = 0; i < zones.Length; i++)
+        {
+            if (zones[i].name == data.myRadioZoneData[i].radioName)
+            {
                 zones[i].loadData(data.myRadioZoneData[i]);
             }
-            else{
+            else
+            {
                 Debug.LogError("Scene has change since last save!");
             }
-        
+
         }
 
     }

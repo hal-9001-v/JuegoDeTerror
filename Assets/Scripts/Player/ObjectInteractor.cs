@@ -54,11 +54,12 @@ public class ObjectInteractor : PlayerComponent
         if (Physics.Raycast(ray.origin, ray.direction, out hit, range))
         {
             Debug.DrawRay(transform.position, ray.direction);
-            if (hit.collider.tag == "Interactable")
+            if (hit.collider.tag == "Interactable" && !hit.collider.isTrigger)
             {
 
                 Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
-                if (selectedObject != auxInteractable)
+
+                
                 {
                     if (auxInteractable != null)
                     {

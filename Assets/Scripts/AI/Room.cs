@@ -14,8 +14,6 @@ public class Room : MonoBehaviour
     public bool visited;
     public Room previousRoom;
 
-    public bool isSafeVault;
-
     public UnityEvent atEnter;
     public UnityEvent atExit;
 
@@ -29,7 +27,9 @@ public class Room : MonoBehaviour
 
     public MapNode myMapNode;
 
+    [Header("Vault Settings")]
     public bool isVault;
+    public VaultBehaviour vaultBehaviour;
 
     public enum SoundProfile
     {
@@ -37,6 +37,13 @@ public class Room : MonoBehaviour
         Storage,
         Office,
         Corridor
+    }
+
+    public enum VaultBehaviour
+    {
+        None,
+        CantBeVault,
+        alwaysVault
     }
     [Space(5)]
     [Header("Profile")]
@@ -55,8 +62,8 @@ public class Room : MonoBehaviour
             safeColor = myEM.safeColor;
             vaultColor = myEM.vaultColor;
 
-            if (isSafeVault)
-                setVaultColor();
+            if (isVault || vaultBehaviour == VaultBehaviour.alwaysVault)
+                setVaultRoom(true);
         }
         else
         {
@@ -76,7 +83,7 @@ public class Room : MonoBehaviour
 
     public void setSafeRoom()
     {
-        if (!isSafeVault)
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
             foreach (Light l in lights)
             {
@@ -94,7 +101,7 @@ public class Room : MonoBehaviour
     public void setNearbyRoom()
     {
 
-        if (!isSafeVault)
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
 
             foreach (Light l in lights)
@@ -112,7 +119,7 @@ public class Room : MonoBehaviour
 
     public void setDangerColor()
     {
-        if (!isSafeVault)
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
             foreach (Light l in lights)
             {
@@ -130,37 +137,32 @@ public class Room : MonoBehaviour
     public void setVaultRoom(bool b)
     {
 
-
-        if (b)
+        if (b && vaultBehaviour != VaultBehaviour.CantBeVault)
         {
             setVaultColor();
-            isSafeVault = true;
+            isVault = true;
         }
-        else
+        else if (vaultBehaviour != VaultBehaviour.alwaysVault)
         {
-            isSafeVault = false;
+            isVault = false;
             setSafeRoom();
         }
 
     }
 
-    public void setVaultColor()
+    void setVaultColor()
     {
-        if (isSafeVault)
+
+        foreach (Light l in lights)
         {
-            foreach (Light l in lights)
-            {
-                l.color = vaultColor;
-            }
-
-
-            if (myMapNode != null)
-            {
-                myMapNode.setSafe();
-            }
+            l.color = vaultColor;
         }
 
 
+        if (myMapNode != null)
+        {
+            myMapNode.setSafe();
+        }
 
     }
 

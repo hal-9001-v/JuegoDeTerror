@@ -59,14 +59,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Light"",
-                    ""type"": ""Button"",
-                    ""id"": ""2dcacc8c-7760-4276-becf-36f5e1fd8ff8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""KeyAxis"",
                     ""type"": ""Button"",
                     ""id"": ""90c80a16-52d7-4ea3-b322-59eea012eed0"",
@@ -261,28 +253,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""MouseAim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""48dc29d7-e555-4083-808e-e40b1419dea4"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""339d2ca4-e95f-41ff-961d-fb6209f18df3"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -586,7 +556,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b14c144d-fe43-410a-9b7b-89923340cf06"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
@@ -672,7 +642,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_MouseAim = m_Normal.FindAction("MouseAim", throwIfNotFound: true);
         m_Normal_Run = m_Normal.FindAction("Run", throwIfNotFound: true);
         m_Normal_Interaction = m_Normal.FindAction("Interaction", throwIfNotFound: true);
-        m_Normal_Light = m_Normal.FindAction("Light", throwIfNotFound: true);
         m_Normal_KeyAxis = m_Normal.FindAction("KeyAxis", throwIfNotFound: true);
         m_Normal_Cancel = m_Normal.FindAction("Cancel", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
@@ -735,7 +704,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_MouseAim;
     private readonly InputAction m_Normal_Run;
     private readonly InputAction m_Normal_Interaction;
-    private readonly InputAction m_Normal_Light;
     private readonly InputAction m_Normal_KeyAxis;
     private readonly InputAction m_Normal_Cancel;
     private readonly InputAction m_Normal_Pause;
@@ -753,7 +721,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @MouseAim => m_Wrapper.m_Normal_MouseAim;
         public InputAction @Run => m_Wrapper.m_Normal_Run;
         public InputAction @Interaction => m_Wrapper.m_Normal_Interaction;
-        public InputAction @Light => m_Wrapper.m_Normal_Light;
         public InputAction @KeyAxis => m_Wrapper.m_Normal_KeyAxis;
         public InputAction @Cancel => m_Wrapper.m_Normal_Cancel;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
@@ -786,9 +753,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
-                @Light.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
-                @Light.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
-                @Light.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
                 @KeyAxis.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
                 @KeyAxis.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
                 @KeyAxis.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
@@ -832,9 +796,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
-                @Light.started += instance.OnLight;
-                @Light.performed += instance.OnLight;
-                @Light.canceled += instance.OnLight;
                 @KeyAxis.started += instance.OnKeyAxis;
                 @KeyAxis.performed += instance.OnKeyAxis;
                 @KeyAxis.canceled += instance.OnKeyAxis;
@@ -879,7 +840,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMouseAim(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
-        void OnLight(InputAction.CallbackContext context);
         void OnKeyAxis(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);

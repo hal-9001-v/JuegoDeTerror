@@ -2,10 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
-public class Torch : PlayerComponent
+public class Torch : Item
 {
     public Light myLight;
     AudioSource audioSource;
@@ -15,9 +15,6 @@ public class Torch : PlayerComponent
 
     [Range(0, 5)]
     public float offPitch;
-
-
-    public bool readyToUse { private set; get; }
 
     float positionTimer;
 
@@ -33,7 +30,7 @@ public class Torch : PlayerComponent
 
     [Space(4)]
     [Header("Intensity")]
-    [Range(5, 30)]
+    [Range(5, 60)]
     public float maxTime;
     float currentTime;
 
@@ -44,8 +41,6 @@ public class Torch : PlayerComponent
     public float recoverRatio;
 
     float defaultIntensity;
-
-
 
     Vector3 defaultPosition;
 
@@ -59,7 +54,7 @@ public class Torch : PlayerComponent
         if (myLight != null)
         {
             myLight.enabled = false;
-            
+
         }
         else
         {
@@ -109,7 +104,7 @@ public class Torch : PlayerComponent
         else
         {
             #region Intensity Recover
-            currentTime += Time.deltaTime*recoverRatio;
+            currentTime += Time.deltaTime * recoverRatio;
 
             if (currentTime > maxTime)
             {
@@ -117,6 +112,7 @@ public class Torch : PlayerComponent
             }
             #endregion
         }
+
     }
 
     // Start is called before the first frame update
@@ -130,12 +126,10 @@ public class Torch : PlayerComponent
 
     void switchLight()
     {
-        if (readyToUse)
-        {
             if (myLight.enabled == false)
             {
                 myLight.enabled = true;
-                currentTime -= maxTime*0.1f;
+                currentTime -= maxTime * 0.1f;
 
                 if (pursuer != null)
                 {
@@ -164,18 +158,12 @@ public class Torch : PlayerComponent
             }
 
 
-        }
+        
 
     }
 
-    public void setReadyToUse(bool b)
+    public override void useItem()
     {
-        readyToUse = b;
+        switchLight();
     }
-
-    public override void setPlayerControls(PlayerControls pc)
-    {
-        pc.Normal.Light.performed += ctx => switchLight();
-    }
-
 }

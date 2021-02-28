@@ -67,6 +67,9 @@ public class Pursuer : MonoBehaviour
     public PursuerLoadSpawn loadSpawn;
     public int spawnDistance = 3;
 
+    [Range(0, 5)]
+    public int vaultRooms; 
+
 
     public Stack<Room> rooms;
 
@@ -155,6 +158,7 @@ public class Pursuer : MonoBehaviour
     {
         if (player.currentRoom != null)
         {
+            myEM.setVaultRooms(vaultRooms);
             StopAllCoroutines();
 
             if (player.currentRoom != null)
@@ -184,6 +188,7 @@ public class Pursuer : MonoBehaviour
 
     public void startPatrol(Room startingRoom)
     {
+        myEM.setVaultRooms(vaultRooms);
         StopAllCoroutines();
 
         //Stack the path to player
