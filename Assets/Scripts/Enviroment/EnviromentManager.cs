@@ -11,6 +11,7 @@ public class EnviromentManager : MonoBehaviour
     public Color safeColor;
     public Color nearbyColor;
     public Color dangerColor;
+    public Color vaultColor;
 
     Door[] doors;
 

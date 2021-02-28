@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1643263547986189852}
+  headBob: {fileID: 0}
   speed: 80
   runningIncrease: 1.5
   gravity: 8
@@ -290,6 +291,7 @@ MonoBehaviour:
   image: {fileID: 0}
   text: {fileID: 0}
   timeUntilNameFadeHappens: 3
+  typeDelay: 0.1
   nameFadeTime: 2
 --- !u!82 &1643263547986189868
 AudioSource:
@@ -303,7 +305,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0898bbdbcc016474682454dbf5896e51, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -399,12 +401,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6348009145da94f979ab655b26c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volume: 0.4
-  runningVolume: 0.6
-  volumeVariation: 0.2
+  volume: 0.05
+  runningVolume: 0.1
+  volumeVariation: 0.02
   pitch: 3.5
   runningPitch: 4.5
-  pitchVariation: 0.5
+  pitchVariation: 0.2
 --- !u!1 &1643263548193350242
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,6 +503,9 @@ GameObject:
   - component: {fileID: 1643263548376506572}
   - component: {fileID: 1643263548376506573}
   - component: {fileID: 1643263548376506578}
+  - component: {fileID: 1844843752}
+  - component: {fileID: 1844843753}
+  - component: {fileID: 4878274465304051880}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -547,7 +552,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 400
+  far clip plane: 600
   field of view: 50
   orthographic: 0
   orthographic size: 5
@@ -718,7 +723,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myCamera: {fileID: 1643263548376506569}
-  range: 100
+  range: 35
+  text: {fileID: 0}
+--- !u!114 &1844843752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643263548376506576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 8afa2a41a16b8b249af27dd0effb5f48, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &1844843753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643263548376506576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1643263548376506579}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 1
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 0
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
+--- !u!111 &4878274465304051880
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643263548376506576}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: a8fdeae457f4ef04da2c45a6fe839800, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1643263549048668322
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,8 +863,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 0.94059026, g: 0.9528302, b: 0.84046817, a: 1}
-  m_Intensity: 1.3
-  m_Range: 250
+  m_Intensity: 1
+  m_Range: 400
   m_SpotAngle: 80
   m_InnerSpotAngle: 6
   m_CookieSize: 10

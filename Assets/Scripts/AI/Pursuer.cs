@@ -157,8 +157,19 @@ public class Pursuer : MonoBehaviour
         {
             StopAllCoroutines();
 
-            //Stack the path to player
-            rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
+            if (player.currentRoom != null)
+            {
+                //Stack the path to player
+                rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
+
+            }
+            else {
+                startPatrol(currentRoom);
+                return;
+            }
+
+
+
             currentRoom = startingRoom;
 
             myPursueIdleState.enter();
