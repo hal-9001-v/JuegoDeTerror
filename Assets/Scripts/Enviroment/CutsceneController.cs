@@ -137,7 +137,7 @@ public class CutsceneController : MonoBehaviour
         StartCoroutine(FadeScreen(false, 0, 0.001f, null));
     }
 
-    public void screenShake(float time, int iterations, float distance)
+    public void screenShake()
     {
         StartCoroutine(ScreenShake(0.5f, 0.5f, 20, 5));
     }
@@ -148,9 +148,11 @@ public class CutsceneController : MonoBehaviour
 
         float shakeTimer;
         float effectTimer = 0;
+                    Debug.Log("HOIII");
 
         while (effectTimer < time)
         {
+            Debug.Log("HOIII");
 
             effectTimer += Time.deltaTime;
             shakeTimer = effectTimer * bobbingSpeed;
@@ -228,6 +230,7 @@ public class CutsceneController : MonoBehaviour
                 return;
             }
         }
+        screenShake();
 
         List<AnimationCollider> readyACList = new List<AnimationCollider>();
 
@@ -248,6 +251,7 @@ public class CutsceneController : MonoBehaviour
             {
                 playerAnimator.SetTrigger("Death");
                 playerAnimator.SetInteger("DeathNumber", selectedAC.animationID);
+
 
                 if (selectedAC.fadeOut)
                 {
