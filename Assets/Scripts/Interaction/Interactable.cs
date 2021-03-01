@@ -33,6 +33,8 @@ public abstract class Interactable : MonoBehaviour
 
     public Light myLight;
 
+    public string selectionText = "Interact";
+
     protected float maxIntensity;
 
     Coroutine myCoroutine;

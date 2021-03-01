@@ -7,7 +7,10 @@ using UnityEngine.UI;
 [RequireComponent(typeof(AudioSource))]
 public class Torch : Item
 {
+    [Header("Objects")]
     public Light myLight;
+    public Image bar;
+
     AudioSource audioSource;
 
     [Range(0, 5)]
@@ -112,6 +115,14 @@ public class Torch : Item
             }
             #endregion
         }
+
+        #region HUD
+
+        if (bar != null) {
+            bar.fillAmount = currentTime / maxTime;
+        }
+
+        #endregion
 
     }
 

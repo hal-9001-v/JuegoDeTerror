@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(FootSteps))]
 public class PlayerMovement : PlayerComponent
 {
     public static PlayerMovement sharedInstance;
 
+    [Header("Objects")]
     public CharacterController controller;
 
     public CameraHeadBob headBob;
+
+    public Image bar;
+    public Image exhaustionBar;
 
     FootSteps ft;
 
@@ -36,7 +41,16 @@ public class PlayerMovement : PlayerComponent
 
     public bool hasFatigue = false;
 
-    private float fatigueCounter;
+    float fatigueCounter;
+
+    float exhaustion;
+
+    [Range(0, 1)]
+    public float exhaustionFactor;
+    [Range(0, 1)]
+    public float recoverFactor;
+
+
 
     bool run;
 
@@ -68,6 +82,35 @@ public class PlayerMovement : PlayerComponent
     private void FixedUpdate()
     {
         makeMovement();
+
+        if (isRunning){
+
+            if (exhaustion < 0.5f * maxRunningTime)
+                exhaustion += Time.deltaTime * exhaustionFactor;
+            else {
+                exhaustion = 0.5f * maxRunningTime;
+            }
+        }
+        else if(!hasFatigue)
+        {
+            exhaustion -= Time.deltaTime * recoverFactor;
+            
+            if (exhaustion < 0)
+                exhaustion = 0;
+        }
+
+
+    }
+
+    private void Update()
+    {
+        if (bar != null && exhaustionBar != null)
+        {
+            bar.fillAmount = (maxRunningTime - fatigueCounter - exhaustion) / maxRunningTime;
+            exhaustionBar.fillAmount = exhaustion / maxRunningTime;
+
+        }
+
     }
 
     //Método que controla el contador de fatiga del jugador mientras este sea igual a false
@@ -79,14 +122,14 @@ public class PlayerMovement : PlayerComponent
         {
             fatigueCounter += Time.deltaTime;
         }
-
-        if (isRunning == false && fatigueCounter > 0.1f)
+        else if (fatigueCounter > 0.1f)
         {
             fatigueCounter -= fatigueRecoverTimeIncrease * Time.deltaTime;
+
         }
         //Debug.Log(fatigueCounter);
 
-        if (fatigueCounter >= maxRunningTime)
+        if (fatigueCounter + exhaustion >= maxRunningTime)
         {
             hasFatigue = true;
         }
@@ -102,11 +145,13 @@ public class PlayerMovement : PlayerComponent
         if (fatigueCounter >= maxRunningTime - minRecoverTime)
         {
             fatigueCounter -= fatigueRecoverTimeIncrease * Time.deltaTime;
+
         }
         else
         {
             hasFatigue = false;
         }
+
 
         return hasFatigue;
     }
@@ -146,7 +191,7 @@ public class PlayerMovement : PlayerComponent
 
                 move.Normalize();
 
-                move = Vector3.Lerp(lastMove, move, Time.deltaTime*2.5f);
+                move = Vector3.Lerp(lastMove, move, Time.deltaTime * 2.5f);
 
 
                 lastMove = move;
@@ -202,6 +247,8 @@ public class PlayerMovement : PlayerComponent
         {
             lastMove = Vector2.zero;
             moveInput = Vector2.zero;
+
+            isRunning = false;
 
         };
 

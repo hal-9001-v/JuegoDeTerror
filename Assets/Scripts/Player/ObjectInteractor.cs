@@ -42,7 +42,7 @@ public class ObjectInteractor : PlayerComponent
 
         if (selectedObject != null && selectedObject.readyForInteraction && text != null)
         {
-            text.text = "[E] Interact";
+            text.text = "[E] " + selectedObject.selectionText;
 
         }
         else
