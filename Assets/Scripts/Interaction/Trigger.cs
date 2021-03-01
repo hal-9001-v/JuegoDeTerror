@@ -20,4 +20,8 @@ public class Trigger : MonoBehaviour
         return new TriggerData(name, done, readyForInteraction);
     }
 
+    public void setReadyForInteraction(bool b) {
+        readyForInteraction = b;
+    }
+
 }

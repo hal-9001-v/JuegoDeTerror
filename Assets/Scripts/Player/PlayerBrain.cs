@@ -8,7 +8,11 @@ public class PlayerBrain : MonoBehaviour
     PlayerComponent[] myPlayerComponents;
     StatsComponent[] myStatsComponents;
 
+    PlayerMovement movement;
+
     SaveManager mySaveManager;
+
+    PlayerMovement pm;
 
     private void Awake()
     {
@@ -17,6 +21,8 @@ public class PlayerBrain : MonoBehaviour
         myPlayerComponents = FindObjectsOfType<PlayerComponent>();
         myStatsComponents = FindObjectsOfType<StatsComponent>();
         mySaveManager = FindObjectOfType<SaveManager>();
+
+        pm = FindObjectOfType<PlayerMovement>();
     }
 
     private void Start()
@@ -31,6 +37,8 @@ public class PlayerBrain : MonoBehaviour
 
     public void enablePlayer(bool b)
     {
+        pm.enabled = b;
+
         foreach (PlayerComponent component in myPlayerComponents)
         {
             component.enabled = b;

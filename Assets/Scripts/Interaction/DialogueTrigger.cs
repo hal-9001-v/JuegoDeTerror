@@ -18,7 +18,7 @@ public class DialogueTrigger : Trigger
 
     public void trigger()
     {
-        if (onlyOnce && done)
+        if (onlyOnce && done || !readyForInteraction)
         {
             return;
         }

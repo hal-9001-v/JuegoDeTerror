@@ -21,6 +21,12 @@ public class CutsceneController : MonoBehaviour
 
     public Image myImage;
 
+    public AudioSource screamer;
+    public AudioClip roarClip;
+    public AudioClip restartClip;
+
+    public Light torchLight;
+
     Animator playerAnimator;
 
     SaveManager mySaveManager;
@@ -116,6 +122,13 @@ public class CutsceneController : MonoBehaviour
         {
             yield return new WaitForSeconds(startTime);
 
+            if (screamer != null)
+            {
+                screamer.clip = restartClip;
+                screamer.Play();
+            }
+
+
             myImage.enabled = true;
 
             //Fade out (Get to Color)
@@ -126,7 +139,6 @@ public class CutsceneController : MonoBehaviour
                 yield return new WaitForSeconds(frameTime);
             }
         }
-
 
         restartGame();
     }
@@ -139,7 +151,7 @@ public class CutsceneController : MonoBehaviour
 
     public void screenShake()
     {
-        StartCoroutine(ScreenShake(0.5f, 0.5f, 20, 5));
+        StartCoroutine(ScreenShake(0.5f, 0.5f, 60, 0.5f));
     }
 
     IEnumerator ScreenShake(float bobbingAmountX, float bobbingAmountY, float bobbingSpeed, float time)
@@ -148,7 +160,7 @@ public class CutsceneController : MonoBehaviour
 
         float shakeTimer;
         float effectTimer = 0;
-                    Debug.Log("HOIII");
+        Debug.Log("HOIII");
 
         while (effectTimer < time)
         {
@@ -219,6 +231,8 @@ public class CutsceneController : MonoBehaviour
     {
         playerBrain.enablePlayer(false);
 
+        torchLight.enabled = false;
+
         if (playerAnimator == null)
         {
             playerAnimator = player.GetComponentInChildren<Animator>();
@@ -247,23 +261,31 @@ public class CutsceneController : MonoBehaviour
             AnimationCollider selectedAC = readyACList[Random.Range(0, readyACList.Count)];
 
 
-            try
-            {
-                playerAnimator.SetTrigger("Death");
-                playerAnimator.SetInteger("DeathNumber", selectedAC.animationID);
 
-
-                if (selectedAC.fadeOut)
+                try
                 {
-                    StartCoroutine(deathScreen(selectedAC.startWait, selectedAC.frameWait));
+                    playerAnimator.SetTrigger("Death");
+                    playerAnimator.SetInteger("DeathNumber", selectedAC.animationID);
+
+
+                    if (selectedAC.fadeOut)
+                    {
+                        StartCoroutine(deathScreen(selectedAC.startWait, selectedAC.frameWait));
+
+
+                    if (screamer != null && !screamer.isPlaying)
+                    {
+                        screamer.clip = roarClip;
+                        screamer.Play();
+                    }
 
                 }
 
             }
-            catch
-            {
-                Debug.LogError("Error at Animation Controller variables");
-            }
+                catch
+                {
+                    Debug.LogError("Error at Animation Controller variables");
+                }
         }
         else
         {

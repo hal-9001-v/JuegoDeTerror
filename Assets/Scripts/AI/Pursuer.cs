@@ -68,7 +68,7 @@ public class Pursuer : MonoBehaviour
     public int spawnDistance = 3;
 
     [Range(0, 5)]
-    public int vaultRooms; 
+    public int vaultRooms;
 
 
     public Stack<Room> rooms;
@@ -167,7 +167,8 @@ public class Pursuer : MonoBehaviour
                 rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
 
             }
-            else {
+            else
+            {
                 startPatrol(currentRoom);
                 return;
             }
@@ -199,10 +200,12 @@ public class Pursuer : MonoBehaviour
         Debug.Log("PURSUER: Start Patrol");
     }
 
-    public void startIdle() {
+    public void startIdle()
+    {
         StopAllCoroutines();
 
-        foreach (Room r in myEM.myRoomMap.roomList) {
+        foreach (Room r in myEM.myRoomMap.roomList)
+        {
             r.setSafeRoom();
         }
 
@@ -210,7 +213,7 @@ public class Pursuer : MonoBehaviour
         Debug.Log("PURSUER: Start Idle");
 
     }
-    
+
     public void updatePursuing()
     {
         //Stack the path to player
@@ -260,7 +263,6 @@ public class Pursuer : MonoBehaviour
                 break;
 
             case PursuerLoadSpawn.RandomInRange:
-                Debug.Log("HERE I AM DIRTY AND FACELESS");
                 spawnRandomInRange(spawnDistance);
                 break;
 
