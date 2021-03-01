@@ -12,6 +12,7 @@ TagManager:
   - Interactable
   - Stairs
   - RadioZone
+  - Map
   layers:
   - Default
   - TransparentFX

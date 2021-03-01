@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 public class ObjectInteractor : PlayerComponent
@@ -16,6 +14,14 @@ public class ObjectInteractor : PlayerComponent
     Ray ray;
 
     public TextMeshProUGUI text;
+
+
+    [Header("Field of View")]
+    [Range(0, 90)]
+    public float normalFOV;
+
+    [Range(0, 90)]
+    public float mapFOV;
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +62,11 @@ public class ObjectInteractor : PlayerComponent
             Debug.DrawRay(transform.position, ray.direction);
             if (hit.collider.tag == "Interactable" && !hit.collider.isTrigger)
             {
+                myCamera.fieldOfView = normalFOV;
 
                 Interactable auxInteractable = hit.collider.gameObject.GetComponentInParent<Interactable>();
 
-                
+
                 {
                     if (auxInteractable != null)
                     {
@@ -79,6 +86,15 @@ public class ObjectInteractor : PlayerComponent
                 return;
 
             }
+            else if (hit.collider.tag == "Map")
+            {
+                myCamera.fieldOfView = mapFOV;
+
+            }
+
+        }
+        else {
+            myCamera.fieldOfView = normalFOV;
         }
 
         if (selectedObject != null)
