@@ -42,6 +42,10 @@ public abstract class Interactable : MonoBehaviour
     public UnityEvent interactionActions;
     //Execute Event only once
     public bool eventOnlyOnce;
+    public bool hideWhenDone;
+
+    Renderer[] myRenderers;
+    Collider[] myColliders;
 
     public bool readyForInteraction = true;
 
@@ -69,15 +73,20 @@ public abstract class Interactable : MonoBehaviour
 
         if (playerTransform == null)
             playerTransform = FindObjectOfType<PlayerMovement>().transform;
+
+        if (hideWhenDone)
+        {
+            myRenderers = GetComponentsInChildren<Renderer>();
+            myColliders = GetComponentsInChildren<Collider>();
+        }
     }
 
 
     protected void FixedUpdate()
     {
-        if (haveLight && playerTransform != null)
+        if (readyForInteraction && haveLight && playerTransform != null)
         {
-
-            if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange)
+            if (Vector3.Distance(playerTransform.position, transform.position) < highLightRange && !(eventOnlyOnce && done))
             {
                 highLight(true);
             }
@@ -86,6 +95,10 @@ public abstract class Interactable : MonoBehaviour
                 highLight(false);
             }
 
+        }
+        else
+        {
+            highLight(false);
         }
 
     }
@@ -96,6 +109,14 @@ public abstract class Interactable : MonoBehaviour
     {
         done = myData.interactionDone;
         readyForInteraction = myData.readyForInteraction;
+
+        if (hideWhenDone)
+        {
+            if (done)
+                hide();
+            else
+                show();
+        }
     }
 
     public virtual void invokeInteractionActions()
@@ -105,11 +126,76 @@ public abstract class Interactable : MonoBehaviour
             if (eventOnlyOnce && done)
                 return;
 
-            interact();
 
             done = true;
 
+            interact();
+
+            if (hideWhenDone)
+            {
+                hide();
+            }
+
             interactionActions.Invoke();
+        }
+        else
+        {
+            highLight(false);
+        }
+    }
+
+    public void hide()
+    {
+        if (myRenderers != null)
+        {
+            foreach (Renderer r in myRenderers)
+            {
+                r.enabled = false;
+            }
+
+        }
+
+
+        if (myColliders != null)
+        {
+            foreach (Collider c in myColliders)
+            {
+                c.enabled = false;
+            }
+        }
+
+
+        if (haveLight)
+        {
+            StopAllCoroutines();
+        }
+    }
+
+    public void show()
+    {
+        if (myRenderers != null)
+        {
+            foreach (Renderer r in myRenderers)
+            {
+                r.enabled = true;
+            }
+        }
+
+        if (myColliders != null)
+        {
+            if (myColliders != null)
+            {
+                foreach (Collider c in myColliders)
+                {
+                    c.enabled = true;
+                }
+            }
+        }
+
+
+        if (haveLight)
+        {
+            myLight.enabled = true;
         }
     }
 
@@ -121,61 +207,66 @@ public abstract class Interactable : MonoBehaviour
 
     public void highLight(bool b)
     {
-        if (haveLight && readyForInteraction)
-        {
+        if (myLight != null)
             myLight.enabled = b;
+        else
+        {
+            return;
+        }
 
+        if (b)
+        {
 
-            if (b)
+            if (!isLit)
             {
-
-                if (!isLit)
-                {
-                    myCoroutine = StartCoroutine(Highlighting());
-                    isLit = true;
-                }
-
-            }
-            else
-            {
-                if (isLit)
-                {
-                    StopCoroutine(myCoroutine);
-                    isLit = false;
-                }
-
-
+                myCoroutine = StartCoroutine(Highlighting());
+                isLit = true;
             }
 
         }
+        else
+        {
+            if (isLit)
+            {
+                StopCoroutine(myCoroutine);
+                isLit = false;
+            }
+
+
+        }
+
     }
 
     public IEnumerator Highlighting()
     {
-        float changeFactor = maxIntensity * 0.05f;
-        float highLightValue = changeFactor;
-
-        myLight.intensity = 0.0f;
-
-        yield return new WaitForSeconds(1.0f);
-
-        do
+        if (haveLight)
         {
+            float changeFactor = maxIntensity * 0.05f;
+            float highLightValue = changeFactor;
 
-            if (myLight.intensity <= 0)
+            myLight.intensity = 0.0f;
+
+            yield return new WaitForSeconds(1.0f);
+
+            do
             {
-                highLightValue = changeFactor;
-            }
-            else if (myLight.intensity >= maxIntensity)
-            {
-                highLightValue = -changeFactor;
-            }
 
-            myLight.intensity += highLightValue;
+                if (myLight.intensity <= 0)
+                {
+                    highLightValue = changeFactor;
+                }
+                else if (myLight.intensity >= maxIntensity)
+                {
+                    highLightValue = -changeFactor;
+                }
 
-            yield return new WaitForSeconds(0.1f);
+                myLight.intensity += highLightValue;
 
-        } while (true);
+                yield return new WaitForSeconds(0.1f);
+
+            } while (true);
+        }
+
     }
 
     public virtual InteractableData getSaveData()
@@ -186,12 +277,15 @@ public abstract class Interactable : MonoBehaviour
     public void setReadyForInteraction(bool b)
     {
         readyForInteraction = b;
+
+        highLight(b);
     }
 
     public void debugInteraction()
     {
         Debug.Log("Interaction with " + gameObject.name);
     }
+
 
     private void OnDrawGizmos()
     {

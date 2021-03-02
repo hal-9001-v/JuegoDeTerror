@@ -7,27 +7,35 @@ public class SaveManager : MonoBehaviour
     private static SaveManager instance;
 
     private string safePath;
-    private string tempPath;
+    //private string tempPath;
     private string statsPath;
 
     public float defaultGamepadSens = 0.25f;
     public float defaultMouseSens = 3;
     public float defaultVolume = 5;
 
+    public Torch torch;
+
+    // GameData safeData;
     private void Awake()
     {
-        Debug.Log(gameObject.name);
 
         if (instance == null)
         {
             instance = this;
-            tempPath = Application.persistentDataPath + "/tempSave.dat";
             safePath = Application.persistentDataPath + "/safeSave.dat";
             statsPath = Application.persistentDataPath + "/statsSave.dat";
 
         }
         else
         {
+            instance.torch = torch;
+
+            if (instance.torch == null)
+            {
+                instance.torch = FindObjectOfType<Torch>();
+            }
+
             Debug.LogWarning(gameObject.name + " has been deleted, to keep " + instance.name + ". There must be only one singleton!");
 
             Destroy(this);
@@ -39,7 +47,7 @@ public class SaveManager : MonoBehaviour
         try
         {
             File.Delete(safePath);
-            File.Delete(tempPath);
+            //File.Delete(tempPath);
         }
         catch (System.Exception e)
         {
@@ -49,45 +57,16 @@ public class SaveManager : MonoBehaviour
     }
     public void saveGame()
     {
-        Debug.Log("SAVE");
+        Debug.Log("Save Game");
 
-        //Replace safeFile with tempFile
-        try
-        {
-            if (File.Exists(safePath))
-            {
-                File.Delete(safePath);
-            }
-
-            //Temp file is now safe
-            File.Move(tempPath, safePath);
-
-        }
-        catch (System.Exception e)
-        {
-            Debug.LogWarning(e);
-        };
-
-        //Create new tempFile
         try
         {
             BinaryFormatter formatter = new BinaryFormatter();
 
             //Make new Temp file, which is unsafe for now
-            FileStream file = File.Open(tempPath, FileMode.Create);
+            FileStream file = File.Open(safePath, FileMode.Create);
 
-            GameData data = new GameData();
-
-            savePlayer(data);
-            saveInventory(data);
-            savePursuer(data);
-
-            saveInteractables(data);
-            saveDialogues(data);
-
-            saveTask(data);
-
-            formatter.Serialize(file, data);
+            formatter.Serialize(file, getCurrentGameData());
 
             file.Close();
         }
@@ -95,6 +74,24 @@ public class SaveManager : MonoBehaviour
         {
             Debug.LogError(e);
         }
+    }
+
+    GameData getCurrentGameData()
+    {
+        GameData data = new GameData();
+
+        savePlayer(data);
+        saveInventory(data);
+        savePursuer(data);
+
+        saveInteractables(data);
+        saveTriggers(data);
+
+        saveRadioZones(data);
+
+        saveTask(data);
+
+        return data;
     }
 
     public void saveStats(StatsData data)
@@ -160,39 +157,30 @@ public class SaveManager : MonoBehaviour
     {
         Vector3 pos = PlayerMovement.sharedInstance.transform.position;
         Vector3 rotation = PlayerMovement.sharedInstance.transform.eulerAngles;
-
         Vector3 cameraRotation = CameraLook.sharedInstance.transform.eulerAngles;
 
-        data.myPlayerData = new PlayerData(pos, rotation, cameraRotation);
+        bool ready = false;
+        bool lit = false;
+
+        if (torch != null)
+        {
+            lit = torch.myLight.enabled;
+
+        }
+
+        data.myPlayerData = new PlayerData(pos, rotation, cameraRotation, ready, lit);
     }
 
     private void saveInventory(GameData data)
     {
-        /*
-        if (Inventory.sharedInstance != null)
+        if (ScrollInventory.sharedInstance != null)
         {
-
-            string[] inventory = new string[5];
-
-            for (int i = 0; i < inventory.Length; i++)
-            {
-                if (Inventory.sharedInstance.inventoryItems[i] != null)
-                {
-
-                    inventory[i] = Inventory.sharedInstance.inventoryItems[i].itemName;
-                }
-                else
-                {
-                    inventory[i] = "empty";
-                }
-            }
-
-            data.myInventory = new PlayerInventory(inventory);
+            data.myInventory = ScrollInventory.sharedInstance.getSaveData();
         }
         else
         {
-            Debug.LogWarning("There is no Inventory in Scene");
-        }*/
+            Debug.LogError("There is no Inventory in Scene!");
+        }
 
     }
 
@@ -225,18 +213,34 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void saveDialogues(GameData data)
+    private void saveTriggers(GameData data)
     {
-        DialogueTrigger[] dialogueTriggers = FindObjectsOfType<DialogueTrigger>();
+        Trigger[] triggers = FindObjectsOfType<Trigger>();
 
-        DialogueData[] saveDatas = new DialogueData[dialogueTriggers.Length];
+        TriggerData[] saveDatas = new TriggerData[triggers.Length];
 
-        for (int i = 0; i < dialogueTriggers.Length; i++)
+        for (int i = 0; i < triggers.Length; i++)
         {
-            saveDatas[i] = dialogueTriggers[i].getSaveData();
+            saveDatas[i] = triggers[i].getSaveData();
         }
 
-        data.myDialoguesData = saveDatas;
+        data.myTriggerData = saveDatas;
+    }
+
+    private void saveRadioZones(GameData data)
+    {
+        RadioZone[] zones = FindObjectsOfType<RadioZone>();
+
+        RadioZoneData[] zoneDatas = new RadioZoneData[zones.Length];
+
+        for (int i = 0; i < zones.Length; i++)
+        {
+            zoneDatas[i] = zones[i].getSaveData();
+
+        }
+
+        data.myRadioZoneData = zoneDatas;
+
     }
 
     private void saveTask(GameData data)
@@ -244,9 +248,11 @@ public class SaveManager : MonoBehaviour
         TaskController.instance.saveData(data);
     }
 
+
+
     public void loadGame()
     {
-        Debug.Log("Load");
+        Debug.Log("Load Game");
         try
         {
             if (File.Exists(safePath))
@@ -261,14 +267,18 @@ public class SaveManager : MonoBehaviour
 
                 if (data != null)
                 {
+                    //safeData = data;
+
                     loadPlayer(data);
+                    loadTask(data);
+
                     loadInventory(data);
                     loadIA(data);
 
                     loadInteractables(data);
-                    loadDialogues(data);
+                    loadTriggers(data);
 
-                    loadTask(data);
+                    loadRadioZones(data);
 
                 }
                 else
@@ -296,30 +306,31 @@ public class SaveManager : MonoBehaviour
         PlayerMovement.sharedInstance.transform.position = position;
         PlayerMovement.sharedInstance.transform.eulerAngles = rotation;
 
+        CameraLook.sharedInstance.skipUpdate = true;
         CameraLook.sharedInstance.transform.eulerAngles = cameraRotation;
+
+        if (torch != null)
+        {
+            torch.myLight.enabled = data.myPlayerData.torchIsLit;
+        }
 
     }
 
     private void loadInventory(GameData data)
     {
-        /*
-        if (Inventory.sharedInstance != null)
+
+        if (ScrollInventory.sharedInstance != null)
         {
-            string[] myInventory = new string[5];
-
-            for (int i = 0; i < myInventory.Length; i++)
-            {
-                myInventory[i] = data.myInventory.objectNames[i];
-                Debug.Log(myInventory[i]);
-            }
-
-            Inventory.sharedInstance.LoadInventory(myInventory);
+            if (data.myInventory != null)
+                ScrollInventory.sharedInstance.loadData(data.myInventory);
+            else
+                Debug.LogError("NULL IN INVENTORY");
         }
         else
         {
-            //Debug.LogWarning("There is no Inventory in Scene");
+            Debug.LogError("There is no Inventory in scene!");
         }
-        */
+
     }
 
     private void loadIA(GameData data)
@@ -355,6 +366,7 @@ public class SaveManager : MonoBehaviour
             else
             {
                 Debug.LogError("Scene has change since previous save!");
+                Debug.LogError("Check " + interactables[i].gameObject.name + " " + data.myInteractablesData[i].interactableName);
             }
 
         }
@@ -362,26 +374,52 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void loadDialogues(GameData data)
+    private void loadTriggers(GameData data)
     {
-        DialogueTrigger[] triggers = FindObjectsOfType<DialogueTrigger>();
+        Trigger[] triggers = FindObjectsOfType<Trigger>();
 
-        if (triggers.Length != data.myDialoguesData.Length)
+        if (triggers.Length != data.myTriggerData.Length)
         {
-            Debug.LogError("Scene has changed! cant load interactables from save data");
+            Debug.LogError("Scene has changed! can't load Triggers from save data!");
+            return;
         }
 
         for (int i = 0; i < triggers.Length; i++)
         {
-            if (triggers[i].name == data.myDialoguesData[i].dialogueName)
+            if (triggers[i].name == data.myTriggerData[i].triggerName)
             {
-                triggers[i].loadData(data.myDialoguesData[i]);
+                triggers[i].loadData(data.myTriggerData[i]);
             }
             else
             {
                 Debug.LogError("Scene has change since last save!");
             }
         }
+    }
+
+    private void loadRadioZones(GameData data)
+    {
+        RadioZone[] zones = FindObjectsOfType<RadioZone>();
+
+        if (zones.Length != data.myRadioZoneData.Length)
+        {
+            Debug.LogError("Scene has changed! can't load Radio Zones from save data!");
+            return;
+        }
+
+        for (int i = 0; i < zones.Length; i++)
+        {
+            if (zones[i].name == data.myRadioZoneData[i].radioName)
+            {
+                zones[i].loadData(data.myRadioZoneData[i]);
+            }
+            else
+            {
+                Debug.LogError("Scene has change since last save!");
+            }
+
+        }
+
     }
 
     private void loadTask(GameData data)

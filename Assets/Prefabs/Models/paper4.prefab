@@ -104,11 +104,11 @@ GameObject:
   - component: {fileID: 7458692642452135798}
   - component: {fileID: 4640517657819163580}
   - component: {fileID: 6316293634922756727}
-  - component: {fileID: 6316293634922756726}
   - component: {fileID: 6316293634922756725}
+  - component: {fileID: 7411427400131001437}
   m_Layer: 10
   m_Name: paper4
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -187,32 +187,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fedb66adc3c40ef409dc2ed7386231a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
-  minDist: 3
-  noteOpenSound: {fileID: 0}
-  noteCloseSound: {fileID: 0}
-  noteCanvas: {fileID: 0}
-  text: {fileID: 0}
-  scrollbar: {fileID: 0}
+  myLight: {fileID: 266926160}
+  interactionActions:
+    m_PersistentCalls:
+      m_Calls: []
+  eventOnlyOnce: 0
+  hideWhenDone: 0
+  readyForInteraction: 1
+  done: 0
+  highLightRange: 0
   textKey: Study1
   paragraphs: []
---- !u!114 &6316293634922756726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6586112347819117161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daea0307cb56b884b8732d3d9a5320ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPosition: {fileID: 0}
-  obj: {fileID: 6586112347819117161}
-  minDist: 8
-  light: {fileID: 266926160}
-  lightColor: A8A33D
+  myTextAsset: {fileID: 0}
 --- !u!82 &6316293634922756725
 AudioSource:
   m_ObjectHideFlags: 0
@@ -309,3 +295,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &7411427400131001437
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6586112347819117161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.8260455, y: 3.2836237, z: 0.22880006}
+  m_Center: {x: -0.000026941298, y: -0.000946522, z: 0.016145006}

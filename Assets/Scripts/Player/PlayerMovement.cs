@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(FootSteps))]
 public class PlayerMovement : PlayerComponent
 {
     public static PlayerMovement sharedInstance;
 
     public CharacterController controller;
+
+    public CameraHeadBob headBob;
+
+    FootSteps ft;
 
     public float speed = 10.0f; //Velocidad al andar
 
@@ -35,13 +40,23 @@ public class PlayerMovement : PlayerComponent
 
     bool run;
 
-    bool canRun;
+    bool canRun = true;
+
+    bool canMove = true;
 
     public Vector2 moveInput;
+    Vector3 lastMove;
+
 
     private void Awake()
     {
         sharedInstance = this;
+        ft = GetComponent<FootSteps>();
+
+        if (headBob == null)
+            headBob = FindObjectOfType<CameraHeadBob>();
+
+
     }
 
 
@@ -97,9 +112,18 @@ public class PlayerMovement : PlayerComponent
     }
 
     //Para fuerzas constantes
-
     private void makeMovement()
     {
+
+        if (!canMove)
+        {
+
+            headBob.setRunningSpeed(Vector2.zero);
+            return;
+        }
+
+        headBob.setRunningSpeed(moveInput);
+
         if (isReading == false)
         {
 
@@ -113,23 +137,37 @@ public class PlayerMovement : PlayerComponent
             }
 
             SetGravity();
-            if (moveInput != Vector2.zero) {
+            if (moveInput != Vector2.zero)
+            {
 
                 Vector3 move;
 
                 move = (transform.right * moveInput.x) + (transform.forward * moveInput.y) + Vector3.up * fallVelocity;
 
+                move.Normalize();
+
+                move = Vector3.Lerp(lastMove, move, Time.deltaTime*2.5f);
+
+
+                lastMove = move;
+
+
                 if (run && canRun && !hasFatigue)
                 {
                     isRunning = true;
                     controller.Move(move * speed * runningIncrease * Time.deltaTime);
+                    ft.playRunning();
                 }
                 else
                 {
                     isRunning = false;
 
                     controller.Move(move * speed * Time.deltaTime);
+                    ft.playWalking();
                 }
+
+
+
             }
 
 
@@ -137,7 +175,8 @@ public class PlayerMovement : PlayerComponent
 
     }
 
-    public void setCanRun(bool b) {
+    public void setCanRun(bool b)
+    {
         canRun = b;
     }
 
@@ -159,7 +198,12 @@ public class PlayerMovement : PlayerComponent
     {
         pc.Normal.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
 
-        pc.Normal.Move.canceled += ctx => moveInput = Vector2.zero;
+        pc.Normal.Move.canceled += ctx =>
+        {
+            lastMove = Vector2.zero;
+            moveInput = Vector2.zero;
+
+        };
 
         pc.Normal.Run.performed += ctx => run = true;
 
@@ -167,4 +211,20 @@ public class PlayerMovement : PlayerComponent
 
 
     }
+
+    public void delayControl(float time)
+    {
+        StopAllCoroutines();
+        StartCoroutine(controlDelayCounter(time));
+    }
+
+    IEnumerator controlDelayCounter(float time)
+    {
+        canMove = false;
+
+        yield return new WaitForSeconds(time);
+
+        canMove = true;
+    }
+
 }

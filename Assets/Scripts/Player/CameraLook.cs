@@ -13,14 +13,17 @@ public class CameraLook : StatsComponent
 
     Vector2 gamePadAim;
     Vector2 mouseAim;
-    bool haveToAim;
+
+    public bool skipUpdate;
 
     float xRotation = 0.0f;
+
+    public Vector3 vLookAt;
 
     private void Awake()
     {
         sharedInstance = this;
-        
+
     }
 
     // Start is called before the first frame update
@@ -33,9 +36,22 @@ public class CameraLook : StatsComponent
 
     }
 
+    public void setLookAt(Vector3 v)
+    {
+
+        xRotation -= v.y;
+        xRotation = Mathf.Clamp(xRotation, -70, 70f);
+
+        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+
+        pm.transform.Rotate(Vector3.up * v.x);
+    }
+
     void FixedUpdate()
     {
+        
         cameraRotation();
+        vLookAt = transform.rotation.eulerAngles;
     }
 
     public void cameraRotation()

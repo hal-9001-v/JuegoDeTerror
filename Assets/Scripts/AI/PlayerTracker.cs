@@ -45,7 +45,8 @@ public class PlayerTracker : MonoBehaviour
         stairsTriggerStay(other);
     }
 
-    void roomTriggerStay(Collider other) {
+    void roomTriggerStay(Collider other)
+    {
         if (other.tag == "Room")
         {
             Room myRoom;
@@ -58,7 +59,11 @@ public class PlayerTracker : MonoBehaviour
                 return;
             }
 
-            currentRoom = myRoom;
+
+            if (myRoom.isVault)
+                currentRoom = null;
+            else
+                currentRoom = myRoom;
 
         }
         else if (other.tag == "RoomCollider")
@@ -83,15 +88,18 @@ public class PlayerTracker : MonoBehaviour
 
     }
 
-    void stairsTriggerStay(Collider other) {
-        if (other.tag == "Stairs") {
+    void stairsTriggerStay(Collider other)
+    {
+        if (other.tag == "Stairs")
+        {
             myPlayerMovement.setCanRun(false);
             Debug.Log("THERE");
         }
-    
+
     }
 
-    void roomTriggerExit(Collider other) {
+    void roomTriggerExit(Collider other)
+    {
 
         if (other.tag == "Room")
         {
@@ -104,8 +112,10 @@ public class PlayerTracker : MonoBehaviour
 
     }
 
-    void stairsTriggerExit(Collider other) {
-        if (other.tag == "Stairs") {
+    void stairsTriggerExit(Collider other)
+    {
+        if (other.tag == "Stairs")
+        {
             myPlayerMovement.setCanRun(true);
         }
     }

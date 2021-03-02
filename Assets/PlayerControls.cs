@@ -59,14 +59,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Light"",
-                    ""type"": ""Button"",
-                    ""id"": ""2dcacc8c-7760-4276-becf-36f5e1fd8ff8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""KeyAxis"",
                     ""type"": ""Button"",
                     ""id"": ""90c80a16-52d7-4ea3-b322-59eea012eed0"",
@@ -118,6 +110,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""name"": ""UseItem"",
                     ""type"": ""Button"",
                     ""id"": ""3b17d829-51e8-4ed1-a2c6-3706ca7a4722"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""TextInteraction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4314ef65-f43c-4f98-8c94-e396dc5ad665"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -253,28 +253,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""MouseAim"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""48dc29d7-e555-4083-808e-e40b1419dea4"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Light"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""339d2ca4-e95f-41ff-961d-fb6209f18df3"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""Light"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -445,6 +423,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""861ef910-8742-4792-8caa-1e2423a12591"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""144216a1-f885-4203-88d2-781e8196b834"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
@@ -567,7 +556,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b14c144d-fe43-410a-9b7b-89923340cf06"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
@@ -583,6 +572,39 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
                     ""action"": ""UseItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""643a5f1a-5180-49bf-ba61-667f550ba2d8"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""TextInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9c3c5722-228b-42ef-a0bf-c81e9ee97976"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""TextInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0b0157e7-cfac-4b63-9e1b-0090df6de2ad"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""TextInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -620,7 +642,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_MouseAim = m_Normal.FindAction("MouseAim", throwIfNotFound: true);
         m_Normal_Run = m_Normal.FindAction("Run", throwIfNotFound: true);
         m_Normal_Interaction = m_Normal.FindAction("Interaction", throwIfNotFound: true);
-        m_Normal_Light = m_Normal.FindAction("Light", throwIfNotFound: true);
         m_Normal_KeyAxis = m_Normal.FindAction("KeyAxis", throwIfNotFound: true);
         m_Normal_Cancel = m_Normal.FindAction("Cancel", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
@@ -628,6 +649,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_TestButton = m_Normal.FindAction("TestButton", throwIfNotFound: true);
         m_Normal_TestButton2 = m_Normal.FindAction("TestButton2", throwIfNotFound: true);
         m_Normal_UseItem = m_Normal.FindAction("UseItem", throwIfNotFound: true);
+        m_Normal_TextInteraction = m_Normal.FindAction("TextInteraction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -682,7 +704,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_MouseAim;
     private readonly InputAction m_Normal_Run;
     private readonly InputAction m_Normal_Interaction;
-    private readonly InputAction m_Normal_Light;
     private readonly InputAction m_Normal_KeyAxis;
     private readonly InputAction m_Normal_Cancel;
     private readonly InputAction m_Normal_Pause;
@@ -690,6 +711,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_TestButton;
     private readonly InputAction m_Normal_TestButton2;
     private readonly InputAction m_Normal_UseItem;
+    private readonly InputAction m_Normal_TextInteraction;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -699,7 +721,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @MouseAim => m_Wrapper.m_Normal_MouseAim;
         public InputAction @Run => m_Wrapper.m_Normal_Run;
         public InputAction @Interaction => m_Wrapper.m_Normal_Interaction;
-        public InputAction @Light => m_Wrapper.m_Normal_Light;
         public InputAction @KeyAxis => m_Wrapper.m_Normal_KeyAxis;
         public InputAction @Cancel => m_Wrapper.m_Normal_Cancel;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
@@ -707,6 +728,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @TestButton => m_Wrapper.m_Normal_TestButton;
         public InputAction @TestButton2 => m_Wrapper.m_Normal_TestButton2;
         public InputAction @UseItem => m_Wrapper.m_Normal_UseItem;
+        public InputAction @TextInteraction => m_Wrapper.m_Normal_TextInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -731,9 +753,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
                 @Interaction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInteraction;
-                @Light.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
-                @Light.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
-                @Light.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnLight;
                 @KeyAxis.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
                 @KeyAxis.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
                 @KeyAxis.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnKeyAxis;
@@ -755,6 +774,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @UseItem.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
+                @TextInteraction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
+                @TextInteraction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
+                @TextInteraction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -774,9 +796,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
-                @Light.started += instance.OnLight;
-                @Light.performed += instance.OnLight;
-                @Light.canceled += instance.OnLight;
                 @KeyAxis.started += instance.OnKeyAxis;
                 @KeyAxis.performed += instance.OnKeyAxis;
                 @KeyAxis.canceled += instance.OnKeyAxis;
@@ -798,6 +817,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @UseItem.started += instance.OnUseItem;
                 @UseItem.performed += instance.OnUseItem;
                 @UseItem.canceled += instance.OnUseItem;
+                @TextInteraction.started += instance.OnTextInteraction;
+                @TextInteraction.performed += instance.OnTextInteraction;
+                @TextInteraction.canceled += instance.OnTextInteraction;
             }
         }
     }
@@ -818,7 +840,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnMouseAim(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
-        void OnLight(InputAction.CallbackContext context);
         void OnKeyAxis(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
@@ -826,5 +847,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnTestButton(InputAction.CallbackContext context);
         void OnTestButton2(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
+        void OnTextInteraction(InputAction.CallbackContext context);
     }
 }

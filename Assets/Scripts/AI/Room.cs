@@ -23,13 +23,36 @@ public class Room : MonoBehaviour
     private Color safeColor;
     private Color nearbyColor;
     private Color dangerColor;
+    private Color vaultColor;
 
     public MapNode myMapNode;
 
+    [Header("Vault Settings")]
+    public bool isVault;
+    public VaultBehaviour vaultBehaviour;
+
+    public enum SoundProfile
+    {
+        Laboratory,
+        Storage,
+        Office,
+        Corridor
+    }
+
+    public enum VaultBehaviour
+    {
+        None,
+        CantBeVault,
+        alwaysVault
+    }
+    [Space(5)]
+    [Header("Profile")]
+    public SoundProfile profile;
 
 
     private void Awake()
     {
+
         EnviromentManager myEM = FindObjectOfType<EnviromentManager>();
 
         if (myEM != null)
@@ -37,6 +60,10 @@ public class Room : MonoBehaviour
             dangerColor = myEM.dangerColor;
             nearbyColor = myEM.nearbyColor;
             safeColor = myEM.safeColor;
+            vaultColor = myEM.vaultColor;
+
+            if (isVault || vaultBehaviour == VaultBehaviour.alwaysVault)
+                setVaultRoom(true);
         }
         else
         {
@@ -56,10 +83,81 @@ public class Room : MonoBehaviour
 
     public void setSafeRoom()
     {
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
+        {
+            foreach (Light l in lights)
+            {
+                l.color = safeColor;
+            }
+
+            if (myMapNode != null)
+            {
+                myMapNode.setSafe();
+            }
+        }
+
+    }
+
+    public void setNearbyRoom()
+    {
+
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
+        {
+
+            foreach (Light l in lights)
+            {
+                l.color = nearbyColor;
+            }
+
+            if (myMapNode != null)
+            {
+                myMapNode.setNearby();
+            }
+        }
+
+    }
+
+    public void setDangerColor()
+    {
+        if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
+        {
+            foreach (Light l in lights)
+            {
+                l.color = dangerColor;
+            }
+
+
+            if (myMapNode != null)
+            {
+                myMapNode.setDanger();
+            }
+        }
+    }
+
+    public void setVaultRoom(bool b)
+    {
+
+        if (b && vaultBehaviour != VaultBehaviour.CantBeVault)
+        {
+            setVaultColor();
+            isVault = true;
+        }
+        else if (vaultBehaviour != VaultBehaviour.alwaysVault)
+        {
+            isVault = false;
+            setSafeRoom();
+        }
+
+    }
+
+    void setVaultColor()
+    {
+
         foreach (Light l in lights)
         {
-            l.color = safeColor;
+            l.color = vaultColor;
         }
+
 
         if (myMapNode != null)
         {
@@ -68,39 +166,14 @@ public class Room : MonoBehaviour
 
     }
 
-    public void setNearbyRoom()
-    {
-        foreach (Light l in lights)
-        {
-            l.color = nearbyColor;
-        }
-
-        if (myMapNode != null)
-        {
-            myMapNode.setNearby();
-        }
-    }
-
-    public void setDangerColor()
-    {
-        foreach (Light l in lights)
-        {
-            l.color = dangerColor;
-        }
-
-
-        if (myMapNode != null)
-        {
-            myMapNode.setDanger();
-        }
-    }
-
     public void initialize()
     {
         lights = new List<Light>();
         neighbourRooms = new List<Room>();
     }
 
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
 
@@ -110,7 +183,7 @@ public class Room : MonoBehaviour
         foreach (BoxCollider collider in colliders)
         {
             Handles.color = Color.blue;
-            Handles.Label(collider.bounds.center, name+": "+weight.ToString());
+            Handles.Label(collider.bounds.center, name + ": " + weight.ToString());
 
 
             if (Selection.Contains(gameObject))
@@ -138,5 +211,7 @@ public class Room : MonoBehaviour
 
 
     }
+#endif
 
 }
+

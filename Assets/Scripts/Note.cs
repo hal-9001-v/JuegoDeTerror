@@ -18,7 +18,7 @@ public class Note : Interactable
 
     public TextAsset myTextAsset;
 
-    private void Awake()
+    private new void Awake()
     {
 
         if (myLight != null)
@@ -33,7 +33,9 @@ public class Note : Interactable
 
         //loadText();
 
-        result = myTextAsset.text;
+        if (myTextAsset != null)
+            result = myTextAsset.text;
+
 
         if (myNoteReader == null)
         {

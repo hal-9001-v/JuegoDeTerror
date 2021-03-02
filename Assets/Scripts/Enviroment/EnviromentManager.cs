@@ -11,9 +11,14 @@ public class EnviromentManager : MonoBehaviour
     public Color safeColor;
     public Color nearbyColor;
     public Color dangerColor;
+    public Color vaultColor;
+
+    [Range(5, 120)]
+    public float vaultDelay;
 
     Door[] doors;
 
+    bool readyToSetNewSafe = true;
 
     private void Awake()
     {
@@ -30,6 +35,12 @@ public class EnviromentManager : MonoBehaviour
             Destroy(this);
         }
 
+
+    }
+
+    private void Start()
+    {
+        setVaultRooms(2);
 
     }
 
@@ -65,5 +76,35 @@ public class EnviromentManager : MonoBehaviour
         }
     }
 
+    public void setVaultRooms(int n) {
+        if (readyToSetNewSafe) {
+            StartCoroutine(setVault(n));
+        }
+    }
 
+    IEnumerator setVault(int n) {
+        readyToSetNewSafe = false;
+        foreach (Room r in myRoomMap.roomList) {
+            r.setVaultRoom(false);
+        }
+
+        var rooms = new Room[n];
+
+        for (int i = 0; i < n; i++) { 
+            rooms[i] = myRoomMap.roomList[Random.Range(0, myRoomMap.roomList.Count)];
+
+        }
+
+        foreach (Room room in rooms) {
+            room.setVaultRoom(true);
+            Debug.Log(room.name + " set as Vault");
+        }
+        
+
+        
+
+        yield return new WaitForSeconds(vaultDelay);
+
+        readyToSetNewSafe = true;
+    }
 }

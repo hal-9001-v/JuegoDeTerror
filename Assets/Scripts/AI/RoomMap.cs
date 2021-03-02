@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RoomMap
 {
+
     public List<Room> roomList { get; private set; }
 
     public Material defaultMaterial;
@@ -90,14 +91,19 @@ public class RoomMap
 
     }
 
-    public Room getRandomRoom() {
-        return roomList[Random.Range(0,roomList.Count)];
+    public Room getRandomRoom()
+    {
+        return roomList[Random.Range(0, roomList.Count)];
     }
 
-    public int getDistance(Room a, Room b) {
-        return getPath(a, b).Count - 1;
+    public int getDistance(Room a, Room b)
+    {
+        if (b == null || a == null)
+            return int.MaxValue;
+        else
+            return getPath(a, b).Count - 1;
     }
-    
+
     class RoomPriorityQueue
     {
 
@@ -130,6 +136,7 @@ public class RoomMap
             data.RemoveAt(0);
 
             return r;
+
         }
 
         public void push(Room r)
@@ -146,5 +153,6 @@ public class RoomMap
     }
 
 
-    
+
+
 }

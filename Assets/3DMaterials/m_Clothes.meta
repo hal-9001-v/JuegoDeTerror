@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/3DMaterials/m_Clothes.meta
 guid: 435d80114d55c3542a51c9c104e68651
+=======
+guid: 529b1ae0500a31a4da16e4466bb71d4e
+>>>>>>> chamiEscenarioBranch:Assets/Prefabs/ROOMS.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

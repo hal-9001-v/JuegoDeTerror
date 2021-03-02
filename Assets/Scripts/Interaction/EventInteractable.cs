@@ -5,25 +5,34 @@ using UnityEngine;
 public class EventInteractable : Interactable
 {
 
+    public new ParticleSystem particleSystem;
     /*
      Only Executes Events on Inspector
      */
-
 
     public override void interact()
     {
         //Do nothing, just execute events
     }
 
-    public override void loadData(InteractableData myData)
+    private void Update()
     {
-
-        done = myData.interactionDone;
-        readyForInteraction = myData.readyForInteraction;
-
-        if (eventOnlyOnce && done)
-        {
-            gameObject.SetActive(false);
+        if (particleSystem != null) {
+            if (hideWhenDone && done || !readyForInteraction)
+            {
+                if (particleSystem.isPlaying)
+                {
+                    particleSystem.Stop();
+                    particleSystem.Clear();
+                }
+            }
+            else {
+                if (!particleSystem.isPlaying) {
+                    particleSystem.Play();
+                    
+                }
+            }
         }
     }
+
 }

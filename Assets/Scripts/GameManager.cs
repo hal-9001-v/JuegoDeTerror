@@ -64,20 +64,23 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
         currentGameState = GameState.inGame;
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void switchPause()
     {
+        if (canChangePause) {
+            if (paused)
+            {
+                resumeGame();
 
-        if (paused)
-        {
-            resumeGame();
-
+            }
+            else
+            {
+                pauseGame();
+            }
         }
-        else
-        {
-            pauseGame();
-        }
+        
 
     }
 
@@ -86,6 +89,7 @@ public class GameManager : MonoBehaviour
         if (canChangePause)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
             paused = true;
 
@@ -101,6 +105,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void stopPlayer() {
+
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+    }
+
     void resumeState()
     {
         canChangePause = true;
@@ -109,6 +120,9 @@ public class GameManager : MonoBehaviour
         paused = false;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        
 
         Time.timeScale = 1;
 
@@ -210,6 +224,12 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMneu");
+    }
+
+    public void setCanSwitchPause(bool b) {
+        canChangePause = b;
+
+    
     }
 
 }

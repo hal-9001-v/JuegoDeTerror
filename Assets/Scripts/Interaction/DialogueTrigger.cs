@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : Trigger
 {
 
-    public bool onlyOnce;
-    public bool done;
-
+    [TextArea(0, 3)]
     public string[] sentences;
     public float delay = 0.05f;
 
@@ -27,24 +25,11 @@ public class DialogueTrigger : MonoBehaviour
 
         if (textController != null)
         {
-            textController.displayText(sentences, delay, endEvent);
-            done = true;
+            if (textController.displayText(sentences, delay, endEvent))
+                done = true;
         }
 
 
     }
-
-    public void loadData(DialogueData myData)
-    {
-        done = myData.dialogueDone;
-
-    }
-
-    public DialogueData getSaveData() {
-
-        return new DialogueData(name, done);
-    }
-
-
 }
 

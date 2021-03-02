@@ -31,11 +31,19 @@ public class Pursuer : MonoBehaviour
 
     public bool torchIsLit;
 
-    private enum pursuerStates
+    public bool isKilling { get; set; }
+
+    public enum pursuerStates
     {
         Inactive = 0,
         Patrol = 1,
         Pursue = 2
+    }
+
+    public enum PursuerLoadSpawn
+    {
+        SaveData,
+        RandomInRange
     }
 
     [Header("Timers")]
@@ -54,7 +62,13 @@ public class Pursuer : MonoBehaviour
     public Room currentRoom;
     [Tooltip("0 => Inactive, 1 => Patrol randomly, 2 => Pursue player")]
     public int currentState;
+    [Space(10)]
+    [Header("Behaviour")]
+    public PursuerLoadSpawn loadSpawn;
+    public int spawnDistance = 3;
 
+    [Range(0, 5)]
+    public int vaultRooms; 
 
 
     public Stack<Room> rooms;
@@ -79,6 +93,7 @@ public class Pursuer : MonoBehaviour
     {
         myEM.setAllRoomsSafe();
         myInactiveState.enter();
+
 
     }
 
@@ -114,6 +129,7 @@ public class Pursuer : MonoBehaviour
         Debug.Log("Kill Player");
         myCutsceneController.killPlayer();
     }
+
     public Room moveToNextRoom()
     {
         currentRoom.setSafeRoom();
@@ -142,10 +158,22 @@ public class Pursuer : MonoBehaviour
     {
         if (player.currentRoom != null)
         {
+            myEM.setVaultRooms(vaultRooms);
             StopAllCoroutines();
 
-            //Stack the path to player
-            rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
+            if (player.currentRoom != null)
+            {
+                //Stack the path to player
+                rooms = myEM.myRoomMap.getPath(startingRoom, player.currentRoom);
+
+            }
+            else {
+                startPatrol(currentRoom);
+                return;
+            }
+
+
+
             currentRoom = startingRoom;
 
             myPursueIdleState.enter();
@@ -160,6 +188,7 @@ public class Pursuer : MonoBehaviour
 
     public void startPatrol(Room startingRoom)
     {
+        myEM.setVaultRooms(vaultRooms);
         StopAllCoroutines();
 
         //Stack the path to player
@@ -167,8 +196,21 @@ public class Pursuer : MonoBehaviour
         currentRoom = startingRoom;
 
         myRandomIdleState.enter();
-        //Debug.Log("PURSUER: Start Patrol");
+        Debug.Log("PURSUER: Start Patrol");
     }
+
+    public void startIdle() {
+        StopAllCoroutines();
+
+        foreach (Room r in myEM.myRoomMap.roomList) {
+            r.setSafeRoom();
+        }
+
+        myInactiveState.enter();
+        Debug.Log("PURSUER: Start Idle");
+
+    }
+    
     public void updatePursuing()
     {
         //Stack the path to player
@@ -184,13 +226,16 @@ public class Pursuer : MonoBehaviour
         {
             distance = myEM.myRoomMap.getDistance(currentRoom, player.currentRoom);
 
-            if (torchIsLit) {
-                if (distance > spottingDistance) {
+            if (torchIsLit)
+            {
+                if (distance > spottingDistance)
+                {
                     distance -= torchBoost;
                 }
             }
         }
-        else {
+        else
+        {
             distance = -1;
         }
 
@@ -208,6 +253,25 @@ public class Pursuer : MonoBehaviour
 
         myEM.setAllRoomsSafe();
 
+        switch (loadSpawn)
+        {
+            case PursuerLoadSpawn.SaveData:
+                spawnFromSaveData(ps);
+                break;
+
+            case PursuerLoadSpawn.RandomInRange:
+                Debug.Log("HERE I AM DIRTY AND FACELESS");
+                spawnRandomInRange(spawnDistance);
+                break;
+
+        }
+
+
+
+    }
+
+    void spawnFromSaveData(PursuerData ps)
+    {
         currentState = ps.currentState;
 
         if (rooms != null)
@@ -261,10 +325,52 @@ public class Pursuer : MonoBehaviour
                 break;
 
         }
-
-
     }
 
+    void spawnRandomInRange(int range)
+    {
+        currentState = (int)pursuerStates.Patrol;
+
+        if (rooms != null)
+        {
+            rooms.Clear();
+        }
+
+        bool[] checks = new bool[myEM.myRoomMap.roomList.Count];
+        int i = 0;
+
+        while (true)
+        {
+            i = Random.Range(0, checks.Length);
+
+        restart:
+
+            if (!checks[i])
+            {
+                if (myEM.myRoomMap.getDistance(currentRoom, myEM.myRoomMap.roomList[i]) >= spawnDistance)
+                {
+                    currentRoom = myEM.myRoomMap.roomList[i];
+                    break;
+                }
+            }
+            else
+            {
+                if (i == (checks.Length - 1))
+                {
+                    i = 0;
+                }
+                else
+                {
+                    i++;
+                }
+
+                goto restart;
+            }
+        }
+
+        myRandomIdleState.enter();
+
+    }
     public class InactiveState : State
     {
         Pursuer myPursuer;
@@ -477,6 +583,7 @@ public class Pursuer : MonoBehaviour
 
         public void enter()
         {
+            myPursuer.isKilling = true;
             execute();
         }
 
@@ -504,6 +611,8 @@ public class Pursuer : MonoBehaviour
             {
                 myPursuer.myDecideActionState.enter();
             }
+
+            myPursuer.isKilling = false;
         }
     }
 
