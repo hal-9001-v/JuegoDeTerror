@@ -7,23 +7,22 @@ public class SceneController : MonoBehaviour
 {
     public static SceneController instance;
 
-    const int LOADING_SCENE = 1;
-    const int MENU_SCENE = 0;
-    public enum Language
-    {
-        English,
-        Español
-    }
+    
+    const int menuScene = 0;
+    const int loadingScene = 1;
+    const int restartScene = 3;
 
-    public Language selectedLanguage;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            Application.targetFrameRate = 60;
+
             DontDestroyOnLoad(this);
         }
+
         /*
          * It may be needed on a scene, so keep as destroyable
         else
@@ -38,6 +37,10 @@ public class SceneController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    private void OnDestroy()
+    {
+        instance = null;
+    }
 
     public void goToNextSceneAsynch()
     {
@@ -53,7 +56,11 @@ public class SceneController : MonoBehaviour
     public void goToSceneAsynch(int i)
     {
         if (instance == this) {
-            SceneManager.LoadScene(LOADING_SCENE);
+
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
+            SceneManager.LoadScene(loadingScene);
             StartCoroutine(asyncLoad(i));
         }
         
@@ -65,14 +72,14 @@ public class SceneController : MonoBehaviour
 
     public void goToMenu()
     {
-        SceneManager.LoadScene(MENU_SCENE);
+        SceneManager.LoadScene(menuScene);
     }
 
 
     public void goToMenuAsynch()
     {
         if (instance == this)
-            StartCoroutine(asyncLoad(MENU_SCENE));
+            StartCoroutine(asyncLoad(restartScene));
         else
             instance.goToMenuAsynch();
         
@@ -81,17 +88,24 @@ public class SceneController : MonoBehaviour
 
     IEnumerator asyncLoad(int sceneId)
     {
-        
+
+        Time.timeScale = 1;
+        SceneManager.LoadScene(loadingScene);
+
+        yield return new WaitForSecondsRealtime(2);
+
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
-        operation.allowSceneActivation = false;
 
-        yield return new WaitForSeconds(2f);
-
+        Debug.Log("Loading " + SceneManager.GetSceneByBuildIndex(sceneId).name + " scene");
+        
         while (!operation.isDone) {
+
+            Debug.Log("Progress: " + operation.progress+"%");
 
             yield return null;
         }
-        operation.allowSceneActivation = true;
+
+        Debug.Log("Done loading " + SceneManager.GetSceneByBuildIndex(sceneId).name + " scene!");        
 
     }
 
@@ -99,16 +113,6 @@ public class SceneController : MonoBehaviour
     public void exitGame()
     {
         Application.Quit();
-
-    }
-
-    public void changeLanguage()
-    {
-        if (selectedLanguage == Language.English)
-            selectedLanguage = Language.Español;
-        else
-            selectedLanguage = Language.English;
-
 
     }
 

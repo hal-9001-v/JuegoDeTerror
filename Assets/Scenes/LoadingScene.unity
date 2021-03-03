@@ -150,7 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4af1b10fddd74498dee1916cfd5b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedLanguage: 0
 --- !u!4 &1334703713
 Transform:
   m_ObjectHideFlags: 0
@@ -526,4 +525,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1983690501}
-  changeTime: 0.5
+  changeTime: 0.2

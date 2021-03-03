@@ -20,6 +20,7 @@ public class LoadingScreenAnimation : MonoBehaviour
 
         while (true)
         {
+            Debug.Log("LOOOOOAAAADING");
 
             text.text = "Loading";
             yield return new WaitForSeconds(changeTime);
