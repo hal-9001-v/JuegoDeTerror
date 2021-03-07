@@ -12,8 +12,6 @@ public class Note : Interactable
     public string textKey;                                                    //Letras en común de las claves de los párrafos de la Hashtable
     public List<string> paragraphs = new List<string>();                      //Lista de todos los párrafos
 
-    private int counter = 1;
-    private string provisional;
     private string result = "";                                               //Resultado de todos los párrafos de la nota
 
     public TextAsset myTextAsset;
@@ -41,25 +39,6 @@ public class Note : Interactable
         {
             myNoteReader = FindObjectOfType<NoteReader>();
         }
-    }
-
-    void loadText()
-    {
-        provisional = textKey + "P" + counter;
-
-        while (LanguageController.GetTextInLanguage(provisional) != provisional)
-        {
-            paragraphs.Add(LanguageController.GetTextInLanguage(provisional));
-            counter++;
-            provisional = textKey + "P" + counter;
-        }
-
-
-        for (int i = 0; i < paragraphs.Count; i++)
-        {
-            result += paragraphs[i] + "\n\n";
-        }
-
     }
 
     public override void interact()

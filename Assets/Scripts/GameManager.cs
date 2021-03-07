@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
         {
 
             sharedInstance = this;
-            LanguageController.LoadLanguagesFile("languagesTextFile.txt");
 
             if (myPlayerBrain == null)
             {
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //SetGameState(GameState.preLoad);
-        LanguageController.language = PlayerPrefs.GetInt("language");
+
 
         setGameState(currentGameState);
     }

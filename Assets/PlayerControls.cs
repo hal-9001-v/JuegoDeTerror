@@ -91,22 +91,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""TestButton"",
-                    ""type"": ""Button"",
-                    ""id"": ""19817050-6a25-4c04-8f40-4731f9208e36"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""TestButton2"",
-                    ""type"": ""Button"",
-                    ""id"": ""7ff72039-6df7-4b93-b8dd-4003d9680088"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
                     ""name"": ""UseItem"",
                     ""type"": ""Button"",
                     ""id"": ""3b17d829-51e8-4ed1-a2c6-3706ca7a4722"",
@@ -533,28 +517,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d17d76fb-5c71-4c01-9226-4fb82d99d21c"",
-                    ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""TestButton"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""73b905ba-b5e2-4e9e-b981-ef417e1dc13f"",
-                    ""path"": ""<Keyboard>/p"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Normal Scheme"",
-                    ""action"": ""TestButton2"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""b14c144d-fe43-410a-9b7b-89923340cf06"",
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
@@ -567,7 +529,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""dbf3019c-8808-455c-94e2-3adf0b0ad9d3"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Normal Scheme"",
@@ -646,8 +608,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_Cancel = m_Normal.FindAction("Cancel", throwIfNotFound: true);
         m_Normal_Pause = m_Normal.FindAction("Pause", throwIfNotFound: true);
         m_Normal_InventoryAxis = m_Normal.FindAction("InventoryAxis", throwIfNotFound: true);
-        m_Normal_TestButton = m_Normal.FindAction("TestButton", throwIfNotFound: true);
-        m_Normal_TestButton2 = m_Normal.FindAction("TestButton2", throwIfNotFound: true);
         m_Normal_UseItem = m_Normal.FindAction("UseItem", throwIfNotFound: true);
         m_Normal_TextInteraction = m_Normal.FindAction("TextInteraction", throwIfNotFound: true);
     }
@@ -708,8 +668,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_Cancel;
     private readonly InputAction m_Normal_Pause;
     private readonly InputAction m_Normal_InventoryAxis;
-    private readonly InputAction m_Normal_TestButton;
-    private readonly InputAction m_Normal_TestButton2;
     private readonly InputAction m_Normal_UseItem;
     private readonly InputAction m_Normal_TextInteraction;
     public struct NormalActions
@@ -725,8 +683,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Normal_Cancel;
         public InputAction @Pause => m_Wrapper.m_Normal_Pause;
         public InputAction @InventoryAxis => m_Wrapper.m_Normal_InventoryAxis;
-        public InputAction @TestButton => m_Wrapper.m_Normal_TestButton;
-        public InputAction @TestButton2 => m_Wrapper.m_Normal_TestButton2;
         public InputAction @UseItem => m_Wrapper.m_Normal_UseItem;
         public InputAction @TextInteraction => m_Wrapper.m_Normal_TextInteraction;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
@@ -765,12 +721,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InventoryAxis.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
                 @InventoryAxis.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
                 @InventoryAxis.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnInventoryAxis;
-                @TestButton.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
-                @TestButton.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
-                @TestButton.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton;
-                @TestButton2.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
-                @TestButton2.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
-                @TestButton2.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTestButton2;
                 @UseItem.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
                 @UseItem.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnUseItem;
@@ -808,12 +758,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @InventoryAxis.started += instance.OnInventoryAxis;
                 @InventoryAxis.performed += instance.OnInventoryAxis;
                 @InventoryAxis.canceled += instance.OnInventoryAxis;
-                @TestButton.started += instance.OnTestButton;
-                @TestButton.performed += instance.OnTestButton;
-                @TestButton.canceled += instance.OnTestButton;
-                @TestButton2.started += instance.OnTestButton2;
-                @TestButton2.performed += instance.OnTestButton2;
-                @TestButton2.canceled += instance.OnTestButton2;
                 @UseItem.started += instance.OnUseItem;
                 @UseItem.performed += instance.OnUseItem;
                 @UseItem.canceled += instance.OnUseItem;
@@ -844,8 +788,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnInventoryAxis(InputAction.CallbackContext context);
-        void OnTestButton(InputAction.CallbackContext context);
-        void OnTestButton2(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
         void OnTextInteraction(InputAction.CallbackContext context);
     }

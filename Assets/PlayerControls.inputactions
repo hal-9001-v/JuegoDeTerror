@@ -78,22 +78,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TestButton",
-                    "type": "Button",
-                    "id": "19817050-6a25-4c04-8f40-4731f9208e36",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "TestButton2",
-                    "type": "Button",
-                    "id": "7ff72039-6df7-4b93-b8dd-4003d9680088",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "UseItem",
                     "type": "Button",
                     "id": "3b17d829-51e8-4ed1-a2c6-3706ca7a4722",
@@ -520,28 +504,6 @@
                 },
                 {
                     "name": "",
-                    "id": "d17d76fb-5c71-4c01-9226-4fb82d99d21c",
-                    "path": "<Keyboard>/enter",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Normal Scheme",
-                    "action": "TestButton",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "73b905ba-b5e2-4e9e-b981-ef417e1dc13f",
-                    "path": "<Keyboard>/p",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Normal Scheme",
-                    "action": "TestButton2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b14c144d-fe43-410a-9b7b-89923340cf06",
                     "path": "<Keyboard>/f",
                     "interactions": "",
@@ -554,7 +516,7 @@
                 {
                     "name": "",
                     "id": "dbf3019c-8808-455c-94e2-3adf0b0ad9d3",
-                    "path": "<Gamepad>/dpad/up",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Normal Scheme",

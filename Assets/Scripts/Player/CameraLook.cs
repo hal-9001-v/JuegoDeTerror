@@ -11,6 +11,10 @@ public class CameraLook : StatsComponent
     public float gamePadSensitivity;
     PlayerMovement pm;
 
+    [Range(0.05f, 1)]
+    public float padMinimum;
+
+
     Vector2 gamePadAim;
     Vector2 mouseAim;
 
@@ -60,13 +64,19 @@ public class CameraLook : StatsComponent
         {
             Vector2 aim;
 
-            if (gamePadAim == Vector2.zero)
+            if (mouseAim != Vector2.zero)
             {
                 aim = mouseAim * mouseSensitivity;
+                //Debug.Log("Mouse");
             }
-            else
+            else if (Mathf.Abs(gamePadAim.x) > padMinimum || Mathf.Abs(gamePadAim.y) > padMinimum)
             {
                 aim = gamePadAim * gamePadSensitivity;
+                //Debug.Log("Pad "+ gamePadAim);
+            }
+            else {
+                aim = Vector2.zero;
+                //Debug.Log("Zero");
             }
 
             xRotation -= aim.y;
