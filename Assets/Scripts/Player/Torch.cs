@@ -173,6 +173,9 @@ public class Torch : Item
 
     }
 
+    public void restore() {
+        currentTime = maxTime;
+    }
     public override void useItem()
     {
         switchLight();

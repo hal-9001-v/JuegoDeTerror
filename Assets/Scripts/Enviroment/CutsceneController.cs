@@ -25,7 +25,7 @@ public class CutsceneController : MonoBehaviour
     public AudioClip roarClip;
     public AudioClip restartClip;
 
-    public Light torchLight;
+    public Torch torch;
 
     Animator playerAnimator;
 
@@ -100,6 +100,10 @@ public class CutsceneController : MonoBehaviour
 
         playerBrain.enablePlayer(true);
 
+        PlayerMovement.sharedInstance.restoreStamina();
+        torch.restore();
+       
+
         soundDirector.restartSound();
 
 
@@ -160,11 +164,9 @@ public class CutsceneController : MonoBehaviour
 
         float shakeTimer;
         float effectTimer = 0;
-        Debug.Log("HOIII");
 
         while (effectTimer < time)
         {
-            Debug.Log("HOIII");
 
             effectTimer += Time.deltaTime;
             shakeTimer = effectTimer * bobbingSpeed;
@@ -231,7 +233,7 @@ public class CutsceneController : MonoBehaviour
     {
         playerBrain.enablePlayer(false);
 
-        torchLight.enabled = false;
+        torch.myLight.enabled = false;
 
         if (playerAnimator == null)
         {

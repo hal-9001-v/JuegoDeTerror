@@ -100,7 +100,7 @@ public class SceneController : MonoBehaviour
         
         while (!operation.isDone) {
 
-            Debug.Log("Progress: " + operation.progress+"%");
+            Debug.Log("Progress: " + operation.progress*100+"%");
 
             yield return null;
         }

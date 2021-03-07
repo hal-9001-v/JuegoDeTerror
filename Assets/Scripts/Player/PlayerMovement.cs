@@ -274,4 +274,11 @@ public class PlayerMovement : PlayerComponent
         canMove = true;
     }
 
+
+
+    public void restoreStamina() {
+        exhaustion = 0;
+        fatigueCounter = 0;
+
+    }
 }

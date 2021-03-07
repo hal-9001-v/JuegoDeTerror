@@ -276,6 +276,12 @@ public class SoundDirector : MonoBehaviour
         }
     }
 
+    public void stopHeartBeats() {
+        if (playerSource != null)
+            playerSource.Stop();
+
+    }
+
 
     public void updatePursuer()
     {
@@ -283,10 +289,14 @@ public class SoundDirector : MonoBehaviour
         {
             case (int)Pursuer.pursuerStates.Inactive:
                 playAmbients(ambientDistance);
+                stopHeartBeats();
+
                 break;
 
             case (int)Pursuer.pursuerStates.Patrol:
                 playAmbients(ambientDistance);
+
+                stopHeartBeats();
                 break;
 
             case (int)Pursuer.pursuerStates.Pursue:

@@ -8,17 +8,19 @@ public class TextController : PlayerComponent
 {
     TextBox box;
 
+    PlayerBrain brain;
+
     bool readyToCall = true;
 
     bool textInteraction;
 
-    bool fillLine;
 
     // bool skipLine;
 
     private void Awake()
     {
         box = FindObjectOfType<TextBox>();
+        brain = FindObjectOfType<PlayerBrain>();
     }
 
 
@@ -29,6 +31,8 @@ public class TextController : PlayerComponent
         {
             //skipLine = false;
             StartCoroutine(typeText(sentences, delay, endEvents));
+            brain.enablePlayer(false);
+
             return true;
         }
 
@@ -81,6 +85,7 @@ public class TextController : PlayerComponent
         box.textMesh.text = "";
         box.hide();
         readyToCall = true;
+        brain.enablePlayer(true);
 
         if (endEvents != null)
             endEvents.Invoke();

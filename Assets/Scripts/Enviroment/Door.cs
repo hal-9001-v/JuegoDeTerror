@@ -66,11 +66,16 @@ public class Door : Interactable
     {
         done = myData.interactionDone;
         locked = myData.doorLocked;
+        readyForInteraction = myData.readyForInteraction;
 
         if (myData.doorOpen)
         {
             openDoor();
         }
+        else {
+            closeDoor();
+        }
+
     }
 
     public override InteractableData getSaveData()
@@ -155,7 +160,7 @@ public class Door : Interactable
 
         if (audioSource != null)
         {
-            if (!audioSource.isPlaying)
+            if (!(audioSource.isPlaying && audioSource.clip == openDoorSound))
             {
                 audioSource.clip = openDoorSound;
                 audioSource.Play();

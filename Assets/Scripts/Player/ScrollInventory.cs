@@ -160,11 +160,10 @@ public class ScrollInventory : PlayerComponent
 
             image.color = new Vector4(1, 1, 1, 1);
             image.texture = currentItems[index].itemIcon;
-            text.text = currentItems[index].itemName;
 
             selectedItem = currentItems[index];
             StopAllCoroutines();
-            StartCoroutine(typeCurrentItem(selectedItem.name));
+            StartCoroutine(typeCurrentItem(selectedItem.itemName));
 
         }
         else
