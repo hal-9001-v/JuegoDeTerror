@@ -6,6 +6,7 @@ using TMPro;
 public class DigitalDisplay : MonoBehaviour
 {
     public int unlockCode = 0000;
+    public int codeLength = 4;
     public TextMeshProUGUI text;
     public float minDist;
     public float dist;
@@ -51,7 +52,7 @@ public class DigitalDisplay : MonoBehaviour
 
     public void AddDigitToSequence(int number)
     {
-        if (secuence.Length < 4)
+        if (secuence.Length < codeLength)
         {
             secuence += number;
             text.text = secuence;
