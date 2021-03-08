@@ -83,6 +83,7 @@ public class Room : MonoBehaviour
 
     public void setSafeRoom()
     {
+        /*
         if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
             foreach (Light l in lights)
@@ -95,11 +96,11 @@ public class Room : MonoBehaviour
                 myMapNode.setSafe();
             }
         }
-
+        */
     }
 
     public void setNearbyRoom()
-    {
+    {/*
 
         if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
@@ -114,11 +115,11 @@ public class Room : MonoBehaviour
                 myMapNode.setNearby();
             }
         }
-
+        */
     }
 
     public void setDangerColor()
-    {
+    {/*
         if (!isVault && vaultBehaviour != VaultBehaviour.alwaysVault)
         {
             foreach (Light l in lights)
@@ -132,10 +133,12 @@ public class Room : MonoBehaviour
                 myMapNode.setDanger();
             }
         }
+        */
     }
 
     public void setVaultRoom(bool b)
     {
+        /*
 
         if (b && vaultBehaviour != VaultBehaviour.CantBeVault)
         {
@@ -147,7 +150,7 @@ public class Room : MonoBehaviour
             isVault = false;
             setSafeRoom();
         }
-
+        */
     }
 
     void setVaultColor()

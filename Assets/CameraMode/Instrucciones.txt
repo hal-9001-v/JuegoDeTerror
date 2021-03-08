@@ -1,0 +1,28 @@
+El funcionamiento de esto consiste en que pongas camaras estáticas en la escena donde quieras sancar renders, buildeas y sacas screenshots. 
+
+
+Paso 1:
+Arrastra a la escena el prefab ScreenShot Camera que hay en esta carpeta para meter una camara nueva en el juego, puedes meter todas las que quieras.
+
+Paso 2:
+Buildea el juego(lo siento, tienes que hacer esto si quieres más calidad de imagen).
+
+Paso 3:
+Ejecutalo y toma los screenshots.
+
+
+CONTROLES:
+-Flechas del teclado para cambiar entre cámaras(siempre hay un prefab de jugador en la escena, y una de las cámaras es suya)
+-H para esconder la interfaz
+
+NOTAS
+-La escena para todo esto se llama "Camera Mode"
+
+
+-Puedes modificar las luces de todo el escenario, sin miedo a que cambien en la build. El bicho está apagado, no se genera. Para ello, vete a la jerarquia de objetos de la escena y 
+metete en Lights. Están guardadas por habitaciones, si quieres cambiar todas las de una habitación, selecciona las luces con control+click y a en el inspector puedes ponerles a 
+todas la misma luz a la vez.
+
+-Las luces están en la mayoria de los casos anidadas como hijas de las lámparas. Por ejemplo, una luz en el menú de jerarquia sería LIGHTS/Garaje Room/luz_seguridad(10)/Point Light
+
+
