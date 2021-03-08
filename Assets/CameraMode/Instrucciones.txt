@@ -18,11 +18,10 @@ CONTROLES:
 NOTAS
 -La escena para todo esto se llama "Camera Mode"
 
-
 -Puedes modificar las luces de todo el escenario, sin miedo a que cambien en la build. El bicho está apagado, no se genera. Para ello, vete a la jerarquia de objetos de la escena y 
 metete en Lights. Están guardadas por habitaciones, si quieres cambiar todas las de una habitación, selecciona las luces con control+click y a en el inspector puedes ponerles a 
 todas la misma luz a la vez.
 
 -Las luces están en la mayoria de los casos anidadas como hijas de las lámparas. Por ejemplo, una luz en el menú de jerarquia sería LIGHTS/Garaje Room/luz_seguridad(10)/Point Light
 
-
+-Puedes modificar el post proceso de las cámaras en "Camera Mode PostProcessing", en esta misma carpeta. Se aplicara a todas las cámaras menos la del jugador.
