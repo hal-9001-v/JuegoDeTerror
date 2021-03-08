@@ -92,6 +92,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ChangeCamera",
+                    "type": "Button",
+                    "id": "6696516e-5eba-4bc2-a88f-b8aa360565b1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "HideCanvas",
+                    "type": "Button",
+                    "id": "0405fe16-2be6-46f0-a707-39bbd8915e07",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -554,6 +570,50 @@
                     "processors": "",
                     "groups": "Normal Scheme",
                     "action": "TextInteraction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrows",
+                    "id": "9addd75f-9220-4fba-9c88-34bec8079fdf",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeCamera",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "c4e85fc3-d3c4-466d-a3f3-29556ea48329",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "03a0f09b-c3aa-4bdd-a371-14391079da62",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal Scheme",
+                    "action": "ChangeCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "2e4db7c8-0cef-4843-a242-95196c0502a7",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Normal Scheme",
+                    "action": "HideCanvas",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

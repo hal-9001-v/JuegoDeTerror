@@ -105,6 +105,22 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ChangeCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""6696516e-5eba-4bc2-a88f-b8aa360565b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""HideCanvas"",
+                    ""type"": ""Button"",
+                    ""id"": ""0405fe16-2be6-46f0-a707-39bbd8915e07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -569,6 +585,50 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""TextInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""9addd75f-9220-4fba-9c88-34bec8079fdf"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""c4e85fc3-d3c4-466d-a3f3-29556ea48329"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""03a0f09b-c3aa-4bdd-a371-14391079da62"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2e4db7c8-0cef-4843-a242-95196c0502a7"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Normal Scheme"",
+                    ""action"": ""HideCanvas"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -610,6 +670,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_Normal_InventoryAxis = m_Normal.FindAction("InventoryAxis", throwIfNotFound: true);
         m_Normal_UseItem = m_Normal.FindAction("UseItem", throwIfNotFound: true);
         m_Normal_TextInteraction = m_Normal.FindAction("TextInteraction", throwIfNotFound: true);
+        m_Normal_ChangeCamera = m_Normal.FindAction("ChangeCamera", throwIfNotFound: true);
+        m_Normal_HideCanvas = m_Normal.FindAction("HideCanvas", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -670,6 +732,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_Normal_InventoryAxis;
     private readonly InputAction m_Normal_UseItem;
     private readonly InputAction m_Normal_TextInteraction;
+    private readonly InputAction m_Normal_ChangeCamera;
+    private readonly InputAction m_Normal_HideCanvas;
     public struct NormalActions
     {
         private @PlayerControls m_Wrapper;
@@ -685,6 +749,8 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @InventoryAxis => m_Wrapper.m_Normal_InventoryAxis;
         public InputAction @UseItem => m_Wrapper.m_Normal_UseItem;
         public InputAction @TextInteraction => m_Wrapper.m_Normal_TextInteraction;
+        public InputAction @ChangeCamera => m_Wrapper.m_Normal_ChangeCamera;
+        public InputAction @HideCanvas => m_Wrapper.m_Normal_HideCanvas;
         public InputActionMap Get() { return m_Wrapper.m_Normal; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -727,6 +793,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @TextInteraction.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
                 @TextInteraction.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
                 @TextInteraction.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnTextInteraction;
+                @ChangeCamera.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnChangeCamera;
+                @HideCanvas.started -= m_Wrapper.m_NormalActionsCallbackInterface.OnHideCanvas;
+                @HideCanvas.performed -= m_Wrapper.m_NormalActionsCallbackInterface.OnHideCanvas;
+                @HideCanvas.canceled -= m_Wrapper.m_NormalActionsCallbackInterface.OnHideCanvas;
             }
             m_Wrapper.m_NormalActionsCallbackInterface = instance;
             if (instance != null)
@@ -764,6 +836,12 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @TextInteraction.started += instance.OnTextInteraction;
                 @TextInteraction.performed += instance.OnTextInteraction;
                 @TextInteraction.canceled += instance.OnTextInteraction;
+                @ChangeCamera.started += instance.OnChangeCamera;
+                @ChangeCamera.performed += instance.OnChangeCamera;
+                @ChangeCamera.canceled += instance.OnChangeCamera;
+                @HideCanvas.started += instance.OnHideCanvas;
+                @HideCanvas.performed += instance.OnHideCanvas;
+                @HideCanvas.canceled += instance.OnHideCanvas;
             }
         }
     }
@@ -790,5 +868,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnInventoryAxis(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
         void OnTextInteraction(InputAction.CallbackContext context);
+        void OnChangeCamera(InputAction.CallbackContext context);
+        void OnHideCanvas(InputAction.CallbackContext context);
     }
 }
