@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
         myCanvasManager = FindObjectOfType<CanvasManager>();
 
-
     }
 
     private void Start()
@@ -68,7 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void switchPause()
     {
-        if (canChangePause) {
+        if (canChangePause)
+        {
             if (paused)
             {
                 resumeGame();
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
                 pauseGame();
             }
         }
-        
+
 
     }
 
@@ -105,7 +105,8 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void stopPlayer() {
+    public void stopPlayer()
+    {
 
         if (myPlayerBrain != null)
             myPlayerBrain.enablePlayer(false);
@@ -121,7 +122,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        
+
 
         Time.timeScale = 1;
 
@@ -225,10 +226,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("MainMneu");
     }
 
-    public void setCanSwitchPause(bool b) {
+    public void setCanSwitchPause(bool b)
+    {
         canChangePause = b;
 
-    
+
     }
 
 }

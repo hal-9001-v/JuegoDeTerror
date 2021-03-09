@@ -2,75 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
-public class DigitalDisplay : MonoBehaviour
+
+[RequireComponent(typeof(AudioSource))]
+public class DigitalDisplay : Interactable
 {
-    public int unlockCode = 0000;
-    public int codeLength = 4;
+    public string unlockCode;
     public TextMeshProUGUI text;
-    public float minDist;
-    public float dist;
+
     public Transform player;
     public Canvas displayCnavas;
     public AudioClip clickSound;
-    public TextMeshProUGUI deleteText;
-    public TextMeshProUGUI doneText;
-    public TextMeshProUGUI exitText;
+
+
     private AudioSource audioSource;
     private bool displayActivated = false;
-    private string secuence = "";
+    private string sequence = "";
     private bool unlocked = false;
-    
+
+    public UnityEvent doneActions;
+
+    public ParticleSystem particleSystem;
+
     private void Start()
     {
         displayCnavas.enabled = false;
         audioSource = GetComponent<AudioSource>();
 
+
     }
-    void Update()
-    {
-        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
-        {
-            if (displayActivated == false)
-            {
-                dist = Vector3.Distance(player.position, this.transform.position);
-                if (dist <= minDist)
-                {
-                    if (Input.GetButtonDown("Interact"))
-                    {
-                        displayActivated = true;
-                        displayCnavas.enabled = true;
-                        PlayerMovement.sharedInstance.isReading = true;
-                        Cursor.lockState = CursorLockMode.None;
-                    }
-                }
-            }
-        }
-    }
+
 
     public void AddDigitToSequence(int number)
     {
-        if (secuence.Length < codeLength)
+        if (sequence.Length <= unlockCode.Length)
         {
-            secuence += number;
-            text.text = secuence;
+            sequence += number;
+            text.text = sequence;
             audioSource.PlayOneShot(clickSound);
         }
     }
 
-    public void DeleteSecuence()
+    public void DeleteSequence()
     {
-        secuence = "";
-        text.text = secuence;
+        sequence = "";
+        text.text = sequence;
     }
 
     public void CheckCode()
     {
-        if(unlockCode.ToString() == secuence)
+        if (unlockCode == sequence)
         {
-            unlocked = true;
+            doneActions.Invoke();
             Debug.Log("Código correcto");
+            readyForInteraction = false;
             Exit();
+        }
+        else
+        {
+            sequence = "";
+            text.text = "";
+            Debug.Log("Code is :" + unlockCode + ". Inserted is: " + sequence);
         }
     }
 
@@ -79,13 +72,58 @@ public class DigitalDisplay : MonoBehaviour
         displayActivated = false;
         displayCnavas.enabled = false;
         PlayerMovement.sharedInstance.isReading = false;
+
         Cursor.lockState = CursorLockMode.Locked;
-        secuence = "";
-        text.text = secuence;
+        Cursor.visible = false;
+
+        sequence = "";
+        text.text = sequence;
 
         if (unlocked == true)
         {
             this.GetComponent<DigitalDisplay>().enabled = false;
+        }
+    }
+
+    private void Update()
+    {
+        if (particleSystem != null)
+        {
+            if (hideWhenDone && done || !readyForInteraction)
+            {
+                if (particleSystem.isPlaying)
+                {
+                    particleSystem.Stop();
+                    particleSystem.Clear();
+                }
+            }
+            else
+            {
+                if (!particleSystem.isPlaying)
+                {
+                    particleSystem.Play();
+
+                }
+            }
+        }
+    }
+
+    public override void interact()
+    {
+
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
+        {
+            if (displayActivated == false)
+            {
+                displayActivated = true;
+                displayCnavas.enabled = true;
+                PlayerMovement.sharedInstance.isReading = true;
+
+
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+
         }
     }
 }

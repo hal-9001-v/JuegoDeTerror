@@ -14,7 +14,7 @@ public static class LanguageController
     {
         try {
             //1. Encontramos el fichero de texto y le decimos en qué codificación de caracteres queremos que nos lo lea
-            using (StreamReader reader = new StreamReader(Application.dataPath + @"\Scripts\Languages\" + fileName, System.Text.Encoding.GetEncoding(1252)))
+            using (StreamReader reader = new StreamReader(Application.streamingAssetsPath + @"\Resources\Languages\" + fileName, System.Text.Encoding.GetEncoding(65000)))
             {
                 //2. Inicializamos la HashTable
                 languageHashTable = new Hashtable();
