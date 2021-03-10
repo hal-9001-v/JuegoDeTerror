@@ -260,7 +260,7 @@ public class SoundDirector : MonoBehaviour
 
     public void playFastHeartbeats()
     {
-        if (playerSource != null && !playerSource.clip != fastHeartBeats)
+        if (playerSource != null && playerSource.clip != fastHeartBeats)
         {
             playerSource.clip = fastHeartBeats;
             playerSource.Play();
@@ -279,6 +279,7 @@ public class SoundDirector : MonoBehaviour
     public void stopHeartBeats() {
         if (playerSource != null)
             playerSource.Stop();
+
 
     }
 
