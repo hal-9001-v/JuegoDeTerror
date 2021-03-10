@@ -4,7 +4,6 @@ The new security system has been successfully installed:
 -	If a human enters a room or aisle and the creature is nowhere nearby,a blue light will turn on in said room or aisle.
 -	If a human enters a room or aisle and the creature is relatively close, but still far enough not to be an imminent thread, a yellow light will turn on in said room or aisle.
 -	If a human enters a room or aisle and the creature is in any adjacent room, a red light will turn on in said room or aisle, which can make the subject flinch and give the prey a chance to escape.
--	If a human enters a room or aisle and the creature is in that same room, a red light will turn on and an alarm will go off, in order to stun the predator.
 
 Day 8 since the study began:
 The security cameras have shown the creature to be repeatedly stabbing the security glass with its sting. Although no cracks have been found, the security system has been fully activated. This bunker might not be safe anymore until the subject dies of starvation. However, after 8 days of no eating or drinking, it has not shown any sign of weakness. Tomorrow’s report will be the last one before the bunker gets evacuated.
