@@ -89,6 +89,8 @@ public class SceneController : MonoBehaviour
     IEnumerator asyncLoad(int sceneId)
     {
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Time.timeScale = 1;
         SceneManager.LoadScene(loadingScene);
 
@@ -105,7 +107,7 @@ public class SceneController : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Done loading " + SceneManager.GetSceneByBuildIndex(sceneId).name + " scene!");        
+        Debug.Log("Done loading " + SceneManager.GetSceneByBuildIndex(sceneId).name + " scene!");
 
     }
 
