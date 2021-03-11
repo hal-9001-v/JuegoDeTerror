@@ -2,7 +2,7 @@ Day 7 since the new study began:
 The aggresiveness shown the previous days has disappeared completely. The subject now seems extremely calm. We have not been able to determine if this behaviour is due to a lack of nutrients or because the creature is saving energy for something. 
 The new security system has been successfully installed:
 -	If a human enters a room or aisle and the creature is nowhere nearby,a blue light will turn on in said room or aisle.
--	If a human enters a room or aisle and the creature is relatively close, but still far enough not to be an imminent thread, a yellow light will turn on in said room or aisle.
+-	If a human enters a room or aisle and the creature is relatively close, but still far enough not to be an imminent threat, a yellow light will turn on in said room or aisle.
 -	If a human enters a room or aisle and the creature is in any adjacent room, a red light will turn on in said room or aisle, which can make the subject flinch and give the prey a chance to escape.
 
 Day 8 since the study began:
