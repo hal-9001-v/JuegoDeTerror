@@ -22,7 +22,7 @@ public class PlayerMovement : PlayerComponent
 
     public float runningIncrease = 1.5f; //Multiplicador de velocidad al correr
 
-    public float gravity = 9.8f;
+    public float gravity = 25f;
 
     private float fallVelocity;
 

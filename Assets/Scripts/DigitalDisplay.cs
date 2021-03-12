@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 
 [RequireComponent(typeof(AudioSource))]
-public class DigitalDisplay : Interactable
+public class DigitalDisplay : PlayerComponent
 {
     public string unlockCode;
     public TextMeshProUGUI text;
@@ -58,7 +58,6 @@ public class DigitalDisplay : Interactable
         {
             doneActions.Invoke();
             Debug.Log("Código correcto");
-            readyForInteraction = false;
             Exit();
         }
         else
@@ -73,7 +72,8 @@ public class DigitalDisplay : Interactable
     {
         displayActivated = false;
         displayCnavas.enabled = false;
-        PlayerMovement.sharedInstance.isReading = false;
+
+        GameManager.sharedInstance.resumeGame();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -81,36 +81,9 @@ public class DigitalDisplay : Interactable
         sequence = "";
         text.text = sequence;
 
-        if (unlocked == true)
-        {
-            this.GetComponent<DigitalDisplay>().enabled = false;
-        }
     }
 
-    private void Update()
-    {
-        if (particleSystem != null)
-        {
-            if (hideWhenDone && done || !readyForInteraction)
-            {
-                if (particleSystem.isPlaying)
-                {
-                    particleSystem.Stop();
-                    particleSystem.Clear();
-                }
-            }
-            else
-            {
-                if (!particleSystem.isPlaying)
-                {
-                    particleSystem.Play();
-
-                }
-            }
-        }
-    }
-
-    public override void interact()
+    public void display()
     {
 
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
@@ -130,5 +103,12 @@ public class DigitalDisplay : Interactable
             }
 
         }
+    }
+
+    public override void setPlayerControls(PlayerControls pc)
+    {
+        pc.Normal.Cancel.performed += ctx => Exit();
+
+
     }
 }
