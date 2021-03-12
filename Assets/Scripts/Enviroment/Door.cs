@@ -70,10 +70,12 @@ public class Door : Interactable
 
         if (myData.doorOpen)
         {
-            openDoor();
+            if(!doorIsOpen)
+                openDoor();
         }
         else {
-            closeDoor();
+            if (doorIsOpen)
+                closeDoor();
         }
 
     }

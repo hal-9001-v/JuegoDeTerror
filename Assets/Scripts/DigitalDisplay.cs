@@ -25,6 +25,8 @@ public class DigitalDisplay : Interactable
 
     public ParticleSystem particleSystem;
 
+    GameManager gameManager;
+
     private void Start()
     {
         displayCnavas.enabled = false;
@@ -113,11 +115,14 @@ public class DigitalDisplay : Interactable
 
         if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
+
+
             if (displayActivated == false)
             {
+
+                GameManager.sharedInstance.digitalCode();
                 displayActivated = true;
                 displayCnavas.enabled = true;
-                PlayerMovement.sharedInstance.isReading = true;
 
 
                 Cursor.lockState = CursorLockMode.None;

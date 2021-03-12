@@ -8,8 +8,6 @@ public class PlayerBrain : MonoBehaviour
     PlayerComponent[] myPlayerComponents;
     StatsComponent[] myStatsComponents;
 
-    PlayerMovement movement;
-
     SaveManager mySaveManager;
 
     PlayerMovement pm;
@@ -43,6 +41,9 @@ public class PlayerBrain : MonoBehaviour
         {
             component.enabled = b;
         }
+
+        if (PlayerMovement.sharedInstance.isReading)
+            PlayerMovement.sharedInstance.enabled = false;
     }
 
     private void OnEnable()

@@ -8,6 +8,7 @@ public enum GameState
     pause,
     note,
     inGame,
+    code,
     gameOver
 }
 
@@ -167,6 +168,20 @@ public class GameManager : MonoBehaviour
 
     }
 
+    void codeState()
+    {
+
+        canChangePause = false;
+        PlayerMovement.sharedInstance.isReading = true;
+
+        if (myPlayerBrain != null)
+            myPlayerBrain.enablePlayer(false);
+
+        Cursor.lockState = CursorLockMode.None;
+
+
+    }
+
     //Método que cambia a el estado menu
     public void BackToMenu()
     {
@@ -187,6 +202,11 @@ public class GameManager : MonoBehaviour
     public void displayNote()
     {
         setGameState(GameState.note);
+    }
+
+    public void digitalCode()
+    {
+        setGameState(GameState.code);
     }
 
     //Método que cambia a el estado gameOver
@@ -214,6 +234,10 @@ public class GameManager : MonoBehaviour
 
             case GameState.preLoad:
                 Cursor.lockState = CursorLockMode.Locked;
+                break;
+
+            case GameState.code:
+                codeState();
                 break;
         }
 

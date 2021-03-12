@@ -14,9 +14,22 @@ public abstract class Item : MonoBehaviour
 
     AudioSource source;
 
-    private void Awake()
+
+    public bool nearSoundOnStart = true;
+
+    public void Start()
     {
         source = GetComponent<AudioSource>();
+
+        if (nearSoundOnStart) {
+            startNearSound();
+        }
+    }
+
+
+
+
+    public void startNearSound() {
         if (source != null && pickingSound != null)
         {
             source.clip = pickingSound;
@@ -24,6 +37,7 @@ public abstract class Item : MonoBehaviour
             StartCoroutine(playNearSound());
 
         }
+
     }
 
     public void addToInventory()
