@@ -43,7 +43,6 @@ public class ScrollInventory : PlayerComponent
     void Start()
     {
         currentIndex = 0;
-        image.CrossFadeAlpha(0.0f, 0.0f, false);
         setItem(currentIndex);
 
         if (GameEventManager.sharedInstance != null)
@@ -77,6 +76,7 @@ public class ScrollInventory : PlayerComponent
     private void GameEventManager_OnAddedItemToInventory(object sender, GameEventManager.OnUsedItemForInventory e)
     {
         AddItem(e.myItem);
+
     }
 
     void upPressed()
@@ -105,11 +105,8 @@ public class ScrollInventory : PlayerComponent
     {
         currentItems.Add(newItem);
 
-        if (currentItems.Count == 1)
-        {
-            image.CrossFadeAlpha(1.0f, 0.0f, false);
-            setItem(0);
-        }
+        currentIndex = currentItems.Count-1;
+        setItem(currentItems.Count - 1);
     }
 
     public void DeleteItem(Item item)
@@ -154,6 +151,7 @@ public class ScrollInventory : PlayerComponent
 
     public void setItem(int index)
     {
+        
         text.CrossFadeAlpha(1.0f, 0.0f, false);
         if (currentItems.Count != 0 && index < currentItems.Count && index >= 0)
         {
