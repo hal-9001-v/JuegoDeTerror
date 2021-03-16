@@ -1,12 +1,14 @@
-Day 7 since the new study began:
-The aggresiveness shown the previous days has disappeared completely. The subject now seems extremely calm. We have not been able to determine if this behaviour is due to a lack of nutrients or because the creature is saving energy for something. 
-The new security system has been successfully installed:
--	If a human enters a room or aisle and the creature is nowhere nearby,a blue light will turn on in said room or aisle.
--	If a human enters a room or aisle and the creature is relatively close, but still far enough not to be an imminent threat, a yellow light will turn on in said room or aisle.
--	If a human enters a room or aisle and the creature is in any adjacent room, a red light will turn on in said room or aisle, which can make the subject flinch and give the prey a chance to escape.
--	The security signal is unstable. If a room or aisle isn't getting a good signal, a green light will turn on. Thus, a green light means a temporal instability.
+Día 7 de estudio:
+La agresividad mostrada los días anteriores ha desaparecido por completo. El sujeto parece extremadamente calmado. No sabemos si este comportamiento se debe a la falta de nutrientes o si está guardando energía para algo.
+El nuevo sistema de seguridad ha sido instalado exitosamente:
+-	Si un humano entra en una habitación o pasillo y la criatura no está cerca, se encenderá una luz azul.
+-	Si un humano entra en una habitación o pasillo y la criatura está relativamente cerca, pero no lo suficiente como para ser una amenaza inminente, se encenderá una luz amarilla.
+-	Si un humano entra en una habitación o pasillo y la criatura está en una sala adyacente o en esta misma, se encenderá una luz roja que podría hacer retroceder al sujeto, dando a la presa la oportunidad de escapar.
+-	La señal de seguridad es inestable. Si una habitación o pasillo no recibe una buena señal, se encenderá una luz verde. Por tanto, la luz verde indica inestabilidad temporal.
 
-Day 8 since the study began:
-The security cameras have shown the creature to be repeatedly stabbing the security glass with its sting. Although no cracks have been found, the security system has been fully activated. This bunker might not be safe anymore until the subject dies of starvation. However, after 8 days of no eating or drinking, it has not shown any sign of weakness. Tomorrow’s report will be the last one before the bunker gets evacuated.
 
-119???
+Día 8 de estudio:
+Las cámaras han grabado a la criatura golpeando repetidamente el cristal de seguridad con su aguijón. Aunque no se ha encontrado ninguna grieta, el sistema de seguridad ha sido activado en su totalidad. Es posible que este lugar no sea seguro hasta que el sujeto muera de inanición, pero tras 8 días sin comer ni beber, no parece mostrar ningún signo de debilidad. El reporte de mañana será el último antes de que el búnker sea evacuado.
+
+
+¿¿119??
