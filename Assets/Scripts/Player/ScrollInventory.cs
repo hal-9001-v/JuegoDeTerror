@@ -168,7 +168,7 @@ public class ScrollInventory : PlayerComponent
         {
             image.texture = null;
             image.color = new Vector4(0, 0, 0, 0);
-            text.text = "Empty";
+            text.text = "Vacío";
         }
 
     }

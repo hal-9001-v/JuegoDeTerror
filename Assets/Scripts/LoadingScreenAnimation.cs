@@ -20,13 +20,13 @@ public class LoadingScreenAnimation : MonoBehaviour
 
         while (true)
         {
-            text.text = "Loading";
+            text.text = "Cargando";
             yield return new WaitForSeconds(changeTime);
-            text.text = "Loading.";
+            text.text = "Cargando.";
             yield return new WaitForSeconds(changeTime);
-            text.text = "Loading..";
+            text.text = "Cargando..";
             yield return new WaitForSeconds(changeTime);
-            text.text = "Loading...";
+            text.text = "Cargando...";
             yield return new WaitForSeconds(changeTime);
 
         }
